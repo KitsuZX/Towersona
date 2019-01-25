@@ -65,12 +65,15 @@ public class TowersonaNeeds : MonoBehaviour
         {
             case NeedType.Hunger:
                 hungerLevel += changeAmount;
+                hungerLevel = Mathf.Min(hungerLevel, happinessCap);
                 break;
             case NeedType.Shit:
                 shitLevel += changeAmount;
+                shitLevel = Mathf.Min(shitLevel, happinessCap);
                 break;
             case NeedType.Love:
                 loveLevel += changeAmount;
+                loveLevel = Mathf.Min(loveLevel, happinessCap);
                 break;
         }
     }
@@ -82,6 +85,9 @@ public class TowersonaNeeds : MonoBehaviour
         DoNeedDecay();
         NeedType needToBeNotified = CheckIfShouldNotifyNeed();
         if (needToBeNotified != NeedType.None) NotifyNeed(needToBeNotified);
+
+
+        print("Love: " + loveLevel);
     }
 
     /// <summary>
@@ -144,7 +150,7 @@ public class TowersonaNeeds : MonoBehaviour
                 break;
         }
 
-        Debug.Log(tmpMessage);
+        //Debug.Log(tmpMessage);
     }
     #endregion
 
