@@ -1,19 +1,18 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
+[RequireComponent(typeof(ShitNeed))]
 public class TowersonaNeeds : MonoBehaviour
 {
     private const int AMOUNT_OF_NEEDS = 3;
 
     [SerializeField][Range(1, 2)]
-    private float happinessCap;
+    private float happinessCap = 1.3f;
     [Header("Decay")]
     [SerializeField]
     private float hungerDecayPerSecond = 0.1f;
     [SerializeField]
     private float loveDecayPerSecond = 0.1f;
-    [SerializeField]
-    private float shitDecayPerSecond = 0.1f;
 
     [Header("Notification")]
     [SerializeField][Range(0, 1)]
@@ -22,14 +21,14 @@ public class TowersonaNeeds : MonoBehaviour
     //Need levels
     private float hungerLevel;
     private float loveLevel;
-    private float shitLevel;
+    private ShitNeed shitNeed;
 
 
     public float HappinessLevel
     {
         get
         {
-            float sum = hungerLevel + loveLevel + shitLevel;
+            float sum = hungerLevel + loveLevel + shitNeed.Level;
             return sum / AMOUNT_OF_NEEDS;
         }
     }
@@ -48,7 +47,7 @@ public class TowersonaNeeds : MonoBehaviour
                 hungerLevel = setLevel;
                 break;
             case NeedType.Shit:
-                shitLevel = setLevel;
+                if (setLevel >= 1) shitNeed.CleanAllShit();
                 break;
             case NeedType.Love:
                 loveLevel = setLevel;
@@ -67,10 +66,6 @@ public class TowersonaNeeds : MonoBehaviour
                 hungerLevel += changeAmount;
                 hungerLevel = Mathf.Min(hungerLevel, happinessCap);
                 break;
-            case NeedType.Shit:
-                shitLevel += changeAmount;
-                shitLevel = Mathf.Min(shitLevel, happinessCap);
-                break;
             case NeedType.Love:
                 loveLevel += changeAmount;
                 loveLevel = Mathf.Min(loveLevel, happinessCap);
@@ -85,9 +80,6 @@ public class TowersonaNeeds : MonoBehaviour
         DoNeedDecay();
         NeedType needToBeNotified = CheckIfShouldNotifyNeed();
         if (needToBeNotified != NeedType.None) NotifyNeed(needToBeNotified);
-
-
-        print("Love: " + loveLevel);
     }
 
     /// <summary>
@@ -96,11 +88,9 @@ public class TowersonaNeeds : MonoBehaviour
     private void DoNeedDecay()
     {
         hungerLevel -= hungerDecayPerSecond * Time.deltaTime;
-        shitLevel -= shitDecayPerSecond * Time.deltaTime;
         loveLevel -= loveDecayPerSecond * Time.deltaTime;
 
         hungerLevel = Mathf.Max(0, hungerLevel);
-        shitLevel = Mathf.Max(0, shitLevel);
         loveLevel = Mathf.Max(0, loveLevel);
     }
 
@@ -118,10 +108,10 @@ public class TowersonaNeeds : MonoBehaviour
             notifiedNeed = NeedType.Hunger;
             lowest = hungerLevel;
         }
-        if (shitLevel < notificationThreshold && shitLevel < lowest)
+        if (shitNeed.Level < notificationThreshold && shitNeed.Level < lowest)
         {
             notifiedNeed = NeedType.Shit;
-            lowest = shitLevel;
+            lowest = shitNeed.Level;
         }
         if (loveLevel < notificationThreshold && loveLevel < lowest)
         {
@@ -156,6 +146,8 @@ public class TowersonaNeeds : MonoBehaviour
 
     private void Awake()
     {
+        shitNeed = GetComponent<ShitNeed>();
+
         SetNeedLevel(NeedType.Hunger, 1);
         SetNeedLevel(NeedType.Shit, 1);
         SetNeedLevel(NeedType.Love, 1);
@@ -169,5 +161,15 @@ public class TowersonaNeeds : MonoBehaviour
         None
     }
 
-    
+
+
+    //Debug only
+    private void OnGUI()
+    {
+        GUI.Label(new Rect(1000, 0, 300, 200), "Love: " + loveLevel);
+        GUI.Label(new Rect(1000, 50, 300, 200), "Hunger: " + hungerLevel);
+        GUI.Label(new Rect(1000, 100, 300, 200), "Shit: " + shitNeed.Level);
+        GUI.Label(new Rect(1000, 150, 300, 200), "Happiness: " + HappinessLevel);
+    }
+
 }
