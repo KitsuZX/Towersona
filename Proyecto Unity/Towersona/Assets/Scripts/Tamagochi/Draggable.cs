@@ -31,8 +31,6 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        print("MouseDown detected");
-
         if (Input.touchCount > 0)
         {
             originalPosition = transform.position;
@@ -53,6 +51,16 @@ public class Draggable : MonoBehaviour
     private void OnMouseUpAsButton()
     {
         OnLetGo.Invoke();
+
+        if (gameObject != null)
+        {
+            GoBack();
+        }
+    }
+
+    private void GoBack()
+    {
+        transform.position = originalPosition;
     }
 
     private void Awake()

@@ -10,7 +10,7 @@ public class FoodDispenser : MonoBehaviour
     private float dispenseDelay = 1f;
 
     [SerializeField]
-    private Food foodPrefab;
+    private Food foodPrefab = null;
 
     public void DispenseImmidiately()
     {

@@ -121,7 +121,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   detailCamera: {fileID: 0}
-  transform: {fileID: 0}
 --- !u!1 &2937486179109956437
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,5 +166,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hungerFulmilmentPerRation: 1
-  boxCastHalfSize: {x: 5, y: 5, z: 5}
+  boxCastHalfSize: {x: 0.3, y: 0.3, z: 50}
   dispenser: {fileID: 0}

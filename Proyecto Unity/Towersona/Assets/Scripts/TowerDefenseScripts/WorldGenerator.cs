@@ -10,11 +10,11 @@ public class WorldGenerator : MonoBehaviour
 
     [Header("References")]
     [SerializeField]
-    private GameObject tilePrefab;
+    private GameObject tilePrefab = null;
     [SerializeField]
-    private Transform worldTransform;
+    private Transform worldTransform = null;
     [SerializeField]
-    private Material pathMaterial;
+    private Material pathMaterial = null;
 
     private List<PathDirection> path;
     private Tile currentTile;

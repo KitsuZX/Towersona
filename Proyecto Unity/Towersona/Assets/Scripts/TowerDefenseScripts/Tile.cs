@@ -8,7 +8,7 @@ public class Tile : MonoBehaviour
     public Vector2 position;
 
     [SerializeField]
-    private Material pathMaterial;
+    private Material pathMaterial = null;
 
     public void MakePath()
     {

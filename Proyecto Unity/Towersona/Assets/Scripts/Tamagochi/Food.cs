@@ -5,12 +5,12 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     [SerializeField]
-    float hungerFulmilmentPerRation;
+    float hungerFulmilmentPerRation = 1;
     [SerializeField]
-    Vector3 boxCastHalfSize;
+    Vector3 boxCastHalfSize = Vector3.one;
 
     [HideInInspector]
-    public FoodDispenser dispenser;
+    public FoodDispenser dispenser = null;
 
 
     public void OnLettingGo()
@@ -20,7 +20,6 @@ public class Food : MonoBehaviour
             Vector3.forward,
             Quaternion.identity);
 
-        bool hitTowersona = false;
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].collider)
