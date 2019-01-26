@@ -13,6 +13,8 @@ public class World : MonoBehaviour
     [HideInInspector]
     public List<Transform> controlPoints;
 
+    public GameObject towersona;
+
     private void Awake()
     {
         if (!Instance)
@@ -26,5 +28,9 @@ public class World : MonoBehaviour
 
         tiles = new Tile[levelWidth, levelHeigth];
         controlPoints = new List<Transform>();
+    }
+
+    public void SpawnTowersona(Vector3 tilePosition) {
+        Instantiate(towersona, tilePosition, Quaternion.identity);
     }
 }

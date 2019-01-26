@@ -5,10 +5,12 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public bool isPath = false;
+    public bool hasTower = false;
     public Vector2 position;    
 
     [SerializeField]
     private Material pathMaterial = null;
+
 
     private MeshRenderer meshRenderer;
 
@@ -20,5 +22,14 @@ public class Tile : MonoBehaviour
     public void ChangeTexture(Texture2D texture)
     {
         meshRenderer.material.mainTexture = texture;
+    }  
+
+    private void OnMouseUpAsButton()
+    {
+        if (!isPath)
+        {
+            hasTower = true;
+            World.Instance.SpawnTowersona(transform.position);
+        }
     }
 }
