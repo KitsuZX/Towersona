@@ -274,6 +274,7 @@ GameObject:
   - component: {fileID: 383186422}
   - component: {fileID: 383186421}
   - component: {fileID: 383186423}
+  - component: {fileID: 383186424}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -324,7 +325,40 @@ MonoBehaviour:
   tilePrefab: {fileID: 3761340351531711983, guid: 86211426c05f8614b85ca6e043455055,
     type: 3}
   worldTransform: {fileID: 904369586}
-  pathMaterial: {fileID: 2100000, guid: 58578f1a390f9b145b1dac31d1860143, type: 2}
+  grassTextures:
+  - {fileID: 2800000, guid: 3c9e3a85fb66ce94db7c1d46b3d3d5e4, type: 3}
+  - {fileID: 2800000, guid: e52cb99842b1ed64f89b0f8a696b0827, type: 3}
+  - {fileID: 2800000, guid: f6447add78c4d734996deee1f8a8ac83, type: 3}
+  - {fileID: 2800000, guid: 3ab19548f66754442838a37a94eda94f, type: 3}
+  - {fileID: 2800000, guid: 8e02ae85ef3ecaf4cbe4e6debc51d6ca, type: 3}
+  - {fileID: 2800000, guid: adb675121545512429ce2e155b7ce89e, type: 3}
+  - {fileID: 2800000, guid: 35c36c134ee471a4ba03c8eabf422682, type: 3}
+  - {fileID: 2800000, guid: 36a4f7fc735be114cac413a0ca67b828, type: 3}
+  - {fileID: 2800000, guid: 31bbc83353551c741b72bb94a788347d, type: 3}
+  - {fileID: 2800000, guid: 3e28913344358fb408cdb3342373e537, type: 3}
+  - {fileID: 2800000, guid: d3255593607456b48b1fa0bc56963e15, type: 3}
+  - {fileID: 2800000, guid: e52cb99842b1ed64f89b0f8a696b0827, type: 3}
+  - {fileID: 2800000, guid: f6447add78c4d734996deee1f8a8ac83, type: 3}
+  - {fileID: 2800000, guid: 3ab19548f66754442838a37a94eda94f, type: 3}
+  - {fileID: 2800000, guid: 35c36c134ee471a4ba03c8eabf422682, type: 3}
+  - {fileID: 2800000, guid: e52cb99842b1ed64f89b0f8a696b0827, type: 3}
+  - {fileID: 2800000, guid: f6447add78c4d734996deee1f8a8ac83, type: 3}
+  - {fileID: 2800000, guid: 3ab19548f66754442838a37a94eda94f, type: 3}
+  - {fileID: 2800000, guid: 35c36c134ee471a4ba03c8eabf422682, type: 3}
+  pathTextures:
+  - {fileID: 2800000, guid: fbe2e761c5def6b49b70ed5742a27cdc, type: 3}
+--- !u!114 &383186424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383186420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3de5f094cdd4934b9125dd161d651c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &904369585
 GameObject:
   m_ObjectHideFlags: 0
