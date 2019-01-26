@@ -27,6 +27,8 @@ public class TowersonaAnimation : MonoBehaviour
         UpdateBody();
         UpdateHead();
         UpdateFace();
+
+        if (TMP_hasEaten) TMP_hasEaten = false;
     }
 
     private void UpdateBody()
@@ -38,7 +40,6 @@ public class TowersonaAnimation : MonoBehaviour
     {
         if (TMP_hasEaten)
         {
-            TMP_hasEaten = false;
             headAnimator.SetBool("hasEaten", true);
         }
 
@@ -50,7 +51,7 @@ public class TowersonaAnimation : MonoBehaviour
     private void UpdateFace()
     {
         faceAnimator.SetInteger("idleEmotion", (int)emotion);
-        faceAnimator.SetBool("hasEaten", TMP_hasEaten);
+        if (TMP_hasEaten) faceAnimator.SetBool("hasEaten", true);
         faceAnimator.SetBool("isLookingAtFood", TMP_isLookingAtFood);
         faceAnimator.SetBool("isCaressed", TMP_isCaressed);
     }
