@@ -17,7 +17,7 @@ public class Draggable : MonoBehaviour
     private Vector3 originalPosition;
     private Vector3 touchOffset;
 
-    private bool isBeingDragged;
+    private bool wasDraggedLastFrame = false;
     private float timeWithoutDrag = 0;
 
     private Vector3 TouchInWorldSpace
@@ -48,11 +48,13 @@ public class Draggable : MonoBehaviour
             touchOffset = touchInWorld - transform.position;//transform.position - touchInWorld;
 
             OnDragStart.Invoke();
+            wasDraggedLastFrame = true;
         }
     }
 
     private void OnMouseDrag()
     {
+        wasDraggedLastFrame = true;
         Vector3 tmp = TouchInWorldSpace + touchOffset;
         transform.position = tmp;
     }
@@ -60,6 +62,7 @@ public class Draggable : MonoBehaviour
     private void OnMouseUpAsButton()
     {
         OnLetGo.Invoke();
+        wasDraggedLastFrame = false;
 
         if (gameObject != null && originalPosition != Vector3.zero)
         {
@@ -70,10 +73,26 @@ public class Draggable : MonoBehaviour
     private void GoBack()
     {
         transform.position = originalPosition;
+        wasDraggedLastFrame = false;
+    }
+
+    private void Update()
+    {
+        if (!wasDraggedLastFrame)
+        {
+            timeWithoutDrag += Time.deltaTime;
+            if (timeWithoutDrag > timeBeforeAutoBack) GoBack();
+        }
+        else
+        {
+            timeWithoutDrag = 0;
+        }
+        wasDraggedLastFrame = false;
     }
 
     private void Awake()
     {
         transform = GetComponent<Transform>();
+        originalPosition = transform.position;
     }
 }
