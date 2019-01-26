@@ -51,6 +51,7 @@ public class Towersona : MonoBehaviour
         towersonaNeeds = World.Instance.SpawnDetailedTowersonaView(color, this);
         detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
+        World.Instance.ChangeCamera(this);
     }
 
     private void Start()
