@@ -348,6 +348,16 @@ PrefabInstance:
       propertyPath: shitSpawnPositions.Array.data[3]
       value: 
       objectReference: {fileID: 269178897944428952}
+    - target: {fileID: 1520150169630117066, guid: 52b4dbb880e021b4a8e4cd74b9212460,
+        type: 3}
+      propertyPath: hungerDecayPerSecond
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520150169630117066, guid: 52b4dbb880e021b4a8e4cd74b9212460,
+        type: 3}
+      propertyPath: loveDecayPerSecond
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
 --- !u!4 &5139840167273293285 stripped
