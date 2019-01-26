@@ -46,10 +46,9 @@ public class Towersona : MonoBehaviour
     private TowersonaNeeds towersonaNeeds;
     private TowersonaAnimation detailedAnimationManager;
     private Color color;
+    private bool isNotifying;
+    private GameObject notification;
     
-    
-    
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -133,11 +132,17 @@ public class Towersona : MonoBehaviour
         //Check for needs
         TowersonaNeeds.NeedType needType = towersonaNeeds.CheckIfShouldNotifyNeed();
 
-        if(needType != TowersonaNeeds.NeedType.None)
+        if (needType != TowersonaNeeds.NeedType.None && !isNotifying)
         {
             CreateNotification(needType);
             Debug.Log("Creating Notification");
         }
+
+        if(needType == TowersonaNeeds.NeedType.None && isNotifying)
+        {
+            DestroyNotification();
+        }
+        
 
 
     }
@@ -166,11 +171,22 @@ public class Towersona : MonoBehaviour
 
     private void CreateNotification(TowersonaNeeds.NeedType needType)
     {
+
+        Notification notification = Instantiate(notificationPrefab).GetComponent<Notification>();
+
+        this.notification = notification.gameObject;
+
         Vector3 position = transform.position;
-        position.x += 10f;
-        position.z += 10f;
-        Notification notification = Instantiate(notificationPrefab, position, Quaternion.identity).GetComponent<Notification>();
+        position.x += 1f;
+        position.y = 2f;
+        position.z += 1f;
+
+        notification.transform.position = position;
+
+        notification.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+
         SpriteRenderer[] sr = notification.GetComponentsInChildren<SpriteRenderer>();
+        notification.transform.SetParent(transform);
 
         SpriteRenderer spriteRenderer = new SpriteRenderer();
 
@@ -194,7 +210,13 @@ public class Towersona : MonoBehaviour
                 spriteRenderer.sprite = notification.shitSprite;
                 break;
         }
-    }  
+    }
+
+    private void DestroyNotification()
+    {
+        isNotifying = false;
+        Destroy(notification);
+    }
 
     private void OnMouseUpAsButton()
     {
