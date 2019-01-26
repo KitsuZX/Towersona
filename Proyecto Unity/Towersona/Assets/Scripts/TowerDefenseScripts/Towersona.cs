@@ -150,11 +150,14 @@ public class Towersona : MonoBehaviour
     private void LockOnTarget()
     {
         Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(-dir);
+        Quaternion lookRotation = Quaternion.LookRotation(dir);
         for (int i = 0; i < partsToRotate.Length; i++)
         {
             Vector3 rotation = Quaternion.Lerp(partsToRotate[i].rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            partsToRotate[i].rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            partsToRotate[i].localRotation = Quaternion.Euler(-90f, rotation.y, 0f);
+
+            /*Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);*/
         }
     }
 
