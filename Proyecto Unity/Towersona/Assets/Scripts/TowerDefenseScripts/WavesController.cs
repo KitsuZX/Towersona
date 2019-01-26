@@ -12,6 +12,8 @@ public class WavesController : MonoBehaviour
 
     [SerializeField]
     private GameObject enemyPrefab;
+    [SerializeField]
+    private Transform enemiesParent;
 
     private float countdown = 2f; 
     private Transform spawnPoint;   
@@ -61,7 +63,8 @@ public class WavesController : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        GameObject e = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        e.transform.SetParent(enemiesParent);
     }
 
     public void SetSpawnPoint(Transform transform)

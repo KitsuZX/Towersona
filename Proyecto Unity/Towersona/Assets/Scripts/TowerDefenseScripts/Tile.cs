@@ -26,7 +26,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (!isPath)
+        if (!isPath && !hasTower)
         {
             hasTower = true;
             World.Instance.SpawnTowersona(transform.position);

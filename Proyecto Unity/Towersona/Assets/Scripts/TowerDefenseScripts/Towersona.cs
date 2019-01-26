@@ -20,12 +20,17 @@ public class Towersona : MonoBehaviour
     [Header("Transform parameters")]
     [SerializeField]
     private float turnSpeed = 1f;
+    [SerializeField]
+    private Transform[] partsToRotate;
 
     private Transform target;
     private Enemy targetEnemy;
     private float fireCountdown = 0f;
 
     private TowersonaNeeds towersonaNeeds;
+    private Color color;
+    
+    public Camera towersonaNeedsCamera;
 
     private void OnDrawGizmos()
     {
@@ -35,7 +40,10 @@ public class Towersona : MonoBehaviour
 
     private void Awake()
     {
-        towersonaNeeds = World.Instance.SpawnDetailedTowersonaView();
+        color = Random.ColorHSV();
+        GetComponentInChildren<MeshRenderer>().material.color = color;
+        towersonaNeeds = World.Instance.SpawnDetailedTowersonaView(color, this);
+        towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
     }
 
     private void Start()
@@ -95,9 +103,12 @@ public class Towersona : MonoBehaviour
     private void LockOnTarget()
     {
         Vector3 dir = target.position - transform.position;
-        Quaternion lookRotation = Quaternion.LookRotation(dir);
-        Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        Quaternion lookRotation = Quaternion.LookRotation(-dir);
+        for (int i = 0; i < partsToRotate.Length; i++)
+        {
+            Vector3 rotation = Quaternion.Lerp(partsToRotate[i].rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+            partsToRotate[i].rotation = Quaternion.Euler(0f, rotation.y, 0f);
+        }
     }
 
     private void Shoot()
@@ -108,5 +119,10 @@ public class Towersona : MonoBehaviour
 
         if (bullet != null)
             bullet.Seek(target);
+    }
+
+    private void OnMouseUpAsButton()
+    {
+        World.Instance.ChangeCamera(this);
     }
 }
