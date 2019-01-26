@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
@@ -8,21 +7,22 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField]
     private GameObject tilePrefab;
     [SerializeField]
+    private GameObject pathTypes;
+    [SerializeField]
     private Transform worldTransform;
     [SerializeField]
-    private Texture2D[] grassTextures;
-    [SerializeField]
-    private Texture2D[] pathTextures;
+    private Texture2D[] grassTextures;    
 
-    private List<PathDirection> path;
+    private List<PathDirection> directionsPath;
+    private List<Tile> tilesPath;
     private Tile currentTile;
 
     private WavesController wavesController;
 
     private void Awake() {
-        
-        path = new List<PathDirection>();    
-        wavesController = GetComponent<WavesController>();
+        tilesPath = new List<Tile>();
+        directionsPath = new List<PathDirection>();    
+        wavesController = GetComponent<WavesController>();               
     }
 
     public void GenerateWorld() {
@@ -41,8 +41,8 @@ public class WorldGenerator : MonoBehaviour
                 
                 Tile t = tile.GetComponent<Tile>();
                 t.position = new Vector2(i, j);
-                World.Instance.tiles[i, j] = t;
                 ChangeToRandomTexture(t);
+                World.Instance.tiles[i, j] = t;              
             }
         }
     }
@@ -55,7 +55,8 @@ public class WorldGenerator : MonoBehaviour
 
         currentTile = World.Instance.tiles[0, beginTile];
         currentTile.isPath = true;
-        ChangeToRandomTexture(currentTile);
+
+        tilesPath.Add(currentTile);
 
         wavesController.SetSpawnPoint(currentTile.transform);
 
@@ -79,6 +80,12 @@ public class WorldGenerator : MonoBehaviour
 
             iteration++;        
         }
+
+        //Una vez creado el camino, asginamos sus texturasç
+        for(int i = 0; i < tilesPath.Count; i++)
+        {
+            ChangeToRandomPathTexture(i);
+        }
     }
 
     private PathDirection ChooseRandomDirection(Tile tile, int iteration)
@@ -96,11 +103,11 @@ public class WorldGenerator : MonoBehaviour
         if (iteration == 0)
         {
             nextDirection = PathDirection.Right;
-            path.Add(nextDirection);           
+            directionsPath.Add(nextDirection);           
             return nextDirection;
         }
 
-        prevDirection = path[path.Count - 1];
+        prevDirection = directionsPath[directionsPath.Count - 1];
 
         //Comprobamos si estamos en un borde
         //Borde de abajo
@@ -127,9 +134,9 @@ public class WorldGenerator : MonoBehaviour
         }
 
         //Evitamos "cuadrados"
-        if (path.Count > 2)
+        if (directionsPath.Count > 2)
         {            
-            PathDirection prev2Direction = path[path.Count - 2];
+            PathDirection prev2Direction = directionsPath[directionsPath.Count - 2];
             if (prev2Direction == PathDirection.Up)
             {
                 posibleDirections.Remove(PathDirection.Down);
@@ -144,7 +151,7 @@ public class WorldGenerator : MonoBehaviour
         int num = Random.Range(0, posibleDirections.Count);
 
         nextDirection = posibleDirections[num];                 
-        path.Add(nextDirection);
+        directionsPath.Add(nextDirection);
 
         //Si vamos a girar, establecemos un control point
         if(prevDirection != nextDirection)
@@ -173,25 +180,85 @@ public class WorldGenerator : MonoBehaviour
         Tile t = World.Instance.tiles[(int)currentTile.position.x, (int)currentTile.position.y];
         currentTile = t;
         t.isPath = true;
-        ChangeToRandomTexture(t);
+        tilesPath.Add(t);
     }
 
     private void ChangeToRandomTexture(Tile tile)
     {
         Texture2D randomTexture;
+    
+        int num = Random.Range(0, grassTextures.Length);
+        randomTexture = grassTextures[num];     
 
-        if (tile.isPath)
+        tile.ChangeTexture(randomTexture);
+    }
+
+
+    private void ChangeToRandomPathTexture(int tileIndex)
+    {
+        PathTypes type;
+        Texture2D texture;
+
+        PathDirection prevDirection, nextDirection;
+
+        if (tileIndex == 0)
         {
-            int num = Random.Range(0, pathTextures.Length);
-            randomTexture = pathTextures[num];
+            type = PathTypes.LeftRight;
+            texture = ChooseRandomPathType(type);
+            tilesPath[tileIndex].ChangeTexture(texture);
+            return;
+        }
+
+        prevDirection = directionsPath[tileIndex - 1];
+
+        if (tileIndex == tilesPath.Count - 1)
+        {          
+            nextDirection = PathDirection.Right;
+        }
+        else
+        {         
+            nextDirection = directionsPath[tileIndex];
+        }
+
+        if (prevDirection == PathDirection.Down && nextDirection == PathDirection.Down) {
+            type = PathTypes.UpDown;
+        }
+        else if(prevDirection == PathDirection.Right && nextDirection == PathDirection.Right)
+        {
+            type = PathTypes.LeftRight;
+        }
+        else if (prevDirection == PathDirection.Down && nextDirection == PathDirection.Right)
+        {
+            type = PathTypes.UpRight;
+        }
+        else if (prevDirection == PathDirection.Up && nextDirection == PathDirection.Right)
+        {
+            type = PathTypes.DownRight;
+        }
+        else if (prevDirection == PathDirection.Right && nextDirection == PathDirection.Up)
+        {
+            type = PathTypes.LeftUp;
+        }
+        else if (prevDirection == PathDirection.Up && nextDirection == PathDirection.Up)
+        {
+            type = PathTypes.UpDown;
         }
         else
         {
-            int num = Random.Range(0, grassTextures.Length);
-            randomTexture = grassTextures[num];
+            type = PathTypes.LeftDown;
         }
 
-        tile.ChangeTexture(randomTexture);
+        texture = ChooseRandomPathType(type);
+        tilesPath[tileIndex].ChangeTexture(texture);
+    }
+
+    private Texture2D ChooseRandomPathType(PathTypes type)
+    {
+        Transform child = pathTypes.transform.GetChild((int)type);
+        PathTileType pathType = child.GetComponent<PathTileType>();
+        int num = Random.Range(0, pathType.possibleTextures.Length);
+
+        return pathType.possibleTextures[num];
     }
 
     private void SetControlPoint(Tile tile)
@@ -205,7 +272,11 @@ public class WorldGenerator : MonoBehaviour
     public enum PathDirection{
        Up = 0,
        Right = 1,
-       Down = 2,
-       
+       Down = 2,       
+    }
+
+    public enum PathTypes
+    {
+        UpDown, LeftRight, DownRight, UpRight, LeftUp, LeftDown
     }
 }

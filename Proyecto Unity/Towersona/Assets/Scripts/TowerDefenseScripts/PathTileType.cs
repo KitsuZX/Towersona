@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerDefenseCameraController : MonoBehaviour
+public class PathTileType : MonoBehaviour
 {
-    
+    public Texture2D[] possibleTextures;
 }

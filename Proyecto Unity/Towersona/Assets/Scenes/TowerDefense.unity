@@ -322,6 +322,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 3761340351531711983, guid: 86211426c05f8614b85ca6e043455055,
     type: 3}
+  pathTypes: {fileID: 4540595764214299092, guid: 373870ceb6284a64cb0824b6d9d46312,
+    type: 3}
   worldTransform: {fileID: 904369586}
   grassTextures:
   - {fileID: 2800000, guid: 3c9e3a85fb66ce94db7c1d46b3d3d5e4, type: 3}
@@ -343,8 +345,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: f6447add78c4d734996deee1f8a8ac83, type: 3}
   - {fileID: 2800000, guid: 3ab19548f66754442838a37a94eda94f, type: 3}
   - {fileID: 2800000, guid: 35c36c134ee471a4ba03c8eabf422682, type: 3}
-  pathTextures:
-  - {fileID: 2800000, guid: fbe2e761c5def6b49b70ed5742a27cdc, type: 3}
 --- !u!114 &383186424
 MonoBehaviour:
   m_ObjectHideFlags: 0
