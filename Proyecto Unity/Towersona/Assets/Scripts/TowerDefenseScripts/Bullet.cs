@@ -5,9 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Transform target;
-
-    [SerializeField]
-    private float speed = 70f;
+ 
+    public float speed = 10f;
  
     [HideInInspector]
     public float damage;

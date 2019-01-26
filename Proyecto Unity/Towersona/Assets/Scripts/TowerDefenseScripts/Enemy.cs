@@ -10,8 +10,7 @@ public class Enemy : MonoBehaviour
     private float life = 30f;
 
     private Transform target;
-    private int controlPointIndex = 0; 
-    
+    private int controlPointIndex = 0;     
 
     private void Awake()
     {
@@ -39,6 +38,7 @@ public class Enemy : MonoBehaviour
 
         controlPointIndex++;
         target = World.Instance.controlPoints[controlPointIndex];
+        transform.LookAt(target);
     }
 
     private void EndPath()

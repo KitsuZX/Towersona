@@ -9,6 +9,8 @@ public class TowerDefenseManager : MonoBehaviour
 
     [HideInInspector]
     public int towersBuilt = 0;
+    [HideInInspector]
+    public List<Towersona> towersonas;
 
     [SerializeField]
     private float timeBetweenTowersonas = 5f;
@@ -40,6 +42,7 @@ public class TowerDefenseManager : MonoBehaviour
 
         worldGenerator = GetComponent<WorldGenerator>();
         wavesController = GetComponent<WavesController>();
+        towersonas = new List<Towersona>();
     }
 
     private void Start() {
@@ -64,6 +67,7 @@ public class TowerDefenseManager : MonoBehaviour
         livesText.text = "lives: " + PlayerStats.Lives.ToString();
         roundText.text = "round: " + PlayerStats.Rounds.ToString();
 
+        //Towersona building
         if (towersBuilt == maxTowers)
         {
             PlayerStats.MaxReached = true;
@@ -85,8 +89,7 @@ public class TowerDefenseManager : MonoBehaviour
         else
         {
             nextTowersonaText.text = "towesona avaible!";
-        }
-
+        }       
         
-    }
+    }   
 }
