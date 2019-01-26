@@ -6,6 +6,9 @@ public class Draggable : MonoBehaviour
     public UnityEvent OnDragStart;
     public UnityEvent OnLetGo;
 
+    [SerializeField]
+    private float timeBeforeAutoBack = 1f;
+
     [HideInInspector]
     public Camera detailCamera;
 
@@ -13,6 +16,9 @@ public class Draggable : MonoBehaviour
 
     private Vector3 originalPosition;
     private Vector3 touchOffset;
+
+    private bool isBeingDragged;
+    private float timeWithoutDrag = 0;
 
     private Vector3 TouchInWorldSpace
     {
