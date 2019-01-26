@@ -42,8 +42,9 @@ public class World : MonoBehaviour
     }
 
     public void SpawnTowersona(Vector3 tilePosition) {
-        Instantiate(towersona, tilePosition, Quaternion.identity);     
-    
+        TowerDefenseManager.Instance.towersBuilt++;
+        Instantiate(towersona, tilePosition, Quaternion.identity);
+        PlayerStats.TowerAvaible = false;    
     }
 
     public TowersonaNeeds SpawnDetailedTowersonaView(Color color, Towersona towersona)

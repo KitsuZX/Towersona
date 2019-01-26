@@ -26,7 +26,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (!isPath && !hasTower)
+        if (!isPath && !hasTower && PlayerStats.TowerAvaible && !PlayerStats.MaxReached)
         {
             hasTower = true;
             World.Instance.SpawnTowersona(transform.position);

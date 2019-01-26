@@ -53,13 +53,7 @@ public class WavesController : MonoBehaviour
             SpawnEnemy(enemyPrefab);
             yield return new WaitForSeconds(1f / waveSpawnRate);
         }       
-    }
-
-    private void OnGUI()
-    {
-        GUI.Label(new Rect(10f, 10f, 200f, 50f), "Next round in: " + countdown.ToString());
-        GUI.Label(new Rect(10f, 30f, 200f, 50f), "Player Lives: " + PlayerStats.Lives.ToString());
-    }
+    }  
 
     void SpawnEnemy(GameObject enemy)
     {
