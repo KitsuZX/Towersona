@@ -48,6 +48,7 @@ public class Towersona : MonoBehaviour
     private Color color;
     private bool isNotifying;
     private GameObject notification;
+    private TowersonaNeeds.NeedType prevNeedType;
     
     private void OnDrawGizmos()
     {
@@ -138,13 +139,23 @@ public class Towersona : MonoBehaviour
             Debug.Log("Creating Notification");
         }
 
-        if(needType == TowersonaNeeds.NeedType.None && isNotifying)
+        if (prevNeedType != null)
         {
-            DestroyNotification();
+            if (isNotifying)
+            {
+                if (prevNeedType != needType)
+                {
+                    DestroyNotification();
+
+                    if(needType != TowersonaNeeds.NeedType.None)
+                    {
+                        CreateNotification(needType);
+                    }
+                }
+            }
         }
-        
 
-
+        prevNeedType = needType;
     }
 
     private void LockOnTarget()
@@ -155,9 +166,6 @@ public class Towersona : MonoBehaviour
         {
             Vector3 rotation = Quaternion.Lerp(partsToRotate[i].rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
             partsToRotate[i].localRotation = Quaternion.Euler(-90f, rotation.y, 0f);
-
-            /*Vector3 rotation = Quaternion.Lerp(transform.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);*/
         }
     }
 
@@ -174,6 +182,7 @@ public class Towersona : MonoBehaviour
 
     private void CreateNotification(TowersonaNeeds.NeedType needType)
     {
+        isNotifying = true;
 
         Notification notification = Instantiate(notificationPrefab).GetComponent<Notification>();
 
