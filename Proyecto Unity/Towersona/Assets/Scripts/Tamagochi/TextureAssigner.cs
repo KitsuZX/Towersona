@@ -6,7 +6,7 @@ public class TextureAssigner : MonoBehaviour
 {
     public Texture2D[] textures;
 
-    private MeshRenderer meshRenderer;
+    private SkinnedMeshRenderer meshRenderer;
 
     public void AssignTexture(int index)
     {
@@ -18,6 +18,6 @@ public class TextureAssigner : MonoBehaviour
 
     private void Awake()
     {
-        meshRenderer = GetComponent<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 }

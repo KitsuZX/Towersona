@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cfc1abc9c1b951f4a8cb98c10dc3acc0
+guid: dd53dbe076457984393a00f2e0fb6bb1
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -29,6 +29,7 @@ ModelImporter:
     400022: oreja izquierda root
     2100000: cabeza
     4300000: cabeza
+    7400000: cabeza_rigg|cabeza_riggAction
     9500000: //RootNode
     13700000: cabeza
   externalObjects: {}
@@ -58,7 +59,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: cabeza_rigg|cabeza_riggAction
+      takeName: cabeza_rigg|cabeza_riggAction
+      firstFrame: 0
+      lastFrame: 95
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

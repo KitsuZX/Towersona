@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9c3cc79c3821d344dbd0bfd3d2733502
+guid: f3bd8beb58acaa348adbff3d23b4bafd
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -31,6 +31,7 @@ ModelImporter:
     400024: zarpa_izq_end
     2100000: cuerpo
     4300000: cuerpo
+    7400000: cuerpo_rig|cuerpo_rigAction
     9500000: //RootNode
     13700000: cuerpo
   externalObjects: {}
