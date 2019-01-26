@@ -5,14 +5,20 @@ using UnityEngine;
 public class Tile : MonoBehaviour
 {
     public bool isPath = false;
-    public Vector2 position;
+    public Vector2 position;    
 
     [SerializeField]
     private Material pathMaterial = null;
 
-    public void MakePath()
+    private MeshRenderer meshRenderer;
+
+    private void Awake()
     {
-        isPath = true;
-        GetComponent<MeshRenderer>().material = pathMaterial;
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
+
+    public void ChangeTexture(Texture2D texture)
+    {
+        meshRenderer.material.mainTexture = texture;
     }
 }

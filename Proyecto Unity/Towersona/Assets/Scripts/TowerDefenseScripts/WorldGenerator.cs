@@ -10,18 +10,22 @@ public class WorldGenerator : MonoBehaviour
 
     [Header("References")]
     [SerializeField]
-    private GameObject tilePrefab = null;
+    private GameObject tilePrefab;
     [SerializeField]
-    private Transform worldTransform = null;
+    private Transform worldTransform;
     [SerializeField]
-    private Material pathMaterial = null;
+    private Texture2D[] grassTextures;
+    [SerializeField]
+    private Texture2D[] pathTextures;
 
     private List<PathDirection> path;
     private Tile currentTile;
+    private List<GameObject> controlPoints;
 
     private void Awake() {
         tiles = new Tile[levelWidth, levelHeigth];
-        path = new List<PathDirection>();        
+        path = new List<PathDirection>();
+        controlPoints = new List<GameObject>();
     }
 
     public void GenerateWorld() {
@@ -33,26 +37,28 @@ public class WorldGenerator : MonoBehaviour
                 position.x = i + 0.5f;
                 position.y = 0;
                 position.z = j + 0.5f;
-                GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity);
+                GameObject tile = Instantiate(tilePrefab, position, Quaternion.Euler(0f, 180f, 0f));
 
                 tile.name = "Tile " + num;
-                tile.transform.SetParent(worldTransform);
+                tile.transform.SetParent(worldTransform);         
                 
                 Tile t = tile.GetComponent<Tile>();
                 t.position = new Vector2(i, j);
                 tiles[i, j] = t;
+                ChangeToRandomTexture(t);
             }
         }
     }
 
-    public IEnumerator GeneratePath() {
+    public void GeneratePath() {
         //TODO: esto pero de manera procedural
 
         //Elige una celda de inicio aleatoria
         int beginTile = Random.Range(0, levelHeigth);
 
         currentTile = tiles[0, beginTile];
-        currentTile.MakePath();
+        currentTile.isPath = true;
+        ChangeToRandomTexture(currentTile);
 
         int iteration = 0;
   
@@ -70,8 +76,7 @@ public class WorldGenerator : MonoBehaviour
             PathDirection nextDirection = ChooseRandomDirection(currentTile, iteration);
             MoveDirection(nextDirection);      
 
-            iteration++;
-            yield return new WaitForSeconds(0.1f);
+            iteration++;        
         }
     }
 
@@ -120,9 +125,9 @@ public class WorldGenerator : MonoBehaviour
             posibleDirections.Remove(PathDirection.Up);
         }
 
+        //Evitamos "cuadrados"
         if (path.Count > 2)
-        {
-            //Evitamos "cuadrados"
+        {            
             PathDirection prev2Direction = path[path.Count - 2];
             if (prev2Direction == PathDirection.Up)
             {
@@ -135,11 +140,18 @@ public class WorldGenerator : MonoBehaviour
             }
         }
 
-
+        posibleDirections.Add(prevDirection);
+        posibleDirections.Add(prevDirection);
         int num = Random.Range(0, posibleDirections.Count);
 
         nextDirection = posibleDirections[num];                 
         path.Add(nextDirection);
+
+        //Si vamos a girar, establecemos un control point
+        if(prevDirection != nextDirection)
+        {
+            SetControlPoint(tile);
+        }
 
         return nextDirection;
     }
@@ -161,9 +173,47 @@ public class WorldGenerator : MonoBehaviour
 
         Tile t = tiles[(int)currentTile.position.x, (int)currentTile.position.y];
         currentTile = t;
-        t.MakePath();
+        t.isPath = true;
+        ChangeToRandomTexture(t);
     }
 
+    private void ChangeToRandomTexture(Tile tile)
+    {
+        Texture2D randomTexture;
+
+        if (tile.isPath)
+        {
+            int num = Random.Range(0, pathTextures.Length);
+            randomTexture = pathTextures[num];
+        }
+        else
+        {
+            int num = Random.Range(0, grassTextures.Length);
+            randomTexture = grassTextures[num];
+        }
+
+        tile.ChangeTexture(randomTexture);
+    }
+
+    private void SetControlPoint(Tile tile)
+    {
+        GameObject controlPoint = new GameObject("ControlPoint " + controlPoints.Count);
+        controlPoint.transform.position = tile.transform.position;
+        controlPoint.transform.SetParent(tile.transform);
+        controlPoints.Add(controlPoint);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (Application.IsPlaying(this))
+        {
+            for (int i = 0; i < controlPoints.Count; i++)
+            {
+                Gizmos.color = Color.green;
+                Gizmos.DrawSphere(controlPoints[i].transform.position, 0.2f);
+            }
+        }
+    }
     public enum PathDirection{
        Up = 0,
        Right = 1,
