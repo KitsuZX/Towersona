@@ -12,7 +12,7 @@ public class TextureAssigner : MonoBehaviour
     {
         if (index >= 0 && index < textures.Length)
         {
-            meshRenderer.material.mainTexture = textures[index];
+            meshRenderer.materials[1].mainTexture = textures[index];
         }
     }
 

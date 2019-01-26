@@ -112,33 +112,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &1054881687 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5619876767903751252, guid: e863cb5f8d9b4f8429e64f11614f61f9,
+--- !u!95 &618646475 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9128132090835667657, guid: e863cb5f8d9b4f8429e64f11614f61f9,
     type: 3}
   m_PrefabInstance: {fileID: 5139840167121146711}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1054881688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+--- !u!95 &1287419153 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6735338969732708886, guid: e863cb5f8d9b4f8429e64f11614f61f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5139840167121146711}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1054881687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a8b002ef754d23458cb96ae792c759b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  textures:
-  - {fileID: 2800000, guid: 4c923b71a960c54448905318a814095d, type: 3}
-  - {fileID: 2800000, guid: dd12cbb2f6ac599419cf7603e623b229, type: 3}
-  - {fileID: 2800000, guid: 16c68a8861d1dc345bfcbec58adbfd6f, type: 3}
-  - {fileID: 2800000, guid: 5b1095caae2c96f40a8d5fbb2db90c96, type: 3}
-  - {fileID: 2800000, guid: 94e178fb597d25a458d42173e01141e0, type: 3}
-  - {fileID: 2800000, guid: 65adf58d2724cf94984902c2b1a5809c, type: 3}
-  - {fileID: 2800000, guid: e21bdbcd5dcc74b4c9f4914dadb0638c, type: 3}
-  - {fileID: 2800000, guid: a763c95e4eef4104f9031f33750713ee, type: 3}
+--- !u!95 &1913314271 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1002379853343246937, guid: e863cb5f8d9b4f8429e64f11614f61f9,
+    type: 3}
+  m_PrefabInstance: {fileID: 5139840167121146711}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2011662669
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,6 +211,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: DetailedTowersonaView
       objectReference: {fileID: 0}
+    - target: {fileID: 5930336773357402270, guid: e863cb5f8d9b4f8429e64f11614f61f9,
+        type: 3}
+      propertyPath: headAnimator
+      value: 
+      objectReference: {fileID: 1913314271}
+    - target: {fileID: 5930336773357402270, guid: e863cb5f8d9b4f8429e64f11614f61f9,
+        type: 3}
+      propertyPath: faceAnimator
+      value: 
+      objectReference: {fileID: 618646475}
+    - target: {fileID: 5930336773357402270, guid: e863cb5f8d9b4f8429e64f11614f61f9,
+        type: 3}
+      propertyPath: bodyAnimator
+      value: 
+      objectReference: {fileID: 1287419153}
     - target: {fileID: 5139840165600574757, guid: e863cb5f8d9b4f8429e64f11614f61f9,
         type: 3}
       propertyPath: m_LocalPosition.x

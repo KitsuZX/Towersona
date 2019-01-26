@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9c3cc79c3821d344dbd0bfd3d2733502
+guid: d4e714802bf58ce4998a5022209244a0
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -31,6 +31,7 @@ ModelImporter:
     400024: zarpa_izq_end
     2100000: cuerpo
     4300000: cuerpo
+    7400000: cuerpo_rig|cuerpo_rigAction
     9500000: //RootNode
     13700000: cuerpo
   externalObjects: {}
@@ -60,7 +61,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: cuerpo_rig|cuerpo_rigAction
+      takeName: cuerpo_rig|cuerpo_rigAction
+      firstFrame: 0
+      lastFrame: 94
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
