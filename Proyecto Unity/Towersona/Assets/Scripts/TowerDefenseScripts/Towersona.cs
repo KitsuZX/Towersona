@@ -31,6 +31,8 @@ public class Towersona : MonoBehaviour
     private Color color;
     
     public Camera towersonaNeedsCamera;
+    [HideInInspector]
+    public bool isAttacking = false;
 
     private void OnDrawGizmos()
     {
@@ -86,8 +88,11 @@ public class Towersona : MonoBehaviour
 
         if (target == null)
         {
+            isAttacking = false;
             return;
         }
+
+        isAttacking = true;
 
         LockOnTarget();
 
