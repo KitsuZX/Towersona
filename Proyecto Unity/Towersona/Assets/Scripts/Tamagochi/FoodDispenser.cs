@@ -5,6 +5,7 @@ using UnityEngine;
 public class FoodDispenser : MonoBehaviour
 {
     public Camera detailCamera;
+    public TowersonaAnimation towersona;
 
     [SerializeField]
     private float dispenseDelay = 1f;
@@ -16,12 +17,20 @@ public class FoodDispenser : MonoBehaviour
     {
         Food newFood = Instantiate(foodPrefab, transform.position, Quaternion.identity);
         newFood.dispenser = this;
-        newFood.GetComponentInChildren<Draggable>().detailCamera = detailCamera;
+
+        Draggable draggable = newFood.GetComponentInChildren<Draggable>();
+        draggable.detailCamera = detailCamera;
+        draggable.OnDragStart.AddListener(NotifyFoodDrag);
     }
 
     public void DispenseWithDelay()
     {
         Invoke("DispenseImmidiately", dispenseDelay);
+    }
+
+    private void NotifyFoodDrag()
+    {
+        towersona.SetIsLookingAtFood(true);
     }
 
     private void Awake()

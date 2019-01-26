@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class TowersonaAnimation : MonoBehaviour
 {
-    //TMP
-    public bool TMP_isFighting;
-    public bool TMP_isCaressed;
-    public bool TMP_hasEaten;
-    public bool TMP_isLookingAtFood;
+    public bool isFighting;
+    public bool isCaressed;
+    public bool hasEaten;
+    public bool isLookingAtFood;
 
     public IdleState emotion;
 
@@ -28,32 +27,49 @@ public class TowersonaAnimation : MonoBehaviour
         UpdateHead();
         UpdateFace();
 
-        if (TMP_hasEaten) TMP_hasEaten = false;
+        if (hasEaten) hasEaten = false;
     }
 
     private void UpdateBody()
     {
-        bodyAnimator.SetBool("isFighting", TMP_isFighting);
+        bodyAnimator.SetBool("isFighting", isFighting);
     }
 
     private void UpdateHead()
     {
-        if (TMP_hasEaten)
+        if (hasEaten)
         {
             headAnimator.SetBool("hasEaten", true);
         }
 
-        headAnimator.SetBool("isCaressed", TMP_isCaressed);
-        headAnimator.SetBool("isLookingAtFood", TMP_isLookingAtFood);
-        headAnimator.SetBool("isFighting", TMP_isFighting);
+        headAnimator.SetBool("isCaressed", isCaressed);
+        headAnimator.SetBool("isLookingAtFood", isLookingAtFood);
+        headAnimator.SetBool("isFighting", isFighting);
     }
 
     private void UpdateFace()
     {
         faceAnimator.SetInteger("idleEmotion", (int)emotion);
-        if (TMP_hasEaten) faceAnimator.SetBool("hasEaten", true);
-        faceAnimator.SetBool("isLookingAtFood", TMP_isLookingAtFood);
-        faceAnimator.SetBool("isCaressed", TMP_isCaressed);
+        if (hasEaten) faceAnimator.SetBool("hasEaten", true);
+        faceAnimator.SetBool("isLookingAtFood", isLookingAtFood);
+        faceAnimator.SetBool("isCaressed", isCaressed);
+    }
+    #endregion
+
+    #region Info Gathering
+    public void SetIsCaressed(bool isBeingCaressed)
+    {
+        isCaressed = isBeingCaressed;        
+    }
+
+    public void TriggerEating()
+    {
+        hasEaten = true;
+    }
+
+    public void SetIsLookingAtFood(bool _isLookingAtFood)
+    {
+        isLookingAtFood = _isLookingAtFood;
     }
     #endregion
 
