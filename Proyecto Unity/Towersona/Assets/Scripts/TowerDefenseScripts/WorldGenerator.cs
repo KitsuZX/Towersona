@@ -30,9 +30,9 @@ public class WorldGenerator : MonoBehaviour
             for (int j = 0; j < levelHeigth; j++, num++)
             {
                 Vector3 position;
-                position.x = i * 1.5f;
+                position.x = i + 0.5f;
                 position.y = 0;
-                position.z = j * 1.5f;
+                position.z = j + 0.5f;
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.identity);
 
                 tile.name = "Tile " + num;

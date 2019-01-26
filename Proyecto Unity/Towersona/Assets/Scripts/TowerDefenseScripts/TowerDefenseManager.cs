@@ -7,8 +7,7 @@ public class TowerDefenseManager : MonoBehaviour
     private WorldGenerator worldGenerator;
 
     void Awake()
-    {
-        
+    {        
         worldGenerator = GetComponent<WorldGenerator>();
     }
 

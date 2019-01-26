@@ -319,8 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c8d32ef55c8b843b6156f824bce0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWidth: 100
-  levelHeigth: 10
+  levelWidth: 50
+  levelHeigth: 20
   tilePrefab: {fileID: 3761340351531711983, guid: 86211426c05f8614b85ca6e043455055,
     type: 3}
   worldTransform: {fileID: 904369586}
