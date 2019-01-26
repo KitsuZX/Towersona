@@ -12,8 +12,6 @@ public class World : MonoBehaviour
     public Tile[,] tiles;
     [HideInInspector]
     public List<Transform> controlPoints;
-    [SerializeField]
-    private Camera defaultCamera;
 
     private float lastXUsed = 0f;
 
@@ -38,7 +36,6 @@ public class World : MonoBehaviour
         tiles = new Tile[levelWidth, levelHeigth];
         controlPoints = new List<Transform>();
         towersonaNeeds = new List<TowersonaNeeds>();
-        activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();
     }
 
     public void SpawnTowersona(Vector3 tilePosition) {
@@ -65,12 +62,9 @@ public class World : MonoBehaviour
 
     public void ChangeCamera(Towersona towersona)
     {
-       
-        activeCamera.enabled = false;
-
-        if(defaultCamera != null)
+        if (activeCamera != null)
         {
-            Destroy(defaultCamera.gameObject);
+            activeCamera.enabled = false;
         }
 
         activeCamera = towersona.towersonaNeedsCamera;
