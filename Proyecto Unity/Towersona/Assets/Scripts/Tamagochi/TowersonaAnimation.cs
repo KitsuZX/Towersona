@@ -20,6 +20,8 @@ public class TowersonaAnimation : MonoBehaviour
     [SerializeField]
     private Animator faceAnimator;
 
+
+    #region Updating
     private void Update()
     {
         UpdateBody();
@@ -48,6 +50,8 @@ public class TowersonaAnimation : MonoBehaviour
     {
         faceAnimator.SetInteger("idleEmotion", (int)emotion);
     }
+    #endregion
+
 
     public enum IdleState
     {

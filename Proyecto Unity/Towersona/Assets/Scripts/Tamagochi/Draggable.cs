@@ -52,7 +52,7 @@ public class Draggable : MonoBehaviour
     {
         OnLetGo.Invoke();
 
-        if (gameObject != null)
+        if (gameObject != null && originalPosition != Vector3.zero)
         {
             GoBack();
         }
