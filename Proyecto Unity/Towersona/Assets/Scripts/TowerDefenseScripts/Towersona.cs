@@ -11,6 +11,10 @@ public class Towersona : MonoBehaviour
     private Transform firePoint;
     [SerializeField]
     private GameObject notificationPrefab;
+    [SerializeField]
+    private Animator headAC;
+    [SerializeField]
+    private Animator bodyAC;
 
     [SerializeField][Header("Attack parameters")]
     private float attackStrength = 3;
@@ -114,11 +118,15 @@ public class Towersona : MonoBehaviour
         {
             isAttacking = false;
             detailedAnimationManager.isFighting = false;
+            headAC.SetBool("isFighting", false);
+            bodyAC.SetBool("isFighting", false);
             return;
         }
 
         isAttacking = true;
         detailedAnimationManager.isFighting = true;
+        headAC.SetBool("isFighting", true);
+        bodyAC.SetBool("isFighting", true);
 
         LockOnTarget();
 
@@ -165,7 +173,7 @@ public class Towersona : MonoBehaviour
         for (int i = 0; i < partsToRotate.Length; i++)
         {
             Vector3 rotation = Quaternion.Lerp(partsToRotate[i].rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            partsToRotate[i].localRotation = Quaternion.Euler(-90f, rotation.y, 0f);
+            partsToRotate[i].localRotation = Quaternion.Euler(0f, rotation.y, 0f);
         }
     }
 
