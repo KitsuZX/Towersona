@@ -35,6 +35,8 @@ public class ShitNeed : MonoBehaviour
 
     public void CleanAllShit()
     {
+        if (shits == null) return;
+
         for (int i = 0; i < shits.Count; i++)
         {
             shits[i].Clean();
