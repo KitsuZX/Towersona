@@ -46,6 +46,7 @@ public class Towersona : MonoBehaviour
         GetComponentInChildren<MeshRenderer>().material.color = color;
         towersonaNeeds = World.Instance.SpawnDetailedTowersonaView(color, this);
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
+        World.Instance.ChangeCamera(this);
     }
 
     private void Start()
