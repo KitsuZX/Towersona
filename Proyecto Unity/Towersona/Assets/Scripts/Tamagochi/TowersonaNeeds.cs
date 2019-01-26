@@ -101,7 +101,7 @@ public class TowersonaNeeds : MonoBehaviour
     /// Returns the need that should be notified, if any.
     /// </summary>
     /// <returns></returns>
-    private NeedType CheckIfShouldNotifyNeed()
+    public NeedType CheckIfShouldNotifyNeed()
     {
         NeedType notifiedNeed = NeedType.None;
         float lowest = happinessCap;

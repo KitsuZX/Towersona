@@ -157,12 +157,21 @@ MonoBehaviour:
   bulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,
     type: 3}
   firePoint: {fileID: 6175043574671929610}
+  notificationPrefab: {fileID: 1478532847836396072, guid: 95e5d2e2800604e4589f70986433a207,
+    type: 3}
   attackStrength: 3
   attackSpeed: 2
   attackRange: 5
+  bulletSpeed: 10
+  minAttackStrength: 0.5
+  minAttackSpeed: 0.25
+  minAttackRange: 3
+  minBulletSpeed: 2
   turnSpeed: 10
   partsToRotate:
   - {fileID: 8588623264817372396}
+  isAttacking: 0
+  towersonaNeedsCamera: {fileID: 0}
 --- !u!136 &4655889943347623656
 CapsuleCollider:
   m_ObjectHideFlags: 0

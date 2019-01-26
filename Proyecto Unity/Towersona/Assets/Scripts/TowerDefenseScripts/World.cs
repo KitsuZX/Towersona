@@ -43,7 +43,8 @@ public class World : MonoBehaviour
 
     public void SpawnTowersona(Vector3 tilePosition) {
         TowerDefenseManager.Instance.towersBuilt++;
-        Instantiate(towersona, tilePosition, Quaternion.identity);
+        Towersona t = Instantiate(towersona, tilePosition, Quaternion.identity).GetComponent<Towersona>();
+        TowerDefenseManager.Instance.towersonas.Add(t);
         PlayerStats.TowerAvaible = false;    
     }
 

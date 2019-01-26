@@ -9,6 +9,8 @@ public class Towersona : MonoBehaviour
     private GameObject bulletPrefab;
     [SerializeField]
     private Transform firePoint;
+    [SerializeField]
+    private GameObject notificationPrefab;
 
     [SerializeField][Header("Attack parameters")]
     private float attackStrength = 3;
@@ -16,6 +18,16 @@ public class Towersona : MonoBehaviour
     private float attackSpeed = 2f;
     [SerializeField]
     private float attackRange = 5f;
+    [SerializeField]
+    private float bulletSpeed = 10f;
+    [SerializeField]  
+    private float minAttackStrength = 0.5f;
+    [SerializeField]
+    private float minAttackSpeed = 0.25f;
+    [SerializeField]
+    private float minAttackRange = 1f;
+    [SerializeField]
+    private float minBulletSpeed = 2f;
 
     [Header("Transform parameters")]
     [SerializeField]
@@ -91,6 +103,12 @@ public class Towersona : MonoBehaviour
         attackRange *= towersonaNeeds.HappinessLevel;
         attackSpeed *= towersonaNeeds.HappinessLevel;
         attackStrength *= towersonaNeeds.HappinessLevel;
+        bulletSpeed *= towersonaNeeds.HappinessLevel;
+
+        attackRange = Mathf.Max(attackRange, minAttackRange);
+        attackSpeed = Mathf.Max(attackSpeed, minAttackSpeed);
+        attackStrength = Mathf.Max(attackStrength, minAttackStrength);
+        bulletSpeed = Mathf.Max(bulletSpeed, minBulletSpeed);
 
         if (target == null)
         {
@@ -111,6 +129,17 @@ public class Towersona : MonoBehaviour
         }
 
         fireCountdown -= Time.deltaTime;
+
+        //Check for needs
+        TowersonaNeeds.NeedType needType = towersonaNeeds.CheckIfShouldNotifyNeed();
+
+        if(needType != TowersonaNeeds.NeedType.None)
+        {
+            CreateNotification(needType);
+            Debug.Log("Creating Notification");
+        }
+
+
     }
 
     private void LockOnTarget()
@@ -129,10 +158,43 @@ public class Towersona : MonoBehaviour
         GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
         bullet.damage = attackStrength;
+        bullet.speed = bulletSpeed;
 
         if (bullet != null)
             bullet.Seek(target);
     }
+
+    private void CreateNotification(TowersonaNeeds.NeedType needType)
+    {
+        Vector3 position = transform.position;
+        position.x += 10f;
+        position.z += 10f;
+        Notification notification = Instantiate(notificationPrefab, position, Quaternion.identity).GetComponent<Notification>();
+        SpriteRenderer[] sr = notification.GetComponentsInChildren<SpriteRenderer>();
+
+        SpriteRenderer spriteRenderer = new SpriteRenderer();
+
+        foreach (SpriteRenderer s in sr)
+        {
+            if(s != GetComponent<SpriteRenderer>())
+            {
+                spriteRenderer = s;
+            }           
+        }
+
+        switch (needType)
+        {
+            case TowersonaNeeds.NeedType.Hunger:
+                spriteRenderer.sprite = notification.hungerSprite;
+                break;
+            case TowersonaNeeds.NeedType.Love:
+                spriteRenderer.sprite = notification.noLoveSprite;
+                break;
+            case TowersonaNeeds.NeedType.Shit:
+                spriteRenderer.sprite = notification.shitSprite;
+                break;
+        }
+    }  
 
     private void OnMouseUpAsButton()
     {

@@ -8,10 +8,6 @@ public class Tile : MonoBehaviour
     public bool hasTower = false;
     public Vector2 position;    
 
-    [SerializeField]
-    private Material pathMaterial = null;
-
-
     private MeshRenderer meshRenderer;
 
     private void Awake()
