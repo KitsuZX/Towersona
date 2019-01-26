@@ -57,7 +57,7 @@ public class World : MonoBehaviour
         GameObject towersonaNeedsScene = Instantiate(detailedTowersonaViewPrefab, position, Quaternion.identity);
         TowersonaNeeds tsn = towersonaNeedsScene.GetComponentInChildren<TowersonaNeeds>();
         tsn.name = "Towersona need";
-        tsn.GetComponentInChildren<MeshRenderer>().material.color = color;    
+        //tsn.GetComponentInChildren<MeshRenderer>().material.color = color;    
 
         towersonaNeeds.Add(tsn);
       

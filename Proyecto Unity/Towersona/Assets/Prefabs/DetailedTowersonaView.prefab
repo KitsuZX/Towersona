@@ -268,15 +268,15 @@ PrefabInstance:
     - target: {fileID: 418451888, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
       propertyPath: bodyAnimator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 6735338969732708886}
     - target: {fileID: 418451888, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
       propertyPath: headAnimator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1002379853343246937}
     - target: {fileID: 418451888, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
       propertyPath: faceAnimator
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9128132090835667657}
     - target: {fileID: 6892164163823459767, guid: 52b4dbb880e021b4a8e4cd74b9212460,
         type: 3}
       propertyPath: m_Bones.Array.data[0]
@@ -370,9 +370,21 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5930336773763131694}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1002379853343246937 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6892164163819152247, guid: 52b4dbb880e021b4a8e4cd74b9212460,
+    type: 3}
+  m_PrefabInstance: {fileID: 5930336773763131694}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002379853335968153 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6892164163826569399, guid: 52b4dbb880e021b4a8e4cd74b9212460,
+    type: 3}
+  m_PrefabInstance: {fileID: 5930336773763131694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9128132090835667657 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3233982719130919911, guid: 52b4dbb880e021b4a8e4cd74b9212460,
     type: 3}
   m_PrefabInstance: {fileID: 5930336773763131694}
   m_PrefabAsset: {fileID: 0}
@@ -415,6 +427,12 @@ Transform:
 --- !u!4 &1002379853336323499 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6892164163826142341, guid: 52b4dbb880e021b4a8e4cd74b9212460,
+    type: 3}
+  m_PrefabInstance: {fileID: 5930336773763131694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6735338969732708886 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1095627034175279928, guid: 52b4dbb880e021b4a8e4cd74b9212460,
     type: 3}
   m_PrefabInstance: {fileID: 5930336773763131694}
   m_PrefabAsset: {fileID: 0}
