@@ -14,6 +14,7 @@ public class Food : MonoBehaviour
 
     public void OnLettingGo()
     {
+        print("Letting go");
         RaycastHit[] hits = Physics.BoxCastAll(transform.position,
             boxCastHalfSize,
             Vector3.forward,

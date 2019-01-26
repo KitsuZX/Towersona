@@ -33,12 +33,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: isLoopingLookingAtFood
-    m_Type: 4
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -52,19 +46,6 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!114 &114085588197597710
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d270b114665eba4ba417083d3a68927, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoTurnedOffBool: isLoopingLookingAtFood
 --- !u!114 &114843333573230578
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,19 +73,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textures: []
   meshRenderer: {fileID: 0}
---- !u!114 &114909034212078768
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536bf0048b151a04e8efa9eb6dd5b704, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoTurnedOnBool: isLoopingLookingAtFood
 --- !u!1101 &1101014637548815574
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -337,7 +305,7 @@ AnimatorStateTransition:
   m_HasFixedDuration: 0
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
-  m_CanTransitionToSelf: 1
+  m_CanTransitionToSelf: 0
 --- !u!1101 &1101705780283558288
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -457,9 +425,7 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 1101317115899638334}
-  m_StateMachineBehaviours:
-  - {fileID: 114909034212078768}
-  - {fileID: 114085588197597710}
+  m_StateMachineBehaviours: []
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1

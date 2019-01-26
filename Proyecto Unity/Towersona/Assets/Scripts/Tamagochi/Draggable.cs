@@ -17,6 +17,7 @@ public class Draggable : MonoBehaviour
     private Vector3 originalPosition;
     private Vector3 touchOffset;
 
+    private bool isHeld = false;
     private bool wasDraggedLastFrame = false;
     private float timeWithoutDrag = 0;
 
@@ -49,6 +50,7 @@ public class Draggable : MonoBehaviour
 
             OnDragStart.Invoke();
             wasDraggedLastFrame = true;
+            isHeld = true;
         }
     }
 
@@ -61,6 +63,7 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
+        if (!isHeld) return;
         OnLetGo.Invoke();
         wasDraggedLastFrame = false;
 
@@ -68,6 +71,7 @@ public class Draggable : MonoBehaviour
         {
             GoBack();
         }
+        isHeld = false;
     }
 
     private void GoBack()
@@ -88,6 +92,11 @@ public class Draggable : MonoBehaviour
             timeWithoutDrag = 0;
         }
         wasDraggedLastFrame = false;
+
+        if (isHeld && Input.touchCount == 0)
+        {
+            OnLetGo.Invoke();
+        }
     }
 
     private void Awake()
