@@ -19,6 +19,8 @@ public class Food : MonoBehaviour
             Vector3.forward,
             Quaternion.identity);
 
+        dispenser.towersona.SetIsLookingAtFood(false);
+
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].collider)
@@ -26,16 +28,26 @@ public class Food : MonoBehaviour
                 TowersonaNeeds needs = hits[i].collider.GetComponent<TowersonaNeeds>();
                 if (needs)
                 {
-                    needs.ChangeNeedLevel(TowersonaNeeds.NeedType.Hunger, hungerFulmilmentPerRation);
-                    dispenser.DispenseWithDelay();
-
-                    TowersonaAnimation anim = needs.GetComponent<TowersonaAnimation>();
-                    anim.SetIsLookingAtFood(false);
-                    anim.TriggerEating();
-
-                    Destroy(gameObject);
+                    GetEaten(needs);
+                    return;
                 }
             }
         }
+
+        dispenser.DispenseWithDelay();
+        Destroy(gameObject);
     }
+
+    private void GetEaten(TowersonaNeeds towersonaNeeds)
+    {
+        towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Hunger, hungerFulmilmentPerRation);
+        dispenser.DispenseWithDelay();
+
+        TowersonaAnimation anim = towersonaNeeds.GetComponent<TowersonaAnimation>();
+        anim.SetIsLookingAtFood(false);
+        anim.TriggerEating();
+
+        Destroy(gameObject);
+    }
+
 }
