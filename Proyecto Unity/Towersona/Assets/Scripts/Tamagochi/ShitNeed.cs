@@ -1,6 +1,7 @@
 ﻿using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ShitNeed : MonoBehaviour
 {
@@ -14,6 +15,10 @@ public class ShitNeed : MonoBehaviour
     private float shittingInterval = 20f;
     [SerializeField]
     private Shit shitPrefab = null;
+
+    public UnityEvent OnTakenAShit;
+    public UnityEvent OnOneShitCleaned;
+    public UnityEvent OnAllShitCleaned;
     #endregion
 
     public float Level

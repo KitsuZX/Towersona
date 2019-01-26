@@ -1,10 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.Events;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider), typeof(TowersonaNeeds))]
 public class Caressable : MonoBehaviour
 {
+    public UnityEvent OnBeingCaressed;
 
     [SerializeField][Range(0.05f, 0.3f)]
     private float loveIncreasePerDeltaUnit = 0.1f;
@@ -41,6 +41,7 @@ public class Caressable : MonoBehaviour
         float caressDistance = TouchDelta.magnitude;
 
         towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Love, caressDistance * loveIncreasePerDeltaUnit);
+        OnBeingCaressed.Invoke();
     }
 
     private void Awake()

@@ -1,4 +1,4 @@
-﻿using NaughtyAttributes;
+﻿using UnityEngine.Events;
 using UnityEngine;
 
 [RequireComponent(typeof(ShitNeed))]
@@ -17,6 +17,9 @@ public class TowersonaNeeds : MonoBehaviour
     [Header("Notification")]
     [SerializeField][Range(0, 1)]
     private float notificationThreshold = 0.3f;
+
+    [Header("Events")]
+    public UnityEvent OnEating;
 
     //Need levels
     private float hungerLevel;
