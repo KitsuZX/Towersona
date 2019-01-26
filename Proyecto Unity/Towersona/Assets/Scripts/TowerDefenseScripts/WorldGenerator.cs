@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class WorldGenerator : MonoBehaviour
-{
-    public int levelWidth = 10;
-    public int levelHeigth = 10;
-    public Tile[,] tiles;
-
+{  
     [Header("References")]
     [SerializeField]
     private GameObject tilePrefab;
@@ -20,18 +16,19 @@ public class WorldGenerator : MonoBehaviour
 
     private List<PathDirection> path;
     private Tile currentTile;
-    private List<GameObject> controlPoints;
+
+    private WavesController wavesController;
 
     private void Awake() {
-        tiles = new Tile[levelWidth, levelHeigth];
-        path = new List<PathDirection>();
-        controlPoints = new List<GameObject>();
+        
+        path = new List<PathDirection>();    
+        wavesController = GetComponent<WavesController>();
     }
 
     public void GenerateWorld() {
-        for (int i = 0, num = 0; i < levelWidth; i++)
+        for (int i = 0, num = 0; i < World.Instance.levelWidth; i++)
         {
-            for (int j = 0; j < levelHeigth; j++, num++)
+            for (int j = 0; j < World.Instance.levelHeigth; j++, num++)
             {
                 Vector3 position;
                 position.x = i + 0.5f;
@@ -44,7 +41,7 @@ public class WorldGenerator : MonoBehaviour
                 
                 Tile t = tile.GetComponent<Tile>();
                 t.position = new Vector2(i, j);
-                tiles[i, j] = t;
+                World.Instance.tiles[i, j] = t;
                 ChangeToRandomTexture(t);
             }
         }
@@ -54,11 +51,13 @@ public class WorldGenerator : MonoBehaviour
         //TODO: esto pero de manera procedural
 
         //Elige una celda de inicio aleatoria
-        int beginTile = Random.Range(0, levelHeigth);
+        int beginTile = Random.Range(0, World.Instance.levelHeigth);
 
-        currentTile = tiles[0, beginTile];
+        currentTile = World.Instance.tiles[0, beginTile];
         currentTile.isPath = true;
         ChangeToRandomTexture(currentTile);
+
+        wavesController.SetSpawnPoint(currentTile.transform);
 
         int iteration = 0;
   
@@ -66,8 +65,10 @@ public class WorldGenerator : MonoBehaviour
         //Mientras no hayamos llegado a la última columna
         while (true)
         {         
-            if(currentTile.position.x == levelWidth - 1)
+            //Hemos llegado al final
+            if(currentTile.position.x == World.Instance.levelWidth - 1)
             {
+                SetControlPoint(currentTile);
                 Debug.Log("Has llegado al final del camino!");
                 break;
             }
@@ -95,7 +96,7 @@ public class WorldGenerator : MonoBehaviour
         if (iteration == 0)
         {
             nextDirection = PathDirection.Right;
-            path.Add(nextDirection);
+            path.Add(nextDirection);           
             return nextDirection;
         }
 
@@ -109,7 +110,7 @@ public class WorldGenerator : MonoBehaviour
         }
 
         //Borde de arriba
-        if(tile.position.y == levelHeigth - 1)
+        if(tile.position.y == World.Instance.levelHeigth - 1)
         {
             posibleDirections.Remove(PathDirection.Up);
         }
@@ -139,9 +140,7 @@ public class WorldGenerator : MonoBehaviour
                 posibleDirections.Remove(PathDirection.Up);
             }
         }
-
-        posibleDirections.Add(prevDirection);
-        posibleDirections.Add(prevDirection);
+        
         int num = Random.Range(0, posibleDirections.Count);
 
         nextDirection = posibleDirections[num];                 
@@ -171,7 +170,7 @@ public class WorldGenerator : MonoBehaviour
                 break;
         }
 
-        Tile t = tiles[(int)currentTile.position.x, (int)currentTile.position.y];
+        Tile t = World.Instance.tiles[(int)currentTile.position.x, (int)currentTile.position.y];
         currentTile = t;
         t.isPath = true;
         ChangeToRandomTexture(t);
@@ -197,23 +196,12 @@ public class WorldGenerator : MonoBehaviour
 
     private void SetControlPoint(Tile tile)
     {
-        GameObject controlPoint = new GameObject("ControlPoint " + controlPoints.Count);
+        GameObject controlPoint = new GameObject("ControlPoint " + World.Instance.controlPoints.Count);
         controlPoint.transform.position = tile.transform.position;
         controlPoint.transform.SetParent(tile.transform);
-        controlPoints.Add(controlPoint);
+        World.Instance.controlPoints.Add(controlPoint.transform);
     }
 
-    private void OnDrawGizmos()
-    {
-        if (Application.IsPlaying(this))
-        {
-            for (int i = 0; i < controlPoints.Count; i++)
-            {
-                Gizmos.color = Color.green;
-                Gizmos.DrawSphere(controlPoints[i].transform.position, 0.2f);
-            }
-        }
-    }
     public enum PathDirection{
        Up = 0,
        Right = 1,

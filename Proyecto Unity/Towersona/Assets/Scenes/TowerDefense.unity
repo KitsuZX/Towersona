@@ -320,8 +320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18c8d32ef55c8b843b6156f824bce0ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelWidth: 50
-  levelHeigth: 20
   tilePrefab: {fileID: 3761340351531711983, guid: 86211426c05f8614b85ca6e043455055,
     type: 3}
   worldTransform: {fileID: 904369586}
@@ -359,6 +357,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3de5f094cdd4934b9125dd161d651c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wavesToWin: 10
+  timeBetweenWaves: 2
+  waveSpawnRate: 1
+  enemyPrefab: {fileID: 7178499796034649284, guid: 3391f474c5b0a5d468cb8b4cce42de30,
+    type: 3}
 --- !u!1 &904369585
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,6 +371,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 904369586}
+  - component: {fileID: 904369587}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -389,3 +393,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &904369587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904369585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d609acd8baf8944bc34ffb49e6478c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelWidth: 20
+  levelHeigth: 10
+  controlPoints: []
