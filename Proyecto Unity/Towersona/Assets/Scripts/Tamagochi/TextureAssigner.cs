@@ -1,0 +1,23 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class TextureAssigner : MonoBehaviour
+{
+    public Texture2D[] textures;
+
+    private MeshRenderer meshRenderer;
+
+    public void AssignTexture(int index)
+    {
+        if (index >= 0 && index < textures.Length)
+        {
+            meshRenderer.material.mainTexture = textures[index];
+        }
+    }
+
+    private void Awake()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
+}
