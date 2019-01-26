@@ -21,11 +21,14 @@ public class FoodDispenser : MonoBehaviour
         Draggable draggable = newFood.GetComponentInChildren<Draggable>();
         draggable.detailCamera = detailCamera;
         draggable.OnDragStart.AddListener(NotifyFoodDrag);
+
+        towersona.SetIsLookingAtFood(false);
     }
 
     public void DispenseWithDelay()
     {
         Invoke("DispenseImmidiately", dispenseDelay);
+        towersona.SetIsLookingAtFood(false);
     }
 
     private void NotifyFoodDrag()
