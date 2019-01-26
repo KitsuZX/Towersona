@@ -13,7 +13,10 @@ public class World : MonoBehaviour
     [HideInInspector]
     public List<Transform> controlPoints;
 
+    private float lastZUsed = 50f;
+
     public GameObject towersona;
+    public GameObject detailedTowersonaViewPrefab;
 
     private void Awake()
     {
@@ -32,5 +35,16 @@ public class World : MonoBehaviour
 
     public void SpawnTowersona(Vector3 tilePosition) {
         Instantiate(towersona, tilePosition, Quaternion.identity);
+    }
+
+    public TowersonaNeeds SpawnDetailedTowersonaView()
+    {
+        Vector3 position = Vector3.zero;
+        position.z = lastZUsed;
+        lastZUsed += 50f;
+
+        TowersonaNeeds tsn = Instantiate(detailedTowersonaViewPrefab, position, Quaternion.identity).GetComponentInChildren<TowersonaNeeds>();
+        tsn.name = "Towersona need";
+        return tsn;
     }
 }

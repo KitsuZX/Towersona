@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     private float speed = 70f;
  
     [HideInInspector]
-    public int damage;
+    public float damage;
 
     public void Seek(Transform _target)
     {

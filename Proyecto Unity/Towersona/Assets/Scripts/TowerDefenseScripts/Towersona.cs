@@ -11,7 +11,7 @@ public class Towersona : MonoBehaviour
     private Transform firePoint;
 
     [SerializeField][Header("Attack parameters")]
-    private int attackStrength = 3;
+    private float attackStrength = 3;
     [SerializeField]
     private float attackSpeed = 2f;
     [SerializeField]
@@ -21,16 +21,21 @@ public class Towersona : MonoBehaviour
     [SerializeField]
     private float turnSpeed = 1f;
 
-
     private Transform target;
     private Enemy targetEnemy;
     private float fireCountdown = 0f;
-        
+
+    private TowersonaNeeds towersonaNeeds;
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    private void Awake()
+    {
+        towersonaNeeds = World.Instance.SpawnDetailedTowersonaView();
     }
 
     private void Start()
@@ -67,7 +72,11 @@ public class Towersona : MonoBehaviour
 
     private void Update()
     {
-        if(target == null)
+        attackRange *= towersonaNeeds.HappinessLevel;
+        attackSpeed *= towersonaNeeds.HappinessLevel;
+        attackStrength *= towersonaNeeds.HappinessLevel;
+
+        if (target == null)
         {
             return;
         }
