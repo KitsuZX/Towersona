@@ -213,6 +213,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1520150169630117071, guid: 52b4dbb880e021b4a8e4cd74b9212460,
+        type: 3}
+      propertyPath: happinessImpactPerShit
+      value: 0.008
+      objectReference: {fileID: 0}
     - target: {fileID: 1520150169630117068, guid: 52b4dbb880e021b4a8e4cd74b9212460,
         type: 3}
       propertyPath: m_Radius
@@ -227,6 +232,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Center.y
       value: 3.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520150169630117066, guid: 52b4dbb880e021b4a8e4cd74b9212460,
+        type: 3}
+      propertyPath: hungerDecayPerSecond
+      value: 0.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1520150169630117066, guid: 52b4dbb880e021b4a8e4cd74b9212460,
+        type: 3}
+      propertyPath: loveDecayPerSecond
+      value: 0.000001
       objectReference: {fileID: 0}
     - target: {fileID: 418451888, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
       propertyPath: bodyAnimator
@@ -273,6 +288,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5139840165600574757}
     m_Modifications:
+    - target: {fileID: 4202807676063821602, guid: 26d2b0e38bd931a4d88f0f6df048b428,
+        type: 3}
+      propertyPath: m_Name
+      value: FoodDispenser
+      objectReference: {fileID: 0}
+    - target: {fileID: 4202807676063821602, guid: 26d2b0e38bd931a4d88f0f6df048b428,
+        type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
+        type: 0}
     - target: {fileID: 4117239719683561883, guid: 26d2b0e38bd931a4d88f0f6df048b428,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -328,17 +354,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4202807676063821602, guid: 26d2b0e38bd931a4d88f0f6df048b428,
-        type: 3}
-      propertyPath: m_Name
-      value: FoodDispenser
-      objectReference: {fileID: 0}
-    - target: {fileID: 4202807676063821602, guid: 26d2b0e38bd931a4d88f0f6df048b428,
-        type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000,
-        type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26d2b0e38bd931a4d88f0f6df048b428, type: 3}
 --- !u!1 &7043295109358667337 stripped
