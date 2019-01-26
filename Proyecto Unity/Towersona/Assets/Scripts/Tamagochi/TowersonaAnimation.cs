@@ -26,6 +26,7 @@ public class TowersonaAnimation : MonoBehaviour
     {
         UpdateBody();
         UpdateHead();
+        UpdateFace();
     }
 
     private void UpdateBody()
@@ -49,6 +50,10 @@ public class TowersonaAnimation : MonoBehaviour
     private void UpdateFace()
     {
         faceAnimator.SetInteger("idleEmotion", (int)emotion);
+        faceAnimator.SetBool("isFighting", TMP_isFighting);
+        faceAnimator.SetBool("hasEaten", TMP_hasEaten);
+        faceAnimator.SetBool("isLookingAtFood", TMP_isLookingAtFood);
+        faceAnimator.SetBool("isCaressed", TMP_isCaressed);
     }
     #endregion
 
