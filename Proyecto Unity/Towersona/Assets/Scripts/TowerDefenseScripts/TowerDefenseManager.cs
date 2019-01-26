@@ -37,9 +37,5 @@ public class TowerDefenseManager : MonoBehaviour
     public void WinGame()
     {
         Debug.Log("GANASTE GORDO PENDEJO");
-    }
-
-    void Update()
-    {
-    }    
+    }      
 }
