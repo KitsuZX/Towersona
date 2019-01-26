@@ -250,6 +250,7 @@ MonoBehaviour:
   partsToRotate:
   - {fileID: 7445494624827096996}
   - {fileID: 478935592322774390}
+  - {fileID: 6175043574671929610}
   isAttacking: 0
   towersonaNeedsCamera: {fileID: 0}
 --- !u!136 &4655889943347623656
