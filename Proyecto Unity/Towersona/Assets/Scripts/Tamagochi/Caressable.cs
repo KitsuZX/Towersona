@@ -4,12 +4,15 @@ using UnityEngine;
 [RequireComponent(typeof(Collider), typeof(TowersonaNeeds))]
 public class Caressable : MonoBehaviour
 {
-    public UnityEvent OnBeingCaressed;
+    public UnityEvent OnCaressStart;
+
+    public UnityEvent OnCaressEnd;
 
     [SerializeField][Range(0.05f, 0.3f)]
     private float loveIncreasePerDeltaUnit = 0.1f;
 
     private TowersonaNeeds towersonaNeeds;
+    private bool isBeingCaressed = false;
 
 
 
@@ -38,10 +41,20 @@ public class Caressable : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        if (!isBeingCaressed)
+        {
+            isBeingCaressed = true;
+            OnCaressStart.Invoke();
+        }
         float caressDistance = TouchDelta.magnitude;
 
-        towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Love, caressDistance * loveIncreasePerDeltaUnit);
-        OnBeingCaressed.Invoke();
+        towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Love, caressDistance * loveIncreasePerDeltaUnit);;
+    }
+
+    private void OnMouseUp()
+    {
+        isBeingCaressed = false;
+        OnCaressEnd.Invoke();
     }
 
     private void Awake()

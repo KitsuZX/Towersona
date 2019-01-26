@@ -6,9 +6,12 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     private float speed = 2f;
+    [SerializeField]
+    private float life = 30f;
 
     private Transform target;
-    private int controlPointIndex = 0;
+    private int controlPointIndex = 0; 
+    
 
     private void Awake()
     {
@@ -49,7 +52,14 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
         WavesController.EnemiesAlives--;
+    }
 
+    public void TakeDamage(float amount) {
+        life -= amount;
+        if(life <= 0)
+        {
+            KillEnemy();
+        }
     }
 
 

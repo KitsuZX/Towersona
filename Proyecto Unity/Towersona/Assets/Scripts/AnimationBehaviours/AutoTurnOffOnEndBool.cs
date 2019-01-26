@@ -8,7 +8,7 @@ public class AutoTurnOffOnEndBool : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        if (animatorStateInfo.normalizedTime >= 1) TurnBoolOff(animator);
+        if (animatorStateInfo.normalizedTime >= 0.9f) TurnBoolOff(animator);
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
