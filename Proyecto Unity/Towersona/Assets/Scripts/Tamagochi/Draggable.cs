@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 public class Draggable : MonoBehaviour
 {
+    public UnityEvent OnDragStart;
     public UnityEvent OnLetGo;
 
     [HideInInspector]
@@ -39,6 +40,8 @@ public class Draggable : MonoBehaviour
             Vector3 touchInWorld = TouchInWorldSpace;
 
             touchOffset = touchInWorld - transform.position;//transform.position - touchInWorld;
+
+            OnDragStart.Invoke();
         }
     }
 

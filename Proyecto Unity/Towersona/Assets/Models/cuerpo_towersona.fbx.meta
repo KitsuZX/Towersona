@@ -3,12 +3,36 @@ guid: 9c3cc79c3821d344dbd0bfd3d2733502
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2100000: No Name
-    2300000: //RootNode
-    3300000: //RootNode
+    100000: antebrazo_der
+    100002: antebrazo_izq
+    100004: base
+    100006: brazo_der
+    100008: brazo_izq
+    100010: cuerpo
+    100012: cuerpo 1
+    100014: cuerpo_rig
+    100016: //RootNode
+    100018: zarpa_der
+    100020: zarpa_der_end
+    100022: zarpa_izq
+    100024: zarpa_izq_end
+    400000: antebrazo_der
+    400002: antebrazo_izq
+    400004: base
+    400006: brazo_der
+    400008: brazo_izq
+    400010: cuerpo
+    400012: cuerpo 1
+    400014: cuerpo_rig
+    400016: //RootNode
+    400018: zarpa_der
+    400020: zarpa_der_end
+    400022: zarpa_izq
+    400024: zarpa_izq_end
+    2100000: cuerpo
     4300000: cuerpo
+    9500000: //RootNode
+    13700000: cuerpo
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -61,8 +85,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -89,7 +113,7 @@ ModelImporter:
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 0
+  animationType: 2
   humanoidOversampling: 1
   additionalBone: 0
   userData: 

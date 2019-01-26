@@ -23,16 +23,20 @@ public class Towersona : MonoBehaviour
     [SerializeField]
     private Transform[] partsToRotate;
 
+    [HideInInspector]
+    public bool isAttacking = false;
+    public Camera towersonaNeedsCamera;
+
     private Transform target;
     private Enemy targetEnemy;
     private float fireCountdown = 0f;
 
     private TowersonaNeeds towersonaNeeds;
+    private TowersonaAnimation detailedAnimationManager;
     private Color color;
     
-    public Camera towersonaNeedsCamera;
-    [HideInInspector]
-    public bool isAttacking = false;
+    
+    
 
     private void OnDrawGizmos()
     {
@@ -45,6 +49,7 @@ public class Towersona : MonoBehaviour
         color = Random.ColorHSV();
         GetComponentInChildren<MeshRenderer>().material.color = color;
         towersonaNeeds = World.Instance.SpawnDetailedTowersonaView(color, this);
+        detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
     }
 
@@ -89,10 +94,12 @@ public class Towersona : MonoBehaviour
         if (target == null)
         {
             isAttacking = false;
+            detailedAnimationManager.isFighting = false;
             return;
         }
 
         isAttacking = true;
+        detailedAnimationManager.isFighting = true;
 
         LockOnTarget();
 

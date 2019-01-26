@@ -12,7 +12,6 @@ public class Food : MonoBehaviour
     [HideInInspector]
     public FoodDispenser dispenser = null;
 
-
     public void OnLettingGo()
     {
         RaycastHit[] hits = Physics.BoxCastAll(transform.position,
@@ -29,6 +28,11 @@ public class Food : MonoBehaviour
                 {
                     needs.ChangeNeedLevel(TowersonaNeeds.NeedType.Hunger, hungerFulmilmentPerRation);
                     dispenser.DispenseWithDelay();
+
+                    TowersonaAnimation anim = needs.GetComponent<TowersonaAnimation>();
+                    anim.SetIsLookingAtFood(false);
+                    anim.TriggerEating();
+
                     Destroy(gameObject);
                 }
             }
