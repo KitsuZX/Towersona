@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     private float life = 30f;
 
     private Transform target;
-    private int controlPointIndex = 0;
+    private int controlPointIndex = 0; 
     
 
     private void Awake()

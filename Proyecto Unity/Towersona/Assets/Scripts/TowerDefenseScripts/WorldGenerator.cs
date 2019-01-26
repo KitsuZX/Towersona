@@ -70,7 +70,6 @@ public class WorldGenerator : MonoBehaviour
             if(currentTile.position.x == World.Instance.levelWidth - 1)
             {
                 SetControlPoint(currentTile);
-                Debug.Log("Has llegado al final del camino!");
                 break;
             }
 
