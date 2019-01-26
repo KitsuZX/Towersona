@@ -29,7 +29,7 @@ public class Food : MonoBehaviour
                 if (needs)
                 {
                     needs.ChangeNeedLevel(TowersonaNeeds.NeedType.Hunger, hungerFulmilmentPerRation);
-                    dispenser.Dispense();
+                    dispenser.DispenseWithDelay();
                     Destroy(gameObject);
                 }
             }
