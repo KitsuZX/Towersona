@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2937486178298076315}
   - component: {fileID: 2937486178298076314}
   - component: {fileID: 2937486178298076317}
+  - component: {fileID: 5746684595312502374}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -91,6 +92,36 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5746684595312502374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937486178298076319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 557bac963dd213d49b51a8207ffed535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLetGo:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2937486179109956432}
+        m_MethodName: OnLettingGo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  detailCamera: {fileID: 0}
+  transform: {fileID: 0}
 --- !u!1 &2937486179109956437
 GameObject:
   m_ObjectHideFlags: 0
@@ -101,7 +132,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2937486179109956434}
   - component: {fileID: 2937486179109956432}
-  - component: {fileID: 2937486179109956435}
   m_Layer: 0
   m_Name: Food
   m_TagString: Untagged
@@ -139,31 +169,3 @@ MonoBehaviour:
   hungerFulmilmentPerRation: 1
   boxCastHalfSize: {x: 5, y: 5, z: 5}
   dispenser: {fileID: 0}
---- !u!114 &2937486179109956435
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937486179109956437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 557bac963dd213d49b51a8207ffed535, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnLetGo:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2937486179109956432}
-        m_MethodName: OnLettingGo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null

@@ -3,8 +3,10 @@ using UnityEngine.Events;
 
 public class Draggable : MonoBehaviour
 {
-
     public UnityEvent OnLetGo;
+
+    [HideInInspector]
+    public Camera detailCamera;
 
     private new Transform transform;
 
@@ -17,10 +19,10 @@ public class Draggable : MonoBehaviour
         {
             if (Input.touchCount > 0)
             {
-                return Camera.main.ScreenToWorldPoint(new Vector3(
+                return detailCamera.ScreenToWorldPoint(new Vector3(
                         Input.GetTouch(0).position.x,
                         Input.GetTouch(0).position.y,
-                        transform.position.z - Camera.main.transform.position.z));
+                        transform.position.z - detailCamera.GetComponent<Transform>().position.z));
             }
             else return Vector3.zero;
         }
@@ -29,6 +31,8 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {
+        print("MouseDown detected");
+
         if (Input.touchCount > 0)
         {
             originalPosition = transform.position;
@@ -36,14 +40,13 @@ public class Draggable : MonoBehaviour
             //This might fail when multiple cameras are present
             Vector3 touchInWorld = TouchInWorldSpace;
 
-            touchOffset = transform.position - touchInWorld;
+            touchOffset = touchInWorld - transform.position;//transform.position - touchInWorld;
         }
     }
 
     private void OnMouseDrag()
     {
-        Vector3 tmp = transform.position;
-        tmp += TouchInWorldSpace;
+        Vector3 tmp = TouchInWorldSpace + touchOffset;
         transform.position = tmp;
     }
 
