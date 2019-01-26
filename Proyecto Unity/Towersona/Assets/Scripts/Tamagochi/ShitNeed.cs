@@ -15,6 +15,10 @@ public class ShitNeed : MonoBehaviour
     private float shittingInterval = 20f;
     [SerializeField]
     private Shit shitPrefab = null;
+    [SerializeField]
+    private int maxShitCount = 4;
+    [SerializeField]
+    private Transform[] shitSpawnPositions;
 
     public UnityEvent OnTakenAShit;
     public UnityEvent OnOneShitCleaned;
@@ -29,6 +33,7 @@ public class ShitNeed : MonoBehaviour
         }
     }
 
+    
 
     private List<Shit> shits;
     private float timeSinceLastShit;
@@ -60,12 +65,25 @@ public class ShitNeed : MonoBehaviour
     [Button]
     private void TakeAShit()
     {
-        Shit newShit = Instantiate(shitPrefab);
+        PurgeShitList();
+        print(shits.Count);
+        if (shits.Count >= maxShitCount) return;
+
+        Vector3 position = shitSpawnPositions[shits.Count].position;
+
+        Shit newShit = Instantiate(shitPrefab, position, Random.rotationUniform);
         newShit.origin = this;
         shits.Add(newShit);
         timeSinceLastShit = 0;
     }
 
+    private void PurgeShitList()
+    {
+        for (int i = shits.Count - 1; i >= 0; i--)
+        {
+            if (shits[i] == null) shits.RemoveAt(i);
+        }
+    }
     #region Initialization
     private void Awake()
     {
