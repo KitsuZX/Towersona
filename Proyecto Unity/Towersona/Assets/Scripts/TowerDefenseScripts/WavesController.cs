@@ -30,6 +30,8 @@ public class WavesController : MonoBehaviour
         {
             Destroy(this);
         }
+
+        EnemiesAlives = 0;
     }
 
     private void Update()
