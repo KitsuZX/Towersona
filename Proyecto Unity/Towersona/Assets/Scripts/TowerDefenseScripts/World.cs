@@ -15,7 +15,8 @@ public class World : MonoBehaviour
     [SerializeField]
     private Camera defaultCamera;
     [SerializeField]
-    private Color[] towersonaColors;
+    private Color[] colors;
+    private Stack<Color> towersonaColors;
 
     private float lastXUsed = 0f;
 
@@ -36,12 +37,18 @@ public class World : MonoBehaviour
         else
         {
             Destroy(this);
-        }
+        }    
 
+        towersonaColors = new Stack<Color>();
         tiles = new Tile[levelWidth, levelHeigth];
         controlPoints = new List<Transform>();
         towersonaNeeds = new List<TowersonaNeeds>();
         activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();
+
+        foreach (Color color in colors)
+        {
+            towersonaColors.Push(color);
+        }
     }
 
     public void SpawnTowersona(Vector3 tilePosition, Tile tile) {
@@ -71,8 +78,7 @@ public class World : MonoBehaviour
 
     public TowersonaNeeds SpawnDetailedTowersonaView(Color color, Towersona towersona)
     {
-        int randomColor = Random.Range(0, towersonaColors.Length);
-        rColor = towersonaColors[randomColor];
+        rColor = towersonaColors.Pop();
 
         Vector3 position = Vector3.zero;
         position.x = lastXUsed;

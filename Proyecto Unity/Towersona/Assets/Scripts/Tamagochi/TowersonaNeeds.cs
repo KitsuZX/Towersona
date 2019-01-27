@@ -16,6 +16,8 @@ public class TowersonaNeeds : MonoBehaviour
     private float loveDecayPerSecond = 0.1f;
     [SerializeField]
     private Slider happinessSlider;
+    [SerializeField]
+    private GameObject overHappiness;
 
     [Header("Notification")]
     [SerializeField][Range(0, 1)]
@@ -86,6 +88,18 @@ public class TowersonaNeeds : MonoBehaviour
         DoNeedDecay();
         NeedType needToBeNotified = CheckIfShouldNotifyNeed();
         if (needToBeNotified != NeedType.None) NotifyNeed(needToBeNotified);
+
+        if(HappinessLevel <= 1f)
+        {
+
+            overHappiness.SetActive(false);
+            happinessSlider.value = HappinessLevel;
+        }
+        else
+        {
+            overHappiness.SetActive(true);
+        }      
+
     }
 
     /// <summary>
