@@ -101,7 +101,7 @@ public class TowerDefenseManager : MonoBehaviour
     {
         if(tileSelected != null)
         {           
-            tile.DeselectTile();
+            tileSelected.DeselectTile();
         }
 
         tileSelected = tile;

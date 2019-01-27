@@ -108,4 +108,4 @@ MonoBehaviour:
   hasTower: 0
   position: {x: 0, y: 0}
   mainTexture: {fileID: 2800000, guid: ff172ed78aa49f24295f2d133dcf68e0, type: 3}
-  selectedColor: {r: 0, g: 0, b: 0, a: 0}
+  selectedColor: {r: 0.6037736, g: 0.13814701, b: 0.10537558, a: 1}

@@ -30,7 +30,7 @@ public class Tile : MonoBehaviour
     public void SelectTile()
     {
         //meshRenderer.material.color = selectedTexture;
-        //meshRenderer.material.color = selectedColor;
+        meshRenderer.material.color = selectedColor;
     }
 
     public void DeselectTile()
