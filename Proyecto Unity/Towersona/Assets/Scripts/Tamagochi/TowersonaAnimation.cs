@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowersonaAnimation : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class TowersonaAnimation : MonoBehaviour
     public bool isLookingAtFood;
 
     public IdleState emotion;
+
+    [SerializeField]
+    private Slider happinessSlider;
+
 
     [Header("Animators")]
     [SerializeField]

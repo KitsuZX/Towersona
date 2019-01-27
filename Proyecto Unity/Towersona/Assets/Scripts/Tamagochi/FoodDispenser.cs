@@ -15,7 +15,7 @@ public class FoodDispenser : MonoBehaviour
 
     public void DispenseImmidiately()
     {
-        Food newFood = Instantiate(foodPrefab, transform.position, Quaternion.Euler(0f, -90f, 0f));
+        Food newFood = Instantiate(foodPrefab, transform.position, Quaternion.identity);
         newFood.dispenser = this;
 
         Draggable draggable = newFood.GetComponentInChildren<Draggable>();
