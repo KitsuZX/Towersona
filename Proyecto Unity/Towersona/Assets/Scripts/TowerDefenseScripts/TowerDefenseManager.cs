@@ -62,12 +62,12 @@ public class TowerDefenseManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("PERDISTE! LAS TOWERSONAS HAN MUERTO!");
+        defeatPrompt.SetActive(true);
     }
 
     public void WinGame()
     {
-        Debug.Log("GANASTE GORDO PENDEJO");
+        victoryPrompt.SetActive(true);
     }
 
     private void Update()

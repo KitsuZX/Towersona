@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class PlayerStats
 {
-    public static int Lives = 30;
+    public static int Lives = 1;
     public static int Rounds = 0;
     public static bool TowerAvaible = true;
     public static bool MaxReached = false;
