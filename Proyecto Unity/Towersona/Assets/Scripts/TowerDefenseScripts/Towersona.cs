@@ -152,24 +152,21 @@ public class Towersona : MonoBehaviour
         if (needType != TowersonaNeeds.NeedType.None && !isNotifying)
         {
             CreateNotification(needType);
-            Debug.Log("Creating Notification");
         }
 
-        if (prevNeedType != null)
+        if (isNotifying)
         {
-            if (isNotifying)
+            if (prevNeedType != needType)
             {
-                if (prevNeedType != needType)
-                {
-                    DestroyNotification();
+                DestroyNotification();
 
-                    if(needType != TowersonaNeeds.NeedType.None)
-                    {
-                        CreateNotification(needType);
-                    }
+                if(needType != TowersonaNeeds.NeedType.None)
+                {
+                    CreateNotification(needType);
                 }
             }
         }
+       
 
         prevNeedType = needType;
     }
