@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590194396460084967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.092, y: 1.48, z: 0.595}
+  m_LocalPosition: {x: 1.092, y: 3.79, z: 0.595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7081004210300108719}
@@ -273,6 +273,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "cuerpo_towersona_peque\xF1ita"
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 4c20eabbed170214486ad4ed4661262e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c9db5b280450f29448e434e6c8bd3696, type: 2}
     - target: {fileID: 400016, guid: 4c20eabbed170214486ad4ed4661262e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -317,10 +321,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 4c20eabbed170214486ad4ed4661262e, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: c9db5b280450f29448e434e6c8bd3696, type: 2}
     - target: {fileID: 13700000, guid: 4c20eabbed170214486ad4ed4661262e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

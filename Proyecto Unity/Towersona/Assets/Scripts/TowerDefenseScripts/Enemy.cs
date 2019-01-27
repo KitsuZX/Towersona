@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     private float speed = 2f;
     [SerializeField]
     private float life = 30f;
+    [SerializeField]
+    private GameObject deathEffect;
 
     private Transform target;
     private int controlPointIndex = 0;     
@@ -50,7 +52,13 @@ public class Enemy : MonoBehaviour
 
     private void KillEnemy()
     {
+        Vector3 pos = transform.position;
+        pos.y += 0.5f;
+        GameObject effect = Instantiate(deathEffect, pos, Quaternion.identity);
+        Destroy(effect, 5f);
+
         Destroy(gameObject);
+
         WavesController.EnemiesAlives--;
     }
 

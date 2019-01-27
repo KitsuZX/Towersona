@@ -41,9 +41,11 @@ public class World : MonoBehaviour
         activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();
     }
 
-    public void SpawnTowersona(Vector3 tilePosition) {
+    public void SpawnTowersona(Vector3 tilePosition, Tile tile) {
         TowerDefenseManager.Instance.towersBuilt++;
         Towersona t = Instantiate(towersona, tilePosition, Quaternion.identity).GetComponent<Towersona>();
+        t.tile = tile;
+        TowerDefenseManager.Instance.SelectTile(tile);
         TowerDefenseManager.Instance.towersonas.Add(t);
         PlayerStats.TowerAvaible = false;    
     }

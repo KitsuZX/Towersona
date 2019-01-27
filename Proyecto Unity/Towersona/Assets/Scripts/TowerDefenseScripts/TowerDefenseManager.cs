@@ -11,6 +11,8 @@ public class TowerDefenseManager : MonoBehaviour
     public int towersBuilt = 0;
     [HideInInspector]
     public List<Towersona> towersonas;
+    [HideInInspector]
+    public Tile tileSelected;
 
     [SerializeField]
     private float timeBetweenTowersonas = 5f;
@@ -26,7 +28,9 @@ public class TowerDefenseManager : MonoBehaviour
 
     private WorldGenerator worldGenerator;
     private WavesController wavesController;
-    private float countdownTillNewTowersona; 
+    private float countdownTillNewTowersona;
+
+    private Texture2D prevTexture;   
 
 
     void Awake()
@@ -92,4 +96,15 @@ public class TowerDefenseManager : MonoBehaviour
         }       
         
     }   
+
+    public void SelectTile(Tile tile)
+    {
+        if(tileSelected != null)
+        {           
+            tile.DeselectTile();
+        }
+
+        tileSelected = tile;
+        tile.SelectTile();
+    }
 }

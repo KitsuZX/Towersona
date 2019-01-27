@@ -167,12 +167,12 @@ public class TowersonaNeeds : MonoBehaviour
 
 
     //Debug only
-    private void OnGUI()
+    /*private void OnGUI()
     {
         GUI.Label(new Rect(1000, 0, 300, 200), "Love: " + loveLevel);
         GUI.Label(new Rect(1000, 50, 300, 200), "Hunger: " + hungerLevel);
         GUI.Label(new Rect(1000, 100, 300, 200), "Shit: " + shitNeed.Level);
         GUI.Label(new Rect(1000, 150, 300, 200), "Happiness: " + HappinessLevel);
-    }
+    }*/
 
 }
