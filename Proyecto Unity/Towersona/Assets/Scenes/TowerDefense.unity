@@ -523,7 +523,7 @@ MonoBehaviour:
   towersBuilt: 0
   towersonas: []
   tileSelected: {fileID: 0}
-  timeBetweenTowersonas: 2
+  timeBetweenTowersonas: 40
   livesText: {fileID: 1847308807}
   roundText: {fileID: 614539214}
   nextTowersonaText: {fileID: 1421633871}
@@ -593,9 +593,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3de5f094cdd4934b9125dd161d651c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wavesToWin: 5
-  timeBetweenWaves: 2
-  waveSpawnRate: 1
+  wavesToWin: 10
+  timeBetweenWaves: 5
+  waveSpawnRate: 2
   enemyPrefab: {fileID: 7178499796034649284, guid: 3391f474c5b0a5d468cb8b4cce42de30,
     type: 3}
   enemiesParent: {fileID: 1537323825}
@@ -908,7 +908,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

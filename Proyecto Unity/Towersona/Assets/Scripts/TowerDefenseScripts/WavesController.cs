@@ -58,11 +58,10 @@ public class WavesController : MonoBehaviour
     private IEnumerator SpawnWave()
     {
         PlayerStats.Rounds++;      
+            
+        int enemiesToSpawn = PlayerStats.Rounds * 3;
 
-        //TODO: algoritmo de creación de enemigos
-        EnemiesAlives = PlayerStats.Rounds;
-
-        for(int i = 0; i < PlayerStats.Rounds; i++)
+        for (int i = 0; i < enemiesToSpawn; i++)
         {
             SpawnEnemy(enemyPrefab);
             yield return new WaitForSeconds(1f / waveSpawnRate);
@@ -73,6 +72,7 @@ public class WavesController : MonoBehaviour
     {
         GameObject e = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         e.transform.SetParent(enemiesParent);
+        EnemiesAlives++;
     }
 
     public void SetSpawnPoint(Transform transform)

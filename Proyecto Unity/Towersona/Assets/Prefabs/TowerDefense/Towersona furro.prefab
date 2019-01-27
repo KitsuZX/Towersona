@@ -86,14 +86,14 @@ MonoBehaviour:
     type: 3}
   headAC: {fileID: 1146401408097463291}
   bodyAC: {fileID: 3071539228515181442}
-  attackStrength: 3
-  attackSpeed: 2
-  attackRange: 5
-  bulletSpeed: 10
-  minAttackStrength: 0.5
-  minAttackSpeed: 0.25
-  minAttackRange: 3
-  minBulletSpeed: 2
+  maxAttackStrength: 7
+  maxAttackSpeed: 2
+  maxAttackRange: 5
+  maxBulletSpeed: 10
+  minAttackStrength: 3
+  minAttackSpeed: 0.5
+  minAttackRange: 2
+  minBulletSpeed: 4
   turnSpeed: 10
   partsToRotate:
   - {fileID: 6175043574671929610}

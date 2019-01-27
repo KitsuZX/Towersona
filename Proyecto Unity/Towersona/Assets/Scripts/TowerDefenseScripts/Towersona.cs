@@ -17,13 +17,13 @@ public class Towersona : MonoBehaviour
     private Animator bodyAC;
 
     [SerializeField][Header("Attack parameters")]
-    private float attackStrength = 3;
+    private float maxAttackStrength = 10f;
     [SerializeField]
-    private float attackSpeed = 2f;
+    private float maxAttackSpeed = 2f;
     [SerializeField]
-    private float attackRange = 5f;
+    private float maxAttackRange = 5f;
     [SerializeField]
-    private float bulletSpeed = 10f;
+    private float maxBulletSpeed = 10f;
     [SerializeField]  
     private float minAttackStrength = 0.5f;
     [SerializeField]
@@ -32,6 +32,11 @@ public class Towersona : MonoBehaviour
     private float minAttackRange = 1f;
     [SerializeField]
     private float minBulletSpeed = 2f;
+
+    private float attackStrength;
+    private float attackSpeed;
+    private float attackRange;
+    private float bulletSpeed;
 
     [Header("Transform parameters")]
     [SerializeField]
@@ -67,6 +72,11 @@ public class Towersona : MonoBehaviour
 
     private void Awake()
     {
+        attackSpeed = maxAttackSpeed;
+        attackStrength = maxAttackStrength;
+        attackRange = maxAttackRange;
+        attackSpeed = maxAttackSpeed;
+
         color = Random.ColorHSV();
         GetComponentInChildren<MeshRenderer>().material.color = color;
 
@@ -81,6 +91,7 @@ public class Towersona : MonoBehaviour
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+        InvokeRepeating("UpdateStats", 0f, 1f);
     }
 
     private void UpdateTarget()
@@ -110,18 +121,17 @@ public class Towersona : MonoBehaviour
         }
     }
 
+    private void UpdateStats()
+    {      
+        attackStrength = Mathf.Lerp(minAttackStrength, maxAttackStrength, towersonaNeeds.HappinessLevel);
+        attackSpeed = Mathf.Lerp(minAttackSpeed, maxAttackSpeed, towersonaNeeds.HappinessLevel);
+        attackRange = Mathf.Lerp(minAttackRange, maxAttackRange, towersonaNeeds.HappinessLevel);
+        bulletSpeed = Mathf.Lerp(minBulletSpeed, maxAttackSpeed, towersonaNeeds.HappinessLevel);
+
+    }
+
     private void Update()
-    {
-        attackRange *= towersonaNeeds.HappinessLevel;
-        attackSpeed *= towersonaNeeds.HappinessLevel;
-        attackStrength *= towersonaNeeds.HappinessLevel;
-        bulletSpeed *= towersonaNeeds.HappinessLevel;
-
-        attackRange = Mathf.Max(attackRange, minAttackRange);
-        attackSpeed = Mathf.Max(attackSpeed, minAttackSpeed);
-        attackStrength = Mathf.Max(attackStrength, minAttackStrength);
-        bulletSpeed = Mathf.Max(bulletSpeed, minBulletSpeed);
-
+    {       
         if (target == null)
         {
             isAttacking = false;
