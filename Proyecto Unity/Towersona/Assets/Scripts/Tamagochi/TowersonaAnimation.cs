@@ -31,6 +31,9 @@ public class TowersonaAnimation : MonoBehaviour
     [SerializeField]
     private LookAwayFromTouch lookAway;
 
+    [SerializeField]
+    private DetailedTowersonaSound sound;
+
 
     #region Updating
     private void Update()
@@ -83,12 +86,19 @@ public class TowersonaAnimation : MonoBehaviour
     public void TriggerEating()
     {
         hasEaten = true;
+        sound.PlayEating();
     }
 
     public void SetIsLookingAtFood(bool _isLookingAtFood)
     {
         isLookingAtFood = _isLookingAtFood;
         lookAt.enabled = _isLookingAtFood;
+
+        if (isLookingAtFood)
+        {
+            print("Started");
+            sound.PlayLookingAtFood();
+        }
     }
 
     private void ChooseEmotion()
@@ -117,6 +127,7 @@ public class TowersonaAnimation : MonoBehaviour
     private void Awake()
     {
         needs = GetComponentInParent<TowersonaNeeds>();
+        sound = GetComponent<DetailedTowersonaSound>();
     }
 
     public enum IdleState

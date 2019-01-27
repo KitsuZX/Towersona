@@ -45,6 +45,7 @@ public class Bullet : MonoBehaviour
         Enemy e = target.GetComponent<Enemy>();
 
         GetComponent<AudioSource>().Play();
+        print(GetComponent<AudioSource>().clip.name);
 
         Vector3 pos = transform.position;
 
