@@ -11,6 +11,9 @@ public class Bullet : MonoBehaviour
     [HideInInspector]
     public float damage;
 
+    [SerializeField]
+    private GameObject impactEffect;
+
     public void Seek(Transform _target)
     {
         target = _target;
@@ -40,6 +43,13 @@ public class Bullet : MonoBehaviour
     void HitTarget()
     {
         Enemy e = target.GetComponent<Enemy>();
+
+        Vector3 pos = transform.position;
+
+        pos.y += 1f;
+
+        GameObject effectIns = Instantiate(impactEffect, pos, transform.rotation);
+        Destroy(effectIns, 2f);
 
         if (e != null)
         {

@@ -173,7 +173,7 @@ public class Towersona : MonoBehaviour
         for (int i = 0; i < partsToRotate.Length; i++)
         {
             Vector3 rotation = Quaternion.Lerp(partsToRotate[i].rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-            partsToRotate[i].localRotation = Quaternion.Euler(0f, rotation.y, 0f);
+            partsToRotate[i].rotation = Quaternion.Euler(0f, rotation.y, 0f);
         }
     }
 
