@@ -23,6 +23,7 @@ public class FoodDispenser : MonoBehaviour
         draggable.OnDragStart.AddListener(NotifyFoodDrag);
 
         towersona.SetIsLookingAtFood(false);
+        towersona.SetLookAtTransform(draggable.transform);
     }
 
     public void DispenseWithDelay()
@@ -34,7 +35,7 @@ public class FoodDispenser : MonoBehaviour
     private void NotifyFoodDrag()
     {
         towersona.SetIsLookingAtFood(true);
-        towersona.GetComponent<LookAtFood>().enabled = true;
+        //towersona.GetComponent<LookAtFood>().enabled = true;
     }
 
     private void Awake()

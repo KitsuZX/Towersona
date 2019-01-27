@@ -18,14 +18,24 @@ public class TowersonaAnimation : MonoBehaviour
     private Animator headAnimator;
     [SerializeField]
     private Animator faceAnimator;
+    
+    private TowersonaNeeds needs;
+
+    [SerializeField]
+    private LookAt lookAt;
+    [SerializeField]
+    private LookAwayFromTouch lookAway;
 
 
     #region Updating
     private void Update()
     {
+        ChooseEmotion();
+
         UpdateBody();
         UpdateHead();
         UpdateFace();
+
 
         if (hasEaten) hasEaten = false;
     }
@@ -49,6 +59,8 @@ public class TowersonaAnimation : MonoBehaviour
 
     private void UpdateFace()
     {
+        
+
         faceAnimator.SetInteger("idleEmotion", (int)emotion);
         if (hasEaten) faceAnimator.SetBool("hasEaten", true);
         faceAnimator.SetBool("isLookingAtFood", isLookingAtFood);
@@ -59,7 +71,8 @@ public class TowersonaAnimation : MonoBehaviour
     #region Info Gathering
     public void SetIsCaressed(bool isBeingCaressed)
     {
-        isCaressed = isBeingCaressed;        
+        isCaressed = isBeingCaressed;
+        lookAway.enabled = isBeingCaressed;
     }
 
     public void TriggerEating()
@@ -70,9 +83,36 @@ public class TowersonaAnimation : MonoBehaviour
     public void SetIsLookingAtFood(bool _isLookingAtFood)
     {
         isLookingAtFood = _isLookingAtFood;
+        lookAt.enabled = _isLookingAtFood;
+    }
+
+    private void ChooseEmotion()
+    {
+        TowersonaNeeds.NeedType notifiedNeed = needs.CheckIfShouldNotifyNeed();
+
+        if (notifiedNeed == TowersonaNeeds.NeedType.None)
+        {
+            if (needs.HappinessLevel > 1) emotion = IdleState.Happy;
+            else emotion = IdleState.Fine;
+        }
+        else
+        {
+            if (notifiedNeed == TowersonaNeeds.NeedType.Hunger) emotion = IdleState.Hungry;
+            else if (notifiedNeed == TowersonaNeeds.NeedType.Love) emotion = IdleState.Missing;
+            else if (notifiedNeed == TowersonaNeeds.NeedType.Shit) emotion = IdleState.Shit;
+        }
     }
     #endregion
 
+    public void SetLookAtTransform(Transform tr)
+    {
+        lookAt.food = tr;
+    }
+
+    private void Awake()
+    {
+        needs = GetComponentInParent<TowersonaNeeds>();
+    }
 
     public enum IdleState
     {

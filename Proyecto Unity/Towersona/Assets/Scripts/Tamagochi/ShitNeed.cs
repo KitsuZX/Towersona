@@ -66,7 +66,6 @@ public class ShitNeed : MonoBehaviour
     private void TakeAShit()
     {
         PurgeShitList();
-        print(shits.Count);
         if (shits.Count >= maxShitCount) return;
 
         Vector3 position = shitSpawnPositions[shits.Count].position;
