@@ -33,8 +33,8 @@ public class FoodDispenser : MonoBehaviour
 
     private void NotifyFoodDrag()
     {
-        print("Setting to true, fuck you");
         towersona.SetIsLookingAtFood(true);
+        towersona.GetComponent<LookAtFood>().enabled = true;
     }
 
     private void Awake()
