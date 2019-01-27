@@ -51,6 +51,8 @@ public class Bullet : MonoBehaviour
         GameObject effectIns = Instantiate(impactEffect, pos, transform.rotation);
         Destroy(effectIns, 2f);
 
+        CameraShake.Instance.AddTrauma(0.2f);
+
         if (e != null)
         {
             e.TakeDamage(damage);

@@ -64,6 +64,7 @@ public class WavesController : MonoBehaviour
     public void SetSpawnPoint(Transform transform)
     {
         spawnPoint = transform;
+        spawnPoint.rotation = Quaternion.Euler(0f, 90f, 0f);
     }
 
 }
