@@ -597,7 +597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2, y: 0.85}
   m_AnchorMax: {x: 0.8, y: 0.95}
-  m_AnchoredPosition: {x: -13.9, y: -2.5299988}
+  m_AnchoredPosition: {x: -13.899994, y: -2.5299988}
   m_SizeDelta: {x: -27.79, y: 5.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4474418983449552093
@@ -913,7 +913,7 @@ MonoBehaviour:
   eatingSfx: {fileID: 8300000, guid: 23a464697d00b33439bfe78b254d50b7, type: 3}
   shitSfx: {fileID: 8300000, guid: a46a25f1db657524ca5c51b84b8ac355, type: 3}
   lookingAtFoodSfx: {fileID: 8300000, guid: 788782419b813014fbd8d8effe35afac, type: 3}
-  happySfx: {fileID: 0}
+  happySfx: {fileID: 8300000, guid: 1e34335c84f640f449a52fbfb993971d, type: 3}
 --- !u!1 &6740344829363366261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1393,7 +1393,7 @@ PrefabInstance:
       objectReference: {fileID: 1002379853336323515}
     - target: {fileID: 618646474, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
       propertyPath: textures.Array.size
-      value: 29
+      value: 31
       objectReference: {fileID: 0}
     - target: {fileID: 618646474, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
       propertyPath: textures.Array.data[0]
@@ -1511,6 +1511,14 @@ PrefabInstance:
       propertyPath: textures.Array.data[28]
       value: 
       objectReference: {fileID: 2800000, guid: 7d705e21a87f5bb4db77783ef77b0114, type: 3}
+    - target: {fileID: 618646474, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
+      propertyPath: textures.Array.data[29]
+      value: 
+      objectReference: {fileID: 2800000, guid: 9f3c6deded3d532479d69de59dd4c7f9, type: 3}
+    - target: {fileID: 618646474, guid: 52b4dbb880e021b4a8e4cd74b9212460, type: 3}
+      propertyPath: textures.Array.data[30]
+      value: 
+      objectReference: {fileID: 2800000, guid: de0235c17760fec46a81f505887b93d3, type: 3}
     - target: {fileID: 1095627034182574332, guid: 52b4dbb880e021b4a8e4cd74b9212460,
         type: 3}
       propertyPath: m_Layer
