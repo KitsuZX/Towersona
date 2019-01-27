@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour
 
     private void KillEnemy(bool endPath = false)
     {
+        CameraShake.Instance.AddTrauma(0.4f);
         Vector3 pos = transform.position;
         pos.y += 0.5f;
         if (!endPath)

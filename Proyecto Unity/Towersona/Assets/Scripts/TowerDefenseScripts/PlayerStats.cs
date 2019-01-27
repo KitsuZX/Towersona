@@ -15,6 +15,12 @@ public static class PlayerStats
         if (Lives <= 0)
         {
             TowerDefenseManager.Instance.GameOver();
+            CameraShake.Instance.AddTrauma(0.8f);
+
+        }
+        else
+        {
+            CameraShake.Instance.AddTrauma(0.5f);
         }
     }
 }
