@@ -5,6 +5,7 @@ using UnityEngine;
 public class WavesController : MonoBehaviour
 {
     public static int EnemiesAlives = 0;
+    public static WavesController Instance { get; private set; }
 
     public int wavesToWin = 10;
     public float timeBetweenWaves;
@@ -16,7 +17,20 @@ public class WavesController : MonoBehaviour
     private Transform enemiesParent;
 
     private float countdown = 2f; 
-    private Transform spawnPoint;   
+    private Transform spawnPoint;
+
+
+    private void Awake()
+    {
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
     private void Update()
     {        
