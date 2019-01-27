@@ -47,15 +47,7 @@ public class TowersonaAnimation : MonoBehaviour
 
     private void UpdateBody()
     {
-        if (hasEaten)
-        {
-            headAnimator.SetBool("hasEaten", true);
-        }
-
-        headAnimator.SetBool("isCaressed", isCaressed);
-        headAnimator.SetBool("isLookingAtFood", isLookingAtFood);
-        headAnimator.SetBool("isFighting", isFighting);
-
+        bodyAnimator.SetBool("isFighting", isFighting);
     }
 
     private void UpdateHead()
