@@ -10,8 +10,6 @@ public class LookAwayFromTouch : MonoBehaviour
     private float lookAtDepth = 3;
     [SerializeField] [Range(0, 1)]
     private float interpolation;
-    [SerializeField]
-    private float catchupRate;
 
     private new Transform transform;
 
