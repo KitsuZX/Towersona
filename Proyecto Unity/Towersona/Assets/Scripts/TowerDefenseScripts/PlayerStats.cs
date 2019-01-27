@@ -23,4 +23,12 @@ public static class PlayerStats
             CameraShake.Instance.AddTrauma(0.5f);
         }
     }
+
+    public static void Reset()
+    {
+        Lives = 10;
+        Rounds = 0;
+        TowerAvaible = true;
+        MaxReached = false;
+    }
 }

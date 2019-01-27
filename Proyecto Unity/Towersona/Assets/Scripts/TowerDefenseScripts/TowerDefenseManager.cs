@@ -48,6 +48,7 @@ public class TowerDefenseManager : MonoBehaviour
             Destroy(this);
         }
 
+        PlayerStats.Reset();
         worldGenerator = GetComponent<WorldGenerator>();
         wavesController = GetComponent<WavesController>();
         towersonas = new List<Towersona>();
