@@ -296,6 +296,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towersBuilt: 0
   towersonas: []
+  tileSelected: {fileID: 0}
   timeBetweenTowersonas: 5
   livesText: {fileID: 1847308807}
   roundText: {fileID: 614539214}
@@ -721,9 +722,13 @@ PrefabInstance:
       propertyPath: ShapeModule.m_Scale.x
       value: 19.105011
       objectReference: {fileID: 0}
+    - target: {fileID: 19857802, guid: 96736993115afc44abb607c81d6e1da4, type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
+      objectReference: {fileID: 0}
     - target: {fileID: 19916358, guid: 96736993115afc44abb607c81d6e1da4, type: 3}
       propertyPath: m_RenderMode
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19916358, guid: 96736993115afc44abb607c81d6e1da4, type: 3}
       propertyPath: m_Mesh

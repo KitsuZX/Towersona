@@ -40,12 +40,18 @@ public class Towersona : MonoBehaviour
     private Transform[] partsToRotate;
 
     [HideInInspector]
+    public Tile tile;
+
+
+    [HideInInspector]
     public bool isAttacking = false;
+    [HideInInspector]
     public Camera towersonaNeedsCamera;
 
     private Transform target;
     private Enemy targetEnemy;
     private float fireCountdown = 0f;
+ 
 
     private TowersonaNeeds towersonaNeeds;
     private TowersonaAnimation detailedAnimationManager;
@@ -241,5 +247,6 @@ public class Towersona : MonoBehaviour
     private void OnMouseUpAsButton()
     {
         World.Instance.ChangeCamera(this);
+        TowerDefenseManager.Instance.SelectTile(tile);
     }
 }
