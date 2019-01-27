@@ -25,6 +25,10 @@ public class TowerDefenseManager : MonoBehaviour
     private Text nextTowersonaText;
     [SerializeField]
     private int maxTowers = 5;
+    [SerializeField]
+    private GameObject victoryPrompt;
+    [SerializeField]
+    private GameObject defeatPrompt;
 
     private WorldGenerator worldGenerator;
     private WavesController wavesController;
@@ -69,7 +73,7 @@ public class TowerDefenseManager : MonoBehaviour
     private void Update()
     {
         livesText.text = "lives: " + PlayerStats.Lives.ToString();
-        roundText.text = "round: " + PlayerStats.Rounds.ToString();
+        roundText.text = "round: " + PlayerStats.Rounds.ToString() + "/" + WavesController.Instance.wavesToWin;
 
         //Towersona building
         if (towersBuilt == maxTowers)

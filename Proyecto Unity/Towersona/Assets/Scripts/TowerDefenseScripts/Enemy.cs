@@ -10,6 +10,9 @@ public class Enemy : MonoBehaviour
     private float life = 30f;
     [SerializeField]
     private GameObject deathEffect;
+    [SerializeField]
+    private float floatStrength = 0.5f;
+
 
     private Transform target;
     private int controlPointIndex = 0;     
@@ -28,6 +31,13 @@ public class Enemy : MonoBehaviour
         {
             GetNextWaypoint();
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Vector3 pos = transform.position;
+        pos.x += (Mathf.Sin(Time.time) * floatStrength);
+        transform.position = pos;
     }
 
     private void GetNextWaypoint()
