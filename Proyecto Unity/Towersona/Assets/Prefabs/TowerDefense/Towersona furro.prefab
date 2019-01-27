@@ -98,6 +98,7 @@ MonoBehaviour:
   - {fileID: 6175043574671929610}
   - {fileID: 1146401408090555421}
   - {fileID: 3071539228522695794}
+  tile: {fileID: 0}
   isAttacking: 0
   towersonaNeedsCamera: {fileID: 0}
 --- !u!136 &4655889943347623656

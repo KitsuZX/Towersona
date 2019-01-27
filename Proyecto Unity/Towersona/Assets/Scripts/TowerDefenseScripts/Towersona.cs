@@ -37,8 +37,8 @@ public class Towersona : MonoBehaviour
     [SerializeField]
     private float turnSpeed = 1f;
     [SerializeField]
-    private Transform[] partsToRotate;
-
+    private Transform[] partsToRotate;    
+    
     [HideInInspector]
     public Tile tile;
 
@@ -70,9 +70,11 @@ public class Towersona : MonoBehaviour
     {
         color = Random.ColorHSV();
         GetComponentInChildren<MeshRenderer>().material.color = color;
+
         towersonaNeeds = World.Instance.SpawnDetailedTowersonaView(color, this);
         detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
+
         World.Instance.ChangeCamera(this);
     }
 

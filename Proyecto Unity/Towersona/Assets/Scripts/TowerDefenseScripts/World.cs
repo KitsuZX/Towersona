@@ -14,6 +14,8 @@ public class World : MonoBehaviour
     public List<Transform> controlPoints;
     [SerializeField]
     private Camera defaultCamera;
+    [SerializeField]
+    private Color[] towersonaColors;
 
     private float lastXUsed = 0f;
 
@@ -23,6 +25,7 @@ public class World : MonoBehaviour
     public List<TowersonaNeeds> towersonaNeeds;
 
     private Camera activeCamera;
+    private Color rColor;
 
     private void Awake()
     {
@@ -47,11 +50,30 @@ public class World : MonoBehaviour
         t.tile = tile;
         TowerDefenseManager.Instance.SelectTile(tile);
         TowerDefenseManager.Instance.towersonas.Add(t);
-        PlayerStats.TowerAvaible = false;    
+        PlayerStats.TowerAvaible = false;
+
+        MeshRenderer[] mr = t.GetComponentsInChildren<MeshRenderer>();
+
+        foreach(MeshRenderer m in mr)
+        {
+            m.material.color = rColor;
+        }
+
+        SkinnedMeshRenderer[] smr = t.GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        foreach (SkinnedMeshRenderer m in smr)
+        {
+            m.material.color = rColor;
+        }
+
+
     }
 
     public TowersonaNeeds SpawnDetailedTowersonaView(Color color, Towersona towersona)
     {
+        int randomColor = Random.Range(0, towersonaColors.Length);
+        rColor = towersonaColors[randomColor];
+
         Vector3 position = Vector3.zero;
         position.x = lastXUsed;
         position.z = 50f;
@@ -60,7 +82,21 @@ public class World : MonoBehaviour
         GameObject towersonaNeedsScene = Instantiate(detailedTowersonaViewPrefab, position, Quaternion.identity);
         TowersonaNeeds tsn = towersonaNeedsScene.GetComponentInChildren<TowersonaNeeds>();
         tsn.name = "Towersona need";
-        //tsn.GetComponentInChildren<MeshRenderer>().material.color = color;    
+        //tsn.GetComponentInChildren<MeshRenderer>().material.color = color;   
+
+        MeshRenderer[] mr = towersonaNeedsScene.GetComponentsInChildren<MeshRenderer>();
+
+        foreach (MeshRenderer m in mr)
+        {
+            m.material.color = rColor;
+        }
+
+        SkinnedMeshRenderer[] smr = towersonaNeedsScene.GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        foreach (SkinnedMeshRenderer m in smr)
+        {
+            m.material.color = rColor;
+        }
 
         towersonaNeeds.Add(tsn);
       
