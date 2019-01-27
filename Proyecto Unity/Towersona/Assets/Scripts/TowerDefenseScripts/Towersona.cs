@@ -42,7 +42,6 @@ public class Towersona : MonoBehaviour
     [HideInInspector]
     public Tile tile;
 
-
     [HideInInspector]
     public bool isAttacking = false;
     [HideInInspector]
@@ -75,6 +74,7 @@ public class Towersona : MonoBehaviour
         detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
 
+        GetComponent<AudioSource>().Play();
         World.Instance.ChangeCamera(this);
     }
 

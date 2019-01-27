@@ -12,7 +12,7 @@ public class Bullet : MonoBehaviour
     public float damage;
 
     [SerializeField]
-    private GameObject impactEffect;
+    private GameObject impactEffect;  
 
     public void Seek(Transform _target)
     {
@@ -43,6 +43,8 @@ public class Bullet : MonoBehaviour
     void HitTarget()
     {
         Enemy e = target.GetComponent<Enemy>();
+
+        GetComponent<AudioSource>().Play();
 
         Vector3 pos = transform.position;
 
