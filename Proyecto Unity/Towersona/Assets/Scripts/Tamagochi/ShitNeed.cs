@@ -74,6 +74,8 @@ public class ShitNeed : MonoBehaviour
         newShit.origin = this;
         shits.Add(newShit);
         timeSinceLastShit = 0;
+
+        OnTakenAShit.Invoke();
     }
 
     private void PurgeShitList()
