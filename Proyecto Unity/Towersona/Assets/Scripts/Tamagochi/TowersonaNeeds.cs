@@ -1,6 +1,5 @@
 ﻿using UnityEngine.Events;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(ShitNeed))]
 public class TowersonaNeeds : MonoBehaviour
@@ -14,8 +13,6 @@ public class TowersonaNeeds : MonoBehaviour
     private float hungerDecayPerSecond = 0.1f;
     [SerializeField]
     private float loveDecayPerSecond = 0.1f;
-    [SerializeField]
-    private Slider happinessSlider;
 
     [Header("Notification")]
     [SerializeField][Range(0, 1)]
