@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        target = World.Instance.controlPoints[0].transform;
+        target = World.Instance.controlPoints[0].transform;        
     }
 
     private void Update()
@@ -45,17 +45,20 @@ public class Enemy : MonoBehaviour
 
     private void EndPath()
     {
-        KillEnemy();
+        KillEnemy(true);
         PlayerStats.LoseLife();
         
     }
 
-    private void KillEnemy()
+    private void KillEnemy(bool endPath = false)
     {
         Vector3 pos = transform.position;
         pos.y += 0.5f;
-        GameObject effect = Instantiate(deathEffect, pos, Quaternion.identity);
-        Destroy(effect, 5f);
+        if (!endPath)
+        {
+            GameObject effect = Instantiate(deathEffect, pos, Quaternion.identity);
+            Destroy(effect, 5f);
+        }
 
         Destroy(gameObject);
 
