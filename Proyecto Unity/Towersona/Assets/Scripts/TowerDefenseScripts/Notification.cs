@@ -8,5 +8,4 @@ public class Notification : MonoBehaviour
     public Sprite hungerSprite;   
     public Sprite shitSprite;
     public Sprite noLoveSprite;
-
 }

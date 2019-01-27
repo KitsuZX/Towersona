@@ -55,7 +55,7 @@ public class World : MonoBehaviour
         position.z = 50f;
         lastXUsed += 15f;
 
-        GameObject towersonaNeedsScene = Instantiate(detailedTowersonaViewPrefab, position, Quaternion.identity);
+        GameObject towersonaNeedsScene = Instantiate(detailedTowersonaViewPrefab, position, Quaternion.Euler(0f, -90f, 0f));
         TowersonaNeeds tsn = towersonaNeedsScene.GetComponentInChildren<TowersonaNeeds>();
         tsn.name = "Towersona need";
         //tsn.GetComponentInChildren<MeshRenderer>().material.color = color;    
