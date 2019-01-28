@@ -78,7 +78,7 @@ public class Towersona : MonoBehaviour
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
 
         color = towersController.GetColor();
-        towersonaNeeds = towersController.SpawnDetailedTowersonaView(color, this);
+        towersonaNeeds = towersController.SpawnDetailedTowersonaView(this);
 
         detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
@@ -91,9 +91,7 @@ public class Towersona : MonoBehaviour
       
        gameManager.ChangeCamera(this);
 
-        GetComponent<AudioSource>().Play();
-
-
+       GetComponent<AudioSource>().Play();
     }
 
     private void Start()

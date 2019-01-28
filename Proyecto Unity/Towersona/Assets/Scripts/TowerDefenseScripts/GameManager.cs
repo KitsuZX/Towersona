@@ -26,11 +26,14 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Camera cameraToDestroy;
 
-    private int lifes;
+    //Private references
     private World world;
     private WavesController wavesController;
     private TowersController towerDefenseManager;
     private Camera activeCamera;
+
+    //Private Parameters
+    private int lifes;
 
 
     private void Awake()
@@ -91,7 +94,4 @@ public class GameManager : MonoBehaviour
 
         activeCamera.enabled = true;
     }
-
-
-
 }

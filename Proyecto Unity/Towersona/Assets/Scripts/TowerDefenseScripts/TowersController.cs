@@ -91,10 +91,10 @@ public class TowersController : MonoBehaviour
         
     }
 
-    public void SpawnTowersona(Vector3 tilePosition, Tile tile)
+    public void SpawnTowersona(Tile tile)
     {
         towersBuilt++;
-        Towersona towersona = Instantiate(towersonaPrefab, tilePosition, Quaternion.identity).GetComponent<Towersona>();
+        Towersona towersona = Instantiate(towersonaPrefab, tile.transform.position, Quaternion.identity).GetComponent<Towersona>();
         towersona.tile = tile;
         towersona.ChangeColor();
 
@@ -103,7 +103,7 @@ public class TowersController : MonoBehaviour
         towerAvaible = false;       
     }
 
-    public TowersonaNeeds SpawnDetailedTowersonaView(Color color, Towersona towersona)
+    public TowersonaNeeds SpawnDetailedTowersonaView(Towersona towersona)
     {        
         Vector3 position = Vector3.zero;
         position.x = lastXUsed;
