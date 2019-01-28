@@ -6,19 +6,25 @@ public class Tile : MonoBehaviour
 {
     public bool isPath = false;
     public bool hasTower = false;
-    public Vector2 position;
+ 
+    public Texture2D mainTexture;
 
     [HideInInspector]
-    public Texture2D mainTexture;
+    public Vector2 position;
+    [HideInInspector]
 
     [SerializeField]
     private Color selectedColor;
 
     private MeshRenderer meshRenderer;
+    private TowersController towersController;
+    private World world;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
+        towersController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TowersController>();
+        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
     }
 
     public void ChangeTexture(Texture2D texture)
@@ -29,23 +35,20 @@ public class Tile : MonoBehaviour
 
     public void SelectTile()
     {
-        //meshRenderer.material.color = selectedTexture;
         meshRenderer.material.color = selectedColor;
     }
 
     public void DeselectTile()
-    {
-
-        //meshRenderer.material.mainTexture = mainTexture;
+    { 
         meshRenderer.material.color = Color.white;
     }
 
     private void OnMouseUpAsButton()
     {
-        if (!isPath && !hasTower && PlayerStats.TowerAvaible && !PlayerStats.MaxReached)
+        if (!isPath && !hasTower && towersController.towerAvaible && !towersController.maxReached)
         {
             hasTower = true;
-            World.Instance.SpawnTowersona(transform.position, this);
+            towersController.SpawnTowersona(transform.position, this);
         }
     }
 }

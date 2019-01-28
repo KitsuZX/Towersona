@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class WavesController : MonoBehaviour
 {
-    public static int EnemiesAlives = 0;
-    public static WavesController Instance { get; private set; }
-
+    [Header("Parameters")]
     public int wavesToWin = 10;
     public float timeBetweenWaves;
     public float waveSpawnRate = 1;
 
+    [Header("References")]
     [SerializeField]
     private GameObject enemyPrefab;
     [SerializeField]
@@ -18,32 +17,25 @@ public class WavesController : MonoBehaviour
 
     private float countdown = 2f; 
     private Transform spawnPoint;
+    private GameManager gameManager;
 
 
     private void Awake()
-    {
-        if (!Instance)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-
-        EnemiesAlives = 0;
+    {     
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+        gameManager.enemiesAlive = 0;
     }
 
     private void Update()
     {        
-        if(EnemiesAlives > 0)
+        if(gameManager.enemiesAlive > 0)
         {
             return;
         }
 
-        if(PlayerStats.Rounds == wavesToWin)
+        if(gameManager.round == wavesToWin)
         {
-            TowerDefenseManager.Instance.WinGame();
+            gameManager.WinGame();
         }
 
         if(countdown <= 0f)
@@ -59,9 +51,9 @@ public class WavesController : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
-        PlayerStats.Rounds++;      
+        gameManager.round++;      
             
-        int enemiesToSpawn = PlayerStats.Rounds * 3;
+        int enemiesToSpawn = gameManager.round * 3;
 
         for (int i = 0; i < enemiesToSpawn; i++)
         {
@@ -74,7 +66,7 @@ public class WavesController : MonoBehaviour
     {
         GameObject e = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
         e.transform.SetParent(enemiesParent);
-        EnemiesAlives++;
+        gameManager.enemiesAlive++;
     }
 
     public void SetSpawnPoint(Transform transform)

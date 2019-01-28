@@ -10,16 +10,18 @@ public class Enemy : MonoBehaviour
     private float life = 30f;
     [SerializeField]
     private GameObject deathEffect;
-    [SerializeField]
-    private float floatStrength = 0.5f;
-
 
     private Transform target;
-    private int controlPointIndex = 0;     
+    private int controlPointIndex = 0;
+    private GameManager gameManager;
+    private World world;
 
     private void Awake()
     {
-        target = World.Instance.controlPoints[0].transform;        
+        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
+        target = world.controlPoints[0].transform;        
     }
 
     private void Update()
@@ -32,31 +34,24 @@ public class Enemy : MonoBehaviour
             GetNextWaypoint();
         }
     }
-
-    private void FixedUpdate()
-    {
-        Vector3 pos = transform.position;
-        pos.x += (Mathf.Sin(Time.time) * floatStrength);
-        transform.position = pos;
-    }
-
+ 
     private void GetNextWaypoint()
     {
-        if(controlPointIndex >= World.Instance.controlPoints.Count - 1)
+        if(controlPointIndex >= world.controlPoints.Count - 1)
         {
             EndPath();
             return;
         }
 
         controlPointIndex++;
-        target = World.Instance.controlPoints[controlPointIndex];
+        target = world.controlPoints[controlPointIndex];
         transform.LookAt(target);
     }
 
     private void EndPath()
     {
         KillEnemy(true);
-        PlayerStats.LoseLife();
+        gameManager.LoseLife();
         
     }
 
@@ -73,7 +68,7 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        WavesController.EnemiesAlives--;
+        gameManager.enemiesAlive--;
     }
 
     public void TakeDamage(float amount) {

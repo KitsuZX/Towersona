@@ -33,11 +33,6 @@ public class Towersona : MonoBehaviour
     [SerializeField]
     private float minBulletSpeed = 2f;
 
-    private float attackStrength;
-    private float attackSpeed;
-    private float attackRange;
-    private float bulletSpeed;
-
     [Header("Transform parameters")]
     [SerializeField]
     private float turnSpeed = 1f;
@@ -46,23 +41,28 @@ public class Towersona : MonoBehaviour
     
     [HideInInspector]
     public Tile tile;
-
     [HideInInspector]
     public bool isAttacking = false;
     [HideInInspector]
     public Camera towersonaNeedsCamera;
+    [HideInInspector]
+    public Color color;
 
+    private float attackStrength;
+    private float attackSpeed;
+    private float attackRange;
+    private float bulletSpeed;
     private Transform target;
     private Enemy targetEnemy;
     private float fireCountdown = 0f;
- 
-
     private TowersonaNeeds towersonaNeeds;
     private TowersonaAnimation detailedAnimationManager;
-    private Color color;
     private bool isNotifying;
     private GameObject notification;
     private TowersonaNeeds.NeedType prevNeedType;
+    private TowersController towersController;
+    private World world;
+    private GameManager gameManager;
     
     private void OnDrawGizmos()
     {
@@ -72,26 +72,51 @@ public class Towersona : MonoBehaviour
 
     private void Awake()
     {
+        GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
+        towersController = gm.GetComponent<TowersController>();
+        gameManager = gm.GetComponent<GameManager>();
+        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
+
+        color = towersController.GetColor();
+        towersonaNeeds = towersController.SpawnDetailedTowersonaView(color, this);
+
+        detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
+        towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
+      
         attackSpeed = maxAttackSpeed;
         attackStrength = maxAttackStrength;
         attackRange = maxAttackRange;
-        attackSpeed = maxAttackSpeed;
+        attackSpeed = maxAttackSpeed; 
 
-        color = Random.ColorHSV();
-        GetComponentInChildren<MeshRenderer>().material.color = color;
-
-        towersonaNeeds = World.Instance.SpawnDetailedTowersonaView(color, this);
-        detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
-        towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
+      
+       gameManager.ChangeCamera(this);
 
         GetComponent<AudioSource>().Play();
-        World.Instance.ChangeCamera(this);
+
+
     }
 
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         InvokeRepeating("UpdateStats", 0f, 1f);
+    }
+
+    public void ChangeColor()
+    {
+        MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
+
+        foreach (MeshRenderer m in mr)
+        {
+            m.material.color = color;
+        }
+
+        SkinnedMeshRenderer[] smr = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        foreach (SkinnedMeshRenderer m in smr)
+        {
+            m.material.color = color;
+        }
     }
 
     private void UpdateTarget()
@@ -255,7 +280,7 @@ public class Towersona : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        World.Instance.ChangeCamera(this);
-        TowerDefenseManager.Instance.SelectTile(tile);
+        gameManager.ChangeCamera(this);
+        world.SelectTile(tile);
     }
 }

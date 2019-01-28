@@ -7,14 +7,14 @@ public class Notification : MonoBehaviour
  
     public Sprite hungerSprite;   
     public Sprite shitSprite;
-    public Sprite noLoveSprite;    
-
-    Vector3 scale;
+    public Sprite noLoveSprite;
 
     public float maxSize = 4f;
     public float growFactor = 2f;
     public float waitTime = 0.2f;
     public float minAmount = 3f;
+
+    Vector3 scale; 
 
     void Start()
     {

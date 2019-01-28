@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
-{
-    private Transform target;
- 
+{  
     public float speed = 10f;
- 
+
+    [SerializeField]
+    private GameObject impactEffect;
+
     [HideInInspector]
     public float damage;
 
-    [SerializeField]
-    private GameObject impactEffect;  
+    private Transform target;
+
 
     public void Seek(Transform _target)
     {
@@ -45,7 +46,6 @@ public class Bullet : MonoBehaviour
         Enemy e = target.GetComponent<Enemy>();
 
         GetComponent<AudioSource>().Play();
-        print(GetComponent<AudioSource>().clip.name);
 
         Vector3 pos = transform.position;
 

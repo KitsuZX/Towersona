@@ -9,26 +9,32 @@ public class WorldGenerator : MonoBehaviour
     [SerializeField]
     private GameObject pathTypes;
     [SerializeField]
-    private Transform worldTransform;
-    [SerializeField]
     private Texture2D[] grassTextures;    
 
     private List<PathDirection> directionsPath;
     private List<Tile> tilesPath;
     private Tile currentTile;
-
     private WavesController wavesController;
+    private World world;
 
     private void Awake() {
+        wavesController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<WavesController>();
+        world = GetComponent<World>();
+
         tilesPath = new List<Tile>();
         directionsPath = new List<PathDirection>();    
-        wavesController = GetComponent<WavesController>();               
     }
 
-    public void GenerateWorld() {
-        for (int i = 0, num = 0; i < World.Instance.levelWidth; i++)
+    public void Generate()
+    {
+        GenerateWorld();
+        GeneratePath();
+    }
+
+    private void GenerateWorld() {
+        for (int i = 0, num = 0; i < world.levelWidth; i++)
         {
-            for (int j = 0; j < World.Instance.levelHeigth; j++, num++)
+            for (int j = 0; j < world.levelHeigth; j++, num++)
             {
                 Vector3 position;
                 position.x = i + 0.5f;
@@ -37,23 +43,22 @@ public class WorldGenerator : MonoBehaviour
                 GameObject tile = Instantiate(tilePrefab, position, Quaternion.Euler(0f, 180f, 0f));
 
                 tile.name = "Tile " + num;
-                tile.transform.SetParent(worldTransform);         
+                tile.transform.SetParent(transform);         
                 
                 Tile t = tile.GetComponent<Tile>();
                 t.position = new Vector2(i, j);
                 ChangeToRandomTexture(t);
-                World.Instance.tiles[i, j] = t;              
+                world.tiles[i, j] = t;              
             }
         }
     }
 
-    public void GeneratePath() {
-        //TODO: esto pero de manera procedural
+    private void GeneratePath() {
 
         //Elige una celda de inicio aleatoria
-        int beginTile = Random.Range(0, World.Instance.levelHeigth);
+        int beginTile = Random.Range(0, world.levelHeigth);
 
-        currentTile = World.Instance.tiles[0, beginTile];
+        currentTile = world.tiles[0, beginTile];
         currentTile.isPath = true;
 
         tilesPath.Add(currentTile);
@@ -67,7 +72,7 @@ public class WorldGenerator : MonoBehaviour
         while (true)
         {         
             //Hemos llegado al final
-            if(currentTile.position.x == World.Instance.levelWidth - 1)
+            if(currentTile.position.x == world.levelWidth - 1)
             {
                 SetControlPoint(currentTile);
                 break;
@@ -116,7 +121,7 @@ public class WorldGenerator : MonoBehaviour
         }
 
         //Borde de arriba
-        if(tile.position.y == World.Instance.levelHeigth - 1)
+        if(tile.position.y == world.levelHeigth - 1)
         {
             posibleDirections.Remove(PathDirection.Up);
         }
@@ -176,7 +181,7 @@ public class WorldGenerator : MonoBehaviour
                 break;
         }
 
-        Tile t = World.Instance.tiles[(int)currentTile.position.x, (int)currentTile.position.y];
+        Tile t = world.tiles[(int)currentTile.position.x, (int)currentTile.position.y];
         currentTile = t;
         t.isPath = true;
         tilesPath.Add(t);
@@ -191,7 +196,6 @@ public class WorldGenerator : MonoBehaviour
 
         tile.ChangeTexture(randomTexture);
     }
-
 
     private void ChangeToRandomPathTexture(int tileIndex)
     {
@@ -262,10 +266,10 @@ public class WorldGenerator : MonoBehaviour
 
     private void SetControlPoint(Tile tile)
     {
-        GameObject controlPoint = new GameObject("ControlPoint " + World.Instance.controlPoints.Count);
+        GameObject controlPoint = new GameObject("ControlPoint " + world.controlPoints.Count);
         controlPoint.transform.position = tile.transform.position;
         controlPoint.transform.SetParent(tile.transform);
-        World.Instance.controlPoints.Add(controlPoint.transform);
+        world.controlPoints.Add(controlPoint.transform);
     }
 
     public enum PathDirection{
