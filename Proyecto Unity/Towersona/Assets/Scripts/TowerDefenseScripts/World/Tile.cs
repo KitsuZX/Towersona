@@ -41,7 +41,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (!isPath && !hasTower && towersController.towerAvaible && !towersController.maxReached)
+        if (!isPath && !hasTower && towersController.towerAvaible)
         {
             hasTower = true;
             towersController.SpawnTowersona(this);

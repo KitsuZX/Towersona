@@ -17,26 +17,21 @@ public class TowersController : MonoBehaviour
     [HideInInspector]
     public bool maxReached = false;
 
-    [Header("Parameters")]
-    [SerializeField]
-    private float timeBetweenTowersonas = 40f;
-    [SerializeField]
-    private int maxTowers = 5;
+    [Header("Parameters")]  
+    public float timeBetweenTowersonas = 40f;
     [SerializeField][Tooltip("Colors to tint the Towersonas with")]
     private Color[] colors;
 
     [Header("References")]
     [SerializeField]
-    private GameObject towersonaPrefab;
-    [SerializeField]
-    private Text nextTowersonaText;
+    private GameObject[] towersonaPrefabs;
     [SerializeField]
     private GameObject detailedTowersonaViewPrefab;
 
     //Private parameters
     private float lastXUsed = 0f;
-    private float countdownTillNewTowersona;
     private Stack<Color> towersonaColors;
+    private GameObject towersonaSelected;
 
     //Private references
     private GameManager gameManager;
@@ -57,47 +52,20 @@ public class TowersController : MonoBehaviour
         }
     }
 
-    private void Start() {
-        countdownTillNewTowersona = timeBetweenTowersonas;       
-    }  
-
-    private void Update()
-    {       
-        //Towersona building
-        if (towersonas.Count == maxTowers)
-        {
-            maxReached = true;
-            nextTowersonaText.text = "no more towersonas avaible!";
-            return;
-        }
-
-        if (!towerAvaible)
-        {
-            countdownTillNewTowersona -= Time.deltaTime;
-            if (countdownTillNewTowersona <= 0f)
-            {
-                towerAvaible = true;
-                countdownTillNewTowersona = timeBetweenTowersonas;
-            }
-
-            nextTowersonaText.text = "new towersona in: " + Mathf.Floor(countdownTillNewTowersona + 1);
-        }
-        else
-        {
-            nextTowersonaText.text = "towesona avaible!";
-        }       
-        
-    }
-
     public void SpawnTowersona(Tile tile)
-    {   
-        Towersona towersona = Instantiate(towersonaPrefab, tile.transform.position, Quaternion.identity).GetComponent<Towersona>();
-        towersona.tile = tile;
-        towersona.ChangeColor();
+    {
+        if (towersonaSelected)
+        {
+            Towersona towersona = Instantiate(towersonaSelected, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();
+            towersona.tile = tile;
+            towersona.ChangeColor();
 
-        world.SelectTile(tile);
-        towersonas.Add(towersona);
-        towerAvaible = false;       
+            world.SelectTile(tile);
+            towersonas.Add(towersona);
+            towerAvaible = false;
+
+            towersonaSelected = null;
+        }
     }
 
     /// <summary>
@@ -127,6 +95,16 @@ public class TowersController : MonoBehaviour
         towersonaNeeds.Add(tsn);
 
         return tsn;
+    }
+
+    public void SelectTowersona(int index)
+    {
+        towersonaSelected = towersonaPrefabs[index];
+    }
+
+    public void DeselectTowersona()
+    {
+        towersonaSelected = null;
     }
 
     public Color GetColor()

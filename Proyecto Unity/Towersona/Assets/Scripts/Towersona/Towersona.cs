@@ -12,25 +12,11 @@ public class Towersona : MonoBehaviour
     public Camera towersonaNeedsCamera;
     [HideInInspector]
     public Color color;
+    [HideInInspector]
+    public TowersonaNeeds towersonaNeeds;
 
-    [Header("Max Attacking parameters")]
-    [SerializeField]
-    private float maxAttackStrength = 10f;
-    [SerializeField]
-    private float maxAttackSpeed = 2f;
-    [SerializeField]
-    private float maxAttackRange = 5f;
-    [SerializeField]
-    private float maxBulletSpeed = 10f;
-    [Header("Min Attacking parameters")]
-    [SerializeField]  
-    private float minAttackStrength = 0.5f;
-    [SerializeField]
-    private float minAttackSpeed = 0.25f;
-    [SerializeField]
-    private float minAttackRange = 1f;
-    [SerializeField]
-    private float minBulletSpeed = 2f;
+    [Header("Parameters")]
+    public int cost = 45;
 
     [Header("Transform parameters")]
     [SerializeField]
@@ -38,12 +24,7 @@ public class Towersona : MonoBehaviour
     [SerializeField]
     private Transform[] partsToRotate;
 
-
-    [Header("References")]
-    [SerializeField]
-    private GameObject bulletPrefab;
-    [SerializeField]
-    private Transform firePoint;
+    [Header("References")]   
     [SerializeField]
     private GameObject notificationPrefab;
     [SerializeField]
@@ -51,28 +32,18 @@ public class Towersona : MonoBehaviour
     [SerializeField]
     private Animator bodyAC;
 
-    private float attackStrength;
-    private float attackSpeed;
-    private float attackRange;
-    private float bulletSpeed;
     private bool isNotifying;
-
-    private Transform target;
     private float fireCountdown = 0f;
 
-    private TowersonaNeeds towersonaNeeds;
+    private Transform target;
+
+    private AttackPattern attackPattern;
     private TowersonaAnimation detailedAnimationManager;
     private GameObject notification;
     private TowersonaNeeds.NeedType prevNeedType;
     private TowersController towersController;
     private World world;
     private GameManager gameManager;
-    
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-    }
 
     private void Awake()
     {
@@ -80,6 +51,7 @@ public class Towersona : MonoBehaviour
         towersController = gm.GetComponent<TowersController>();
         gameManager = gm.GetComponent<GameManager>();
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
+        attackPattern = GetComponent<AttackPattern>();
 
         color = towersController.GetColor();
         towersonaNeeds = towersController.SpawnDetailedTowersonaView(this);
@@ -87,21 +59,24 @@ public class Towersona : MonoBehaviour
         detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
       
-        attackSpeed = maxAttackSpeed;
-        attackStrength = maxAttackStrength;
-        attackRange = maxAttackRange;
-        attackSpeed = maxAttackSpeed; 
-
+      
       
        gameManager.ChangeCamera(this);
 
        GetComponent<AudioSource>().Play();
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackPattern.attackRange);
+    }
+
+
     private void Start()
     {
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        InvokeRepeating("UpdateStats", 0f, 1f);
+       
     }
 
     public void ChangeColor()
@@ -137,7 +112,7 @@ public class Towersona : MonoBehaviour
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= attackRange)
+        if (nearestEnemy != null && shortestDistance <= attackPattern.attackRange)
         {
             target = nearestEnemy.transform;            
         }
@@ -146,15 +121,7 @@ public class Towersona : MonoBehaviour
             target = null;
         }
     }
-
-    private void UpdateStats()
-    {      
-        attackStrength = Mathf.Lerp(minAttackStrength, maxAttackStrength, towersonaNeeds.HappinessLevel);
-        attackSpeed = Mathf.Lerp(minAttackSpeed, maxAttackSpeed, towersonaNeeds.HappinessLevel);
-        attackRange = Mathf.Lerp(minAttackRange, maxAttackRange, towersonaNeeds.HappinessLevel);
-        bulletSpeed = Mathf.Lerp(minBulletSpeed, maxAttackSpeed, towersonaNeeds.HappinessLevel);
-
-    }
+ 
 
     private void Update()
     {       
@@ -176,8 +143,8 @@ public class Towersona : MonoBehaviour
 
         if(fireCountdown <= 0f)
         {
-            Shoot();
-            fireCountdown = 1f / attackSpeed;
+            attackPattern.Shoot(target);
+            fireCountdown = 1f / attackPattern.attackSpeed;
         }
 
         fireCountdown -= Time.deltaTime;
@@ -218,17 +185,6 @@ public class Towersona : MonoBehaviour
         }
     }
 
-    private void Shoot()
-    {
-        GameObject bulletGO = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        Bullet bullet = bulletGO.GetComponent<Bullet>();
-        bullet.damage = attackStrength;
-        bullet.speed = bulletSpeed;
-
-        if (bullet != null)
-            bullet.Seek(target);
-    }
-
     private void CreateNotification(TowersonaNeeds.NeedType needType)
     {
         isNotifying = true;
@@ -244,7 +200,7 @@ public class Towersona : MonoBehaviour
 
         notification.transform.position = position;
 
-        notification.transform.rotation = Quaternion.Euler(90f, 0f, 0f);
+        notification.transform.rotation = Quaternion.Euler(35f, 0f, 0f);
 
         SpriteRenderer[] sr = notification.GetComponentsInChildren<SpriteRenderer>();
         notification.transform.SetParent(transform);

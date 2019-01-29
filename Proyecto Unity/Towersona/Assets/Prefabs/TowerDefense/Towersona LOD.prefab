@@ -40,10 +40,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7081004210300108719}
   - component: {fileID: 7194669246931065567}
+  - component: {fileID: 6535149117010872996}
   - component: {fileID: 4655889943347623656}
   - component: {fileID: 8056899073204584800}
   m_Layer: 0
-  m_Name: Towersona furro
+  m_Name: Towersona LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,29 +80,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,
-    type: 3}
-  firePoint: {fileID: 6175043574671929610}
-  notificationPrefab: {fileID: 1478532847836396072, guid: 95e5d2e2800604e4589f70986433a207,
-    type: 3}
-  headAC: {fileID: 1146401408097463291}
-  bodyAC: {fileID: 3071539228515181442}
-  maxAttackStrength: 7
-  maxAttackSpeed: 2
-  maxAttackRange: 5
-  maxBulletSpeed: 10
-  minAttackStrength: 3
-  minAttackSpeed: 0.5
-  minAttackRange: 2
-  minBulletSpeed: 4
+  tile: {fileID: 0}
+  isAttacking: 0
+  towersonaNeedsCamera: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  towersonaNeeds: {fileID: 0}
+  cost: 45
   turnSpeed: 10
   partsToRotate:
   - {fileID: 6175043574671929610}
   - {fileID: 1146401408090555421}
   - {fileID: 3071539228522695794}
-  tile: {fileID: 0}
-  isAttacking: 0
-  towersonaNeedsCamera: {fileID: 0}
+  notificationPrefab: {fileID: 1478532847836396072, guid: 95e5d2e2800604e4589f70986433a207,
+    type: 3}
+  headAC: {fileID: 1146401408097463291}
+  bodyAC: {fileID: 3071539228515181442}
+--- !u!114 &6535149117010872996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2407868818723468261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17c06e523e75146448735747f9064e21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxAttackStrength: 10
+  maxAttackSpeed: 2
+  maxAttackRange: 5
+  maxBulletSpeed: 10
+  minAttackStrength: 0.5
+  minAttackSpeed: 0.25
+  minAttackRange: 1
+  minBulletSpeed: 2
+  bulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,
+    type: 3}
+  firePoint: {fileID: 6175043574671929610}
+  attackStrength: 0
+  attackSpeed: 0
+  attackRange: 0
+  bulletSpeed: 0
 --- !u!136 &4655889943347623656
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -112,7 +132,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 2.11
+  m_Radius: 3.67
   m_Height: 9.7
   m_Direction: 1
   m_Center: {x: 0, y: 3.42, z: 0}
