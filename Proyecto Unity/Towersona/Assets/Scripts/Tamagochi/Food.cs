@@ -13,28 +13,9 @@ public class Food : MonoBehaviour
     public FoodDispenser dispenser = null;
 
     public void OnLettingGo()
-    {
-        RaycastHit[] hits = Physics.BoxCastAll(transform.position,
-            boxCastHalfSize,
-            Vector3.forward,
-            Quaternion.identity);
-
-        dispenser.towersona.SetIsLookingAtFood(false);
-
-        for (int i = 0; i < hits.Length; i++)
-        {
-            if (hits[i].collider)
-            {
-                TowersonaNeeds needs = hits[i].collider.GetComponent<TowersonaNeeds>();
-                if (needs)
-                {
-                    GetEaten(needs);
-                    return;
-                }
-            }
-        }
-
-        dispenser.DispenseWithDelay();
+    {    
+        dispenser.towersonaAnim.SetIsLookingAtFood(false);
+        GetEaten(dispenser.towersonaNeeds);
         Destroy(gameObject);
     }
     
