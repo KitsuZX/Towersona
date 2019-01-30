@@ -58,7 +58,7 @@ public class WavesController : MonoBehaviour
 
     void SpawnEnemy(GameObject enemy)
     {
-        GameObject e = Instantiate(enemy, spawnPoint.position, spawnPoint.rotation);
+        GameObject e = Instantiate(enemy, spawnPoint.position, Quaternion.Euler(0f, 90f, 0f));
         e.transform.SetParent(enemiesParent);
         gameManager.enemiesAlive++;
     }
@@ -66,7 +66,7 @@ public class WavesController : MonoBehaviour
     public void SetSpawnPoint(Transform transform)
     {
         spawnPoint = transform;
-        spawnPoint.rotation = Quaternion.Euler(0f, 90f, 0f);
+        spawnPoint.rotation = Quaternion.Euler(0f, 180f, 0f);
     }
 
 }

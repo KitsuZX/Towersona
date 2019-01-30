@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,9 +29,9 @@ public class GameManager : MonoBehaviour
     private GameObject defeatPrompt;      
     [Header("UI Texts References")]
     [SerializeField]
-    private Text livesText;             
+    private TextMeshProUGUI livesText;             
     [SerializeField]
-    private Text roundText;
+    private TextMeshProUGUI roundText;
     [Header("Other References")]
     [SerializeField][Tooltip("The first detailed scene camera without the detailed model")]
     private Camera cameraToDestroy;
