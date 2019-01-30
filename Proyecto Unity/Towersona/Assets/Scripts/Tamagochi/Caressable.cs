@@ -10,6 +10,8 @@ public class Caressable : MonoBehaviour
 
     [SerializeField][Range(0.05f, 0.3f)]
     private float loveIncreasePerDeltaUnit = 0.1f;
+    [SerializeField]
+    private GameObject heartsEffect;
 
     private TowersonaNeeds towersonaNeeds;
     private bool isBeingCaressed = false;
@@ -43,12 +45,19 @@ public class Caressable : MonoBehaviour
     {
         if (!isBeingCaressed)
         {
-            isBeingCaressed = true;
+            Vector3 pos = transform.position;
+            pos.y += 1f;
+            pos.z += 3f;
+            GameObject effect = Instantiate(heartsEffect, pos, Quaternion.Euler(-90f, 0f, 0f));
+            Destroy(effect, 5f);
+
+            isBeingCaressed = true;         
+    
             OnCaressStart.Invoke();
         }
         float caressDistance = TouchDelta.magnitude;
 
-        towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Love, caressDistance * loveIncreasePerDeltaUnit);;
+        towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Love, caressDistance * loveIncreasePerDeltaUnit);
     }
 
     private void OnMouseUp()
