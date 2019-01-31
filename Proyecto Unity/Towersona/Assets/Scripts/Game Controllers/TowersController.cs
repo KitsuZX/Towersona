@@ -58,7 +58,7 @@ public class TowersController : MonoBehaviour
         {
             Towersona towersona = Instantiate(towersonaSelected, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();
             towersona.tile = tile;
-            towersona.ChangeColor();
+            //towersona.ChangeColor();
 
             world.SelectTile(tile);
             towersonas.Add(towersona);
@@ -89,7 +89,7 @@ public class TowersController : MonoBehaviour
 
         foreach (SkinnedMeshRenderer m in smr)
         {
-            m.material.color = towersona.color;
+            //m.material.color = towersona.color;
         }
 
         towersonaNeeds.Add(tsn);
