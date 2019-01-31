@@ -47,7 +47,7 @@ public class WavesController : MonoBehaviour
     {
         gameManager.round++;      
             
-        int enemiesToSpawn = gameManager.round * 3;
+        int enemiesToSpawn = gameManager.round * 4;
 
         for (int i = 0; i < enemiesToSpawn; i++)
         {

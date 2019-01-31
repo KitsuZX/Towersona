@@ -45,10 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  life: 7
+  life: 10
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
-  floatStrength: 0.005
 --- !u!1001 &5529535422712894408
 PrefabInstance:
   m_ObjectHideFlags: 0

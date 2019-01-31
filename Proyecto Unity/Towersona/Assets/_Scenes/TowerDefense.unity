@@ -307,7 +307,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 255735107}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f3ef138186d3ab14699d184eb9cbac71, type: 3}
@@ -560,7 +560,7 @@ MonoBehaviour:
   towersonaNeeds: []
   towerAvaible: 1
   maxReached: 0
-  timeBetweenTowersonas: 10
+  timeBetweenTowersonas: 40
   colors:
   - {r: 0.7924528, g: 0.60929155, b: 0.60929155, a: 1}
   - {r: 0.8301887, g: 0.8097345, b: 0.505162, a: 1}
@@ -1535,7 +1535,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 40.25
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2034,7 +2034,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 47.35
+  m_fontSize: 72
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
