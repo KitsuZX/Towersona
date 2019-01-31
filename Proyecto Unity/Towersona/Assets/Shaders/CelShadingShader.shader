@@ -5,13 +5,14 @@
 		_Color("Color", Color) = (0.5, 0.5, 0.5, 1)
 		_MainTex("Main Texture", 2D) = "white" {}
 		[HDR]
-		_AmbientColor("Ambient Color", Color) = (0.4, 0.4, 0.4, 1)
+		_AmbientColor("Ambient Color", Color) = (0.844, 0.79, 1, 1)
 		[HDR]
-		_SpecularColor("Specular Color", Color) = (0.6, 0.6, 0.6, 1)
+		_SpecularColor("Specular Color", Color) = (0.7, 0.7, 0.7, 1)
 		_Glosiness("Glosiness", Float) = 8
 		[HDR]
 		_RimColor("Rim Color", Color) = (1, 1, 1, 1)
-		_RimAmount("Rim Amount", Range(0, 1)) = 0.716
+		_RimAmount("Rim Amount", Range(0, 1)) = 0.415
+		_RimThreshold("Rim Threshold", Range(0, 1)) = 0.1
 	}
 		SubShader
 	{
@@ -62,6 +63,7 @@
 			float4 _SpecularColor;
 			float4 _RimColor;
 			float _RimAmount;
+			float _RimThreshold;
 
 			float4 frag(v2f i) : SV_Target
 			{
@@ -78,7 +80,7 @@
 				float4 specular = specularIntensitySmooth * _SpecularColor;
 
 				float4 rimDot = 1 - dot(viewDir, normal);
-				float rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimDot);
+				float rimIntensity = rimDot * pow(NdotL, _RimThreshold);
 				float4 rim = rimIntensity * _RimColor;
 
 				float4 sample = tex2D(_MainTex, i.uv);
