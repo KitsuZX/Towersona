@@ -45,6 +45,9 @@ public class Towersona : MonoBehaviour
     private World world;
     private GameManager gameManager;
 
+    //cosas que cambia jusi que pablo tiene que apañar
+    public Shader estandar;
+    public Shader outlineShader;
     private void Awake()
     {
         GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
@@ -58,8 +61,6 @@ public class Towersona : MonoBehaviour
 
         detailedAnimationManager = towersonaNeeds.GetComponent<TowersonaAnimation>();
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
-      
-      
       
        gameManager.ChangeCamera(this);
 
@@ -93,6 +94,34 @@ public class Towersona : MonoBehaviour
         foreach (SkinnedMeshRenderer m in smr)
         {
             m.material.color = color;
+        }
+    }
+    public void ChangeShader()
+    {
+        MeshRenderer[] mr = GetComponentsInChildren<MeshRenderer>();
+
+        foreach (MeshRenderer m in mr)
+        {
+            if (estandar == m.sharedMaterial.shader)
+            {
+                m.sharedMaterial.shader = outlineShader;
+            }
+            else {
+                m.sharedMaterial.shader = estandar;
+            }
+        }
+
+        SkinnedMeshRenderer[] smr = GetComponentsInChildren<SkinnedMeshRenderer>();
+
+        foreach (SkinnedMeshRenderer m in smr)
+        {
+            if (estandar == m.sharedMaterial.shader)
+            {
+                m.sharedMaterial.shader = outlineShader;
+            }
+            else {
+                m.sharedMaterial.shader = estandar;
+            }
         }
     }
 
@@ -239,5 +268,6 @@ public class Towersona : MonoBehaviour
     {
         gameManager.ChangeCamera(this);
         world.SelectTile(tile);
+        ChangeShader();
     }
 }

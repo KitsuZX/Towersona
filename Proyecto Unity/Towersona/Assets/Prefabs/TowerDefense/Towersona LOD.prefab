@@ -95,6 +95,8 @@ MonoBehaviour:
     type: 3}
   headAC: {fileID: 1146401408097463291}
   bodyAC: {fileID: 3071539228515181442}
+  estandar: {fileID: 10703, guid: 0000000000000000f000000000000000, type: 0}
+  outlineShader: {fileID: 4800000, guid: dadd0c5eafb26f24aaf9906fc9b81705, type: 3}
 --- !u!114 &6535149117010872996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +373,7 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: 58d5330abb6ed184a89de8711449fe76, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 3169cb224990a7a47beca87fa82a1d52, type: 2}
+      objectReference: {fileID: 2100000, guid: 24983d9fd9477a64bb3d5cf5f1f45f3f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d5330abb6ed184a89de8711449fe76, type: 3}
 --- !u!4 &2263898639257598113 stripped
