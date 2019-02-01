@@ -100,7 +100,6 @@ public class TowersController : MonoBehaviour
     public void SelectTowersona(int index)
     {
         towersonaSelected = towersonaPrefabs[index];
-        Debug.Log("soy un puto boton");
     }
 
     public void DeselectTowersona()

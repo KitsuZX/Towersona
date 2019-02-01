@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Towersona_Face
-  m_Shader: {fileID: 4800000, guid: a380a8fd4763eff4f9158c0d43dba482, type: 3}
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -69,6 +69,7 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _RimAmount: 0.716
+    - _RimThreshold: 0.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1

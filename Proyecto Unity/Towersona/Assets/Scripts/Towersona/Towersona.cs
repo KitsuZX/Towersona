@@ -46,8 +46,9 @@ public class Towersona : MonoBehaviour
     private GameManager gameManager;
 
     //cosas que cambia jusi que pablo tiene que apañar
-    public Shader estandar;
-    public Shader outlineShader;
+    public Material estandar;
+    public Material outline;
+
     private void Awake()
     {
         GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
@@ -102,26 +103,24 @@ public class Towersona : MonoBehaviour
 
         foreach (MeshRenderer m in mr)
         {
-            if (estandar == m.sharedMaterial.shader)
-            {
-                m.sharedMaterial.shader = outlineShader;
+           Material[] aux = new Material[m.materials.Length];
+            for (int i = 0; i < aux.Length; i++) {
+                aux[i] = m.materials[i];
             }
-            else {
-                m.sharedMaterial.shader = estandar;
-            }
+            m.material = aux[aux.Length - 1];
         }
 
         SkinnedMeshRenderer[] smr = GetComponentsInChildren<SkinnedMeshRenderer>();
 
         foreach (SkinnedMeshRenderer m in smr)
         {
-            if (estandar == m.sharedMaterial.shader)
+            Material[] aux = new Material[m.materials.Length];
+            for (int i = 0; i < aux.Length; i++)
             {
-                m.sharedMaterial.shader = outlineShader;
+                aux[i] = m.materials[i];
             }
-            else {
-                m.sharedMaterial.shader = estandar;
-            }
+            m.material = aux[aux.Length - 1];
+            m.materials[m.materials.Length - 1] = aux[0];
         }
     }
 
