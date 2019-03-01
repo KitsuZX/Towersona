@@ -6,6 +6,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance {get; private set; }
     [Header("Game Parameters")]
     public int wavesToWin = 10;
     [SerializeField][Tooltip("Starting lifes of the player")]
@@ -51,6 +52,14 @@ public class GameManager : MonoBehaviour
   
     private void Awake()
     {
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
         activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
 

@@ -43,9 +43,7 @@ public class Bullet : MonoBehaviour
 
     void HitTarget()
     {
-        Enemy e = target.GetComponent<Enemy>();
-
-        GetComponent<AudioSource>().Play();
+        Enemy e = target.GetComponent<Enemy>();        
 
         Vector3 pos = transform.position;
 

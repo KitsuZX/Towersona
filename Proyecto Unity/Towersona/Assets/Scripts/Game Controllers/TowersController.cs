@@ -55,8 +55,10 @@ public class TowersController : MonoBehaviour
     public void SpawnTowersona(Tile tile)
     {
         if (towersonaSelected)
-        {
+        {       
             Towersona towersona = Instantiate(towersonaSelected, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();
+
+            gameManager.ChangeCamera(towersona);
             towersona.tile = tile;
             //towersona.ChangeColor();
 
