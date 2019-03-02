@@ -16,9 +16,6 @@ public class Caressable : MonoBehaviour
     private TowersonaNeeds towersonaNeeds;
     private bool isBeingCaressed = false;
 
-
-
-
     private Vector2 TouchDelta
     {
         get
@@ -34,6 +31,21 @@ public class Caressable : MonoBehaviour
 
                 return touchDelta;
             }
+
+#if UNITY_EDITOR
+            if (Input.GetMouseButton(0))
+            {
+                //Touch position in screen coordinates
+                Vector2 touchDelta = Input.mousePosition;
+
+                //Convert to viewport coordinates
+                touchDelta.x = touchDelta.x / Screen.width;
+                touchDelta.y = touchDelta.y / Screen.height;
+
+                return touchDelta;
+            }
+#endif
+
             else
             {
                 return Vector2.zero;
@@ -45,6 +57,7 @@ public class Caressable : MonoBehaviour
     {
         if (!isBeingCaressed)
         {
+            //Hearts particle effecct
             Vector3 pos = transform.position;
             pos.y += 1f;
             pos.z += 3f;
@@ -55,6 +68,7 @@ public class Caressable : MonoBehaviour
     
             OnCaressStart.Invoke();
         }
+
         float caressDistance = TouchDelta.magnitude;
 
         towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Love, caressDistance * loveIncreasePerDeltaUnit);

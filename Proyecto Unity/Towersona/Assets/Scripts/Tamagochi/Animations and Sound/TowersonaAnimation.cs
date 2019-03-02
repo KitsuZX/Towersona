@@ -95,7 +95,6 @@ public class TowersonaAnimation : MonoBehaviour
 
         if (isLookingAtFood)
         {
-            print("Started");
             sound.PlayLookingAtFood();
         }
     }

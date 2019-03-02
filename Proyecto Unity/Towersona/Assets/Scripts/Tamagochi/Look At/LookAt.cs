@@ -16,8 +16,6 @@ public class LookAt : MonoBehaviour
         transform.rotation =  Quaternion.LookRotation(diff, Vector3.up);
     }
 
-
-
     private void Awake()
     {
         animator = GetComponent<Animator>();
