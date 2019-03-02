@@ -8,6 +8,7 @@ TagManager:
   - Default Camera
   - World
   - GameManager
+  - Fire Point
   layers:
   - Default
   - TransparentFX

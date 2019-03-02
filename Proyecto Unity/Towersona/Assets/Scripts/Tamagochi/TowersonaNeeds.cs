@@ -87,11 +87,9 @@ public class TowersonaNeeds : MonoBehaviour
     {
         DoNeedDecay();
         NeedType needToBeNotified = CheckIfShouldNotifyNeed();
-        if (needToBeNotified != NeedType.None) NotifyNeed(needToBeNotified);
 
         if(HappinessLevel <= 1f)
         {
-
             overHappiness.SetActive(false);
             happinessSlider.value = HappinessLevel;
         }
@@ -140,28 +138,7 @@ public class TowersonaNeeds : MonoBehaviour
         }
 
         return notifiedNeed;
-    }
-
-    private void NotifyNeed(NeedType needToBeNotified)
-    {
-        //TODO: bring up a graphic in 2d representation
-        string tmpMessage = "";
-
-        switch (needToBeNotified)
-        {
-            case NeedType.Hunger:
-                tmpMessage = "I'm hungry!";
-                break;
-            case NeedType.Shit:
-                tmpMessage = "I may have just done a big shit.";
-                break;
-            case NeedType.Love:
-                tmpMessage = "Love me, human.";
-                break;
-        }
-
-        //Debug.Log(tmpMessage);
-    }
+    }  
     #endregion
 
     private void Awake()

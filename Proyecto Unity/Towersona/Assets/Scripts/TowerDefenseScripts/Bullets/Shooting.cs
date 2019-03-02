@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public abstract class Shooting : MonoBehaviour
 {  
-    public float speed = 10f;
-
     [SerializeField][Tooltip("Particle System when a bullet hits")]
-    private GameObject impactEffect;
+    protected GameObject impactEffect;
 
+    [HideInInspector]
+    public float speed = 10f;
     [HideInInspector]
     public float damage;
 
-    private Transform target;
-
+    protected Transform target;
 
     public void Seek(Transform _target)
     {
@@ -41,25 +40,5 @@ public class Bullet : MonoBehaviour
         transform.LookAt(target);
     }
 
-    void HitTarget()
-    {
-        Enemy e = target.GetComponent<Enemy>();        
-
-        Vector3 pos = transform.position;
-
-        pos.y += 1f;
-
-        GameObject effectIns = Instantiate(impactEffect, pos, transform.rotation);
-        Destroy(effectIns, 2f);
-
-        CameraShake.Instance.AddTrauma(0.2f);
-
-        if (e != null)
-        {
-            e.TakeDamage(damage);
-        }
-
-
-        Destroy(gameObject);
-    }
+    protected abstract void HitTarget();   
 }

@@ -13,12 +13,13 @@ public class Towersona : MonoBehaviour
     public Color color;
     [HideInInspector]
     public TowersonaNeeds towersonaNeeds;
+    [HideInInspector]
+    public Transform firePoint;
 
     [Header("Parameters")]
     public int cost = 45;
 
-    [Header("Transform parameters")]
-    public Transform firePoint;
+    [Header("Transform parameters")]   
     [SerializeField]
     private float turnSpeed = 1f;
     [SerializeField]
@@ -38,13 +39,14 @@ public class Towersona : MonoBehaviour
         gameManager = gm.GetComponent<GameManager>();
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
 
+        firePoint = transform.Find("FirePoint");
+
         //Spawn towersona needs sceene and save a reference
         towersonaNeeds = towersController.SpawnDetailedTowersonaView(this);
         towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
 
         GetComponent<AudioSource>().Play();
     }
-
 
     private void LevelUp()
     {

@@ -15,7 +15,6 @@ public class TowersonaAnimation : MonoBehaviour
     [SerializeField]
     private Slider happinessSlider;
 
-
     [Header("Animators")]
     [SerializeField]
     private Animator bodyAnimator;

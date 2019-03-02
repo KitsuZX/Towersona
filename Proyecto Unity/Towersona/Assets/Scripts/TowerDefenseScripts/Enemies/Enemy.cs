@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 2f;
+    protected float speed = 2f;
     [SerializeField]
-    private float life = 30f;
+    protected float life = 30f;
     [SerializeField]
     private GameObject deathEffect;
 
-    private Transform target;
+    protected Transform target;
     private int controlPointIndex = 0;
 
     //Private references
@@ -26,18 +26,9 @@ public class Enemy : MonoBehaviour
         target = world.controlPoints[0].transform;        
     }
 
-    private void Update()
-    {
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-        if(Vector3.Distance(transform.position, target.position) <= 0.1f)
-        {
-            GetNextWaypoint();
-        }
-    }
+    protected abstract void Update();   
  
-    private void GetNextWaypoint()
+    protected void GetNextWaypoint()
     {
         if(controlPointIndex >= world.controlPoints.Count - 1)
         {

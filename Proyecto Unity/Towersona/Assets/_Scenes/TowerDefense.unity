@@ -560,7 +560,7 @@ MonoBehaviour:
   towersonaNeeds: []
   towerAvaible: 1
   maxReached: 0
-  timeBetweenTowersonas: 0
+  timeBetweenTowersonas: 40
   colors:
   - {r: 0.7924528, g: 0.60929155, b: 0.60929155, a: 1}
   - {r: 0.8301887, g: 0.8097345, b: 0.505162, a: 1}
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 0.698
-  m_FillClockwise: 1
+  m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
 --- !u!222 &580771352

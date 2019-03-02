@@ -9,11 +9,10 @@ public class RegularAttack : AttackPattern
     {
         GameObject bulletGO = Instantiate(bulletPrefab, towersona.firePoint.position, towersona.firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
-        bullet.damage = attackStrength;
-        bullet.speed = bulletSpeed;
+        bullet.damage = currentAttackStrength;
+        bullet.speed = currentBulletSpeed;
 
-        if (bullet != null)
-            bullet.Seek(target);
+        if (bullet != null) bullet.Seek(target);  
     }
 
     public override void UpdateTarget()
@@ -32,7 +31,7 @@ public class RegularAttack : AttackPattern
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= attackRange)
+        if (nearestEnemy != null && shortestDistance <= currentAttackRange)
         {
             target = nearestEnemy.transform;
         }

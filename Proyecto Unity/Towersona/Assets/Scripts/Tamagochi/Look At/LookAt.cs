@@ -7,7 +7,7 @@ public class LookAt : MonoBehaviour
     [HideInInspector]
     public Transform food;
 
-    private new Animator animator;
+    private Animator animator;
     private new Transform transform;
 
     private void LateUpdate()

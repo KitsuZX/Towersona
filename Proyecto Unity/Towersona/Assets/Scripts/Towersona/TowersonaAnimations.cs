@@ -12,7 +12,7 @@ public class TowersonaAnimations : MonoBehaviour
     [HideInInspector]
     public bool isFighting = true;
 
-    public void FightAnimation()
+    public void Shoot()
     {
         headAC.SetBool("isFighting", true);
         bodyAC.SetBool("isFighting", true);  
