@@ -17,8 +17,9 @@ public class ShitNeed : MonoBehaviour
     private Shit shitPrefab = null;
     [SerializeField]
     private int maxShitCount = 4;
-    [SerializeField]
-    private Transform[] shitSpawnPositions;
+
+    [HideInInspector]
+    public Transform[] shitSpawnPositions;
 
     public UnityEvent OnTakenAShit;
     public UnityEvent OnOneShitCleaned;
@@ -72,6 +73,7 @@ public class ShitNeed : MonoBehaviour
 
         Shit newShit = Instantiate(shitPrefab, position, Random.rotationUniform);
         newShit.origin = this;
+        newShit.transform.SetParent(transform, true);
         shits.Add(newShit);
         timeSinceLastShit = 0;
 

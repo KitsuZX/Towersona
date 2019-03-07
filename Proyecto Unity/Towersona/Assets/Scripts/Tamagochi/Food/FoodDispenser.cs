@@ -4,18 +4,33 @@ using UnityEngine;
 
 public class FoodDispenser : MonoBehaviour
 {
+    [HideInInspector]
     public Camera detailCamera;
-    public TowersonaAnimation towersonaAnim;
-    public TowersonaNeeds towersonaNeeds;
-
     [HideInInspector]
     public Towersona towersona;
+    [HideInInspector]
+    public TowersonaAnimation towersonaAnim;
+    [HideInInspector]
+    public TowersonaNeeds towersonaNeeds;
 
     [SerializeField]
     private float dispenseDelay = 1f;
 
     [SerializeField]
     private Food foodPrefab = null;
+    private DetailedTowersonaView detailedTowersonaView;    
+
+    private void Awake()
+    {
+        detailedTowersonaView = transform.parent.gameObject.GetComponent<DetailedTowersonaView>();
+    }
+
+    private void Start()
+    {
+        towersonaAnim = detailedTowersonaView.towersonaAnim;
+        towersonaNeeds = detailedTowersonaView.towersonaNeeds;
+        DispenseImmidiately();
+    }
 
     public void DispenseImmidiately()
     {
@@ -40,10 +55,5 @@ public class FoodDispenser : MonoBehaviour
     private void NotifyFoodDrag()
     {
         towersonaAnim.SetIsLookingAtFood(true);    
-    }
-
-    private void Awake()
-    {
-        DispenseImmidiately();
     }
 }

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class LookAwayFromTouch : MonoBehaviour
 {
-    [SerializeField]
-    private Camera camera;
+    [HideInInspector]
+    public Camera camera;
     [SerializeField]
     private float lookAtDepth = 3;
     [SerializeField] [Range(0, 1)]
@@ -45,6 +45,10 @@ public class LookAwayFromTouch : MonoBehaviour
         }
     }
 
+    private void Awake()
+    {  
+        transform = GetComponent<Transform>();
+    }
 
     private void LateUpdate()
     {
@@ -56,8 +60,5 @@ public class LookAwayFromTouch : MonoBehaviour
         transform.rotation = Quaternion.Slerp(lookAt, opposite, interpolation);
     }
 
-    private void Awake()
-    {
-        transform = GetComponent<Transform>();
-    }
+  
 }

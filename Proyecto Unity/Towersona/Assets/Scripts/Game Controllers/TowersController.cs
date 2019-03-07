@@ -82,18 +82,14 @@ public class TowersController : MonoBehaviour
         position.z = 50f;
 
         GameObject towersonaNeedsScene = Instantiate(detailedTowersonaViewPrefab, position, Quaternion.identity);
-        TowersonaNeeds tsn = towersonaNeedsScene.GetComponentInChildren<TowersonaNeeds>();
+        DetailedTowersonaView detailedTowersonaView = towersonaNeedsScene.GetComponent<DetailedTowersonaView>();
+
+        TowersonaNeeds tsn = detailedTowersonaView.SpawnTowersonaNeeds(towersona.towersonaModel);
+
         tsn.name = "Towersona need";
 
         lastXUsed += 15f;      
-
-        SkinnedMeshRenderer[] smr = towersonaNeedsScene.GetComponentsInChildren<SkinnedMeshRenderer>();
-
-        foreach (SkinnedMeshRenderer m in smr)
-        {
-            //m.material.color = towersona.color;
-        }
-
+  
         towersonaNeeds.Add(tsn);
 
         return tsn;

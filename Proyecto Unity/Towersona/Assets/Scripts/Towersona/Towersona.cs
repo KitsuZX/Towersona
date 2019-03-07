@@ -5,6 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(AttackPattern), typeof(TowersonaAnimations), typeof(NotificationsManager))]
 public class Towersona : MonoBehaviour
 {
+
+    [Header("References")]
+    public GameObject towersonaModel;
+    
     [HideInInspector]
     public Tile tile;   
     [HideInInspector]
@@ -28,7 +32,6 @@ public class Towersona : MonoBehaviour
     private TowersController towersController;
     private World world;
     private GameManager gameManager;
-
 
     private void Awake()
     {

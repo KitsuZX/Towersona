@@ -27,8 +27,9 @@ public class TowersonaAnimation : MonoBehaviour
 
     [SerializeField]
     private LookAt lookAt;
-    [SerializeField]
-    private LookAwayFromTouch lookAway;
+
+    [HideInInspector]
+    public LookAwayFromTouch lookAway;
 
     [SerializeField]
     private DetailedTowersonaSound sound;

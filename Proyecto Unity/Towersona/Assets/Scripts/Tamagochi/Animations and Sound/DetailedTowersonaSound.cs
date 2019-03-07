@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DetailedTowersonaSound : MonoBehaviour
 {
+    [HideInInspector]
     public Camera enabledReference;
 
     public AudioClip eatingSfx;
@@ -12,6 +13,12 @@ public class DetailedTowersonaSound : MonoBehaviour
     public AudioClip happySfx;
 
     private AudioSource source;
+
+    private void Awake()
+    {
+        enabledReference = Camera.main;
+        source = GetComponent<AudioSource>();
+    }
 
     private void Update()
     {
@@ -40,10 +47,5 @@ public class DetailedTowersonaSound : MonoBehaviour
     {
         source.clip = happySfx;
         source.Play();
-    }
-
-    private void Awake()
-    {
-        source = GetComponent<AudioSource>();
-    }
+    }  
 }

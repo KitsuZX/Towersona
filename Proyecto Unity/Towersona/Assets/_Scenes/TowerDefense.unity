@@ -560,7 +560,7 @@ MonoBehaviour:
   towersonaNeeds: []
   towerAvaible: 1
   maxReached: 0
-  timeBetweenTowersonas: 40
+  timeBetweenTowersonas: 1
   colors:
   - {r: 0.7924528, g: 0.60929155, b: 0.60929155, a: 1}
   - {r: 0.8301887, g: 0.8097345, b: 0.505162, a: 1}

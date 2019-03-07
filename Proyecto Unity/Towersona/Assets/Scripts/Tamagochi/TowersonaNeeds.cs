@@ -14,10 +14,11 @@ public class TowersonaNeeds : MonoBehaviour
     private float hungerDecayPerSecond = 0.1f;
     [SerializeField]
     private float loveDecayPerSecond = 0.1f;
-    [SerializeField]
-    private Slider happinessSlider;
-    [SerializeField]
-    private GameObject overHappiness;
+
+    [HideInInspector]    
+    public Slider happinessSlider;
+    [HideInInspector]
+    public GameObject overHappiness;
 
     [Header("Notification")]
     [SerializeField][Range(0, 1)]
@@ -30,7 +31,6 @@ public class TowersonaNeeds : MonoBehaviour
     private float hungerLevel;
     private float loveLevel;
     private ShitNeed shitNeed;
-
 
     public float HappinessLevel
     {
