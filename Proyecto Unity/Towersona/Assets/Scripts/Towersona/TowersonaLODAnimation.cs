@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowersonaAnimations : MonoBehaviour
+public class TowersonaLODAnimation : MonoBehaviour
 {
     [SerializeField]
     private Animator headAC;

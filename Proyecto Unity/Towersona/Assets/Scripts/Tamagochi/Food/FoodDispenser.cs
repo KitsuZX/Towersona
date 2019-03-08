@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FoodDispenser : MonoBehaviour
 {
-    [HideInInspector]
     public Camera detailCamera;
+
     [HideInInspector]
     public Towersona towersona;
     [HideInInspector]

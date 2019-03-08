@@ -2,23 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AttackPattern), typeof(TowersonaAnimations), typeof(NotificationsManager))]
+[RequireComponent(typeof(AttackPattern), typeof(TowersonaLODAnimation), typeof(NotificationsManager))]
 public class Towersona : MonoBehaviour
 {
-
     [Header("References")]
     public GameObject towersonaModel;
     
     [HideInInspector]
     public Tile tile;   
     [HideInInspector]
-    public Camera towersonaNeedsCamera;
-    [HideInInspector]
-    public Color color;
-    [HideInInspector]
-    public TowersonaNeeds towersonaNeeds;
+    public DetailedTowersonaView detailedTowersonaView;
     [HideInInspector]
     public Transform firePoint;
+    [HideInInspector]
+    public TowersonaNeeds towersonaNeeds;
 
     [Header("Parameters")]
     public int cost = 45;
@@ -33,6 +30,7 @@ public class Towersona : MonoBehaviour
     private World world;
     private GameManager gameManager;
 
+
     private void Awake()
     {
         //References
@@ -45,8 +43,8 @@ public class Towersona : MonoBehaviour
         firePoint = transform.Find("FirePoint");
 
         //Spawn towersona needs sceene and save a reference
-        towersonaNeeds = towersController.SpawnDetailedTowersonaView(this);
-        towersonaNeedsCamera = towersonaNeeds.transform.parent.GetComponentInChildren<Camera>();
+        detailedTowersonaView = towersController.SpawnDetailedTowersonaView(this);
+        towersonaNeeds = detailedTowersonaView.GetComponentInChildren<TowersonaNeeds>();
 
         GetComponent<AudioSource>().Play();
     }
@@ -80,7 +78,7 @@ public class Towersona : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        gameManager.ChangeCamera(this);
+        gameManager.ChangeCamera(detailedTowersonaView.GetComponentInChildren<Camera>());
         world.SelectTile(tile);      
     }
 }

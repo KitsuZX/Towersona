@@ -19,8 +19,6 @@ public class TowersController : MonoBehaviour
 
     [Header("Parameters")]  
     public float timeBetweenTowersonas = 40f;
-    [SerializeField][Tooltip("Colors to tint the Towersonas with")]
-    private Color[] colors;
 
     [Header("References")]
     [SerializeField]
@@ -45,20 +43,14 @@ public class TowersController : MonoBehaviour
        
         towersonas = new List<Towersona>();
 
-        towersonaColors = new Stack<Color>();
-        foreach (Color color in colors)
-        {
-            towersonaColors.Push(color);
-        }
+        towersonaColors = new Stack<Color>();      
     }
 
     public void SpawnTowersona(Tile tile)
     {
         if (towersonaSelected)
         {       
-            Towersona towersona = Instantiate(towersonaSelected, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();
-
-            gameManager.ChangeCamera(towersona);
+            Towersona towersona = Instantiate(towersonaSelected, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();   
             towersona.tile = tile;
             //towersona.ChangeColor();
 
@@ -75,7 +67,7 @@ public class TowersController : MonoBehaviour
     /// </summary>
     /// <param name="towersona">Towersona whose scene is to be created</param>
     /// <returns>Reference to the new Detailed Towersona view</returns>
-    public TowersonaNeeds SpawnDetailedTowersonaView(Towersona towersona)
+    public DetailedTowersonaView SpawnDetailedTowersonaView(Towersona towersona)
     {        
         Vector3 position = Vector3.zero;
         position.x = lastXUsed;
@@ -83,16 +75,15 @@ public class TowersController : MonoBehaviour
 
         GameObject towersonaNeedsScene = Instantiate(detailedTowersonaViewPrefab, position, Quaternion.identity);
         DetailedTowersonaView detailedTowersonaView = towersonaNeedsScene.GetComponent<DetailedTowersonaView>();
+        Camera detailedTowersonaCamera = detailedTowersonaView.transform.GetComponentInChildren<Camera>();
+        gameManager.ChangeCamera(detailedTowersonaCamera);
 
         TowersonaNeeds tsn = detailedTowersonaView.SpawnTowersonaNeeds(towersona.towersonaModel);
-
         tsn.name = "Towersona need";
 
         lastXUsed += 15f;      
   
-        towersonaNeeds.Add(tsn);
-
-        return tsn;
+        return detailedTowersonaView;
     }
 
     public void SelectTowersona(int index)
@@ -108,5 +99,5 @@ public class TowersController : MonoBehaviour
     public Color GetColor()
     {
         return towersonaColors.Pop();
-    } 
+    }
 }

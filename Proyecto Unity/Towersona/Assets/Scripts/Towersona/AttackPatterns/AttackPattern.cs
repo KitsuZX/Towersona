@@ -27,14 +27,14 @@ public abstract class AttackPattern : MonoBehaviour
     public Transform target;
 
     protected Towersona towersona;
-    protected TowersonaAnimations animations;
+    protected TowersonaLODAnimation animations;
 
     private float fireCountdown = 1f;   
 
     private void Awake()
     {
         towersona = GetComponent<Towersona>();
-        animations = GetComponent<TowersonaAnimations>();
+        animations = GetComponent<TowersonaLODAnimation>();
 
         currentAttackStrength = attackStrength.y;
         currentAttackSpeed = attackSpeed.y;      

@@ -5,15 +5,11 @@ using UnityEngine.UI;
 
 public class TowersonaAnimation : MonoBehaviour
 {
-    public bool isFighting;
-    public bool isCaressed;
-    public bool hasEaten;
-    public bool isLookingAtFood;
-
-    public IdleState emotion;
-
-    [SerializeField]
-    private Slider happinessSlider;
+    private bool isFighting;
+    private bool isCaressed;
+    private bool hasEaten;
+    private bool isLookingAtFood;
+    private IdleState emotion;
 
     [Header("Animators")]
     [SerializeField]
@@ -31,7 +27,6 @@ public class TowersonaAnimation : MonoBehaviour
     [HideInInspector]
     public LookAwayFromTouch lookAway;
 
-    [SerializeField]
     private DetailedTowersonaSound sound;
 
 
@@ -66,9 +61,7 @@ public class TowersonaAnimation : MonoBehaviour
     }
 
     private void UpdateFace()
-    {
-        
-
+    {     
         faceAnimator.SetInteger("idleEmotion", (int)emotion);
         if (hasEaten) faceAnimator.SetBool("hasEaten", true);
         faceAnimator.SetBool("isLookingAtFood", isLookingAtFood);

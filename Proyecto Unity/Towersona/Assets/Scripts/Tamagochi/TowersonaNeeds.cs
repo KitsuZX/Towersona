@@ -24,9 +24,6 @@ public class TowersonaNeeds : MonoBehaviour
     [SerializeField][Range(0, 1)]
     private float notificationThreshold = 0.3f;
 
-    [Header("Events")]
-    public UnityEvent OnEating;
-
     //Need levels
     private float hungerLevel;
     private float loveLevel;

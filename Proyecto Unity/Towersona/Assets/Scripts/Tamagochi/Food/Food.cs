@@ -5,9 +5,7 @@ using UnityEngine;
 public class Food : MonoBehaviour
 {
     [SerializeField]
-    float hungerFulmilmentPerRation = 1;
-    [SerializeField]
-    Vector3 boxCastHalfSize = Vector3.one;
+    float hungerFulmilmentPerRation = 1; 
 
     [HideInInspector]
     public FoodDispenser dispenser = null;

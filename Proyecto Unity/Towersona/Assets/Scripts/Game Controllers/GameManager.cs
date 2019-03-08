@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
     /// Changes the camera of the Detailed Scene to the Detailed Scene of a specific Towersona.
     /// </summary>
     /// <param name="towersona">Towersona to be shown in the Detailed Scene</param>
-    public void ChangeCamera(Towersona towersona)
+    public void ChangeCamera(Camera camera)
     {
         activeCamera.enabled = false;
 
@@ -132,10 +132,8 @@ public class GameManager : MonoBehaviour
             Destroy(cameraToDestroy.gameObject);
         }
 
-        activeCamera = towersona.towersonaNeedsCamera;
+        activeCamera = camera;
 
         activeCamera.enabled = true;
     }
-
-
 }

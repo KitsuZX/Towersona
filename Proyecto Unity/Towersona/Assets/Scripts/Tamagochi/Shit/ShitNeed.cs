@@ -21,9 +21,7 @@ public class ShitNeed : MonoBehaviour
     [HideInInspector]
     public Transform[] shitSpawnPositions;
 
-    public UnityEvent OnTakenAShit;
-    public UnityEvent OnOneShitCleaned;
-    public UnityEvent OnAllShitCleaned;
+    public UnityEvent OnTakenAShit;    
     #endregion
 
     public float Level
@@ -33,7 +31,6 @@ public class ShitNeed : MonoBehaviour
             return Mathf.Max(0, 1 - happinessImpactPerShit * shits.Count);
         }
     }
-
     
 
     private List<Shit> shits;
