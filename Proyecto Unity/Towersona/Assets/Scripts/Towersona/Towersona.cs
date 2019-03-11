@@ -15,7 +15,7 @@ public class Towersona : MonoBehaviour
     [HideInInspector]
     public Transform firePoint;
     [HideInInspector]
-    public TowersonaNeeds towersonaNeeds;
+    public TowersonaNeeds towersonaNeeds;    
 
     [Header("Parameters")]
     public int cost = 45;
@@ -49,12 +49,13 @@ public class Towersona : MonoBehaviour
         GetComponent<AudioSource>().Play();
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         //TODO: leveling up
+        print("Leveling up =^.^=");
     }
 
-    private void Evolve()
+    public void Evolve()
     {
         //TODO: evolving
     }

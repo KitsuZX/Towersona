@@ -78,7 +78,7 @@ public class TowersController : MonoBehaviour
         Camera detailedTowersonaCamera = detailedTowersonaView.transform.GetComponentInChildren<Camera>();
         gameManager.ChangeCamera(detailedTowersonaCamera);
 
-        TowersonaNeeds tsn = detailedTowersonaView.SpawnTowersonaNeeds(towersona.towersonaModel);
+        TowersonaNeeds tsn = detailedTowersonaView.SpawnTowersonaNeeds(towersona);
         tsn.name = "Towersona need";
 
         lastXUsed += 15f;      
@@ -94,10 +94,5 @@ public class TowersController : MonoBehaviour
     public void DeselectTowersona()
     {
         towersonaSelected = null;
-    }
-
-    public Color GetColor()
-    {
-        return towersonaColors.Pop();
     }
 }
