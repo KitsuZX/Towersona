@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class TowersController : MonoBehaviour
@@ -25,11 +26,14 @@ public class TowersController : MonoBehaviour
     private GameObject[] towersonaPrefabs;
     [SerializeField]
     private GameObject detailedTowersonaViewPrefab;
+    [SerializeField]
+    private NodeUI nodeUI;
 
     //Private parameters
     private float lastXUsed = 0f;
     private Stack<Color> towersonaColors;
-    private GameObject towersonaSelected;
+    private GameObject towersonaToBuild;
+    private Towersona towersonaSelected;
 
     //Private references
     private GameManager gameManager;
@@ -46,11 +50,60 @@ public class TowersController : MonoBehaviour
         towersonaColors = new Stack<Color>();      
     }
 
+    private void Update()
+    {
+        //Hides nodeUI if not clicked on it
+        if (nodeUI.UIIsActive)
+        {          
+            //https://answers.unity.com/questions/615771/how-to-check-if-click-mouse-on-object.html
+            if (Input.GetMouseButtonDown(0))
+            {
+                PointerEventData pointerData = new PointerEventData(EventSystem.current);
+
+                pointerData.position = Input.mousePosition;
+
+                List<RaycastResult> results = new List<RaycastResult>();
+                EventSystem.current.RaycastAll(pointerData, results);
+
+                if (results.Count > 0)
+                {
+                    //WorldUI is my layer name
+                    if (results[0].gameObject.layer == LayerMask.NameToLayer("WorldUI"))
+                    {
+                        results.Clear();
+                    }
+                }
+                else
+                {
+                    //Check if another towersona was clicked
+                    RaycastHit hit;
+                    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+                    if (Physics.Raycast(ray, out hit))
+                    {
+                        Towersona t = hit.transform.gameObject.GetComponent<Towersona>();
+                        if (t)
+                        {
+                            //A towersona was hit
+                            SelectTowersona(t);
+                        }
+                        else
+                        {
+                            DeselectTowersona();
+                        }
+
+                     
+                    }
+                }
+            }
+        }
+    }
+
     public void SpawnTowersona(Tile tile)
     {
-        if (towersonaSelected)
+        if (towersonaToBuild)
         {       
-            Towersona towersona = Instantiate(towersonaSelected, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();   
+            Towersona towersona = Instantiate(towersonaToBuild, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();   
             towersona.tile = tile;
             //towersona.ChangeColor();
 
@@ -58,7 +111,7 @@ public class TowersController : MonoBehaviour
             towersonas.Add(towersona);
             towerAvaible = false;
 
-            towersonaSelected = null;
+            towersonaToBuild = null;
         }
     }
 
@@ -86,13 +139,29 @@ public class TowersController : MonoBehaviour
         return detailedTowersonaView;
     }
 
-    public void SelectTowersona(int index)
+    public void SelectTowersonaToBuild(int index)
     {
-        towersonaSelected = towersonaPrefabs[index];
+        towersonaToBuild = towersonaPrefabs[index];
+
+        DeselectTowersona();
+    }
+
+    public void SelectTowersona(Towersona towersona)
+    {
+        if(towersonaSelected == towersona)
+        {            
+            return;
+        }
+
+        towersonaSelected = towersona;
+        towersonaToBuild = null;
+
+        nodeUI.SetTarget(towersona);
     }
 
     public void DeselectTowersona()
     {
         towersonaSelected = null;
-    }
+        nodeUI.Hide();
+    }   
 }

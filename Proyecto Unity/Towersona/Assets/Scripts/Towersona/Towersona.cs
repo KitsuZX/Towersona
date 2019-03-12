@@ -80,6 +80,8 @@ public class Towersona : MonoBehaviour
     private void OnMouseUpAsButton()
     {
         gameManager.ChangeCamera(detailedTowersonaView.GetComponentInChildren<Camera>());
-        world.SelectTile(tile);      
+        world.SelectTile(tile);
+
+        towersController.SelectTowersona(this);
     }
 }
