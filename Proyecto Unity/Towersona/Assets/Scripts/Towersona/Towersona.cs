@@ -30,7 +30,6 @@ public class Towersona : MonoBehaviour
     private World world;
     private GameManager gameManager;
 
-
     private void Awake()
     {
         //References
@@ -49,10 +48,10 @@ public class Towersona : MonoBehaviour
         GetComponent<AudioSource>().Play();
     }
 
-    public void LevelUp()
+    public void Upgrade()
     {
-        //TODO: leveling up
-        print("Leveling up =^.^=");
+        //TODO: Upgrading
+        print("Upgrading =^.^=");
     }
 
     public void Evolve()
@@ -83,5 +82,10 @@ public class Towersona : MonoBehaviour
         world.SelectTile(tile);
 
         towersController.SelectTowersona(this);
+    }
+
+    enum TowersonaLevel
+    {
+        lvl1, lvl2, ev1, ev2
     }
 }

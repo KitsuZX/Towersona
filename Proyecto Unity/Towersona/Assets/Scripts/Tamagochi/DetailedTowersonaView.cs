@@ -51,6 +51,6 @@ public class DetailedTowersonaView : MonoBehaviour
 
     public void LevelUp()
     {
-        towersona.LevelUp();
+        towersona.Upgrade();
     }
 }

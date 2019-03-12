@@ -65,15 +65,7 @@ public class TowersController : MonoBehaviour
                 List<RaycastResult> results = new List<RaycastResult>();
                 EventSystem.current.RaycastAll(pointerData, results);
 
-                if (results.Count > 0)
-                {
-                    //WorldUI is my layer name
-                    if (results[0].gameObject.layer == LayerMask.NameToLayer("WorldUI"))
-                    {
-                        results.Clear();
-                    }
-                }
-                else
+                if (results.Count <= 0)               
                 {
                     //Check if another towersona was clicked
                     RaycastHit hit;
@@ -90,9 +82,7 @@ public class TowersController : MonoBehaviour
                         else
                         {
                             DeselectTowersona();
-                        }
-
-                     
+                        }                     
                     }
                 }
             }
@@ -164,4 +154,9 @@ public class TowersController : MonoBehaviour
         towersonaSelected = null;
         nodeUI.Hide();
     }   
+
+    public void UpgradeTowersona()
+    {
+        towersonaSelected.Upgrade();
+    }
 }
