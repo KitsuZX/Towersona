@@ -29,10 +29,11 @@ public class TowersonaAnimation : MonoBehaviour
 
     private DetailedTowersonaSound sound;
 
-
+   
     #region Updating
     private void Update()
     {
+        /*
         ChooseEmotion();
 
         UpdateBody();
@@ -41,6 +42,7 @@ public class TowersonaAnimation : MonoBehaviour
 
 
         if (hasEaten) hasEaten = false;
+        */
     }
 
     private void UpdateBody()
@@ -120,6 +122,7 @@ public class TowersonaAnimation : MonoBehaviour
     {
         needs = GetComponentInParent<TowersonaNeeds>();
         sound = GetComponent<DetailedTowersonaSound>();
+        lookAway = GetComponentInChildren<LookAwayFromTouch>();
     }
 
     public enum IdleState

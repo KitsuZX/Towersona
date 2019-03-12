@@ -8,15 +8,14 @@ public class NotificationsManager : MonoBehaviour
     [SerializeField]
     private GameObject notificationPrefab;
 
-    private Towersona towersona;
-
     private bool isNotifying;
     private GameObject notification;
     private TowersonaNeeds.NeedType prevNeedType;
+    private TowersonaStats towersona;
 
     private void Awake()
     {
-        towersona = GetComponent<Towersona>();
+        towersona = GetComponent<TowersonaStats>();
     }
 
     void Update()

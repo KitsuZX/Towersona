@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5171529233366796780}
+  - component: {fileID: 9120754621830739494}
   m_Layer: 0
   m_Name: Cat Tower
   m_TagString: Untagged
@@ -30,3 +31,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9120754621830739494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824885323347685139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towersonaModel: {fileID: 0}
+  highpolyModels:
+  - {fileID: 2760660758957234880, guid: e1b9d60af95d70a42921b6e8bde94394, type: 3}
+  - {fileID: 5139840167273293286, guid: c72a49c5981014d4aa20c376907decb4, type: 3}
+  lowpolyModels:
+  - {fileID: 2218815753903965269, guid: a53569080d421fe429705e8bda4ec0ba, type: 3}
+  - {fileID: 2407868818723468261, guid: e7dec2f7c942e66479fc0ffe6179525b, type: 3}
+  tile: {fileID: 0}
+  detailedTowersonaView: {fileID: 0}
+  firePoint: {fileID: 0}
+  towersonaNeeds: {fileID: 0}
+  cost: 45
+  turnSpeed: 1
+  partsToRotate: []

@@ -39,14 +39,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7081004210300108719}
-  - component: {fileID: 7194669246931065567}
+  - component: {fileID: 1207005883078852824}
   - component: {fileID: 6535149117010872996}
   - component: {fileID: 6703089924739425893}
   - component: {fileID: 9202062087551758737}
   - component: {fileID: 4655889943347623656}
   - component: {fileID: 8056899073204584800}
   m_Layer: 0
-  m_Name: Towersona LOD
+  m_Name: Cat Tower Lvl 2 LOD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7194669246931065567
+--- !u!114 &1207005883078852824
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,22 +79,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2407868818723468261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
+  m_Script: {fileID: 11500000, guid: 90f855c3fa770284bb2d9e76de04349c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towersonaModel: {fileID: 5139840167273293286, guid: c72a49c5981014d4aa20c376907decb4,
-    type: 3}
-  tile: {fileID: 0}
-  towersonaNeedsCamera: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
   towersonaNeeds: {fileID: 0}
-  firePoint: {fileID: 6175043574671929610}
-  cost: 45
-  turnSpeed: 10
-  partsToRotate:
-  - {fileID: 6175043574671929610}
-  - {fileID: 1146401408090555421}
-  - {fileID: 3071539228522695794}
+  firePoint: {fileID: 0}
 --- !u!114 &6535149117010872996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,12 +96,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c06e523e75146448735747f9064e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,
+    type: 3}
+  turnSpeed: 1
+  partsToRotate: []
   attackStrength: {x: 0.5, y: 10}
   attackSpeed: {x: 0.25, y: 2}
   attackRange: {x: 1, y: 5}
   bulletSpeed: {x: 2, y: 10}
-  bulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,
-    type: 3}
   target: {fileID: 0}
 --- !u!114 &6703089924739425893
 MonoBehaviour:
@@ -143,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notificationPrefab: {fileID: 1478532847836396072, guid: 95e5d2e2800604e4589f70986433a207,
     type: 3}
+  towersonaNeeds: {fileID: 0}
 --- !u!136 &4655889943347623656
 CapsuleCollider:
   m_ObjectHideFlags: 0
