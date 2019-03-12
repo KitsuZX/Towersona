@@ -5,17 +5,6 @@ using UnityEngine;
 
 public abstract class AttackPattern : MonoBehaviour
 {
-
-    [Header("References")]
-    [SerializeField]
-    protected GameObject bulletPrefab;
-    [Header("Transform parameters")]
-    [SerializeField]
-    private float turnSpeed = 1f;
-    [SerializeField]
-    private Transform[] partsToRotate;
-
-
     [Header("Attacking parameters -> Min, Max")]
     [SerializeField][Tooltip("Min, Max")]
     private Vector2 attackStrength = new Vector2(0.5f, 10f);
@@ -26,6 +15,8 @@ public abstract class AttackPattern : MonoBehaviour
     [SerializeField][Tooltip("Min, Max")]
     private Vector2 bulletSpeed = new Vector2(2f, 10f);
 
+    [Header("References")][SerializeField]
+    protected GameObject bulletPrefab;
     
     protected float currentAttackStrength;
     protected float currentAttackSpeed;
@@ -35,14 +26,14 @@ public abstract class AttackPattern : MonoBehaviour
     [HideInInspector]
     public Transform target;
 
-    protected TowersonaStats towersona;
+    protected Towersona towersona;
     protected TowersonaLODAnimation animations;
 
     private float fireCountdown = 1f;   
 
     private void Awake()
     {
-        towersona = GetComponent<TowersonaStats>();
+        towersona = GetComponent<Towersona>();
         animations = GetComponent<TowersonaLODAnimation>();
 
         currentAttackStrength = attackStrength.y;
@@ -57,7 +48,7 @@ public abstract class AttackPattern : MonoBehaviour
     private void Update()
     {
         CheckAnimations();
-        LockOnTarget(target);
+        towersona.LockOnTarget(target);
         CheckIfShouldShoot();      
     }
 
@@ -77,14 +68,14 @@ public abstract class AttackPattern : MonoBehaviour
 
     private void CheckAnimations()
     {
-        /*if (target == null)
+        if (target == null)
         {
             animations.IdleAnimation();
             return;
         }
 
 
-        animations.Shoot();*/
+        animations.Shoot();
     }
 
     private void CheckIfShouldShoot()
@@ -100,24 +91,6 @@ public abstract class AttackPattern : MonoBehaviour
 
     public abstract void Shoot(Transform target);
     public abstract void UpdateTarget();
-
-    /// <summary>
-    /// Rotates the model to look to a given target
-    /// </summary>
-    public void LockOnTarget(Transform target)
-    {
-        if (target != null)
-        {
-            Vector3 dir = target.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            for (int i = 0; i < partsToRotate.Length; i++)
-            {
-                Vector3 rotation = Quaternion.Lerp(partsToRotate[i].rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-                partsToRotate[i].rotation = Quaternion.Euler(0f, rotation.y, 0f);
-            }
-        }
-    }
-
 
 }
 

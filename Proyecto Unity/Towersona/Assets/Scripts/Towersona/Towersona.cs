@@ -2,53 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AttackPattern), typeof(TowersonaLODAnimation), typeof(NotificationsManager))]
 public class Towersona : MonoBehaviour
 {
     [Header("References")]
-    public GameObject[] highpolyModels;
-    public GameObject[] lowpolyModels;
-
+    public GameObject towersonaModel;
+    
     [HideInInspector]
     public Tile tile;   
     [HideInInspector]
-    public DetailedTowersonaView detailedTowersonaView; 
-
-
+    public DetailedTowersonaView detailedTowersonaView;
     [HideInInspector]
-    public TowersonaStats towersonaStats;  
+    public Transform firePoint;
+    [HideInInspector]
+    public TowersonaNeeds towersonaNeeds;    
 
     [Header("Parameters")]
     public int cost = 45;
-    
-    private TowersonaNeeds towersonaNeeds;
-    private GameObject towersonaHOD;
-    private GameObject towersonaLOD;
+
+    [Header("Transform parameters")]   
+    [SerializeField]
+    private float turnSpeed = 1f;
+    [SerializeField]
+    private Transform[] partsToRotate;    
 
     private TowersController towersController;
     private World world;
     private GameManager gameManager;
 
-    private void Initialize()
+
+    private void Awake()
     {
         //References
         GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
 
         towersController = gm.GetComponent<TowersController>();
         gameManager = gm.GetComponent<GameManager>();
-        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();              
+        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
 
-        //GetComponent<AudioSource>().Play();
+        firePoint = transform.Find("FirePoint");
+
+        //Spawn towersona needs sceene and save a reference
+        detailedTowersonaView = towersController.SpawnDetailedTowersonaView(this);
+        towersonaNeeds = detailedTowersonaView.GetComponentInChildren<TowersonaNeeds>();
+
+        GetComponent<AudioSource>().Play();
     }
 
     public void LevelUp()
     {
         //TODO: leveling up
         print("Leveling up =^.^=");
-        Destroy(towersonaLOD);
-        Destroy(towersonaHOD);
-
-        SpawnModel(lowpolyModels[1]);
-        detailedTowersonaView.SpawnTowersonaNeedsModel(highpolyModels[1], this);
     }
 
     public void Evolve()
@@ -56,37 +60,26 @@ public class Towersona : MonoBehaviour
         //TODO: evolving
     }
 
+    /// <summary>
+    /// Rotates the model to look to a given target
+    /// </summary>
+    public void LockOnTarget(Transform target)
+    {
+        if (target != null)
+        {
+            Vector3 dir = target.position - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            for (int i = 0; i < partsToRotate.Length; i++)
+            {
+                Vector3 rotation = Quaternion.Lerp(partsToRotate[i].rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
+                partsToRotate[i].rotation = Quaternion.Euler(0f, rotation.y, 0f);
+            }
+        }
+    }    
+
     private void OnMouseUpAsButton()
     {
         gameManager.ChangeCamera(detailedTowersonaView.GetComponentInChildren<Camera>());
         world.SelectTile(tile);      
-    }
-
-    public void Spawn(Tile tile)
-    {
-        Initialize(); 
-
-        this.tile = tile;
-
-        towersonaLOD = SpawnModel(lowpolyModels[0]);
-
-        //Spawn towersona needs sceene and save a reference
-        towersonaHOD = towersController.SpawnDetailedTowersonaView(this);
-        detailedTowersonaView = towersonaHOD.GetComponentInParent<DetailedTowersonaView>();
-        towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
-
-        towersonaLOD.GetComponent<TowersonaStats>().towersonaNeeds = towersonaNeeds;
-    }
-
-    private GameObject SpawnModel(GameObject model)
-    {
-        Transform towersParent = GameObject.FindGameObjectWithTag("Towers Parent").transform;
-
-        GameObject m = Instantiate(model, tile.transform.position, Quaternion.Euler(0f, 180f, 0f));
-        m.transform.SetParent(towersParent);
-
- 
-
-        return m;
     }
 }

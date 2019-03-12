@@ -23,19 +23,18 @@ public class DetailedTowersonaView : MonoBehaviour
         cam = GetComponentInChildren<Camera>();
     }
 
-    public GameObject SpawnTowersonaNeedsModel(GameObject towersonaModel, Towersona towersona)
+    public TowersonaNeeds SpawnTowersonaNeeds(Towersona towersona)
     {
         /*
          * Código temporal (espero), simplemente va asignando las variables necesarias que necesitan los distintos scripts que hizo Aitor
          * para poder distintos modelos dentro de un DetailedTowersonaView
-        */       
+        */
 
-        GameObject model = Instantiate(towersonaModel);
+        GameObject model = Instantiate(towersona.towersonaModel);
         model.transform.SetParent(transform, false);
+        TowersonaNeeds needs = model.GetComponent<TowersonaNeeds>();
 
         this.towersona = towersona;
-
-        TowersonaNeeds needs = model.GetComponent<TowersonaNeeds>();        
 
         needs.happinessSlider = slider;
         needs.overHappiness = overHappiness;
@@ -47,8 +46,8 @@ public class DetailedTowersonaView : MonoBehaviour
         ShitNeed shitNeed = model.GetComponent<ShitNeed>();
         shitNeed.shitSpawnPositions = shitPositions;
 
-        return model;
-    }  
+        return needs;
+    }
 
     public void LevelUp()
     {

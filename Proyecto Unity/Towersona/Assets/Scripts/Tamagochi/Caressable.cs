@@ -63,7 +63,7 @@ public class Caressable : MonoBehaviour
         {
             //Hearts particle effecct
             Vector3 pos = transform.position;
-            pos.y -= 0f;
+            pos.y += 1f;
             pos.z += 3f;
             GameObject effect = Instantiate(heartsEffect, pos, Quaternion.Euler(-90f, 0f, 0f));
             Destroy(effect, 5f);

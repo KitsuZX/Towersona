@@ -9,7 +9,6 @@ TagManager:
   - World
   - GameManager
   - Fire Point
-  - Towers Parent
   layers:
   - Default
   - TransparentFX

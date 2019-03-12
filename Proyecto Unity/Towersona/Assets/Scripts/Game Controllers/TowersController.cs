@@ -22,14 +22,14 @@ public class TowersController : MonoBehaviour
 
     [Header("References")]
     [SerializeField]
-    private Towersona[] towersonaPrefabs;
+    private GameObject[] towersonaPrefabs;
     [SerializeField]
     private GameObject detailedTowersonaViewPrefab;
 
     //Private parameters
     private float lastXUsed = 0f;
     private Stack<Color> towersonaColors;
-    private Towersona towersonaSelected;
+    private GameObject towersonaSelected;
 
     //Private references
     private GameManager gameManager;
@@ -49,16 +49,15 @@ public class TowersController : MonoBehaviour
     public void SpawnTowersona(Tile tile)
     {
         if (towersonaSelected)
-        {
-            /*Towersona towersona = Instantiate(towersonaSelected, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();   
-            towersona.tile = tile;   */
-
-            towersonaSelected.Spawn(tile);
+        {       
+            Towersona towersona = Instantiate(towersonaSelected, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();   
+            towersona.tile = tile;
+            //towersona.ChangeColor();
 
             world.SelectTile(tile);
-            towersonas.Add(towersonaSelected);
-
+            towersonas.Add(towersona);
             towerAvaible = false;
+
             towersonaSelected = null;
         }
     }
@@ -68,7 +67,7 @@ public class TowersController : MonoBehaviour
     /// </summary>
     /// <param name="towersona">Towersona whose scene is to be created</param>
     /// <returns>Reference to the new Detailed Towersona view</returns>
-    public GameObject SpawnDetailedTowersonaView(Towersona towersona)
+    public DetailedTowersonaView SpawnDetailedTowersonaView(Towersona towersona)
     {        
         Vector3 position = Vector3.zero;
         position.x = lastXUsed;
@@ -79,17 +78,17 @@ public class TowersController : MonoBehaviour
         Camera detailedTowersonaCamera = detailedTowersonaView.transform.GetComponentInChildren<Camera>();
         gameManager.ChangeCamera(detailedTowersonaCamera);
 
-        GameObject towerModel = detailedTowersonaView.SpawnTowersonaNeedsModel(towersona.highpolyModels[0], towersona);
-        towerModel.name = "Towersona need";
+        TowersonaNeeds tsn = detailedTowersonaView.SpawnTowersonaNeeds(towersona);
+        tsn.name = "Towersona need";
 
         lastXUsed += 15f;      
   
-        return towerModel;
+        return detailedTowersonaView;
     }
 
-    public void SelectTowersona(Towersona towersona)
+    public void SelectTowersona(int index)
     {
-        towersonaSelected = towersona;
+        towersonaSelected = towersonaPrefabs[index];
     }
 
     public void DeselectTowersona()

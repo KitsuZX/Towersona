@@ -656,7 +656,7 @@ MonoBehaviour:
   maxReached: 0
   timeBetweenTowersonas: 1
   towersonaPrefabs:
-  - {fileID: 0}
+  - {fileID: 2407868818723468261, guid: e7dec2f7c942e66479fc0ffe6179525b, type: 3}
   detailedTowersonaViewPrefab: {fileID: 5139840165600574758, guid: e863cb5f8d9b4f8429e64f11614f61f9,
     type: 3}
 --- !u!4 &383186422
@@ -1002,11 +1002,10 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 383186421}
         m_MethodName: SelectTowersona
-        m_Mode: 2
+        m_Mode: 3
         m_Arguments:
-          m_ObjectArgument: {fileID: 9120754621830739494, guid: c3aa3b374475d4b429aca1e66c55d08c,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: Towersona, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1092,7 +1091,6 @@ Transform:
   m_Children:
   - {fileID: 904369586}
   - {fileID: 1537323825}
-  - {fileID: 1007132713}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1238,36 +1236,6 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 31bbc83353551c741b72bb94a788347d, type: 3}
   - {fileID: 2800000, guid: 3e28913344358fb408cdb3342373e537, type: 3}
   - {fileID: 2800000, guid: d3255593607456b48b1fa0bc56963e15, type: 3}
---- !u!1 &1007132712
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1007132713}
-  m_Layer: 0
-  m_Name: Towers
-  m_TagString: Towers Parent
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1007132713
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007132712}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 635150244}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1013596052
 GameObject:
   m_ObjectHideFlags: 0

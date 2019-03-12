@@ -57,7 +57,7 @@ public class LookAwayFromTouch : MonoBehaviour
 
         Quaternion opposite = Quaternion.Inverse(lookAt);
 
-        //transform.rotation = Quaternion.Slerp(lookAt, opposite, interpolation);
+        transform.rotation = Quaternion.Slerp(lookAt, opposite, interpolation);
     }
 
   
