@@ -17,6 +17,7 @@ public class DetailedTowersonaView : MonoBehaviour
     public TowersonaNeeds towersonaNeeds;
 
     private Camera cam;
+    private MeshFilter meshFilter;
 
     private void Awake()
     {
@@ -36,12 +37,14 @@ public class DetailedTowersonaView : MonoBehaviour
 
         this.towersona = towersona;
 
+        meshFilter = model.GetComponentInChildren<MeshFilter>();
+
         needs.happinessSlider = slider;
         needs.overHappiness = overHappiness;
 
         towersonaNeeds = needs;
         towersonaAnim = model.GetComponent<TowersonaAnimation>();
-        towersonaAnim.lookAway.camera = cam;
+        //towersonaAnim.lookAway.camera = cam;
 
         ShitNeed shitNeed = model.GetComponent<ShitNeed>();
         shitNeed.shitSpawnPositions = shitPositions;
@@ -49,8 +52,8 @@ public class DetailedTowersonaView : MonoBehaviour
         return needs;
     }
 
-    public void LevelUp()
+    public void Upgrade(Mesh model)
     {
-        towersona.Upgrade();
-    }
+        meshFilter.mesh = model;
+    }    
 }

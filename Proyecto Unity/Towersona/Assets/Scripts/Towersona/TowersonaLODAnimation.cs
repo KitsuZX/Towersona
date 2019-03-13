@@ -14,16 +14,18 @@ public class TowersonaLODAnimation : MonoBehaviour
 
     public void Shoot()
     {
-        headAC.SetBool("isFighting", true);
-        bodyAC.SetBool("isFighting", true);  
+        //TODO: Towersona LOD animations
+        //headAC.SetBool("isFighting", true);
+        //bodyAC.SetBool("isFighting", true);  
     }
 
     public void IdleAnimation()
     {
-        headAC.SetBool("isFighting", false);
-        bodyAC.SetBool("isFighting", false);      
+        //TODO: Towersona LOD animations
+        //headAC.SetBool("isFighting", false);
+        //bodyAC.SetBool("isFighting", false);      
     }
-  
+
 
 
 }

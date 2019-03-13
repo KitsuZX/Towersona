@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TowersController : MonoBehaviour
+public class BuildManager : MonoBehaviour
 {   
     [HideInInspector]
     public List<Towersona> towersonas;
@@ -28,6 +28,8 @@ public class TowersController : MonoBehaviour
     private GameObject detailedTowersonaViewPrefab;
     [SerializeField]
     private NodeUI nodeUI;
+    [SerializeField]
+    private GameObject buildEffect;
 
     //Private parameters
     private float lastXUsed = 0f;
@@ -92,7 +94,8 @@ public class TowersController : MonoBehaviour
     public void SpawnTowersona(Tile tile)
     {
         if (towersonaToBuild)
-        {       
+        {
+         
             Towersona towersona = Instantiate(towersonaToBuild, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();   
             towersona.tile = tile;
             //towersona.ChangeColor();
@@ -100,6 +103,9 @@ public class TowersController : MonoBehaviour
             world.SelectTile(tile);
             towersonas.Add(towersona);
             towerAvaible = false;
+
+            SpawnEffect(buildEffect, towersona.transform.position);
+
 
             towersonaToBuild = null;
         }
@@ -129,9 +135,9 @@ public class TowersController : MonoBehaviour
         return detailedTowersonaView;
     }
 
-    public void SelectTowersonaToBuild(int index)
+    public void SelectTowersonaToBuild(Towersona _towersona)
     {
-        towersonaToBuild = towersonaPrefabs[index];
+        towersonaToBuild = _towersona.gameObject;
 
         DeselectTowersona();
     }
@@ -145,7 +151,7 @@ public class TowersController : MonoBehaviour
 
         towersonaSelected = towersona;
         towersonaToBuild = null;
-
+         
         nodeUI.SetTarget(towersona);
     }
 
@@ -158,5 +164,22 @@ public class TowersController : MonoBehaviour
     public void UpgradeTowersona()
     {
         towersonaSelected.Upgrade();
+        SpawnEffect(buildEffect, towersonaSelected.transform.position);
+
+        DeselectTowersona();     
+    }
+
+    public void Evolve(int evolution)
+    {
+        towersonaSelected.Evolve(evolution);
+        SpawnEffect(buildEffect, towersonaSelected.transform.position);
+
+        DeselectTowersona();
+    }
+
+    private void SpawnEffect(GameObject _effect, Vector3 position)
+    {
+        GameObject effect = Instantiate(_effect, position, Quaternion.identity);
+        Destroy(effect, 5f);
     }
 }

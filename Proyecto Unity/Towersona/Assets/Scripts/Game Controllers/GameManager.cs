@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     //Private references
     private World world;
     private WavesController wavesController;
-    private TowersController towerDefenseManager;
+    private BuildManager towerDefenseManager;
     private Camera activeCamera;                    //Camera of the detailed scene of the Towersona selected
 
   

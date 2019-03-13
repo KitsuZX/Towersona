@@ -16,12 +16,12 @@ public class Tile : MonoBehaviour
 
     //Private references
     private MeshRenderer meshRenderer;
-    private TowersController towersController;
+    private BuildManager towersController;
 
     private void Awake()
     {
         meshRenderer = GetComponent<MeshRenderer>();
-        towersController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TowersController>();
+        towersController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<BuildManager>();
     }
 
     public void ChangeTexture(Texture2D texture)

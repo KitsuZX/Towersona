@@ -8,14 +8,14 @@ public class ShopButton : MonoBehaviour
     private Image fillImg;
     private float timeAmt;
 
-    private TowersController towersController;
+    private BuildManager towersController;
     private float countdownTillNewTowersona;
     private Button button;
 
 
     private void Awake()
     {
-        towersController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<TowersController>();
+        towersController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<BuildManager>();
         fillImg = transform.Find("Countdown").GetComponent<Image>();
         button = GetComponent<Button>();
 

@@ -33,14 +33,15 @@ public class TowersonaAnimation : MonoBehaviour
     #region Updating
     private void Update()
     {
-        ChooseEmotion();
+        //TODO: Animations
+        /*ChooseEmotion();
 
         UpdateBody();
         UpdateHead();
         UpdateFace();
 
 
-        if (hasEaten) hasEaten = false;
+        if (hasEaten) hasEaten = false;*/
     }
 
     private void UpdateBody()
@@ -85,7 +86,9 @@ public class TowersonaAnimation : MonoBehaviour
     public void SetIsLookingAtFood(bool _isLookingAtFood)
     {
         isLookingAtFood = _isLookingAtFood;
-        lookAt.enabled = _isLookingAtFood;
+
+        //TODO: Look At
+        //lookAt.enabled = _isLookingAtFood;
 
         if (isLookingAtFood)
         {
@@ -113,7 +116,8 @@ public class TowersonaAnimation : MonoBehaviour
 
     public void SetLookAtTransform(Transform tr)
     {
-        lookAt.food = tr;
+        //TODO: Look At
+        //lookAt.food = tr;
     }
 
     private void Awake()

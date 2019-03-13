@@ -7,6 +7,8 @@ public class Towersona : MonoBehaviour
 {
     [Header("References")]
     public GameObject towersonaModel;
+    public Mesh[] lowpolyModels;
+    public Mesh[] highpolyModels;
     
     [HideInInspector]
     public Tile tile;   
@@ -15,7 +17,9 @@ public class Towersona : MonoBehaviour
     [HideInInspector]
     public Transform firePoint;
     [HideInInspector]
-    public TowersonaNeeds towersonaNeeds;    
+    public TowersonaNeeds towersonaNeeds;
+    [HideInInspector]
+    public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1;
 
     [Header("Parameters")]
     public int cost = 45;
@@ -26,19 +30,21 @@ public class Towersona : MonoBehaviour
     [SerializeField]
     private Transform[] partsToRotate;    
 
-    private TowersController towersController;
+    private BuildManager towersController;
     private World world;
     private GameManager gameManager;
+    private MeshFilter meshFilter;
 
     private void Awake()
     {
         //References
         GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
 
-        towersController = gm.GetComponent<TowersController>();
+        towersController = gm.GetComponent<BuildManager>();
         gameManager = gm.GetComponent<GameManager>();
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
 
+        meshFilter = GetComponentInChildren<MeshFilter>();
         firePoint = transform.Find("FirePoint");
 
         //Spawn towersona needs sceene and save a reference
@@ -52,11 +58,17 @@ public class Towersona : MonoBehaviour
     {
         //TODO: Upgrading
         print("Upgrading =^.^=");
+        SwitchModel(lowpolyModels[1]);
+        detailedTowersonaView.Upgrade(highpolyModels[1]);
+
+        towersonaLevel = TowersonaLevel.LVL2;
     }
 
-    public void Evolve()
+    public void Evolve(int evolution)
     {
         //TODO: evolving
+        print("Evolving to evolution " + (evolution + 1));
+        //SwitchModel(lowpolyModels[evolution + 2]);
     }
 
     /// <summary>
@@ -84,8 +96,13 @@ public class Towersona : MonoBehaviour
         towersController.SelectTowersona(this);
     }
 
-    enum TowersonaLevel
+    private void SwitchModel(Mesh model)
     {
-        lvl1, lvl2, ev1, ev2
+        meshFilter.mesh = model;
+    }
+
+    public enum TowersonaLevel
+    {
+        LVL1, LVL2, LVL31, LVL32
     }
 }
