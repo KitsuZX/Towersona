@@ -9,7 +9,8 @@ public class Towersona : MonoBehaviour
     public GameObject towersonaModel;
     public Mesh[] lowpolyModels;
     public Mesh[] highpolyModels;
-    
+    public AttackPattern pattern;
+
     [HideInInspector]
     public Tile tile;   
     [HideInInspector]
@@ -34,6 +35,7 @@ public class Towersona : MonoBehaviour
     private World world;
     private GameManager gameManager;
     private MeshFilter meshFilter;
+   
 
     private void Awake()
     {

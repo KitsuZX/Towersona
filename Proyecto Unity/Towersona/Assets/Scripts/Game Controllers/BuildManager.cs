@@ -182,4 +182,24 @@ public class BuildManager : MonoBehaviour
         GameObject effect = Instantiate(_effect, position, Quaternion.identity);
         Destroy(effect, 5f);
     }
+
+    private void OnGUI()
+    {
+       
+        if (towersonaSelected != null)
+        {
+            GUIStyle style = new GUIStyle();
+            style.fontSize = 32;
+            style.fontStyle = FontStyle.Bold;
+
+            string message = "";
+            message += "Fuerza: " + towersonaSelected.pattern.currentAttackStrength + "\n";
+            message += "V. Ataque: " + towersonaSelected.pattern.currentAttackSpeed + "\n";
+            message += "Rango: " + towersonaSelected.pattern.currentAttackRange + "\n";
+            message += "V. Bala: " + towersonaSelected.pattern.currentBulletSpeed + "\n";
+
+            GUI.Label(new Rect(Screen.width * 0.66f + 110, 200, 120, 100), message, style);
+        }
+
+    }
 }

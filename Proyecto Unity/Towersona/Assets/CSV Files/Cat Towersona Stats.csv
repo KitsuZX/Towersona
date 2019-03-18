@@ -1,0 +1,5 @@
+﻿LVL 1;MIN;MAX;;LVL 2;MIN;MAX;;LVL 3-1;MIN ;MAX;;LVL 3-2;MIN ;MAX
+Fuerza;0,5;10;;Fuerza;0,5;10;;Fuerza;0,5;10;;Fuerza;0,5;10
+V.Ataque;0,25;2;;V.Ataque;0,25;2;;V.Ataque;0,25;2;;V.Ataque;0,25;2
+Rango;1;5;;Rango;1;5;;Rango;1;5;;Rango;1;5
+V.Bala;2;10;;V.Bala;2;10;;V.Bala;2;10;;V.Bala;2;10

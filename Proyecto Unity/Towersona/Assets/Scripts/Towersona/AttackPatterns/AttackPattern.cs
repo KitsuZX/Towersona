@@ -4,42 +4,35 @@ using UnityEditor;
 using UnityEngine;
 
 public abstract class AttackPattern : MonoBehaviour
-{
-    [Header("Attacking parameters -> Min, Max")]
-    [SerializeField][Tooltip("Min, Max")]
-    private Vector2 attackStrength = new Vector2(0.5f, 10f);
-    [SerializeField][Tooltip("Min, Max")]
-    private Vector2 attackSpeed = new Vector2(0.25f, 2f);
-    [SerializeField][Tooltip("Min, Max")]
-    private Vector2 attackRange = new Vector2(1f, 5);
-    [SerializeField][Tooltip("Min, Max")]
-    private Vector2 bulletSpeed = new Vector2(2f, 10f);
-
+{ 
     [Header("References")][SerializeField]
     protected GameObject bulletPrefab;
     
-    protected float currentAttackStrength;
-    protected float currentAttackSpeed;
-    protected float currentAttackRange;
-    protected float currentBulletSpeed;
+    public float currentAttackStrength;
+    public float currentAttackSpeed;
+    public float currentAttackRange;
+    public float currentBulletSpeed;
 
     [HideInInspector]
     public Transform target;
 
     protected Towersona towersona;
+    protected TowersonaStats stats;
     protected TowersonaLODAnimation animations;
 
     private float fireCountdown = 1f;   
 
     private void Awake()
     {
+        stats = new TowersonaStats(towersona);
+
         towersona = GetComponent<Towersona>();
         animations = GetComponent<TowersonaLODAnimation>();
 
-        currentAttackStrength = attackStrength.y;
-        currentAttackSpeed = attackSpeed.y;      
-        currentAttackRange = attackRange.y;
-        currentBulletSpeed = bulletSpeed.y;
+        currentAttackStrength = stats.attackStrength.y;
+        currentAttackSpeed = stats.attackSpeed.y;      
+        currentAttackRange = stats.attackRange.y;
+        currentBulletSpeed = stats.bulletSpeed.y;
 
         InvokeRepeating("UpdateStats", 0f, 1f);
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -54,16 +47,19 @@ public abstract class AttackPattern : MonoBehaviour
 
     private void UpdateStats()
     {
-        currentAttackStrength = Mathf.Lerp(attackStrength.x, attackStrength.y, towersona.towersonaNeeds.HappinessLevel);
-        currentAttackSpeed = Mathf.Lerp(attackSpeed.x, attackSpeed.y, towersona.towersonaNeeds.HappinessLevel);
-        currentAttackRange = Mathf.Lerp(attackRange.x, attackRange.y, towersona.towersonaNeeds.HappinessLevel);
-        currentBulletSpeed = Mathf.Lerp(bulletSpeed.x, bulletSpeed.y, towersona.towersonaNeeds.HappinessLevel);
+        currentAttackStrength = Mathf.Lerp(stats.attackStrength.x, stats.attackStrength.y, towersona.towersonaNeeds.HappinessLevel);
+        currentAttackSpeed = Mathf.Lerp(stats.attackSpeed.x, stats.attackSpeed.y, towersona.towersonaNeeds.HappinessLevel);
+        currentAttackRange = Mathf.Lerp(stats.attackRange.x, stats.attackRange.y, towersona.towersonaNeeds.HappinessLevel);
+        currentBulletSpeed = Mathf.Lerp(stats.bulletSpeed.x, stats.bulletSpeed.y, towersona.towersonaNeeds.HappinessLevel);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(towersona.transform.position, currentAttackRange);
+        /*if (EditorApplication.isPlaying)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(towersona.transform.position, stats.attackRange.y);
+        }*/
     }
 
     private void CheckAnimations()
@@ -90,7 +86,7 @@ public abstract class AttackPattern : MonoBehaviour
     }
 
     public abstract void Shoot(Transform target);
-    public abstract void UpdateTarget();
+    public abstract void UpdateTarget();  
 
 }
 
