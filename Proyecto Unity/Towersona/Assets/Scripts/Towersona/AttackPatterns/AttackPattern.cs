@@ -17,22 +17,19 @@ public abstract class AttackPattern : MonoBehaviour
     public Transform target;
 
     protected Towersona towersona;
-    protected TowersonaStats stats;
     protected TowersonaLODAnimation animations;
 
     private float fireCountdown = 1f;   
 
     private void Awake()
-    {
-        stats = new TowersonaStats(towersona);
-
+    {    
         towersona = GetComponent<Towersona>();
         animations = GetComponent<TowersonaLODAnimation>();
 
-        currentAttackStrength = stats.attackStrength.y;
-        currentAttackSpeed = stats.attackSpeed.y;      
-        currentAttackRange = stats.attackRange.y;
-        currentBulletSpeed = stats.bulletSpeed.y;
+        currentAttackStrength = towersona.stats.attackStrength.y;
+        currentAttackSpeed = towersona.stats.attackSpeed.y;      
+        currentAttackRange = towersona.stats.attackRange.y;
+        currentBulletSpeed = towersona.stats.bulletSpeed.y;
 
         InvokeRepeating("UpdateStats", 0f, 1f);
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -47,10 +44,10 @@ public abstract class AttackPattern : MonoBehaviour
 
     private void UpdateStats()
     {
-        currentAttackStrength = Mathf.Lerp(stats.attackStrength.x, stats.attackStrength.y, towersona.towersonaNeeds.HappinessLevel);
-        currentAttackSpeed = Mathf.Lerp(stats.attackSpeed.x, stats.attackSpeed.y, towersona.towersonaNeeds.HappinessLevel);
-        currentAttackRange = Mathf.Lerp(stats.attackRange.x, stats.attackRange.y, towersona.towersonaNeeds.HappinessLevel);
-        currentBulletSpeed = Mathf.Lerp(stats.bulletSpeed.x, stats.bulletSpeed.y, towersona.towersonaNeeds.HappinessLevel);
+        currentAttackStrength = Mathf.Lerp(towersona.stats.attackStrength.x, towersona.stats.attackStrength.y, towersona.towersonaNeeds.HappinessLevel);
+        currentAttackSpeed = Mathf.Lerp(towersona.stats.attackSpeed.x, towersona.stats.attackSpeed.y, towersona.towersonaNeeds.HappinessLevel);
+        currentAttackRange = Mathf.Lerp(towersona.stats.attackRange.x, towersona.stats.attackRange.y, towersona.towersonaNeeds.HappinessLevel);
+        currentBulletSpeed = Mathf.Lerp(towersona.stats.bulletSpeed.x, towersona.stats.bulletSpeed.y, towersona.towersonaNeeds.HappinessLevel);
     }
 
     private void OnDrawGizmos()

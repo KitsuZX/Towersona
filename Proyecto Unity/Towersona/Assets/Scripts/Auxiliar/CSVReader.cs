@@ -5,7 +5,7 @@ using System.IO;
 
 public class CSVReader
 {
-   public static void ReadCSV(string file)
+   public static List<float> ReadTowersonaCSV(string file, int state)
    {
         //Getting path        
         string path = getLocalPath() + "/CSV Files/" + file;
@@ -23,28 +23,30 @@ public class CSVReader
             string[] rows = data_String.Split(new char[] { '\n' });
             List<float> data = new List<float>();
 
-            int numRows = 0, numCols = 0;
             int startingRow = 1;
             int startingCol = 1;
 
-            for (/*ROWS*/int i = 1; i <= 4; i++)
+            for (/*ROWS*/int i = startingRow; i <= 11; i++)
             {           
                 string[] row = rows[i].Split(new char[] { ';', '/'});
 
                 //Saca los valores de las celdas de una fila
-                for (/*COLS*/int j = startingCol; j <= 2; j++)
+                for (/*COLS*/int j = startingCol + (state * 4); j <= 2; j++)
                 {                
                     float f;
                     float.TryParse(row[j], out f);
-                    data.Add(f);
+                    if (f != 0) data.Add(f);
 
                     //TODO: leer solo las partes que interesen
                 }            
             }
 
             //TODO: hacer lo que se quiera con DATA
-            Debug.Log(data);
-            
+            return data;
+        }
+        else
+        {
+            return null;
         }
     }
 

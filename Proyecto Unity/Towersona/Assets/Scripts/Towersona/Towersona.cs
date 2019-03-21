@@ -21,6 +21,8 @@ public class Towersona : MonoBehaviour
     public TowersonaNeeds towersonaNeeds;
     [HideInInspector]
     public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1;
+    [HideInInspector]
+    public TowersonaStats stats;
 
     [Header("Parameters")]
     public int cost = 45;
@@ -48,6 +50,8 @@ public class Towersona : MonoBehaviour
 
         meshFilter = GetComponentInChildren<MeshFilter>();
         firePoint = transform.Find("FirePoint");
+
+        stats = new TowersonaStats(this);
 
         //Spawn towersona needs sceene and save a reference
         detailedTowersonaView = towersController.SpawnDetailedTowersonaView(this);
