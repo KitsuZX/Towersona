@@ -1,24 +1,24 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-[RequireComponent(typeof(AttackPattern), typeof(TowersonaLODAnimation), typeof(NotificationsManager))]
 public class Towersona : MonoBehaviour
 {
-    [Header("References")]
-    public GameObject towersonaModel;
+    [Header("References")]   
+    public GameObject towersonaLODPrefab;
+    public GameObject towersonaHODPrefab;
+
+    [Header("Models")]
     public Mesh[] lowpolyModels;
     public Mesh[] highpolyModels;
-    public AttackPattern pattern;
 
     [HideInInspector]
     public Tile tile;   
     [HideInInspector]
-    public DetailedTowersonaView detailedTowersonaView;
+    public TowersonaHOD towersonaHOD;
     [HideInInspector]
-    public Transform firePoint;
+    public TowersonaLOD towersonaLOD;
     [HideInInspector]
-    public TowersonaNeeds towersonaNeeds;
+    public TowersonaNeeds towersonaNeeds;   
+
     [HideInInspector]
     public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1;
     [HideInInspector]
@@ -26,46 +26,31 @@ public class Towersona : MonoBehaviour
 
     [Header("Parameters")]
     public int cost = 45;
-
-    [Header("Transform parameters")]   
-    [SerializeField]
-    private float turnSpeed = 1f;
-    [SerializeField]
-    private Transform[] partsToRotate;    
-
-    private BuildManager towersController;
+    
     private World world;
-    private GameManager gameManager;
-    private MeshFilter meshFilter;
-   
 
-    private void Awake()
+    public void Spawn(Transform towersonaLODTile, string name)
     {
-        //References
-        GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
-
-        towersController = gm.GetComponent<BuildManager>();
-        gameManager = gm.GetComponent<GameManager>();
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
-
-        meshFilter = GetComponentInChildren<MeshFilter>();
-        firePoint = transform.Find("FirePoint");
 
         stats = new TowersonaStats(this);
 
-        //Spawn towersona needs sceene and save a reference
-        detailedTowersonaView = towersController.SpawnDetailedTowersonaView(this);
-        towersonaNeeds = detailedTowersonaView.GetComponentInChildren<TowersonaNeeds>();
+        Transform parent = new GameObject().transform;
+        parent.name = name;
+        //Spawn towersona LOD
+        towersonaLOD = SpawnTowersonaLOD(parent, towersonaLODTile);
 
-        GetComponent<AudioSource>().Play();
+        //Spawn towersona HOD
+        towersonaHOD = SpawnTowersonaHOD(parent);
+        towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
     }
 
     public void Upgrade()
     {
         //TODO: Upgrading
         print("Upgrading =^.^=");
-        SwitchModel(lowpolyModels[1]);
-        detailedTowersonaView.Upgrade(highpolyModels[1]);
+        towersonaLOD.SwitchModel(lowpolyModels[1]);
+        towersonaHOD.Upgrade(highpolyModels[1]);
 
         towersonaLevel = TowersonaLevel.LVL2;
     }
@@ -75,36 +60,46 @@ public class Towersona : MonoBehaviour
         //TODO: evolving
         print("Evolving to evolution " + (evolution + 1));
         //SwitchModel(lowpolyModels[evolution + 2]);
-    }
+    } 
 
-    /// <summary>
-    /// Rotates the model to look to a given target
-    /// </summary>
-    public void LockOnTarget(Transform target)
-    {
-        if (target != null)
-        {
-            Vector3 dir = target.position - transform.position;
-            Quaternion lookRotation = Quaternion.LookRotation(dir);
-            for (int i = 0; i < partsToRotate.Length; i++)
-            {
-                Vector3 rotation = Quaternion.Lerp(partsToRotate[i].rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-                partsToRotate[i].rotation = Quaternion.Euler(0f, rotation.y, 0f);
-            }
-        }
-    }    
-
-    private void OnMouseUpAsButton()
-    {
-        gameManager.ChangeCamera(detailedTowersonaView.GetComponentInChildren<Camera>());
+    public void TowersonaLODTouched()
+    {        
+        GameManager.Instance.ChangeCamera(towersonaHOD.GetComponentInChildren<Camera>());
         world.SelectTile(tile);
 
-        towersController.SelectTowersona(this);
+        BuildManager.Instance.SelectTowersona(this);
     }
 
-    private void SwitchModel(Mesh model)
+    private TowersonaLOD SpawnTowersonaLOD(Transform parent, Transform tile)
     {
-        meshFilter.mesh = model;
+        GameObject towersonaObject = Instantiate(towersonaLODPrefab, tile.transform.position, Quaternion.Euler(0f, 180f, 0f));
+        towersonaObject.GetComponentInChildren<MeshFilter>().mesh = lowpolyModels[0];
+        towersonaObject.transform.SetParent(parent, true);
+
+        TowersonaLOD towersonaLOD = towersonaObject.GetComponent<TowersonaLOD>();
+        towersonaLOD.towersona = this;
+
+        return towersonaLOD;
+    }
+
+    private TowersonaHOD SpawnTowersonaHOD(Transform parent)
+    {
+        Vector3 buildingPosition = new Vector3(BuildManager.Instance.lastXUsed, 0f, 50f); 
+
+        GameObject towersonaHODObject = Instantiate(BuildManager.Instance.detailedTowersonaViewPrefab, buildingPosition, Quaternion.identity);
+        TowersonaHOD towersonaHOD = towersonaHODObject.GetComponent<TowersonaHOD>();
+        towersonaHODObject.transform.SetParent(parent, true);
+
+
+        Camera camera = towersonaHOD.transform.GetComponentInChildren<Camera>();
+        GameManager.Instance.ChangeCamera(camera);
+
+        TowersonaNeeds tsn = towersonaHOD.SpawnTowersonaHOD(this, towersonaHODPrefab);
+        tsn.name = parent.gameObject.name + " needs";
+
+        BuildManager.Instance.lastXUsed += 15f;
+
+        return towersonaHOD;
     }
 
     public enum TowersonaLevel

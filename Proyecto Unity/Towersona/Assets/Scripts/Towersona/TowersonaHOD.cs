@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DetailedTowersonaView : MonoBehaviour
+public class TowersonaHOD : MonoBehaviour
 {
     public Slider slider;
     public GameObject overHappiness;
@@ -24,26 +24,33 @@ public class DetailedTowersonaView : MonoBehaviour
         cam = GetComponentInChildren<Camera>();
     }
 
-    public TowersonaNeeds SpawnTowersonaNeeds(Towersona towersona)
+    /// <summary>
+    /// Spawns the model in the Towersona Detailed Scene. The Detailed scene must have been alredy created.
+    /// </summary>   
+    public TowersonaNeeds SpawnTowersonaHOD(Towersona towersona, GameObject towersonaHODPrefab)
     {
         /*
          * Código temporal (espero), simplemente va asignando las variables necesarias que necesitan los distintos scripts que hizo Aitor
          * para poder distintos modelos dentro de un DetailedTowersonaView
         */
 
-        GameObject model = Instantiate(towersona.towersonaModel);
-        model.transform.SetParent(transform, false);
+        GameObject model = Instantiate(towersonaHODPrefab);
+        model.transform.SetParent(transform, false);        
+
         TowersonaNeeds needs = model.GetComponent<TowersonaNeeds>();
 
         this.towersona = towersona;
 
         meshFilter = model.GetComponentInChildren<MeshFilter>();
+        meshFilter.mesh = towersona.highpolyModels[0];
 
         needs.happinessSlider = slider;
         needs.overHappiness = overHappiness;
 
         towersonaNeeds = needs;
         towersonaAnim = model.GetComponent<TowersonaAnimation>();
+
+        //TODO: Descomentar esta wea
         //towersonaAnim.lookAway.camera = cam;
 
         ShitNeed shitNeed = model.GetComponent<ShitNeed>();

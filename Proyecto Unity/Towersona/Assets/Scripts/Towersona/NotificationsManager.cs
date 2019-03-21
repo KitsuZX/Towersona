@@ -21,8 +21,10 @@ public class NotificationsManager : MonoBehaviour
 
     void Update()
     {
+        //TODO: NOTIFICATIONS
+
         //Check for needs
-        TowersonaNeeds.NeedType needType = towersona.towersonaNeeds.CheckIfShouldNotifyNeed();
+        /*TowersonaNeeds.NeedType needType = towersona.towersonaNeeds.CheckIfShouldNotifyNeed();
 
         if (needType != TowersonaNeeds.NeedType.None && !isNotifying)
         {
@@ -43,7 +45,7 @@ public class NotificationsManager : MonoBehaviour
         }
 
 
-        prevNeedType = needType;
+        prevNeedType = needType;*/
     }
 
     private void CreateNotification(TowersonaNeeds.NeedType needType)

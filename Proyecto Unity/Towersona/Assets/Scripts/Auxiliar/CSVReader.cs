@@ -39,9 +39,7 @@ public class CSVReader
 
                     //TODO: leer solo las partes que interesen
                 }            
-            }
-
-            //TODO: hacer lo que se quiera con DATA
+            }        
             return data;
         }
         else

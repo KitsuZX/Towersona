@@ -18,11 +18,11 @@ public class FoodDispenser : MonoBehaviour
 
     [SerializeField]
     private Food foodPrefab = null;
-    private DetailedTowersonaView detailedTowersonaView;    
+    private TowersonaHOD detailedTowersonaView;    
 
     private void Awake()
     {
-        detailedTowersonaView = transform.parent.gameObject.GetComponent<DetailedTowersonaView>();
+        detailedTowersonaView = transform.parent.gameObject.GetComponent<TowersonaHOD>();
     }
 
     private void Start()

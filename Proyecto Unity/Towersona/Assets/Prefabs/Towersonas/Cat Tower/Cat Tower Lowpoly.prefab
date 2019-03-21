@@ -119,7 +119,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7081004210300108719}
-  - component: {fileID: 7194669246931065567}
+  - component: {fileID: 3219872535607788348}
   - component: {fileID: 6535149117010872996}
   - component: {fileID: 6703089924739425893}
   - component: {fileID: 9202062087551758737}
@@ -148,7 +148,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7194669246931065567
+--- !u!114 &3219872535607788348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -157,29 +157,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2407868818723468261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
+  m_Script: {fileID: 11500000, guid: e8ff523b75fece6479cc6a414ddd090f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towersonaModel: {fileID: 5139840167273293286, guid: c72a49c5981014d4aa20c376907decb4,
-    type: 3}
-  lowpolyModels:
-  - {fileID: 4300000, guid: 2fd883eec8158f042a111b3e47307ea1, type: 3}
-  - {fileID: 4300000, guid: da186831992da23498a5f50cfc631f88, type: 3}
-  - {fileID: 4300000, guid: 54399560b2348e74e8b794aea41bf8ee, type: 3}
-  - {fileID: 4300000, guid: c6ce22790d0f2584688a40d86603094d, type: 3}
-  highpolyModels:
-  - {fileID: 4300000, guid: 3a33d8f1e15ba3247b088ba9e63d423d, type: 3}
-  - {fileID: 4300000, guid: 6c7c02123e8c9614fa1d77a41039a51a, type: 3}
-  - {fileID: 4300000, guid: 54399560b2348e74e8b794aea41bf8ee, type: 3}
-  - {fileID: 4300000, guid: c6ce22790d0f2584688a40d86603094d, type: 3}
-  pattern: {fileID: 6535149117010872996}
-  tile: {fileID: 0}
-  detailedTowersonaView: {fileID: 0}
-  firePoint: {fileID: 6175043574671929610}
-  towersonaNeeds: {fileID: 0}
-  towersonaLevel: 0
-  cost: 45
-  turnSpeed: 10
+  towersona: {fileID: 0}
+  firePoint: {fileID: 0}
+  turnSpeed: 1
   partsToRotate:
   - {fileID: 8860360051836863022}
 --- !u!114 &6535149117010872996
@@ -196,6 +179,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,
     type: 3}
+  currentAttackStrength: 0
+  currentAttackSpeed: 0
+  currentAttackRange: 0
+  currentBulletSpeed: 0
   target: {fileID: 0}
 --- !u!114 &6703089924739425893
 MonoBehaviour:

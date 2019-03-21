@@ -6,6 +6,10 @@ using UnityEngine.UI;
 
 public class BuildManager : MonoBehaviour
 {   
+    public static BuildManager Instance { get; private set; }
+  
+    public GameObject detailedTowersonaViewPrefab;
+
     [HideInInspector]
     public List<Towersona> towersonas;
     [HideInInspector]
@@ -17,6 +21,8 @@ public class BuildManager : MonoBehaviour
     /// </summary>s
     [HideInInspector]
     public bool maxReached = false;
+    [HideInInspector]
+    public float lastXUsed = 0f;
 
     [Header("Parameters")]  
     public float timeBetweenTowersonas = 40f;
@@ -24,15 +30,14 @@ public class BuildManager : MonoBehaviour
     [Header("References")]
     [SerializeField]
     private GameObject[] towersonaPrefabs;
-    [SerializeField]
-    private GameObject detailedTowersonaViewPrefab;
+  
     [SerializeField]
     private NodeUI nodeUI;
     [SerializeField]
     private GameObject buildEffect;
 
     //Private parameters
-    private float lastXUsed = 0f;
+ 
     private Stack<Color> towersonaColors;
     private GameObject towersonaToBuild;
     private Towersona towersonaSelected;
@@ -42,7 +47,10 @@ public class BuildManager : MonoBehaviour
     private World world;
 
     void Awake()
-    {   
+    {
+        if (!Instance) Instance = this;
+        else Destroy(this);
+
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
 
         gameManager = GetComponent<GameManager>();
@@ -95,45 +103,17 @@ public class BuildManager : MonoBehaviour
     {
         if (towersonaToBuild)
         {
-         
-            Towersona towersona = Instantiate(towersonaToBuild, tile.transform.position, Quaternion.Euler(0f, 180f, 0f)).GetComponent<Towersona>();   
-            towersona.tile = tile;
-            //towersona.ChangeColor();
+            towersonaToBuild.GetComponent<Towersona>().Spawn(tile.transform, towersonaToBuild.name);
+            SpawnEffect(buildEffect, tile.transform.position);
 
-            world.SelectTile(tile);
-            towersonas.Add(towersona);
+            world.SelectTile(tile);         
             towerAvaible = false;
 
-            SpawnEffect(buildEffect, towersona.transform.position);
-
-
             towersonaToBuild = null;
+
+
         }
-    }
-
-    /// <summary>
-    /// Creates a new Detailed Towersona view.
-    /// </summary>
-    /// <param name="towersona">Towersona whose scene is to be created</param>
-    /// <returns>Reference to the new Detailed Towersona view</returns>
-    public DetailedTowersonaView SpawnDetailedTowersonaView(Towersona towersona)
-    {        
-        Vector3 position = Vector3.zero;
-        position.x = lastXUsed;
-        position.z = 50f;
-
-        GameObject towersonaNeedsScene = Instantiate(detailedTowersonaViewPrefab, position, Quaternion.identity);
-        DetailedTowersonaView detailedTowersonaView = towersonaNeedsScene.GetComponent<DetailedTowersonaView>();
-        Camera detailedTowersonaCamera = detailedTowersonaView.transform.GetComponentInChildren<Camera>();
-        gameManager.ChangeCamera(detailedTowersonaCamera);
-
-        TowersonaNeeds tsn = detailedTowersonaView.SpawnTowersonaNeeds(towersona);
-        tsn.name = "Towersona need";
-
-        lastXUsed += 15f;      
-  
-        return detailedTowersonaView;
-    }
+    }    
 
     public void SelectTowersonaToBuild(Towersona _towersona)
     {
@@ -192,13 +172,17 @@ public class BuildManager : MonoBehaviour
             style.fontSize = 32;
             style.fontStyle = FontStyle.Bold;
 
+            AttackPattern pattern = towersonaSelected.towersonaLOD.pattern;
+
             string message = "";
-            message += "Fuerza: " + towersonaSelected.pattern.currentAttackStrength + "\n";
-            message += "V. Ataque: " + towersonaSelected.pattern.currentAttackSpeed + "\n";
-            message += "Rango: " + towersonaSelected.pattern.currentAttackRange + "\n";
-            message += "V. Bala: " + towersonaSelected.pattern.currentBulletSpeed + "\n";
+            message += "Fuerza: " + pattern.currentAttackStrength + "\n";
+            message += "V. Ataque: " + pattern.currentAttackSpeed + "\n";
+            message += "Rango: " + pattern.currentAttackRange + "\n";
+            message += "V. Bala: " + pattern.currentBulletSpeed + "\n";
 
             GUI.Label(new Rect(Screen.width * 0.66f + 110, 200, 120, 100), message, style);
+
+            Destroy(pattern);
         }
 
     }

@@ -7,7 +7,7 @@ public class RegularAttack : AttackPattern
   
     public override void Shoot(Transform target)
     {
-        GameObject bulletGO = Instantiate(bulletPrefab, towersona.firePoint.position, towersona.firePoint.rotation);
+        GameObject bulletGO = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
         bullet.damage = currentAttackStrength;
         bullet.speed = currentBulletSpeed;
