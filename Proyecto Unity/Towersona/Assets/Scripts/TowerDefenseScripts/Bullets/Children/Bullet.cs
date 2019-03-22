@@ -10,10 +10,9 @@ public class Bullet : Shooting
 
         Vector3 pos = transform.position;
 
-        pos.y += 1f;
+        pos.y += 1f;   
 
-        GameObject effectIns = Instantiate(impactEffect, pos, transform.rotation);
-        Destroy(effectIns, 2f);
+        BuildManager.Instance.SpawnEffect(impactEffect, pos);
 
         CameraShake.Instance.AddTrauma(0.2f);
 

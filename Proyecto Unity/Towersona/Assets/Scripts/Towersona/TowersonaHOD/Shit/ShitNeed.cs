@@ -5,24 +5,18 @@ using UnityEngine.Events;
 
 public class ShitNeed : MonoBehaviour
 {
-    #region Inspector
-    [Header("Happiness impact")]
-    [SerializeField][Range(0, 1)]
-    private float happinessImpactPerShit = 0.4f;
+    public UnityEvent OnTakenAShit;
 
-    [Header("Shitting")]
-    [SerializeField][Tooltip("In seconds")]
+    [Header("Shitting")] 
     private float shittingInterval = 20f;
     [SerializeField]
-    private Shit shitPrefab = null;
-    [SerializeField]
-    private int maxShitCount = 4;
+    private Shit shitPrefab = null;   
 
     [HideInInspector]
-    public Transform[] shitSpawnPositions;
+    public Transform[] shitSpawnPositions; 
 
-    public UnityEvent OnTakenAShit;    
-    #endregion
+    private int maxShitCount = 4;
+    private float happinessImpactPerShit = 0.4f;
 
     public float Level
     {
@@ -35,6 +29,25 @@ public class ShitNeed : MonoBehaviour
 
     private List<Shit> shits;
     private float timeSinceLastShit;
+    private TowersonaStats stats;
+
+    private void Awake()
+    {
+        shits = new List<Shit>();
+    }
+
+    private void Start()
+    {     
+        stats = GetComponentInParent<TowersonaHOD>().towersona.stats;
+        AssignStats();
+    }
+
+    private void AssignStats()
+    {
+        happinessImpactPerShit = stats.happinessImpactPerShit;
+        shittingInterval = stats.shittingInterval;
+        maxShitCount = stats.maxShitCount;
+    }
 
     public void CleanAllShit()
     {
@@ -84,11 +97,5 @@ public class ShitNeed : MonoBehaviour
             if (shits[i] == null) shits.RemoveAt(i);
         }
     }
-    #region Initialization
-    private void Awake()
-    {
-        shits = new List<Shit>();
-    }
-    #endregion
 }
 

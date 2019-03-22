@@ -29,16 +29,20 @@ public class Towersona : MonoBehaviour
     
     private World world;
 
-    public void Spawn(Transform towersonaLODTile, string name)
+    public void Spawn(Tile _tile, string name)
     {
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
 
         stats = new TowersonaStats(this);
 
         Transform parent = new GameObject().transform;
+        parent.SetParent(GameObject.FindGameObjectWithTag("Towersonas Parent").transform, true);
         parent.name = name;
+
+        tile = _tile; 
+
         //Spawn towersona LOD
-        towersonaLOD = SpawnTowersonaLOD(parent, towersonaLODTile);
+        towersonaLOD = SpawnTowersonaLOD(parent, _tile.transform);
 
         //Spawn towersona HOD
         towersonaHOD = SpawnTowersonaHOD(parent);
@@ -75,6 +79,7 @@ public class Towersona : MonoBehaviour
         GameObject towersonaObject = Instantiate(towersonaLODPrefab, tile.transform.position, Quaternion.Euler(0f, 180f, 0f));
         towersonaObject.GetComponentInChildren<MeshFilter>().mesh = lowpolyModels[0];
         towersonaObject.transform.SetParent(parent, true);
+        towersonaObject.name = gameObject.name + " LOD";
 
         TowersonaLOD towersonaLOD = towersonaObject.GetComponent<TowersonaLOD>();
         towersonaLOD.towersona = this;
@@ -87,6 +92,8 @@ public class Towersona : MonoBehaviour
         Vector3 buildingPosition = new Vector3(BuildManager.Instance.lastXUsed, 0f, 50f); 
 
         GameObject towersonaHODObject = Instantiate(BuildManager.Instance.detailedTowersonaViewPrefab, buildingPosition, Quaternion.identity);
+        towersonaHODObject.name = gameObject.name + " HOD";
+
         TowersonaHOD towersonaHOD = towersonaHODObject.GetComponent<TowersonaHOD>();
         towersonaHODObject.transform.SetParent(parent, true);
 

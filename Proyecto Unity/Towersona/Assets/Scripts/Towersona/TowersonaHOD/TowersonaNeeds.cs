@@ -9,11 +9,9 @@ public class TowersonaNeeds : MonoBehaviour
 
     [SerializeField][Range(1, 2)]
     private float happinessCap = 1.3f;
-    [Header("Decay")]
-    [SerializeField]
-    private float hungerDecayPerSecond = 0.1f;
-    [SerializeField]
-    private float loveDecayPerSecond = 0.1f;
+   
+    private float hungerDecayPerSecond = 0.05f;
+    private float loveDecayPerSecond = 0.05f;
 
     [HideInInspector]    
     public Slider happinessSlider;
@@ -28,6 +26,7 @@ public class TowersonaNeeds : MonoBehaviour
     private float hungerLevel;
     private float loveLevel;
     private ShitNeed shitNeed;
+    private TowersonaStats stats;
 
     public float HappinessLevel
     {
@@ -36,6 +35,26 @@ public class TowersonaNeeds : MonoBehaviour
             float sum = hungerLevel + loveLevel + shitNeed.Level;
             return sum / AMOUNT_OF_NEEDS;
         }
+    }  
+
+    private void Start()
+    {
+
+        shitNeed = GetComponent<ShitNeed>();
+        stats = GetComponentInParent<TowersonaHOD>().towersona.stats;
+    
+
+        AssignStats();
+
+        SetNeedLevel(NeedType.Hunger, 1);
+        SetNeedLevel(NeedType.Shit, 1);
+        SetNeedLevel(NeedType.Love, 1);
+    }
+
+    private void AssignStats()
+    {
+        hungerDecayPerSecond = stats.hungerDecayPerSecond;
+        loveDecayPerSecond = stats.loveDecayPerSecond;
     }
 
 
@@ -82,6 +101,7 @@ public class TowersonaNeeds : MonoBehaviour
     #region Need Decay
     private void Update()
     {
+        if (stats == null) return;
         DoNeedDecay();
         NeedType needToBeNotified = CheckIfShouldNotifyNeed();
 
@@ -115,6 +135,8 @@ public class TowersonaNeeds : MonoBehaviour
     /// <returns></returns>
     public NeedType CheckIfShouldNotifyNeed()
     {
+        if (stats == null) return NeedType.None;
+
         NeedType notifiedNeed = NeedType.None;
         float lowest = happinessCap;
 
@@ -137,15 +159,6 @@ public class TowersonaNeeds : MonoBehaviour
         return notifiedNeed;
     }  
     #endregion
-
-    private void Awake()
-    {
-        shitNeed = GetComponent<ShitNeed>();
-
-        SetNeedLevel(NeedType.Hunger, 1);
-        SetNeedLevel(NeedType.Shit, 1);
-        SetNeedLevel(NeedType.Love, 1);
-    }
 
     public enum NeedType
     {

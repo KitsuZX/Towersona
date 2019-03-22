@@ -99,19 +99,17 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-    public void SpawnTowersona(Tile tile)
+    public void SpawnTowersona(Tile _tile)
     {
         if (towersonaToBuild)
         {
-            towersonaToBuild.GetComponent<Towersona>().Spawn(tile.transform, towersonaToBuild.name);
-            SpawnEffect(buildEffect, tile.transform.position);
-
-            world.SelectTile(tile);         
+            towersonaToBuild.GetComponent<Towersona>().Spawn(_tile, towersonaToBuild.name);
+            SpawnEffect(buildEffect, _tile.transform.position);
+            
+            world.SelectTile(_tile);         
             towerAvaible = false;
 
             towersonaToBuild = null;
-
-
         }
     }    
 
@@ -157,15 +155,15 @@ public class BuildManager : MonoBehaviour
         DeselectTowersona();
     }
 
-    private void SpawnEffect(GameObject _effect, Vector3 position)
+    public void SpawnEffect(GameObject _effect, Vector3 position)
     {
         GameObject effect = Instantiate(_effect, position, Quaternion.identity);
+        effect.transform.SetParent(GameObject.FindGameObjectWithTag("Effects Parent").transform, true);
         Destroy(effect, 5f);
     }
 
     private void OnGUI()
-    {
-       
+    {       
         if (towersonaSelected != null)
         {
             GUIStyle style = new GUIStyle();
@@ -184,6 +182,5 @@ public class BuildManager : MonoBehaviour
 
             Destroy(pattern);
         }
-
     }
 }

@@ -14,11 +14,11 @@ public class Caressable : MonoBehaviour
     public UnityEvent OnCaressStart;
     public UnityEvent OnCaressEnd;
 
-    [SerializeField][Range(0.05f, 0.3f)]
     private float loveIncreasePerDeltaUnit = 0.1f;
 
     private TowersonaNeeds towersonaNeeds;
     private bool isBeingCaressed = false;
+    private TowersonaStats stats;
 
     private Vector2 TouchDelta
     {
@@ -57,6 +57,18 @@ public class Caressable : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        stats = GetComponentInParent<TowersonaHOD>().towersona.stats;
+        AssignStats();
+        towersonaNeeds = GetComponent<TowersonaNeeds>();
+    }
+
+    private void AssignStats()
+    {
+        loveIncreasePerDeltaUnit = stats.loveIncreasePerDeltaUnit;
+    }
+
     private void OnMouseDrag()
     {
         if (!isBeingCaressed)
@@ -82,10 +94,5 @@ public class Caressable : MonoBehaviour
     {
         isBeingCaressed = false;
         OnCaressEnd.Invoke();
-    }
-
-    private void Awake()
-    {
-        towersonaNeeds = GetComponent<TowersonaNeeds>();
     }
 }

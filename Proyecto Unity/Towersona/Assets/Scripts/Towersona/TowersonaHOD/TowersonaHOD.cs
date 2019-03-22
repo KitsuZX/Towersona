@@ -14,7 +14,7 @@ public class TowersonaHOD : MonoBehaviour
     [HideInInspector]
     public TowersonaAnimation towersonaAnim;
     [HideInInspector]
-    public TowersonaNeeds towersonaNeeds;
+    public TowersonaNeeds towersonaNeeds;    
 
     private Camera cam;
     private MeshFilter meshFilter;
@@ -35,7 +35,7 @@ public class TowersonaHOD : MonoBehaviour
         */
 
         GameObject model = Instantiate(towersonaHODPrefab);
-        model.transform.SetParent(transform, false);        
+        model.transform.SetParent(transform, false);              
 
         TowersonaNeeds needs = model.GetComponent<TowersonaNeeds>();
 

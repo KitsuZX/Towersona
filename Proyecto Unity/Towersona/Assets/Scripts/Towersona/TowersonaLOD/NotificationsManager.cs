@@ -8,23 +8,27 @@ public class NotificationsManager : MonoBehaviour
     [SerializeField]
     private GameObject notificationPrefab;
 
-    private Towersona towersona;
+    private TowersonaLOD towersonaLOD;
 
     private bool isNotifying;
     private GameObject notification;
     private TowersonaNeeds.NeedType prevNeedType;
 
-    private void Awake()
+    private TowersonaNeeds needs;
+
+    private void Start()
     {
-        towersona = GetComponent<Towersona>();
+        needs = GetComponent<TowersonaLOD>().towersona.towersonaNeeds;
     }
 
     void Update()
     {
-        //TODO: NOTIFICATIONS
+        //TODO: Cambiar sistema de notificaciones
+
+        if (needs == null) return;
 
         //Check for needs
-        /*TowersonaNeeds.NeedType needType = towersona.towersonaNeeds.CheckIfShouldNotifyNeed();
+        TowersonaNeeds.NeedType needType = needs.CheckIfShouldNotifyNeed();
 
         if (needType != TowersonaNeeds.NeedType.None && !isNotifying)
         {
@@ -44,8 +48,7 @@ public class NotificationsManager : MonoBehaviour
             }
         }
 
-
-        prevNeedType = needType;*/
+        prevNeedType = needType;
     }
 
     private void CreateNotification(TowersonaNeeds.NeedType needType)

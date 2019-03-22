@@ -54,9 +54,8 @@ public abstract class Enemy : MonoBehaviour
         Vector3 pos = transform.position;
         pos.y += 0.5f;
         if (!endPath)
-        {
-            GameObject effect = Instantiate(deathEffect, pos, Quaternion.identity);
-            Destroy(effect, 5f);
+        {            
+            BuildManager.Instance.SpawnEffect(deathEffect, pos);
         }
 
         Destroy(gameObject);
