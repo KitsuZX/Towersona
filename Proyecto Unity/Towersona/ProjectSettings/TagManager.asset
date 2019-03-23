@@ -10,6 +10,8 @@ TagManager:
   - GameManager
   - Fire Point
   - Towersonas Parent
+  - Effects Parent
+  - Bullets Parent
   layers:
   - Default
   - TransparentFX

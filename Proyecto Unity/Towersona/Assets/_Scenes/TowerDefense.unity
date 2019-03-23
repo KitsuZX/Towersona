@@ -1829,6 +1829,8 @@ Transform:
   - {fileID: 904369586}
   - {fileID: 1537323825}
   - {fileID: 1542049814}
+  - {fileID: 1119007651}
+  - {fileID: 948384591}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2011,6 +2013,36 @@ MonoBehaviour:
   - {fileID: 2800000, guid: 31bbc83353551c741b72bb94a788347d, type: 3}
   - {fileID: 2800000, guid: 3e28913344358fb408cdb3342373e537, type: 3}
   - {fileID: 2800000, guid: d3255593607456b48b1fa0bc56963e15, type: 3}
+--- !u!1 &948384590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 948384591}
+  m_Layer: 0
+  m_Name: Bullets
+  m_TagString: Bullets Parent
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &948384591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948384590}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 635150244}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &955803064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2490,6 +2522,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035200639}
   m_CullTransparentMesh: 0
+--- !u!1 &1119007650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119007651}
+  m_Layer: 0
+  m_Name: Particles Effects
+  m_TagString: Effects Parent
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1119007651
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119007650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 635150244}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1135214214
 GameObject:
   m_ObjectHideFlags: 0
@@ -3441,7 +3503,7 @@ GameObject:
   - component: {fileID: 1542049814}
   m_Layer: 0
   m_Name: Towersonas
-  m_TagString: Untagged
+  m_TagString: Towersonas Parent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
