@@ -26,7 +26,9 @@ public class WavesController : MonoBehaviour
     }
 
     private void Update()
-    {        
+    {
+        if (!DebuggingOptions.Instance.spawnEnemies) return;
+
         if(gameManager.enemiesAlive > 0)
         {
             return;
@@ -45,9 +47,9 @@ public class WavesController : MonoBehaviour
 
     private IEnumerator SpawnWave()
     {
-        gameManager.round++;      
+        PlayerStats.Instance.AddRound();      
             
-        int enemiesToSpawn = gameManager.round * 4;
+        int enemiesToSpawn = PlayerStats.Instance.round * 4;
 
         for (int i = 0; i < enemiesToSpawn; i++)
         {

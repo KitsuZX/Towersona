@@ -41,7 +41,7 @@ public class Tile : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        if (!isPath && !hasTower && towersController.towerAvaible)
+        if (!isPath && !hasTower)
         {
             hasTower = true;
             towersController.SpawnTowersona(this);

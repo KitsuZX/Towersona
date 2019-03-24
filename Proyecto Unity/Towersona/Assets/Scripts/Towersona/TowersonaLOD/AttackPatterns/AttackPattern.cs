@@ -84,7 +84,7 @@ public abstract class AttackPattern : MonoBehaviour
 
     private void CheckIfShouldShoot()
     {
-        if (fireCountdown <= 0f)
+        if (fireCountdown <= 0f && target != null)
         {
             Shoot(target);
             fireCountdown = 1f / currentAttackSpeed;

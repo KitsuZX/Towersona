@@ -7,57 +7,45 @@ using UnityEngine.UI;
 public class BuildManager : MonoBehaviour
 {   
     public static BuildManager Instance { get; private set; }
-  
-    public GameObject detailedTowersonaViewPrefab;
 
-    [HideInInspector]
-    public List<Towersona> towersonas;
-    [HideInInspector]
-    public List<TowersonaNeeds> towersonaNeeds;
-    [HideInInspector]
-    public bool towerAvaible = true;
-    /// <summary>
-    /// Max number of Towersonas has been reached
-    /// </summary>s
+    [Header("Parameters")]
+    public float timeBetweenTowersonas = 40f;
+
     [HideInInspector]
     public bool maxReached = false;
     [HideInInspector]
     public float lastXUsed = 0f;
 
-    [Header("Parameters")]  
-    public float timeBetweenTowersonas = 40f;
-
     [Header("References")]
     [SerializeField]
     private GameObject[] towersonaPrefabs;
-  
+
+    public GameObject detailedTowersonaViewPrefab;
+
     [SerializeField]
     private NodeUI nodeUI;
     [SerializeField]
     private GameObject buildEffect;
 
-    //Private parameters
- 
-    private Stack<Color> towersonaColors;
+    //Private parameters  
     private GameObject towersonaToBuild;
     private Towersona towersonaSelected;
 
     //Private references
-    private GameManager gameManager;
     private World world;
 
     void Awake()
     {
-        if (!Instance) Instance = this;
-        else Destroy(this);
+        if (!Instance)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
 
-        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
-
-        gameManager = GetComponent<GameManager>();
-       
-        towersonas = new List<Towersona>();
-
-        towersonaColors = new Stack<Color>();      
+        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();       
     }
 
     private void Update()
@@ -102,12 +90,18 @@ public class BuildManager : MonoBehaviour
     public void SpawnTowersona(Tile _tile)
     {
         if (towersonaToBuild)
-        {
-            towersonaToBuild.GetComponent<Towersona>().Spawn(_tile, towersonaToBuild.name);
+        {          
+            GameObject towersonaGameObject = Instantiate(towersonaToBuild);
+            towersonaGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("Towersonas Parent").transform, true);
+            towersonaGameObject.name = towersonaToBuild.name;
+
+            Towersona towersona = towersonaGameObject.GetComponent<Towersona>();
+            towersona.Spawn(_tile, towersonaGameObject.transform);
+            PlayerStats.Instance.SpendMoney(towersona.cost);
+
             SpawnEffect(buildEffect, _tile.transform.position);
             
-            world.SelectTile(_tile);         
-            towerAvaible = false;
+            world.SelectTile(_tile);                   
 
             towersonaToBuild = null;
         }
@@ -141,8 +135,8 @@ public class BuildManager : MonoBehaviour
 
     public void UpgradeTowersona()
     {
-        towersonaSelected.Upgrade();
-        SpawnEffect(buildEffect, towersonaSelected.transform.position);
+        towersonaSelected.LevelUp();
+        SpawnEffect(buildEffect, towersonaSelected.tile.transform.position);
 
         DeselectTowersona();     
     }

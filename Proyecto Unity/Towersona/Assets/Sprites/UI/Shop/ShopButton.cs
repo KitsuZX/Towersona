@@ -2,46 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ShopButton : MonoBehaviour
 {
-    private Image fillImg;
-    private float timeAmt;
+    public Towersona towersonaToBuild;
 
-    private BuildManager towersController;
-    private float countdownTillNewTowersona;
     private Button button;
+    private TextMeshProUGUI costText;
 
 
     private void Awake()
-    {
-        towersController = GameObject.FindGameObjectWithTag("GameManager").GetComponent<BuildManager>();
-        fillImg = transform.Find("Countdown").GetComponent<Image>();
+    {            
         button = GetComponent<Button>();
 
-        timeAmt = towersController.timeBetweenTowersonas;
-        countdownTillNewTowersona = timeAmt;
-
-        fillImg.fillAmount = 0;
+        costText = GetComponentInChildren<TextMeshProUGUI>();
+        costText.text = towersonaToBuild.cost.ToString() + '$';    
     }
 
     private void Update()
     {
-        //Towersona building    
-        if (!towersController.towerAvaible)
+        if(PlayerStats.Instance.money < towersonaToBuild.cost && DebuggingOptions.Instance.useMoney)
         {
-            countdownTillNewTowersona -= Time.deltaTime;
-            fillImg.fillAmount = countdownTillNewTowersona / timeAmt;
-
-            button.interactable = false;
-
-            if (countdownTillNewTowersona <= 0f)
-            {
-                towersController.towerAvaible = true;
-                countdownTillNewTowersona = timeAmt;
-                button.interactable = true;
-            }         
+            button.interactable = false;           
         }
-      
+        else
+        {
+            button.interactable = true;          
+        }      
+    }
+
+    public void SelectTowersona()
+    {
+        BuildManager.Instance.SelectTowersonaToBuild(towersonaToBuild);
     }
 }

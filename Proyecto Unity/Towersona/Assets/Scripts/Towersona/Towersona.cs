@@ -9,8 +9,7 @@ public class Towersona : MonoBehaviour
     [Header("Models")]
     public Mesh[] lowpolyModels;
     public Mesh[] highpolyModels;
-
-    [HideInInspector]
+    
     public Tile tile;   
     [HideInInspector]
     public TowersonaHOD towersonaHOD;
@@ -27,29 +26,24 @@ public class Towersona : MonoBehaviour
     [Header("Parameters")]
     public int cost = 45;
     
-    private World world;
+    private World world;      
 
-    public void Spawn(Tile _tile, string name)
+    public void Spawn(Tile _tile, Transform parent)
     {
         world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
 
         stats = new TowersonaStats(this);
 
-        Transform parent = new GameObject().transform;
-        parent.SetParent(GameObject.FindGameObjectWithTag("Towersonas Parent").transform, true);
-        parent.name = name;
-
-        tile = _tile; 
-
+        tile = _tile;
         //Spawn towersona LOD
-        towersonaLOD = SpawnTowersonaLOD(parent, _tile.transform);
+        towersonaLOD = SpawnTowersonaLOD(parent);
 
         //Spawn towersona HOD
         towersonaHOD = SpawnTowersonaHOD(parent);
-        towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
+        towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();        
     }
 
-    public void Upgrade()
+    public void LevelUp()
     {
         //TODO: Upgrading
         print("Upgrading =^.^=");
@@ -74,11 +68,11 @@ public class Towersona : MonoBehaviour
         BuildManager.Instance.SelectTowersona(this);
     }
 
-    private TowersonaLOD SpawnTowersonaLOD(Transform parent, Transform tile)
+    private TowersonaLOD SpawnTowersonaLOD(Transform parent)
     {
         GameObject towersonaObject = Instantiate(towersonaLODPrefab, tile.transform.position, Quaternion.Euler(0f, 180f, 0f));
         towersonaObject.GetComponentInChildren<MeshFilter>().mesh = lowpolyModels[0];
-        towersonaObject.transform.SetParent(parent, true);
+        towersonaObject.transform.SetParent(parent);
         towersonaObject.name = gameObject.name + " LOD";
 
         TowersonaLOD towersonaLOD = towersonaObject.GetComponent<TowersonaLOD>();
@@ -93,16 +87,16 @@ public class Towersona : MonoBehaviour
 
         GameObject towersonaHODObject = Instantiate(BuildManager.Instance.detailedTowersonaViewPrefab, buildingPosition, Quaternion.identity);
         towersonaHODObject.name = gameObject.name + " HOD";
+        towersonaHODObject.transform.SetParent(parent);
 
-        TowersonaHOD towersonaHOD = towersonaHODObject.GetComponent<TowersonaHOD>();
-        towersonaHODObject.transform.SetParent(parent, true);
+        TowersonaHOD towersonaHOD = towersonaHODObject.GetComponent<TowersonaHOD>();       
 
 
         Camera camera = towersonaHOD.transform.GetComponentInChildren<Camera>();
         GameManager.Instance.ChangeCamera(camera);
 
         TowersonaNeeds tsn = towersonaHOD.SpawnTowersonaHOD(this, towersonaHODPrefab);
-        tsn.name = parent.gameObject.name + " needs";
+        tsn.name = gameObject.name + " needs";
 
         BuildManager.Instance.lastXUsed += 15f;
 

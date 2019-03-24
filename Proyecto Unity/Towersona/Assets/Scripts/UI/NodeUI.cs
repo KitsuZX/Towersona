@@ -20,7 +20,7 @@ public class NodeUI : MonoBehaviour
     {
         target = towersona;
 
-        transform.position = towersona.transform.position;
+        transform.position = towersona.towersonaLOD.transform.position;
 
         UI.SetActive(true);
 
