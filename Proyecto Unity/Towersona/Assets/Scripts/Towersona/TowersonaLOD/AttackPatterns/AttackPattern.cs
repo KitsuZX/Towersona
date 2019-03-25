@@ -6,13 +6,8 @@ using UnityEngine;
 public abstract class AttackPattern : MonoBehaviour
 { 
     [Header("References")][SerializeField]
-    protected GameObject bulletPrefab;
-    
-    public float currentAttackStrength;
-    public float currentAttackSpeed;
-    public float currentAttackRange;
-    public float currentBulletSpeed;
-
+    protected GameObject bulletPrefab;  
+  
     [HideInInspector]
     public Transform target;
 
@@ -20,7 +15,7 @@ public abstract class AttackPattern : MonoBehaviour
     protected TowersonaLODAnimation animations;
 
     private TowersonaNeeds needs;
-    private TowersonaStats stats;
+    protected TowersonaStats stats;
 
     private float fireCountdown = 1f;   
 
@@ -33,12 +28,7 @@ public abstract class AttackPattern : MonoBehaviour
     private void Start()
     {
         stats = towersonaLOD.towersona.stats;
-        needs = towersonaLOD.towersona.towersonaNeeds;
-
-        currentAttackStrength = stats.attackStrength.y;
-        currentAttackSpeed = stats.attackSpeed.y;
-        currentAttackRange = stats.attackRange.y;
-        currentBulletSpeed = stats.bulletSpeed.y;
+        needs = towersonaLOD.towersona.towersonaNeeds;     
 
         InvokeRepeating("UpdateStats", 0f, 1f);
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -55,10 +45,7 @@ public abstract class AttackPattern : MonoBehaviour
 
     private void UpdateStats()
     {
-        currentAttackStrength = Mathf.Lerp(stats.attackStrength.x, stats.attackStrength.y, needs.HappinessLevel);
-        currentAttackSpeed = Mathf.Lerp(stats.attackSpeed.x, stats.attackSpeed.y, needs.HappinessLevel);
-        currentAttackRange = Mathf.Lerp(stats.attackRange.x, stats.attackRange.y, needs.HappinessLevel);
-        currentBulletSpeed = Mathf.Lerp(stats.bulletSpeed.x, stats.bulletSpeed.y, needs.HappinessLevel);
+        stats.UpdateStats();
     }
 
     private void OnDrawGizmos()
@@ -87,7 +74,7 @@ public abstract class AttackPattern : MonoBehaviour
         if (fireCountdown <= 0f && target != null)
         {
             Shoot(target);
-            fireCountdown = 1f / currentAttackSpeed;
+            fireCountdown = 1f / stats.currentAttackSpeed;
         }
 
         fireCountdown -= Time.deltaTime;

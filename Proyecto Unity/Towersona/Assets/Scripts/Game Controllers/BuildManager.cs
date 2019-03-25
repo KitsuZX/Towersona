@@ -97,7 +97,7 @@ public class BuildManager : MonoBehaviour
 
             Towersona towersona = towersonaGameObject.GetComponent<Towersona>();
             towersona.Spawn(_tile, towersonaGameObject.transform);
-            PlayerStats.Instance.SpendMoney(towersona.cost);
+            PlayerStats.Instance.SpendMoney(towersona.costs[(int)towersona.towersonaLevel]);
 
             SpawnEffect(buildEffect, _tile.transform.position);
             
@@ -164,17 +164,13 @@ public class BuildManager : MonoBehaviour
             style.fontSize = 32;
             style.fontStyle = FontStyle.Bold;
 
-            AttackPattern pattern = towersonaSelected.towersonaLOD.pattern;
-
             string message = "";
-            message += "Fuerza: " + pattern.currentAttackStrength + "\n";
-            message += "V. Ataque: " + pattern.currentAttackSpeed + "\n";
-            message += "Rango: " + pattern.currentAttackRange + "\n";
-            message += "V. Bala: " + pattern.currentBulletSpeed + "\n";
+            message += "Fuerza: " + towersonaSelected.stats.currentAttackStrength + "\n";
+            message += "V. Ataque: " + towersonaSelected.stats.currentAttackSpeed + "\n";
+            message += "Rango: " + towersonaSelected.stats.currentAttackRange + "\n";
+            message += "V. Bala: " + towersonaSelected.stats.currentBulletSpeed + "\n";
 
-            GUI.Label(new Rect(Screen.width * 0.66f + 110, 200, 120, 100), message, style);
-
-            Destroy(pattern);
+            GUI.Label(new Rect(Screen.width * 0.66f + 110, 200, 120, 100), message, style);            
         }
     }
 }

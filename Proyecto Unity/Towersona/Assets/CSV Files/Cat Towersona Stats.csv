@@ -3,25 +3,10 @@ Fuerza;0,5;10;;;Fuerza;2;20;;;Fuerza;3;30;;;Fuerza;4;40
 V.Ataque;0,25;2;;;V.Ataque;0,5;3;;;V.Ataque;1;4;;;V.Ataque;2;5
 Rango;1;5;;;Rango;5;10;;;Rango;10;15;;;Rango;15;20
 V.Bala;2;10;;;V.Bala;4;15;;;V.Bala;7;20;;;V.Bala;10;25
-Coste;45;;;;Coste;45;;;;Coste;45;;;;Coste;45;
 Hambre/s;0,05;;;;Hambre/s;0,05;;;;Hambre/s;0,05;;;;Hambre/s;0,05;
 Perdida Amor/s;0,05;;;;Perdida Amor/s;0,05;;;;Perdida Amor/s;0,05;;;;Perdida Amor/s;0,05;
 Amor x caricia;0,1;;;;Amor x caricia;0,1;;;;Amor x caricia;0,1;;;;Amor x caricia;0,1;
 Enfado x Mierda;0,2;;;;Enfado x Mierda;0,2;;;;Enfado x Mierda;0,2;;;;Enfado x Mierda;0,2;
 Segundos entre mierdas;12;;;;Segundos entre mierdas;12;;;;Segundos entre mierdas;12;;;;Segundos entre mierdas;12;
 Máximo mierdas;4;;;;Máximo mierdas;4;;;;Máximo mierdas;4;;;;Máximo mierdas;4;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
-;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;

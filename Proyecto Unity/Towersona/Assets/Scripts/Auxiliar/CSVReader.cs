@@ -26,7 +26,7 @@ public class CSVReader
             int startingRow = 1;
             int startingCol = 1;
 
-            for (/*ROWS*/int i = startingRow; i <= 11; i++)
+            for (/*ROWS*/int i = startingRow; i <= 10; i++)
             {           
                 string[] row = rows[i].Split(new char[] { ';', '/'});
 

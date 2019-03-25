@@ -58,4 +58,4 @@ MonoBehaviour:
   towersonaLOD: {fileID: 0}
   towersonaNeeds: {fileID: 0}
   towersonaLevel: 0
-  cost: 45
+  costs: 2d000000460000007d00000082000000

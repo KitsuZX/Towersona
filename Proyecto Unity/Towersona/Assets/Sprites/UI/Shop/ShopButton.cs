@@ -14,15 +14,19 @@ public class ShopButton : MonoBehaviour
 
     private void Awake()
     {            
-        button = GetComponent<Button>();
+        button = GetComponent<Button>();     
+    }
 
+    private void Start()
+    {
         costText = GetComponentInChildren<TextMeshProUGUI>();
-        costText.text = towersonaToBuild.cost.ToString() + '$';    
+        costText.text = towersonaToBuild.costs[0].ToString() + '$';
+
     }
 
     private void Update()
     {
-        if(PlayerStats.Instance.money < towersonaToBuild.cost && DebuggingOptions.Instance.useMoney)
+        if(PlayerStats.Instance.money < towersonaToBuild.costs[0] && DebuggingOptions.Instance.useMoney)
         {
             button.interactable = false;           
         }

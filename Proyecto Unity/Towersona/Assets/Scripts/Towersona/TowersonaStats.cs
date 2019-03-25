@@ -8,7 +8,6 @@ public class TowersonaStats
     public Vector2 attackSpeed;
     public Vector2 attackRange;
     public Vector2 bulletSpeed;
-    public int cost;
     public float hungerDecayPerSecond;
     public float loveDecayPerSecond;
     public float loveIncreasePerDeltaUnit;
@@ -16,27 +15,32 @@ public class TowersonaStats
     public float shittingInterval;
     public int maxShitCount;
 
+    public float currentAttackStrength;
+    public float currentAttackSpeed;
+    public float currentAttackRange;
+    public float currentBulletSpeed;
+
     Towersona towersona;
+    TowersonaNeeds needs;
 
     public TowersonaStats(Towersona towersona)
     {
         this.towersona = towersona;
-        
-        List<float> data = CSVReader.ReadTowersonaCSV("Cat Towersona Stats.csv", (int)towersona.towersonaLevel);
+        needs = towersona.towersonaNeeds;
 
-        if(data != null)
-        {
-            AssignData(data);
-        }
-        else
-        {
-            Debug.LogError("Ha habido problemas al leer los datos del csv");
-        }
-
+        AssignData();      
     }
 
-    private void AssignData(List<float> data)
+    public void AssignData()
     {
+        List<float> data = CSVReader.ReadTowersonaCSV("Cat Towersona Stats.csv", (int)towersona.towersonaLevel);
+
+        if (data == null)     
+        {
+            Debug.LogError("Ha habido problemas al leer los datos del csv");
+            return;
+        }
+
         attackStrength.x = data[0];
         attackStrength.y = data[1];
 
@@ -49,13 +53,29 @@ public class TowersonaStats
         bulletSpeed.x = data[6];
         bulletSpeed.y = data[7];
 
-        cost = (int)data[8];
+        hungerDecayPerSecond = data[8];
+        loveDecayPerSecond = data[9];
+        loveIncreasePerDeltaUnit = data[10];
+        happinessImpactPerShit = data[11];
+        shittingInterval = data[12];
+        maxShitCount = (int)data[13];
 
-        hungerDecayPerSecond = data[9];
-        loveDecayPerSecond = data[10];
-        loveIncreasePerDeltaUnit = data[11];
-        happinessImpactPerShit = data[12];
-        shittingInterval = data[13];
-        maxShitCount = (int)data[14];
+        SetDefaultValues();
+    }
+
+    public void UpdateStats()
+    {
+        currentAttackStrength = Mathf.Lerp(attackStrength.x, attackStrength.y, needs.HappinessLevel);
+        currentAttackSpeed = Mathf.Lerp(attackSpeed.x, attackSpeed.y, needs.HappinessLevel);
+        currentAttackRange = Mathf.Lerp(attackRange.x, attackRange.y, needs.HappinessLevel);
+        currentBulletSpeed = Mathf.Lerp(bulletSpeed.x, bulletSpeed.y, needs.HappinessLevel);
+    }
+
+    private void SetDefaultValues()
+    {
+        currentAttackStrength = attackStrength.y;
+        currentAttackSpeed = attackSpeed.y;
+        currentAttackRange = attackRange.y;
+        currentBulletSpeed = bulletSpeed.y;
     }
 }

@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Towersona : MonoBehaviour
 {
+    [Header("Parameters")]
+    public int[] costs = new int[4];
+
     [Header("References")]   
     public GameObject towersonaLODPrefab;
     public GameObject towersonaHODPrefab;
@@ -22,25 +26,21 @@ public class Towersona : MonoBehaviour
     public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1;
     [HideInInspector]
     public TowersonaStats stats;
-
-    [Header("Parameters")]
-    public int cost = 45;
     
-    private World world;      
+    private World world;   
 
     public void Spawn(Tile _tile, Transform parent)
-    {
-        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
-
-        stats = new TowersonaStats(this);
-
+    {     
         tile = _tile;
         //Spawn towersona LOD
         towersonaLOD = SpawnTowersonaLOD(parent);
 
         //Spawn towersona HOD
         towersonaHOD = SpawnTowersonaHOD(parent);
-        towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();        
+        towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
+
+        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
+        stats = new TowersonaStats(this);
     }
 
     public void LevelUp()
@@ -51,6 +51,10 @@ public class Towersona : MonoBehaviour
         towersonaHOD.Upgrade(highpolyModels[1]);
 
         towersonaLevel = TowersonaLevel.LVL2;
+
+        stats.AssignData();
+
+        PlayerStats.Instance.SpendMoney(costs[(int)towersonaLevel]);
     }
 
     public void Evolve(int evolution)
@@ -58,6 +62,8 @@ public class Towersona : MonoBehaviour
         //TODO: evolving
         print("Evolving to evolution " + (evolution + 1));
         //SwitchModel(lowpolyModels[evolution + 2]);
+
+        //PlayerStats.Instance.SpendMoney(costs[(int)towersonaLevel]);
     } 
 
     public void TowersonaLODTouched()

@@ -10,8 +10,8 @@ public class RegularAttack : AttackPattern
         GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
         bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
-        bullet.damage = currentAttackStrength;
-        bullet.speed = currentBulletSpeed;
+        bullet.damage = stats.currentAttackStrength;
+        bullet.speed = stats.currentBulletSpeed;
 
         if (bullet != null) bullet.Seek(target);  
     }
@@ -32,7 +32,7 @@ public class RegularAttack : AttackPattern
             }
         }
 
-        if (nearestEnemy != null && shortestDistance <= currentAttackRange)
+        if (nearestEnemy != null && shortestDistance <= stats.currentAttackRange)
         {
             target = nearestEnemy.transform;
         }
