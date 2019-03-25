@@ -14,7 +14,7 @@ public class Towersona : MonoBehaviour
     public Mesh[] lowpolyModels;
     public Mesh[] highpolyModels;
     
-    public Tile tile;   
+    public BuildingPlace place;   
     [HideInInspector]
     public TowersonaHOD towersonaHOD;
     [HideInInspector]
@@ -27,11 +27,11 @@ public class Towersona : MonoBehaviour
     [HideInInspector]
     public TowersonaStats stats;
     
-    private World world;   
+    private World world;
 
-    public void Spawn(Tile _tile, Transform parent)
-    {     
-        tile = _tile;
+    public void Spawn(BuildingPlace place, Transform parent)
+    {
+        this.place = place;
         //Spawn towersona LOD
         towersonaLOD = SpawnTowersonaLOD(parent);
 
@@ -69,14 +69,14 @@ public class Towersona : MonoBehaviour
     public void TowersonaLODTouched()
     {        
         GameManager.Instance.ChangeCamera(towersonaHOD.GetComponentInChildren<Camera>());
-        world.SelectTile(tile);
+        //world.SelectTile(tile);
 
         BuildManager.Instance.SelectTowersona(this);
     }
 
     private TowersonaLOD SpawnTowersonaLOD(Transform parent)
     {
-        GameObject towersonaObject = Instantiate(towersonaLODPrefab, tile.transform.position, Quaternion.Euler(0f, 180f, 0f));
+        GameObject towersonaObject = Instantiate(towersonaLODPrefab, place.transform.position, Quaternion.Euler(0f, 180f, 0f));
         towersonaObject.GetComponentInChildren<MeshFilter>().mesh = lowpolyModels[0];
         towersonaObject.transform.SetParent(parent);
         towersonaObject.name = gameObject.name + " LOD";

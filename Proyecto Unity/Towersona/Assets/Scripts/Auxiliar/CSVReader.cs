@@ -24,14 +24,14 @@ public class CSVReader
             List<float> data = new List<float>();
 
             int startingRow = 1;
-            int startingCol = 1;
+            int startingCol = 1 + (5 * state);
 
             for (/*ROWS*/int i = startingRow; i <= 10; i++)
             {           
                 string[] row = rows[i].Split(new char[] { ';', '/'});
 
                 //Saca los valores de las celdas de una fila
-                for (/*COLS*/int j = startingCol + (state * 4); j <= 2; j++)
+                for (/*COLS*/int j = startingCol; j <= 2 + (5 * state); j++)
                 {                
                     float f;
                     float.TryParse(row[j], out f);

@@ -87,7 +87,7 @@ public class BuildManager : MonoBehaviour
         }
     }
 
-    public void SpawnTowersona(Tile _tile)
+    public void SpawnTowersona(BuildingPlace place)
     {
         if (towersonaToBuild)
         {          
@@ -96,12 +96,12 @@ public class BuildManager : MonoBehaviour
             towersonaGameObject.name = towersonaToBuild.name;
 
             Towersona towersona = towersonaGameObject.GetComponent<Towersona>();
-            towersona.Spawn(_tile, towersonaGameObject.transform);
+            towersona.Spawn(place, towersonaGameObject.transform);
             PlayerStats.Instance.SpendMoney(towersona.costs[(int)towersona.towersonaLevel]);
 
-            SpawnEffect(buildEffect, _tile.transform.position);
+            SpawnEffect(buildEffect, place.transform.position);
             
-            world.SelectTile(_tile);                   
+            //world.SelectTile(_tile);                   
 
             towersonaToBuild = null;
         }
@@ -136,7 +136,7 @@ public class BuildManager : MonoBehaviour
     public void UpgradeTowersona()
     {
         towersonaSelected.LevelUp();
-        SpawnEffect(buildEffect, towersonaSelected.tile.transform.position);
+        SpawnEffect(buildEffect, towersonaSelected.place.transform.position);
 
         DeselectTowersona();     
     }

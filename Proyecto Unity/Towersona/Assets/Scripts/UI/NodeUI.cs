@@ -79,7 +79,7 @@ public class NodeUI : MonoBehaviour
         Button button = nodeUI.transform.GetChild(0).Find(buttonName).GetComponent<Button>();
         button.GetComponentInChildren<TextMeshProUGUI>().text = buttonName + ' ' + towersona.costs[costIndex] + '$';
 
-        if (towersona.costs[2] > PlayerStats.Instance.money)
+        if (towersona.costs[2] > PlayerStats.Instance.money && DebuggingOptions.Instance.useMoney)
         {
             //Not enough money
             button.interactable = false;

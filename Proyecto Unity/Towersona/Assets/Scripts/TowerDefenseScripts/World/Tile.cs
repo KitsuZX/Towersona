@@ -44,7 +44,7 @@ public class Tile : MonoBehaviour
         if (!isPath && !hasTower)
         {
             hasTower = true;
-            towersController.SpawnTowersona(this);
+            //towersController.SpawnTowersona(this);
         }
     }
 }

@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        world.Generate();
+        //world.Generate();
     }    
     
     /// <summary>

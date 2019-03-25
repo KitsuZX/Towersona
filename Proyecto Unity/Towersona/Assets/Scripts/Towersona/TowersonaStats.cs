@@ -35,7 +35,7 @@ public class TowersonaStats
     {
         List<float> data = CSVReader.ReadTowersonaCSV("Cat Towersona Stats.csv", (int)towersona.towersonaLevel);
 
-        if (data == null)     
+        if (data == null || data.Count == 0)     
         {
             Debug.LogError("Ha habido problemas al leer los datos del csv");
             return;
