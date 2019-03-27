@@ -32,7 +32,6 @@ public class BuildManager : MonoBehaviour
     private Towersona towersonaSelected;
 
     //Private references
-    private World world;
 
     void Awake()
     {
@@ -43,9 +42,7 @@ public class BuildManager : MonoBehaviour
         else
         {
             Destroy(this);
-        }
-
-        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();       
+        }        
     }
 
     private void Update()

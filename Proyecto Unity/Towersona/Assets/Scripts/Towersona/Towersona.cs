@@ -25,9 +25,8 @@ public class Towersona : MonoBehaviour
     [HideInInspector]
     public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1;
     [HideInInspector]
-    public TowersonaStats stats;
-    
-    private World world;
+    public TowersonaStats stats;   
+
 
     public void Spawn(BuildingPlace place, Transform parent)
     {
@@ -39,7 +38,7 @@ public class Towersona : MonoBehaviour
         towersonaHOD = SpawnTowersonaHOD(parent);
         towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
 
-        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
+ 
         stats = new TowersonaStats(this);
     }
 

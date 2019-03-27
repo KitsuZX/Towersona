@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
     //Private Parameters             
 
     //Private references
-    private World world;
     private WavesController wavesController;
     private BuildManager towerDefenseManager;
     private Camera activeCamera;                    //Camera of the detailed scene of the Towersona selected
@@ -43,16 +42,10 @@ public class GameManager : MonoBehaviour
             Destroy(this);
         }
 
-        activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();
-        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
+        activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();     
 
         wavesController = GetComponent<WavesController>();             
-    }
-
-    private void Start()
-    {
-        //world.Generate();
-    }    
+    }   
     
     /// <summary>
     /// Changes to victory state

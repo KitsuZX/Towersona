@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BezierSolution;
 
 public abstract class Enemy : MonoBehaviour
 {
@@ -15,38 +16,18 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField]
     private GameObject deathEffect;
 
+    [HideInInspector]
+    public BezierSpline path;
+
 
     protected Transform target;
-    private int controlPointIndex = 0;
+    private int controlPointIndex = 0; 
+  
 
-    //Private references
-    private GameManager gameManager;
-    private World world;
+    protected abstract void Update();    
+    
 
-    private void Awake()
-    {
-        world = GameObject.FindGameObjectWithTag("World").GetComponent<World>();
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
-        target = world.controlPoints[0].transform;        
-    }
-
-    protected abstract void Update();   
- 
-    protected void GetNextWaypoint()
-    {
-        if(controlPointIndex >= world.controlPoints.Count - 1)
-        {
-            EndPath();
-            return;
-        }
-
-        controlPointIndex++;
-        target = world.controlPoints[controlPointIndex];
-        transform.LookAt(target);
-    }
-
-    private void EndPath()
+    public void EndPath()
     {
         KillEnemy(true);
         PlayerStats.Instance.LoseLive(damage);
@@ -54,8 +35,7 @@ public abstract class Enemy : MonoBehaviour
     }
 
     private void KillEnemy(bool endPath = false)
-    {
-        CameraShake.Instance.AddTrauma(0.4f);
+    {      
         Vector3 pos = transform.position;
         pos.y += 0.5f;
         if (!endPath)
@@ -66,7 +46,7 @@ public abstract class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        gameManager.enemiesAlive--;
+        GameManager.Instance.enemiesAlive--;
     }
 
     public void TakeDamage(float amount) {

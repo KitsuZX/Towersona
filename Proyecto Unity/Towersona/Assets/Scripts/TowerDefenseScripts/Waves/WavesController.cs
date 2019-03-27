@@ -8,21 +8,18 @@ public class WavesController : MonoBehaviour
     public float timeBetweenWaves;
     public float waveSpawnRate = 1;
 
-    [Header("References")]
-    [SerializeField]
-    private GameObject enemyPrefab;
-    [SerializeField]
-    private Transform enemiesParent;
-
     private float countdown = 2f; 
     private Transform spawnPoint;
     private GameManager gameManager;
+    private SpawnPoint[] spawnPoints;
+    private int waveIndex = 0;
 
 
     private void Awake()
     {     
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         gameManager.enemiesAlive = 0;
+        spawnPoints = FindObjectsOfType<SpawnPoint>();
     }
 
     private void Update()
@@ -36,7 +33,7 @@ public class WavesController : MonoBehaviour
   
         if(countdown <= 0f)
         {
-            StartCoroutine(SpawnWave());
+            SpawnWave();
             countdown = timeBetweenWaves;
             return;
         }
@@ -45,25 +42,20 @@ public class WavesController : MonoBehaviour
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
     }
 
-    private IEnumerator SpawnWave()
+    private void SpawnWave()
     {
         PlayerStats.Instance.AddRound();      
             
         int enemiesToSpawn = PlayerStats.Instance.round * 4;
 
-        for (int i = 0; i < enemiesToSpawn; i++)
+        foreach(SpawnPoint spawnPoint in spawnPoints)
         {
-            SpawnEnemy(enemyPrefab);
-            yield return new WaitForSeconds(1f / waveSpawnRate);
-        }       
-    }  
+           StartCoroutine(spawnPoint.SpawnWave(waveIndex));
+        }
 
-    void SpawnEnemy(GameObject enemy)
-    {
-        GameObject e = Instantiate(enemy, spawnPoint.position, Quaternion.Euler(0f, 90f, 0f));
-        e.transform.SetParent(enemiesParent);
-        gameManager.enemiesAlive++;
-    }
+        waveIndex++;
+         
+    }  
 
     public void SetSpawnPoint(Transform transform)
     {
