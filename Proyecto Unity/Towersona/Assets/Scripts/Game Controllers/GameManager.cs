@@ -7,12 +7,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set; }
-    
-    /// <summary>
-    /// Number of enemies alive in the game
-    /// </summary>
-    [HideInInspector]
-    public int enemiesAlive = 0;         
+   
 
     [Header("Victory and Defeat References")]
     [SerializeField]

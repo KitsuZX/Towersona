@@ -7,7 +7,6 @@ public class PlayerStats : MonoBehaviour
     public static PlayerStats Instance { get; private set; }
 
     [Header("Starting Parameters")]
-    public int wavesToWin = 10;
     [SerializeField]
     [Tooltip("Starting lifes of the player")]
     private int startingLives = 10;
@@ -67,7 +66,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        if (round == wavesToWin)
+        if (round - 1 == WavesController.Instance.wavesToWin)
         {
             GameManager.Instance.WinGame();
         }

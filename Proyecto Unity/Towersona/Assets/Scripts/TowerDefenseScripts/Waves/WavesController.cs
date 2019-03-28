@@ -4,29 +4,46 @@ using UnityEngine;
 
 public class WavesController : MonoBehaviour
 {
+    public static WavesController Instance { get; private set; }
+
     [Header("Parameters")]
     public float timeBetweenWaves;
     public float waveSpawnRate = 1;
+
+    [HideInInspector]
+    public int enemiesAlive = 0;
+    [HideInInspector]
+    public int wavesToWin = 10;
 
     private float countdown = 2f; 
     private Transform spawnPoint;
     private GameManager gameManager;
     private SpawnPoint[] spawnPoints;
-    private int waveIndex = 0;
-
+    private int waveIndex = 0; 
+ 
 
     private void Awake()
-    {     
-        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        gameManager.enemiesAlive = 0;
+    {
+        if (!Instance) Instance = this;
+        else Destroy(this);    
         spawnPoints = FindObjectsOfType<SpawnPoint>();
+
+        wavesToWin = int.MinValue;
+
+        for (int i = 0; i < spawnPoints.Length; i++)
+        {
+            if(spawnPoints[i].waves.Length > wavesToWin)
+            {
+                wavesToWin = spawnPoints[i].waves.Length;
+            }
+        }
     }
 
     private void Update()
     {
         if (!DebuggingOptions.Instance.spawnEnemies) return;
 
-        if(gameManager.enemiesAlive > 0)
+        if(enemiesAlive > 0)
         {
             return;
         }
@@ -63,4 +80,24 @@ public class WavesController : MonoBehaviour
         spawnPoint.rotation = Quaternion.Euler(0f, 180f, 0f);
     }
 
+}
+
+[System.Serializable]
+public struct Wave
+{
+    public EnemiesGroup[] enemiesGroups;
+}
+
+[System.Serializable]
+public struct EnemiesGroup
+{
+    public EnemyStack[] stacks;
+
+}
+
+[System.Serializable]
+public struct EnemyStack
+{
+    public int numEnemies;
+    public GameObject enemyType;
 }

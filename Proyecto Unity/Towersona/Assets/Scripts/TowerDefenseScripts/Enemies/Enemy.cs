@@ -46,7 +46,7 @@ public abstract class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        GameManager.Instance.enemiesAlive--;
+        WavesController.Instance.enemiesAlive--;
     }
 
     public void TakeDamage(float amount) {

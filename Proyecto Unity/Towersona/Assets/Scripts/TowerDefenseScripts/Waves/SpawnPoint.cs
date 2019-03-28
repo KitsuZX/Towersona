@@ -22,9 +22,13 @@ public class SpawnPoint : MonoBehaviour
 
     public IEnumerator SpawnWave(int waveIndex)
     {
-        for (int i = 0; i < waves[waveIndex].enemiesGroups.Length; i++)
+        Wave wave = waves[waveIndex];
+
+        if (wave.enemiesGroups == null) yield return null;        
+
+        for (int i = 0; i < wave.enemiesGroups.Length; i++)
         {          
-            yield return StartCoroutine(SpawnEnemiesGroup(waves[waveIndex].enemiesGroups[i]));             
+            yield return StartCoroutine(SpawnEnemiesGroup(wave.enemiesGroups[i]));             
         }
 
         print("Wave spawned");
@@ -72,26 +76,6 @@ public class SpawnPoint : MonoBehaviour
         bezierWalker.onPathCompleted.AddListener(action);
         bezierWalker.speed = 3;
 
-        GameManager.Instance.enemiesAlive++;
+        WavesController.Instance.enemiesAlive++;
     }   
-}
-
-[System.Serializable]
-public struct Wave
-{
-    public EnemiesGroup[] enemiesGroups;
-}
-
-[System.Serializable]
-public struct EnemiesGroup
-{
-    public EnemyStack[] stacks;
-   
-}
-
-[System.Serializable]
-public struct EnemyStack
-{
-    public int numEnemies;
-    public GameObject enemyType;
 }
