@@ -66,7 +66,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        if (round - 1 == WavesController.Instance.wavesToWin)
+        if (round - 1 == LevelManager.Instance.wavesToWin)
         {
             GameManager.Instance.WinGame();
         }

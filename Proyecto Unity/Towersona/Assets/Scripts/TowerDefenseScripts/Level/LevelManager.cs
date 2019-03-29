@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WavesController : MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
-    public static WavesController Instance { get; private set; }
+    public static LevelManager Instance { get; private set; }
 
     [Header("Parameters")]
     public float timeBetweenWaves;
-    public float waveSpawnRate = 1;
 
     [HideInInspector]
     public int enemiesAlive = 0;
@@ -20,7 +19,6 @@ public class WavesController : MonoBehaviour
     private GameManager gameManager;
     private SpawnPoint[] spawnPoints;
     private int waveIndex = 0; 
- 
 
     private void Awake()
     {
@@ -73,13 +71,6 @@ public class WavesController : MonoBehaviour
         waveIndex++;
          
     }  
-
-    public void SetSpawnPoint(Transform transform)
-    {
-        spawnPoint = transform;
-        spawnPoint.rotation = Quaternion.Euler(0f, 180f, 0f);
-    }
-
 }
 
 [System.Serializable]
@@ -90,14 +81,10 @@ public struct Wave
 
 [System.Serializable]
 public struct EnemiesGroup
-{
-    public EnemyStack[] stacks;
-
-}
-
-[System.Serializable]
-public struct EnemyStack
-{
+{    
     public int numEnemies;
+    public float timeBetweenEnemies;
     public GameObject enemyType;
+    public float secondsToNextGroup;
+
 }

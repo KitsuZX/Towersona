@@ -7,18 +7,19 @@ using BezierSolution;
 public class SpawnPoint : MonoBehaviour
 {
     public BezierSpline path;
-    public float timeBetweenGroups = 5f;
-    public float timeBetweenStacks = 2.5f;
-    public float timeBetweenEnemies = 1f;
 
     [Header("References")]
     [SerializeField]
-    private GameObject[] enemyPrefab;
-    [SerializeField]
+    private GameObject[] enemiesPrefab;
+
     private Transform enemiesParent;
 
     public Wave[] waves;
 
+    private void Awake()
+    {
+        enemiesParent = GameObject.FindGameObjectWithTag("Enemies Parent").transform;
+    }
 
     public IEnumerator SpawnWave(int waveIndex)
     {
@@ -29,36 +30,19 @@ public class SpawnPoint : MonoBehaviour
         for (int i = 0; i < wave.enemiesGroups.Length; i++)
         {          
             yield return StartCoroutine(SpawnEnemiesGroup(wave.enemiesGroups[i]));             
-        }
-
-        print("Wave spawned");
+        }  
     }
 
     IEnumerator SpawnEnemiesGroup(EnemiesGroup group)
     {
-        for (int i = 0; i < group.stacks.Length; i++)
-        {        
-            yield return StartCoroutine(SpawnStack(group.stacks[i]));          
-        }
-
-        yield return new WaitForSeconds(timeBetweenGroups);
-
-        print("Group spawned");      
-    }
-
-    IEnumerator SpawnStack(EnemyStack stack)
-    {
-        for (int i = 0; i < stack.numEnemies; i++)
+        for (int i = 0; i < group.numEnemies; i++)
         {
-            SpawnEnemy(stack.enemyType);
-            yield return new WaitForSeconds(timeBetweenEnemies);           
+            SpawnEnemy(group.enemyType);
+            yield return new WaitForSeconds(group.timeBetweenEnemies);                     
         }
 
-        yield return new WaitForSeconds(timeBetweenStacks);
-
-        print("Stack spawned");
-     
-    }
+        yield return new WaitForSeconds(group.secondsToNextGroup);          
+    }   
 
     void SpawnEnemy(GameObject enemyType)
     {        
@@ -76,6 +60,6 @@ public class SpawnPoint : MonoBehaviour
         bezierWalker.onPathCompleted.AddListener(action);
         bezierWalker.speed = 3;
 
-        WavesController.Instance.enemiesAlive++;
+        LevelManager.Instance.enemiesAlive++;
     }   
 }

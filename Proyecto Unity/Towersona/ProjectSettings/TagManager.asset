@@ -12,6 +12,7 @@ TagManager:
   - Towersonas Parent
   - Effects Parent
   - Bullets Parent
+  - Enemies Parent
   layers:
   - Default
   - TransparentFX
