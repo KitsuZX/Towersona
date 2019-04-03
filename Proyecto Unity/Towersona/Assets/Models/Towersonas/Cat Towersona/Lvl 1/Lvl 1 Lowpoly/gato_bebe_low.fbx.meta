@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2fd883eec8158f042a111b3e47307ea1
+guid: 2d2c2c89015d5a54fbf6367d5d6c9dce
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -9,7 +9,7 @@ ModelImporter:
     2100002: cara
     2300000: //RootNode
     3300000: //RootNode
-    4300000: lp
+    4300000: "lp_peque\xF1o"
   externalObjects: {}
   materials:
     importMaterials: 1

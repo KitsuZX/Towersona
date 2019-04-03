@@ -1,14 +1,15 @@
 fileFormatVersion: 2
-guid: 3a33d8f1e15ba3247b088ba9e63d423d
+guid: ce639ba4be1d4d3468118158bd3d7471
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: No Name
+    2100000: cuerpo
+    2100002: cara
     2300000: //RootNode
     3300000: //RootNode
-    4300000: hp
+    4300000: lp
   externalObjects: {}
   materials:
     importMaterials: 1

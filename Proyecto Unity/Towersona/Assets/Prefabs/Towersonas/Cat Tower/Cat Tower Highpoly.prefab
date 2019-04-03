@@ -51,8 +51,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   happinessCap: 1.252
-  hungerDecayPerSecond: 0.05
-  loveDecayPerSecond: 0.05
   happinessSlider: {fileID: 0}
   overHappiness: {fileID: 0}
   notificationThreshold: 0.3
@@ -102,7 +100,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  loveIncreasePerDeltaUnit: 0.1
 --- !u!114 &5139840167273293281
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,16 +112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f30aa78ac2d969d47b9cd95814b4b469, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happinessImpactPerShit: 0.214
-  shittingInterval: 12.22
-  shitPrefab: {fileID: 5324895032349386555, guid: 862cbfa4819532b498932ce9d676d4f7,
-    type: 3}
-  maxShitCount: 4
-  shitSpawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   OnTakenAShit:
     m_PersistentCalls:
       m_Calls:
@@ -141,6 +128,13 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  shitPrefab: {fileID: 5324895032349386555, guid: 862cbfa4819532b498932ce9d676d4f7,
+    type: 3}
+  shitSpawnPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &5930336773357402270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,7 +306,7 @@ Transform:
   m_GameObject: {fileID: 8923527313933143381}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: -0.66, z: 0}
-  m_LocalScale: {x: 21, y: 21, z: 21}
+  m_LocalScale: {x: 42, y: 42, z: 42}
   m_Children: []
   m_Father: {fileID: 5139840167273293285}
   m_RootOrder: 0
@@ -334,10 +328,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3169cb224990a7a47beca87fa82a1d52, type: 2}
-  - {fileID: 2100000, guid: 3169cb224990a7a47beca87fa82a1d52, type: 2}
-  - {fileID: 2100000, guid: 7aaf4404b56242a42ac9b73f5ef8317d, type: 2}
-  - {fileID: 2100000, guid: bdca5ef61e0a119478b488a9f630b3a8, type: 2}
+  - {fileID: 2100000, guid: eb9622f762859614a9921fa80e1e3bef, type: 2}
+  - {fileID: 2100000, guid: 6475fc405d5e4f44b8f3b62e7c648dfd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -364,4 +356,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8923527313933143381}
-  m_Mesh: {fileID: 4300000, guid: 3a33d8f1e15ba3247b088ba9e63d423d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: ce639ba4be1d4d3468118158bd3d7471, type: 3}
