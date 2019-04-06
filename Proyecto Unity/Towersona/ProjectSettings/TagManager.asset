@@ -13,6 +13,8 @@ TagManager:
   - Effects Parent
   - Bullets Parent
   - Enemies Parent
+  - Build Places Parent
+  - Paths parent
   layers:
   - Default
   - TransparentFX

@@ -27,7 +27,7 @@ public class SpawnPoint : MonoBehaviour
 
         if (wave.enemiesGroups == null) yield return null;        
 
-        for (int i = 0; i < wave.enemiesGroups.Length; i++)
+        for (int i = 0; i < wave.enemiesGroups.Count; i++)
         {          
             yield return StartCoroutine(SpawnEnemiesGroup(wave.enemiesGroups[i]));             
         }  

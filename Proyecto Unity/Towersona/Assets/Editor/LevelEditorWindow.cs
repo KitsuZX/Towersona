@@ -1,79 +1,221 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEditor;
 
 public class LevelEditorWindow : EditorWindow
 {
     int numWaves;
-    Texture2D texture;
+    static Texture2D texture;
 
-    Color color = new Color(255f/255f, 165f/255f, 0f/255f);
+    bool backgroundFoldout = true;
+    bool pathsFoldout = true;
+    bool buildingPlacesFoldOut = true;   
+    bool wavesFoldout = true;
+
+    bool showWaves = false;
+
+
+    Wave[] waves;
+    int[,] numGroups;
+
+    Color color = new Color(255f / 255f, 165f / 255f, 0f / 255f);
+    static List<Object> paths;
+    static List<Object> buildingPlaces;
 
     [MenuItem("Window/Editor de niveles")]
     public static void ShowWindow()
     {
         LevelEditorWindow window = GetWindow<LevelEditorWindow>("Editor de niveles");
         window.minSize = new Vector2(200, 100);
+
+        if (LevelEditor.Instance.background == null)
+        {
+            LevelEditor.Instance.ChangeBackground(texture);
+        }     
+
+        if(paths == null)
+        {
+            paths = new List<Object>();
+        }
+
+
+        if (buildingPlaces == null)
+        {
+            buildingPlaces = new List<Object>();
+        }
         window.Show();
-    }
-    
+    }    
     private void OnGUI()
     {
-        /*GUILayout.Label("Fondo", EditorStyles.boldLabel);
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 15;
+        style.alignment = (TextAnchor)TextAlignment.Center;
+        style.fontStyle = FontStyle.Bold;
 
-        myString = EditorGUILayout.TextField("Name", myString);  
+        EditorGUILayout.LabelField("Editor de niveles", style);
 
-        texture = new Texture2D(1, 1);
-        texture.SetPixel(0, 0, color);
-        texture.Apply();
-
-        //Rect rect = new Rect(i + Screen.width / (i + 1), 0, Screen.width / (i + 1), Screen.height);
-        Rect rect = new Rect(0, 0, Screen.width, 50);
-        GUI.DrawTexture(rect, texture);
-
-        numWaves = EditorGUILayout.IntField("Numero de oleadas", numWaves);
-
-        if(GUILayout.Button("Nuevo Spawn Point"))
-        {   
-            LevelEditor.Instance.NewSpawnPoint();
-        }*/
-
+        #region DeleteLevel
         GUI.backgroundColor = Color.red;
         if (GUILayout.Button("Borrar nivel"))
         {
             texture = null;
+            paths.Clear();
+            buildingPlaces.Clear();
             LevelEditor.Instance.ResetLevel();
         }
         GUI.backgroundColor = Color.white;
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        #endregion
 
-        EditorGUI.BeginChangeCheck();
-        texture = TextureField("Fondo", texture);
-
-        if (EditorGUI.EndChangeCheck())
+        #region Background
+        backgroundFoldout = EditorGUILayout.Foldout(backgroundFoldout, "Fondo", EditorStyles.foldoutPreDrop);
+        if (backgroundFoldout)
         {
-            LevelEditor.Instance.ChangeBackground(texture);
+            EditorGUI.BeginChangeCheck();
+            texture = TextureField("Fondo", texture);
+
+            if (EditorGUI.EndChangeCheck())
+            {
+                LevelEditor.Instance.ChangeBackground(texture);
+            }
         }
 
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        #endregion
 
-        if (GUILayout.Button("Crear sitio de construcción"))
+        #region Paths
+        pathsFoldout = EditorGUILayout.Foldout(pathsFoldout, "Caminos", EditorStyles.foldoutPreDrop);
+        if (pathsFoldout)
         {
-            LevelEditor.Instance.CreateBuildingSite();
+            if (GUILayout.Button("Crear Camino"))
+            {
+                Object path = LevelEditor.Instance.CreatePath();
+                paths.Add(path);
+            }
+
+            for (int i = 0; i < paths.Count; i++)
+            {
+                EditorGUILayout.BeginHorizontal();
+                paths[i] = EditorGUILayout.ObjectField(paths[i], typeof(Object), true);
+                GUI.backgroundColor = Color.red;
+                if (GUILayout.Button("Borrar", EditorStyles.radioButton))
+                {
+                    DestroyObj(paths[i], paths);
+                }
+                GUI.backgroundColor = Color.white;
+                EditorGUILayout.EndHorizontal();
+            }
+        }
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        #endregion
+
+        #region Building Places    
+        buildingPlacesFoldOut = EditorGUILayout.Foldout(buildingPlacesFoldOut, "Sitios de construcción", EditorStyles.foldoutPreDrop);
+        if (buildingPlacesFoldOut)
+        {
+            if (GUILayout.Button("Crear sitio de construcción"))
+            {
+                Object buildingPlace = LevelEditor.Instance.CreateBuildingSite();
+                buildingPlaces.Add(buildingPlace);
+            }
+
+            for (int i = 0; i < buildingPlaces.Count; i++)
+            {
+                EditorGUILayout.BeginHorizontal();
+                buildingPlaces[i] = EditorGUILayout.ObjectField(buildingPlaces[i], typeof(Object), true);
+                GUI.backgroundColor = Color.red;
+                if (GUILayout.Button("Borrar", EditorStyles.radioButton))
+                {
+                    DestroyObj(buildingPlaces[i], buildingPlaces);
+                }
+                GUI.backgroundColor = Color.white;
+                EditorGUILayout.EndHorizontal();
+            }
+        }
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        #endregion
+
+        #region Waves
+        wavesFoldout = EditorGUILayout.Foldout(wavesFoldout, "Oleadas", EditorStyles.foldoutPreDrop);
+
+        if (wavesFoldout)
+        {
+            numWaves = EditorGUILayout.IntField("Numero de oleadas", numWaves);
+
+
+            if (GUILayout.Button("Crear Oleadas"))
+            {
+                showWaves = true;        
+                numGroups = new int[numWaves, paths.Count];
+            }
+
+            if (showWaves)
+            {
+                ShowWaves(numWaves, paths.Count);
+            }
+
+            if (GUILayout.Button("Borrar oleadas"))
+            {
+                showWaves = false;                
+            }
+        }
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
+        #endregion
+    }
+
+    void ShowWaves(int numWaves, int numSpawnPoints)
+    {
+        for (int row = -1; row < numWaves; row++)
+        {
+            EditorGUILayout.BeginHorizontal();
+
+            for (int col = -1; col < numSpawnPoints; col++)
+            {
+                EditorGUILayout.BeginVertical();
+
+                if (row == 0)
+                {
+                    if (col == 0)
+                    {
+                        GUILayout.Label("", EditorStyles.centeredGreyMiniLabel);
+                    }
+                    else
+                    {
+                        GUILayout.Label("Spawn " + (col), EditorStyles.centeredGreyMiniLabel);
+                    }
+                }
+                else
+                {
+                    if (col == 0)
+                    {
+                        GUILayout.Label("Oleada " + row, EditorStyles.label);
+                    }
+                    else
+                    {
+                        //numGroups[row, col] = EditorGUILayout.IntField("Num grupos", numGroups[row, col]);
+
+                        /*for (int i = 0; i < numGroups[row, col]; i++)
+                        {
+                            EditorGUILayout.IntField(0);
+                        }*/
+                    }
+                }
+
+
+                EditorGUILayout.EndVertical();
+            }
+
+
+            EditorGUILayout.EndHorizontal();
         }
 
-        if (GUILayout.Button("Crear Camino"))
-        {
-            LevelEditor.Instance.CreatePath();
-        }
+    }
 
-        GUILayout.Label("OLEADAS (recuerda haber creado los caminos primero)", EditorStyles.boldLabel);
-
-        numWaves = EditorGUILayout.IntField("Numero de oleadas", numWaves);
-
-      
-        if (GUILayout.Button("Crear Oleadas"))
-        {
-            Debug.Log("Abrir ventana de oleadas par " + numWaves + " oleadas");
-        }
-
+    void DestroyObj(Object obj, List<Object> list)
+    {
+        list.Remove(obj);
+        DestroyImmediate(obj);
     }
 
     private static Texture2D TextureField(string name, Texture2D texture)
@@ -88,6 +230,5 @@ public class LevelEditorWindow : EditorWindow
         GUILayout.EndVertical();
         return result;
     }
-
-
+    
 }

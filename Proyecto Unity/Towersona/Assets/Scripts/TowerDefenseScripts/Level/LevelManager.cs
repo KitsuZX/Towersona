@@ -76,7 +76,7 @@ public class LevelManager : MonoBehaviour
 [System.Serializable]
 public struct Wave
 {
-    public EnemiesGroup[] enemiesGroups;
+    public List<EnemiesGroup> enemiesGroups;
 }
 
 [System.Serializable]

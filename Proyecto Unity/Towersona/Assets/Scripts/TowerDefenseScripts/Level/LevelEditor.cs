@@ -11,8 +11,15 @@ public class LevelEditor : MonoBehaviour
 
     [SerializeField]
     private GameObject spawnPointPrefab;
-    
+    [SerializeField]
+    private GameObject pathPrefab;
+    [SerializeField]
+    private GameObject buildingPlacePrefab;
+
     MeshRenderer meshRenderer;
+ 
+    List<GameObject> paths;
+    List<GameObject> buildingPlaces;
 
     private void OnValidate()
     {
@@ -25,17 +32,32 @@ public class LevelEditor : MonoBehaviour
 
     public void ChangeBackground(Texture2D texture)
     {
-        meshRenderer.sharedMaterial.mainTexture = texture;
+        background = texture;
+        meshRenderer.sharedMaterial.mainTexture = background;
     }
 
-    public void CreatePath()
-    {
-        Debug.Log("Camino y spawnpoint asociado a él creado");
+    public GameObject CreatePath()
+    {    
+        GameObject path = Instantiate(pathPrefab);
+        path.transform.SetParent(GameObject.FindGameObjectWithTag("Paths parent").transform, true);
+
+        GameObject spawn = Instantiate(spawnPointPrefab);
+        spawn.GetComponent<SpawnPoint>().path = path.GetComponent<BezierSpline>();
+        spawn.transform.SetParent(path.transform, true);
+
+        paths.Add(path);
+
+        return path;
     }
 
-    public void CreateBuildingSite()
+    public GameObject CreateBuildingSite()
     {
-        Debug.Log("Buildingsite creado");
+        GameObject buildingPlace = Instantiate(buildingPlacePrefab);
+        buildingPlace.transform.SetParent(GameObject.FindGameObjectWithTag("Build Places Parent").transform, true);
+
+        buildingPlaces.Add(buildingPlace);
+
+        return buildingPlace;
     }
 
 
@@ -43,14 +65,21 @@ public class LevelEditor : MonoBehaviour
     {     
         background = null;
         meshRenderer.sharedMaterial.mainTexture = background;
-    }
+       
+        foreach (var path in paths)
+        {
+            DestroyImmediate(path);
+        }
+        paths.Clear();
 
+
+        foreach (var buildingPlace in buildingPlaces)
+        {
+            DestroyImmediate(buildingPlace);
+        }
+        buildingPlaces.Clear();
+    }
    
 }
 
-public struct LevelData
-{
-    public BezierSpline[] paths;
-    public BuildingPlace[] buildingPlaces;
-    public SpawnPoint[] spawnPoints;   
-}
+
