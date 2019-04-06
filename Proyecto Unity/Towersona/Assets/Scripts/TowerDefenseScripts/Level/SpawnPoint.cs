@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using BezierSolution;
+using UnityEditor;
 
 public class SpawnPoint : MonoBehaviour
 {
     public BezierSpline path;
+    
+    public Wave[] waves;
 
     [Header("References")]
     [SerializeField]
@@ -14,7 +17,6 @@ public class SpawnPoint : MonoBehaviour
 
     private Transform enemiesParent;
 
-    public Wave[] waves;
 
     private void Awake()
     {

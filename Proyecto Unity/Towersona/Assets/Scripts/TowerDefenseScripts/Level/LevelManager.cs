@@ -76,12 +76,15 @@ public class LevelManager : MonoBehaviour
 [System.Serializable]
 public struct Wave
 {
+    [Header("Wave")]
     public List<EnemiesGroup> enemiesGroups;
+    public float secondsToNextWave;
 }
 
 [System.Serializable]
 public struct EnemiesGroup
-{    
+{
+    [Header("Group")]
     public int numEnemies;
     public float timeBetweenEnemies;
     public GameObject enemyType;

@@ -568,12 +568,7 @@ namespace BezierSolution
 				else if( loop )
 					endPoints[0].precedingControlPointPosition = p1 - ( p2 - endPoints[i].position ) / 6f;
 			}
-		}
-
-		/*public void AutoConstructSpline3()
-		{
-			// Todo? http://www.math.ucla.edu/~baker/149.1.02w/handouts/dd_splines.pdf
-		}*/
+		}	
 
 		private float AccuracyToStepSize( float accuracy )
 		{
