@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: f86043fb1f842a245b70a63bbf5539c7
   - enabled: 1
-    path: Assets/_Scenes/TowerDefense.unity
+    path: Assets/_Scenes/Levels/Level_Pruebas.unity
     guid: d0b7cb4f32a6ce742a6924ca7da3b4ac
   - enabled: 1
     path: Assets/_Scenes/Credits.unity

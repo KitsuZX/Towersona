@@ -8,9 +8,6 @@ public class BuildManager : MonoBehaviour
 {   
     public static BuildManager Instance { get; private set; }
 
-    [Header("Parameters")]
-    public float timeBetweenTowersonas = 40f;
-
     [HideInInspector]
     public bool maxReached = false;
     [HideInInspector]
