@@ -6,14 +6,15 @@ public class Towersona : MonoBehaviour
     [Header("Parameters")]
     public int[] costs = new int[4];
 
-    [Header("References")]   
-    public GameObject towersonaLODPrefab;
-    public GameObject towersonaHODPrefab;
-
+    [Header("References")] 
+    public GameObject[] towersonaLODPrefabs;
+    public GameObject[] towersonaHODPrefabs;
+    
     [Header("Models")]
     public Mesh[] lowpolyModels;
     public Mesh[] highpolyModels;
-    
+        
+    [HideInInspector]
     public BuildingPlace place;   
     [HideInInspector]
     public TowersonaHOD towersonaHOD;
@@ -25,12 +26,16 @@ public class Towersona : MonoBehaviour
     [HideInInspector]
     public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1;
     [HideInInspector]
-    public TowersonaStats stats;   
+    public TowersonaStats stats;
+
+    private Transform parent;
 
 
     public void Spawn(BuildingPlace place, Transform parent)
     {
         this.place = place;
+        this.parent = parent;
+
         //Spawn towersona LOD
         towersonaLOD = SpawnTowersonaLOD(parent);
 
@@ -46,10 +51,13 @@ public class Towersona : MonoBehaviour
     {
         //TODO: Upgrading
         print("Upgrading =^.^=");
-        towersonaLOD.SwitchModel(lowpolyModels[1]);
-        towersonaHOD.Upgrade(highpolyModels[1]);
-
         towersonaLevel = TowersonaLevel.LVL2;
+
+        Destroy(towersonaLOD.gameObject);
+        towersonaLOD = SpawnTowersonaLOD(parent);
+
+        Destroy(towersonaHOD.gameObject);
+        towersonaHOD = SpawnTowersonaHOD(parent);
 
         stats.AssignData();
 
@@ -60,9 +68,16 @@ public class Towersona : MonoBehaviour
     {
         //TODO: evolving
         print("Evolving to evolution " + (evolution + 1));
-        //SwitchModel(lowpolyModels[evolution + 2]);
 
-        //PlayerStats.Instance.SpendMoney(costs[(int)towersonaLevel]);
+        towersonaLevel = (TowersonaLevel)(evolution + 2);
+
+        Destroy(towersonaLOD.gameObject);
+        towersonaLOD = SpawnTowersonaLOD(parent);
+
+        Destroy(towersonaHOD.gameObject);
+        towersonaHOD = SpawnTowersonaHOD(parent);
+
+        PlayerStats.Instance.SpendMoney(costs[(int)towersonaLevel]);
     } 
 
     public void TowersonaLODTouched()
@@ -75,8 +90,7 @@ public class Towersona : MonoBehaviour
 
     private TowersonaLOD SpawnTowersonaLOD(Transform parent)
     {
-        GameObject towersonaObject = Instantiate(towersonaLODPrefab, place.transform.position, Quaternion.Euler(0f, 180f, 0f));
-        towersonaObject.GetComponentInChildren<MeshFilter>().mesh = lowpolyModels[0];
+        GameObject towersonaObject = Instantiate(towersonaLODPrefabs[(int)towersonaLevel], place.transform.position, Quaternion.Euler(0f, 180f, 0f));
         towersonaObject.transform.SetParent(parent);
         towersonaObject.name = gameObject.name + " LOD";
 
@@ -96,11 +110,10 @@ public class Towersona : MonoBehaviour
 
         TowersonaHOD towersonaHOD = towersonaHODObject.GetComponent<TowersonaHOD>();       
 
-
         Camera camera = towersonaHOD.transform.GetComponentInChildren<Camera>();
         GameManager.Instance.ChangeCamera(camera);
 
-        TowersonaNeeds tsn = towersonaHOD.SpawnTowersonaHOD(this, towersonaHODPrefab);
+        TowersonaNeeds tsn = towersonaHOD.SpawnTowersonaHOD(this, towersonaHODPrefabs[(int)towersonaLevel]);
         tsn.name = gameObject.name + " needs";
 
         BuildManager.Instance.lastXUsed += 15f;

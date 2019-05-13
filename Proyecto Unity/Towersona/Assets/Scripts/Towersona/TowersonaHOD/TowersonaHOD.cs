@@ -41,9 +41,6 @@ public class TowersonaHOD : MonoBehaviour
 
         this.towersona = towersona;
 
-        meshFilter = model.GetComponentInChildren<MeshFilter>();
-        meshFilter.mesh = towersona.highpolyModels[0];
-
         needs.happinessSlider = slider;
         needs.overHappiness = overHappiness;
 
