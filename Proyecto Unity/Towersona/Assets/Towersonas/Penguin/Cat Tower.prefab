@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &824885323347685139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5171529233366796780}
+  - component: {fileID: 8547910103068521303}
+  m_Layer: 0
+  m_Name: Cat Tower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5171529233366796780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824885323347685139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8547910103068521303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824885323347685139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  costs: 2d000000460000007d00000082000000
+  towersonaLODPrefab: {fileID: 2407868818723468261, guid: e7dec2f7c942e66479fc0ffe6179525b,
+    type: 3}
+  towersonaHODPrefab: {fileID: 5139840167273293286, guid: c72a49c5981014d4aa20c376907decb4,
+    type: 3}
+  towersonaLODPrefabs:
+  - {fileID: 2407868818723468261, guid: e7dec2f7c942e66479fc0ffe6179525b, type: 3}
+  - {fileID: 2407868818723468261, guid: 1b1fa32289857a94097b032ed8cd8c46, type: 3}
+  - {fileID: 2407868818723468261, guid: 5a877ddbea3c53f4eb498361a57b6177, type: 3}
+  - {fileID: 2407868818723468261, guid: b1f85528e573bd644b75b226881a04d8, type: 3}
+  towersonaHODPrefabs:
+  - {fileID: 5139840167273293286, guid: c72a49c5981014d4aa20c376907decb4, type: 3}
+  - {fileID: 5139840167273293286, guid: b1b1d9b73977b7145b5dbcab3fc17184, type: 3}
+  - {fileID: 5139840167273293286, guid: a3c1f09ec65735c4f9a9f8ddf3d5ef43, type: 3}
+  - {fileID: 5139840167273293286, guid: feb1b47425b928340a61921a4b731c84, type: 3}
+  lowpolyModels:
+  - {fileID: 4300000, guid: 2fd883eec8158f042a111b3e47307ea1, type: 3}
+  - {fileID: 4300000, guid: da186831992da23498a5f50cfc631f88, type: 3}
+  highpolyModels:
+  - {fileID: 4300000, guid: 3a33d8f1e15ba3247b088ba9e63d423d, type: 3}
+  - {fileID: 4300000, guid: 6c7c02123e8c9614fa1d77a41039a51a, type: 3}
+  place: {fileID: 0}
+  towersonaHOD: {fileID: 0}
+  towersonaLOD: {fileID: 0}
+  towersonaNeeds: {fileID: 0}
+  towersonaLevel: 0
