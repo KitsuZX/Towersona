@@ -5,28 +5,8 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ShitNeed))]
 public class TowersonaNeeds : MonoBehaviour
 {
-    private const int AMOUNT_OF_NEEDS = 3;
-
-    [SerializeField][Range(1, 2)]
-    private float happinessCap = 1.3f;
-   
-    private float hungerDecayPerSecond = 0.05f;
-    private float loveDecayPerSecond = 0.05f;
-
-    [HideInInspector]    
-    public Slider happinessSlider;
-    [HideInInspector]
-    public GameObject overHappiness;
-
-    [Header("Notification")]
-    [SerializeField][Range(0, 1)]
-    private float notificationThreshold = 0.3f;
-
-    //Need levels
-    private float hungerLevel;
-    private float loveLevel;
-    private ShitNeed shitNeed;
-    private TowersonaStats stats;
+    public enum Emotion { Fine = 0, Happy = 1, Hungry = 2, Missing = 3, Shit = 4 }
+    public Emotion emotion = Emotion.Fine;
 
     public float HappinessLevel
     {
@@ -35,11 +15,31 @@ public class TowersonaNeeds : MonoBehaviour
             float sum = hungerLevel + loveLevel + shitNeed.Level;
             return sum / AMOUNT_OF_NEEDS;
         }
-    }  
+    }
+
+    [HideInInspector]
+    public Slider happinessSlider;
+    [HideInInspector]
+    public GameObject overHappiness;
+
+    [Header("Notification")]
+    [SerializeField][Range(0, 1)]
+    private float notificationThreshold = 0.3f;
+    [SerializeField][Range(1, 2)]
+    private float happinessCap = 1.3f;
+
+    private float hungerDecayPerSecond = 0.05f;
+    private float loveDecayPerSecond = 0.05f;
+    private const int AMOUNT_OF_NEEDS = 3;  
+
+    //Need levels
+    private float hungerLevel;
+    private float loveLevel;
+    private ShitNeed shitNeed;
+    private TowersonaStats stats;    
 
     private void Start()
     {
-
         shitNeed = GetComponent<ShitNeed>();
         stats = GetComponentInParent<TowersonaHOD>().towersona.stats;
     
@@ -51,12 +51,31 @@ public class TowersonaNeeds : MonoBehaviour
         SetNeedLevel(NeedType.Love, 1);
     }
 
+    private void Update()
+    {
+        if (stats == null) return;
+        DoNeedDecay();
+        NeedType needToBeNotified = CheckIfShouldNotifyNeed();
+
+        if (HappinessLevel <= 1f)
+        {
+            overHappiness.SetActive(false);
+            happinessSlider.value = HappinessLevel;
+        }
+        else
+        {
+            overHappiness.SetActive(true);
+        }
+
+        ChooseEmotion();
+
+    }
+
     private void AssignStats()
     {
         hungerDecayPerSecond = stats.hungerDecayPerSecond;
         loveDecayPerSecond = stats.loveDecayPerSecond;
     }
-
 
     /// <summary>
     /// 1 means fulfilled, 0 means unfulfilled
@@ -95,26 +114,6 @@ public class TowersonaNeeds : MonoBehaviour
                 loveLevel = Mathf.Min(loveLevel, happinessCap);
                 break;
         }
-    }
-
-
-    #region Need Decay
-    private void Update()
-    {
-        if (stats == null) return;
-        DoNeedDecay();
-        NeedType needToBeNotified = CheckIfShouldNotifyNeed();
-
-        if(HappinessLevel <= 1f)
-        {
-            overHappiness.SetActive(false);
-            happinessSlider.value = HappinessLevel;
-        }
-        else
-        {
-            overHappiness.SetActive(true);
-        }      
-
     }
 
     /// <summary>
@@ -158,7 +157,23 @@ public class TowersonaNeeds : MonoBehaviour
 
         return notifiedNeed;
     }  
-    #endregion
+    
+    public void ChooseEmotion()
+    {
+        NeedType notifiedNeed = CheckIfShouldNotifyNeed(); 
+
+        if (notifiedNeed == NeedType.None) 
+        {
+            if (HappinessLevel > 1) emotion = Emotion.Happy;
+            else emotion = Emotion.Fine;
+        }
+        else
+        {
+            if (notifiedNeed == NeedType.Hunger) emotion = Emotion.Hungry;
+            else if (notifiedNeed == NeedType.Love) emotion = Emotion.Missing;
+            else if (notifiedNeed == NeedType.Shit) emotion = Emotion.Shit;
+        }       
+    }
 
     public enum NeedType
     {

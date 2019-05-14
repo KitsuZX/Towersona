@@ -37,7 +37,7 @@ public class CSVReader
                     float.TryParse(row[j], out f);
                     if (f != 0) data.Add(f);
 
-                    //TODO: leer solo las partes que interesen
+                    //TODO: Leer solo las partes que interesen
                 }            
             }        
             return data;

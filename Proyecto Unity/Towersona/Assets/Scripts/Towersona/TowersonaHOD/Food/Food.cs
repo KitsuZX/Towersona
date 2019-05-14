@@ -9,10 +9,13 @@ public class Food : MonoBehaviour
 
     [HideInInspector]
     public FoodDispenser dispenser = null;
+    
+    //TODO: Hacer que solo se coma la comida cuando se le arrastra la cabeza, si no no
 
     public void OnLettingGo()
-    {    
-        dispenser.towersonaAnim.SetIsLookingAtFood(false);
+    {
+        //TODO: Dejar de mirar a la comida cuando se le da de comer
+        //dispenser.towersonaAnim.SetIsLookingAtFood(false);
         GetEaten(dispenser.towersonaNeeds);
         Destroy(gameObject);
     }
@@ -22,9 +25,8 @@ public class Food : MonoBehaviour
         towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Hunger, hungerFulmilmentPerRation);
         dispenser.DispenseWithDelay();
 
-        TowersonaAnimation anim = towersonaNeeds.GetComponent<TowersonaAnimation>();
-        anim.SetIsLookingAtFood(false);
-        anim.TriggerEating();
+        TowersonaHODAnimation anim = towersonaNeeds.GetComponent<TowersonaHODAnimation>();               
+        anim.Eat();    
 
         Destroy(gameObject);
     }

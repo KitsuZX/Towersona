@@ -61,10 +61,9 @@ public abstract class AttackPattern : MonoBehaviour
     {
         if (target == null)
         {
-            animations.IdleAnimation();
+            animations.Idle();
             return;
         }
-
 
         animations.Shoot();
     }

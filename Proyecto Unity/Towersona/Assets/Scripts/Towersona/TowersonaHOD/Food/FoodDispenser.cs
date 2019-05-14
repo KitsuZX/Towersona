@@ -9,7 +9,7 @@ public class FoodDispenser : MonoBehaviour
     [HideInInspector]
     public Towersona towersona;
     [HideInInspector]
-    public TowersonaAnimation towersonaAnim;
+    public TowersonaHODAnimation towersonaAnim;
     [HideInInspector]
     public TowersonaNeeds towersonaNeeds;
 
@@ -40,20 +40,17 @@ public class FoodDispenser : MonoBehaviour
 
         Draggable draggable = newFood.GetComponentInChildren<Draggable>();
         draggable.detailCamera = detailCamera;
-        draggable.OnDragStart.AddListener(NotifyFoodDrag);
+        draggable.OnDragStart.AddListener(NotifyFoodDrag);    
 
-        towersonaAnim.SetIsLookingAtFood(false);
-        towersonaAnim.SetLookAtTransform(draggable.transform);
     }
 
     public void DispenseWithDelay()
     {
         Invoke("DispenseImmidiately", dispenseDelay);
-        towersonaAnim.SetIsLookingAtFood(false);
     }
 
     private void NotifyFoodDrag()
     {
-        towersonaAnim.SetIsLookingAtFood(true);    
+        //TODO: Mirar a la comida
     }
 }

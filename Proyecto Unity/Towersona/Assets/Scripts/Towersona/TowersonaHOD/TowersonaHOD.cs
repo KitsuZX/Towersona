@@ -12,7 +12,7 @@ public class TowersonaHOD : MonoBehaviour
     [HideInInspector]
     public Towersona towersona;
     [HideInInspector]
-    public TowersonaAnimation towersonaAnim;
+    public TowersonaHODAnimation towersonaAnim;
     [HideInInspector]
     public TowersonaNeeds towersonaNeeds;    
 
@@ -45,9 +45,9 @@ public class TowersonaHOD : MonoBehaviour
         needs.overHappiness = overHappiness;
 
         towersonaNeeds = needs;
-        towersonaAnim = model.GetComponent<TowersonaAnimation>();
+        towersonaAnim = model.GetComponent<TowersonaHODAnimation>();
 
-        //TODO: Descomentar esta wea
+        //TODO: Look Away. No se puede hacer hasta que no esté el rigging metido
         //towersonaAnim.lookAway.camera = cam;
 
         ShitNeed shitNeed = model.GetComponent<ShitNeed>();

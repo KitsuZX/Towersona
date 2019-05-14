@@ -48,8 +48,7 @@ public class Towersona : MonoBehaviour
     }
 
     public void LevelUp()
-    {
-        //TODO: Upgrading
+    {     
         print("Upgrading =^.^=");
         towersonaLevel = TowersonaLevel.LVL2;
 
@@ -65,8 +64,7 @@ public class Towersona : MonoBehaviour
     }
 
     public void Evolve(int evolution)
-    {
-        //TODO: evolving
+    {       
         print("Evolving to evolution " + (evolution + 1));
 
         towersonaLevel = (TowersonaLevel)(evolution + 2);

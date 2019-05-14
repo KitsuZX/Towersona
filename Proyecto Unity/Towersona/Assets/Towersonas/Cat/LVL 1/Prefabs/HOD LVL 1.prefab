@@ -50,10 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590a878a6c06b3b49b9ccfddf01b871a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happinessCap: 1.252
+  emotion: 0
   happinessSlider: {fileID: 0}
   overHappiness: {fileID: 0}
   notificationThreshold: 0.3
+  happinessCap: 1.252
 --- !u!114 &5139840167273293283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,8 +73,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5930336773357402270}
-        m_MethodName: SetIsCaressed
-        m_Mode: 6
+        m_MethodName: CaressStart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -88,8 +89,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5930336773357402270}
-        m_MethodName: SetIsCaressed
-        m_Mode: 6
+        m_MethodName: CaressEnd
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -148,10 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyAnimator: {fileID: 0}
-  headAnimator: {fileID: 0}
   faceAnimator: {fileID: 0}
-  lookAt: {fileID: 0}
-  lookAway: {fileID: 0}
 --- !u!114 &1080524074
 MonoBehaviour:
   m_ObjectHideFlags: 0

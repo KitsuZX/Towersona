@@ -5,25 +5,16 @@ using UnityEngine;
 public class TowersonaLODAnimation : MonoBehaviour
 {
     [SerializeField]
-    private Animator headAC;
-    [SerializeField]
-    private Animator bodyAC;
-
-    [HideInInspector]
-    public bool isFighting = true;
+    private Animator animator;
 
     public void Shoot()
     {
-        //TODO: Towersona LOD animations
-        //headAC.SetBool("isFighting", true);
-        //bodyAC.SetBool("isFighting", true);  
+        
     }
 
-    public void IdleAnimation()
+    public void Idle()
     {
-        //TODO: Towersona LOD animations
-        //headAC.SetBool("isFighting", false);
-        //bodyAC.SetBool("isFighting", false);      
+       
     }
 
 
