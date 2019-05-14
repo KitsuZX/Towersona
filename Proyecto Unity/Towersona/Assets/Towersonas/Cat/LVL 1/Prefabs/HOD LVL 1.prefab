@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5139840167273293282}
   - component: {fileID: 4526572796161036566}
   m_Layer: 9
-  m_Name: Cat Tower Highpoly
+  m_Name: HOD LVL 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,10 +328,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3169cb224990a7a47beca87fa82a1d52, type: 2}
-  - {fileID: 2100000, guid: 3169cb224990a7a47beca87fa82a1d52, type: 2}
-  - {fileID: 2100000, guid: 7aaf4404b56242a42ac9b73f5ef8317d, type: 2}
-  - {fileID: 2100000, guid: bdca5ef61e0a119478b488a9f630b3a8, type: 2}
+  - {fileID: 2100000, guid: 9a0f0faeb2cafdb46b724b4d9c70bcba, type: 2}
+  - {fileID: 2100000, guid: 3c96d658f46bd7e48943938070a102a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -358,4 +356,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8923527313933143381}
-  m_Mesh: {fileID: 4300000, guid: 3a33d8f1e15ba3247b088ba9e63d423d, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 569a2dd9e328bdf4ab496c9eece61abd, type: 3}
