@@ -1,17 +1,16 @@
 fileFormatVersion: 2
-guid: da186831992da23498a5f50cfc631f88
+guid: 62cce6a6f8d312a40af31994556f5c36
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: cuerpo.001
-    2100002: cuerpo
-    2100004: cabeza.001
-    2100006: cara.001
+    2100000: cabeza
+    2100002: cara
+    2100004: cuerpo
     2300000: //RootNode
     3300000: //RootNode
-    4300000: peana
+    4300000: lp
   externalObjects: {}
   materials:
     importMaterials: 1

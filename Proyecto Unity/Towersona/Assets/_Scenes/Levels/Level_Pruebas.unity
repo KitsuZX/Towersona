@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44875205, g: 0.49880874, b: 0.5756879, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -288,7 +288,7 @@ Light:
   m_GameObject: {fileID: 142513485}
   m_Enabled: 1
   serializedVersion: 8
-  m_Type: 0
+  m_Type: 1
   m_Color: {r: 1, g: 0.9872909, b: 0.7311321, a: 1}
   m_Intensity: 1
   m_Range: 10000
@@ -2903,6 +2903,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4326776620507013396, guid: 8173bd2a3f3cf95498a39db667a80930,
+        type: 3}
+      propertyPath: nodeUI
+      value: 
+      objectReference: {fileID: 1613604296}
     - target: {fileID: 4326776620507013399, guid: 8173bd2a3f3cf95498a39db667a80930,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2958,11 +2963,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4326776620507013396, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
-      propertyPath: nodeUI
-      value: 
-      objectReference: {fileID: 1613604296}
     - target: {fileID: 4326776620507013400, guid: 8173bd2a3f3cf95498a39db667a80930,
         type: 3}
       propertyPath: victoryPrompt
@@ -3006,6 +3006,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895327831670917425, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895327831670917425, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895327832204439009, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895327832204439009, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895327832311628268, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895327832311628268, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8895327832433344128, guid: 037403d2d947a2f40965138420f02b46,
         type: 3}
@@ -3123,36 +3153,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8895327831804465250, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895327832204439009, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895327832204439009, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895327831670917425, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895327831670917425, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895327832311628268, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895327832311628268, guid: 037403d2d947a2f40965138420f02b46,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1

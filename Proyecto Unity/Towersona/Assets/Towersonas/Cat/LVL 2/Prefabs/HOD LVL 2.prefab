@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5139840167273293282}
   - component: {fileID: 4526572796161036566}
   m_Layer: 9
-  m_Name: LVL 2
+  m_Name: HOD LVL 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -328,10 +328,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3169cb224990a7a47beca87fa82a1d52, type: 2}
-  - {fileID: 2100000, guid: 3169cb224990a7a47beca87fa82a1d52, type: 2}
-  - {fileID: 2100000, guid: 7aaf4404b56242a42ac9b73f5ef8317d, type: 2}
-  - {fileID: 2100000, guid: bdca5ef61e0a119478b488a9f630b3a8, type: 2}
+  - {fileID: 2100000, guid: b04735a247754464cb757b66e15a258f, type: 2}
+  - {fileID: 2100000, guid: 84110cd34f45fbc488484d8bdb383236, type: 2}
+  - {fileID: 2100000, guid: 4abaf6de15d817e4483dbd1bb4e8117f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -358,4 +357,4 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8923527313933143381}
-  m_Mesh: {fileID: 4300000, guid: 6c7c02123e8c9614fa1d77a41039a51a, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d07659723bc229d4bb97fdae08d06135, type: 3}
