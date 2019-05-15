@@ -50,11 +50,11 @@ public abstract class AttackPattern : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        /*if (EditorApplication.isPlaying)
+        if (Application.isPlaying)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(towersona.transform.position, stats.attackRange.y);
-        }*/
+            Gizmos.DrawWireSphere(towersonaLOD.transform.position, stats.currentAttackRange);
+        }
     }
 
     private void CheckAnimations()

@@ -12,9 +12,7 @@ public class Bullet : Shooting
 
         pos.y += 1f;   
 
-        BuildManager.Instance.SpawnEffect(impactEffect, pos);
-
-        CameraShake.Instance.AddTrauma(0.2f);
+        BuildManager.Instance.SpawnEffect(impactEffect, pos);        
 
         if (e != null)
         {

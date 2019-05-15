@@ -55,8 +55,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        defeatPrompt.SetActive(true);
-         CameraShake.Instance.AddTrauma(0.8f);
+        defeatPrompt.SetActive(true);        
     }
 
     /// <summary>

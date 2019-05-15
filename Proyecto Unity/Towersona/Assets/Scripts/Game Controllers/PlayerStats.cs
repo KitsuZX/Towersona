@@ -40,7 +40,7 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-            CameraShake.Instance.AddTrauma(0.5f);
+           
         }
 
         InGameUIController.Instance.UpdateLives();

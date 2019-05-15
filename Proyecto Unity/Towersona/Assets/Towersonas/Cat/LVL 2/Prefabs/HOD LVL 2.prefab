@@ -50,10 +50,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 590a878a6c06b3b49b9ccfddf01b871a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happinessCap: 1.252
+  emotion: 0
   happinessSlider: {fileID: 0}
   overHappiness: {fileID: 0}
   notificationThreshold: 0.3
+  happinessCap: 1.252
 --- !u!114 &5139840167273293283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,10 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyAnimator: {fileID: 0}
-  headAnimator: {fileID: 0}
   faceAnimator: {fileID: 0}
-  lookAt: {fileID: 0}
-  lookAway: {fileID: 0}
 --- !u!114 &1080524074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,7 +304,7 @@ Transform:
   m_GameObject: {fileID: 8923527313933143381}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: -0.66, z: 0}
-  m_LocalScale: {x: 21, y: 21, z: 21}
+  m_LocalScale: {x: 13, y: 13, z: 13}
   m_Children: []
   m_Father: {fileID: 5139840167273293285}
   m_RootOrder: 0
