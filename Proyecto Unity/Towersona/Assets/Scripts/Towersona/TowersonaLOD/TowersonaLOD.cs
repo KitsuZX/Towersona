@@ -26,7 +26,7 @@ public class TowersonaLOD : MonoBehaviour
 
         firePoint = transform.Find("FirePoint");      
 
-        GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().Play();             
     }
 
     /// <summary>

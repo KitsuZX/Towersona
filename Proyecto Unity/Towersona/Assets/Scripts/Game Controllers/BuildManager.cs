@@ -127,21 +127,13 @@ public class BuildManager : MonoBehaviour
         nodeUI.Hide();
     }   
 
-    public void UpgradeTowersona()
+    public void UpgradeTowersona(int level)
     {
-        towersonaSelected.LevelUp();
+        towersonaSelected.LevelUp(level);
         SpawnEffect(buildEffect, towersonaSelected.place.transform.position);
 
         DeselectTowersona();     
-    }
-
-    public void Evolve(int evolution)
-    {
-        towersonaSelected.Evolve(evolution);
-        SpawnEffect(buildEffect, towersonaSelected.transform.position);
-
-        DeselectTowersona();
-    }
+    }    
 
     public void SpawnEffect(GameObject _effect, Vector3 position)
     {

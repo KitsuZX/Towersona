@@ -10,16 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07b43e96bbf24e546b5efc7cf0df4056, type: 3}
-  m_Name: Stats
+  m_Name: Stats 3 - 1
   m_EditorClassIdentifier: 
-  "da\xF1oBala": {x: 3, y: 30}
-  velocidadDeAtaque: {x: 1, y: 4}
-  rango: {x: 10, y: 15}
-  velocidadBala: {x: 7, y: 20}
-  dineroPorSegundo: {x: 20, y: 50}
   felicidadPorCaricia: 0.1
   hambrePorSegundo: 0.05
   perdidaFelicidadPorSegundo: 0.05
   enfadoPorMierda: 0.2
   tiempoEntreMierdas: 12
   maxMierdas: 4
+  currentAttackStrength: 0
+  currentAttackSpeed: 0
+  currentAttackRange: 0
+  currentBulletSpeed: 0
+  needs: {fileID: 0}
+  "da\xF1oBala": {x: 3, y: 30}
+  velocidadDeAtaque: {x: 1, y: 4}
+  rango: {x: 10, y: 15}
+  velocidadBala: {x: 7, y: 20}
+  dineroPorSegundo: {x: 20, y: 50}
+  currentMoneyPerSecond: 0

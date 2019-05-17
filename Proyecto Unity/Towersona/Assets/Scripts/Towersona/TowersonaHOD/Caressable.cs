@@ -66,7 +66,7 @@ public class Caressable : MonoBehaviour
 
     private void AssignStats()
     {
-        loveIncreasePerDeltaUnit = stats.loveIncreasePerDeltaUnit;
+        loveIncreasePerDeltaUnit = stats.felicidadPorCaricia;
     }
 
     private void OnMouseDrag()

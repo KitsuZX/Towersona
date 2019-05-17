@@ -73,8 +73,8 @@ public class TowersonaNeeds : MonoBehaviour
 
     private void AssignStats()
     {
-        hungerDecayPerSecond = stats.hungerDecayPerSecond;
-        loveDecayPerSecond = stats.loveDecayPerSecond;
+        hungerDecayPerSecond = stats.hambrePorSegundo;
+        loveDecayPerSecond = stats.perdidaFelicidadPorSegundo;
     }
 
     /// <summary>

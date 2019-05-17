@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Stats", menuName = "Stats/Cat/Tiger")]
-public class TigerStats : ScriptableObject
+public class TigerStats : TowersonaStats
 {
+    [Header("Tiger Stats")]
     public Vector2 dañoBala;
     public Vector2 velocidadDeAtaque;
     public Vector2 rango;
@@ -13,14 +14,31 @@ public class TigerStats : ScriptableObject
     public Vector2 dineroPorSegundo;
     public Vector2 tamañoAreaDañoBala;
 
-    [Tooltip("Cuanta felicidad gana la towersona por caricia")]
-    public float felicidadPorCaricia;
-    [Tooltip("Hambre que pierde por segundo la towersona")]
-    public float hambrePorSegundo;
-    [Tooltip("Amor que pierde por segundo la towersona")]
-    public float perdidaFelicidadPorSegundo;
-    [Tooltip("Cuanto cae el amor por cada mierda que hay sin recoger")]
-    public float enfadoPorMierda;
-    public float tiempoEntreMierdas;
-    public int maxMierdas;
+    [HideInInspector]
+    public float currentMoneyPerSecond;
+    [HideInInspector]
+    public float currentDamageArea;
+
+    public override void UpdateStats()
+    {
+        currentAttackStrength = Mathf.Lerp(dañoBala.x, dañoBala.y, needs.HappinessLevel);
+        currentAttackSpeed = Mathf.Lerp(velocidadDeAtaque.x, velocidadDeAtaque.y, needs.HappinessLevel);
+        currentAttackRange = Mathf.Lerp(rango.x, rango.y, needs.HappinessLevel);
+        currentBulletSpeed = Mathf.Lerp(velocidadBala.x, velocidadBala.y, needs.HappinessLevel);
+
+        currentMoneyPerSecond = Mathf.Lerp(dineroPorSegundo.x, dineroPorSegundo.y, needs.HappinessLevel);
+        currentDamageArea = Mathf.Lerp(tamañoAreaDañoBala.x, tamañoAreaDañoBala.y, needs.HappinessLevel);
+    }
+
+    public override void SetDefaultValues()
+    {
+        currentAttackStrength = dañoBala.y;
+        currentAttackSpeed = velocidadDeAtaque.y;
+        currentAttackRange = rango.y;
+        currentBulletSpeed = velocidadBala.y;
+
+        currentMoneyPerSecond = dineroPorSegundo.y;
+        currentDamageArea = tamañoAreaDañoBala.y;
+    }
+
 }

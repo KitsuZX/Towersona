@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Stats", menuName = "Stats/Cat/Lion")]
-public class LionStats : ScriptableObject
+public class LionStats : TowersonaStats
 {
+    [Header("Lion Stats")]
     public Vector2 dañoBala;
     public Vector2 velocidadDeAtaque;
     public Vector2 rango;
@@ -12,14 +13,27 @@ public class LionStats : ScriptableObject
 
     public Vector2 dineroPorSegundo;
 
-    [Tooltip("Cuanta felicidad gana la towersona por caricia")]
-    public float felicidadPorCaricia;
-    [Tooltip("Hambre que pierde por segundo la towersona")]
-    public float hambrePorSegundo;
-    [Tooltip("Amor que pierde por segundo la towersona")]
-    public float perdidaFelicidadPorSegundo;
-    [Tooltip("Cuanto cae el amor por cada mierda que hay sin recoger")]
-    public float enfadoPorMierda;
-    public float tiempoEntreMierdas;
-    public int maxMierdas;
+    [HideInInspector]
+    public float currentMoneyPerSecond;
+
+    public override void UpdateStats()
+    {
+        currentAttackStrength = Mathf.Lerp(dañoBala.x, dañoBala.y, needs.HappinessLevel);
+        currentAttackSpeed = Mathf.Lerp(velocidadDeAtaque.x, velocidadDeAtaque.y, needs.HappinessLevel);
+        currentAttackRange = Mathf.Lerp(rango.x, rango.y, needs.HappinessLevel);
+        currentBulletSpeed = Mathf.Lerp(velocidadBala.x, velocidadBala.y, needs.HappinessLevel);
+
+        currentMoneyPerSecond = Mathf.Lerp(dineroPorSegundo.x, dineroPorSegundo.y, needs.HappinessLevel);       
+    }
+
+    public override void SetDefaultValues()
+    {
+        currentAttackStrength = dañoBala.y;
+        currentAttackSpeed = velocidadDeAtaque.y;
+        currentAttackRange = rango.y;
+        currentBulletSpeed = velocidadBala.y;
+
+        currentMoneyPerSecond = dineroPorSegundo.y;
+    }
 }
+   

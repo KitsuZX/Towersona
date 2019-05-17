@@ -2879,16 +2879,41 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 383186421}
+    - target: {fileID: 756943003616821211, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 756943003426735253, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 383186421}
+    - target: {fileID: 756943003426735253, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeTowersona
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943003426735253, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943004423312631, guid: 6b05afe36a90e654692100fa3d85b995,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 383186421}
     - target: {fileID: 756943004423312631, guid: 6b05afe36a90e654692100fa3d85b995,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 383186421}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: UpgradeTowersona
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943004423312631, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b05afe36a90e654692100fa3d85b995, type: 3}
 --- !u!1001 &4326776620126819553

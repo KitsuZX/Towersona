@@ -8,11 +8,7 @@ public class Towersona : MonoBehaviour
 
     [Header("References")] 
     public GameObject[] towersonaLODPrefabs;
-    public GameObject[] towersonaHODPrefabs;
-    
-    [Header("Models")]
-    public Mesh[] lowpolyModels;
-    public Mesh[] highpolyModels;
+    public GameObject[] towersonaHODPrefabs; 
         
     [HideInInspector]
     public BuildingPlace place;   
@@ -25,6 +21,9 @@ public class Towersona : MonoBehaviour
 
     [HideInInspector]
     public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1;
+    [SerializeField]
+    private TowersonaStats[] statsArray;
+
     [HideInInspector]
     public TowersonaStats stats;
 
@@ -36,44 +35,38 @@ public class Towersona : MonoBehaviour
         this.place = place;
         this.parent = parent;
 
-        //Spawn towersona LOD
-        towersonaLOD = SpawnTowersonaLOD(parent);
-
         //Spawn towersona HOD
         towersonaHOD = SpawnTowersonaHOD(parent);
         towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
 
- 
-        stats = new TowersonaStats(this);
-    }
+        //Assign stats   
+        stats = statsArray[0];
+        stats.needs = towersonaNeeds;
 
-    public void LevelUp()
-    {     
-        print("Upgrading =^.^=");
-        towersonaLevel = TowersonaLevel.LVL2;
+        InvokeRepeating("UpdateStats", 0f, 0.1f);        
+
+        //Spawn towersona LOD
+        towersonaLOD = SpawnTowersonaLOD(parent);
+      
+    }   
+
+    public void LevelUp(int level)
+    {
+        CancelInvoke();
+        print("Evolving to evolution " + (level + 1));
+
+        towersonaLevel = (TowersonaLevel)(level + 1);
 
         Destroy(towersonaLOD.gameObject);
         towersonaLOD = SpawnTowersonaLOD(parent);
 
         Destroy(towersonaHOD.gameObject);
         towersonaHOD = SpawnTowersonaHOD(parent);
+        towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
 
-        stats.AssignData();
-
-        PlayerStats.Instance.SpendMoney(costs[(int)towersonaLevel]);
-    }
-
-    public void Evolve(int evolution)
-    {       
-        print("Evolving to evolution " + (evolution + 1));
-
-        towersonaLevel = (TowersonaLevel)(evolution + 2);
-
-        Destroy(towersonaLOD.gameObject);
-        towersonaLOD = SpawnTowersonaLOD(parent);
-
-        Destroy(towersonaHOD.gameObject);
-        towersonaHOD = SpawnTowersonaHOD(parent);
+        stats = statsArray[level + 1];
+        stats.needs = towersonaNeeds;
+        InvokeRepeating("UpdateStats", 0f, 0.1f);
 
         PlayerStats.Instance.SpendMoney(costs[(int)towersonaLevel]);
     } 
@@ -117,6 +110,11 @@ public class Towersona : MonoBehaviour
         BuildManager.Instance.lastXUsed += 15f;
 
         return towersonaHOD;
+    }
+
+    private void UpdateStats()
+    {
+        stats.UpdateStats();
     }
 
     public enum TowersonaLevel
