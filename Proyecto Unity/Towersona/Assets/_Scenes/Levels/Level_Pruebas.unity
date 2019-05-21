@@ -1995,7 +1995,7 @@ GameObject:
   - component: {fileID: 1822830940}
   - component: {fileID: 1822830939}
   m_Layer: 0
-  m_Name: Camera To Be Destroyed
+  m_Name: Empty Camera
   m_TagString: Default Camera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2051,7 +2051,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1822830937}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 50}
+  m_LocalPosition: {x: -50, y: 0, z: 50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1013596053}
@@ -2874,6 +2874,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 756943004187847404, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: lvl3UI
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 756943003616821211, guid: 6b05afe36a90e654692100fa3d85b995,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2913,6 +2918,96 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943003841352535, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943003841352535, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943003841352535, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943003841352535, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 383186421}
+    - target: {fileID: 756943003841352535, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SellTowersona
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943003841352535, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943004411410426, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943004411410426, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943004411410426, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943004411410426, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 383186421}
+    - target: {fileID: 756943004411410426, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SellTowersona
+      objectReference: {fileID: 0}
+    - target: {fileID: 756943004411410426, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697521764278899149, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697521764278899149, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697521764278899149, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697521764278899149, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 383186421}
+    - target: {fileID: 3697521764278899149, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SellTowersona
+      objectReference: {fileID: 0}
+    - target: {fileID: 3697521764278899149, guid: 6b05afe36a90e654692100fa3d85b995,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b05afe36a90e654692100fa3d85b995, type: 3}
@@ -3001,6 +3096,11 @@ PrefabInstance:
     - target: {fileID: 4326776620507013400, guid: 8173bd2a3f3cf95498a39db667a80930,
         type: 3}
       propertyPath: cameraToDestroy
+      value: 
+      objectReference: {fileID: 1822830939}
+    - target: {fileID: 4326776620507013400, guid: 8173bd2a3f3cf95498a39db667a80930,
+        type: 3}
+      propertyPath: emptyCamera
       value: 
       objectReference: {fileID: 1822830939}
     - target: {fileID: 4326776620507013403, guid: 8173bd2a3f3cf95498a39db667a80930,

@@ -4,17 +4,20 @@ using UnityEngine;
 
 public abstract class TowersonaStats : ScriptableObject
 {
+    [Header("Money")]
+    public int buyCost;
+    public int sellCost;
     [Header("Towersonsa stats")]
     [Tooltip("Cuanta felicidad gana la towersona por caricia")]
-    public float felicidadPorCaricia;
+    public float happinessPerPet;
     [Tooltip("Hambre que pierde por segundo la towersona")]
-    public float hambrePorSegundo;
+    public float hungerPerSecond;
     [Tooltip("Amor que pierde por segundo la towersona")]
-    public float perdidaFelicidadPorSegundo;
+    public float hapinessLossPerSecond;
     [Tooltip("Cuanto cae el amor por cada mierda que hay sin recoger")]
-    public float enfadoPorMierda;
-    public float tiempoEntreMierdas;
-    public int maxMierdas;
+    public float angerPerShit;
+    public float timeBetweenShits;
+    public int maxShits;
 
     [HideInInspector]
     public float currentAttackStrength;

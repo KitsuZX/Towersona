@@ -9,20 +9,17 @@ public class BuildManager : MonoBehaviour
     public static BuildManager Instance { get; private set; }
 
     [HideInInspector]
-    public bool maxReached = false;
-    [HideInInspector]
     public float lastXUsed = 0f;
 
-    [Header("References")]
-    [SerializeField]
-    private GameObject[] towersonaPrefabs;
-
+    [Header("References")] 
     public GameObject detailedTowersonaViewPrefab;
 
     [SerializeField]
     private NodeUI nodeUI;
     [SerializeField]
     private GameObject buildEffect;
+
+    private List<Towersona> towersonas;
 
     //Private parameters  
     private GameObject towersonaToBuild;
@@ -39,7 +36,9 @@ public class BuildManager : MonoBehaviour
         else
         {
             Destroy(this);
-        }        
+        }
+
+        towersonas = new List<Towersona>();
     }
 
     private void Update()
@@ -91,16 +90,18 @@ public class BuildManager : MonoBehaviour
 
             Towersona towersona = towersonaGameObject.GetComponent<Towersona>();
             towersona.Spawn(place, towersonaGameObject.transform);
-            PlayerStats.Instance.SpendMoney(towersona.costs[(int)towersona.towersonaLevel]);
+            PlayerStats.Instance.SpendMoney(towersona.stats.buyCost);
 
             SpawnEffect(buildEffect, place.transform.position);
-            
-            //world.SelectTile(_tile);                   
+
+            //world.SelectTile(_tile);         
+
+            towersonas.Add(towersona);
 
             towersonaToBuild = null;
         }
-    }    
-
+    }  
+ 
     public void SelectTowersonaToBuild(Towersona _towersona)
     {
         towersonaToBuild = _towersona.gameObject;
@@ -133,7 +134,15 @@ public class BuildManager : MonoBehaviour
         SpawnEffect(buildEffect, towersonaSelected.place.transform.position);
 
         DeselectTowersona();     
-    }    
+    }
+
+    public void SellTowersona()
+    {   
+        towersonaSelected.Sell();
+        towersonas.Remove(towersonaSelected);
+        DeselectTowersona();
+        GameManager.Instance.ActivateEmptyCamera();                               
+    }
 
     public void SpawnEffect(GameObject _effect, Vector3 position)
     {
@@ -141,6 +150,7 @@ public class BuildManager : MonoBehaviour
         effect.transform.SetParent(GameObject.FindGameObjectWithTag("Effects Parent").transform, true);
         Destroy(effect, 5f);
     }
+   
 
     private void OnGUI()
     {       

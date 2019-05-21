@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4360fbf5e3aeaf45beee8063f656260, type: 3}
   m_Name: Stats 3 - 2
   m_EditorClassIdentifier: 
-  felicidadPorCaricia: 0.1
-  hambrePorSegundo: 0.05
-  perdidaFelicidadPorSegundo: 0.05
-  enfadoPorMierda: 0.2
-  tiempoEntreMierdas: 12
-  maxMierdas: 4
+  buyCost: 150
+  sellCost: 125
+  happinessPerPet: 0.05
+  hungerPerSecond: 0.05
+  hapinessLossPerSecond: 0.1
+  angerPerShit: 0.2
+  timeBetweenShits: 12
+  maxShits: 4
   currentAttackStrength: 0
   currentAttackSpeed: 0
   currentAttackRange: 0

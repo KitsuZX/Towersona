@@ -24,9 +24,7 @@ public class TowersonaLOD : MonoBehaviour
         pattern = GetComponent<AttackPattern>();
         meshFilter = GetComponentInChildren<MeshFilter>();
 
-        firePoint = transform.Find("FirePoint");      
-
-        GetComponent<AudioSource>().Play();             
+        firePoint = transform.Find("FirePoint");                  
     }
 
     /// <summary>

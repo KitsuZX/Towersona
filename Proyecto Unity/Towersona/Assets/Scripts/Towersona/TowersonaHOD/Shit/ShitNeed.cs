@@ -44,9 +44,9 @@ public class ShitNeed : MonoBehaviour
 
     private void AssignStats()
     {
-        happinessImpactPerShit = stats.enfadoPorMierda;
-        shittingInterval = stats.tiempoEntreMierdas;
-        maxShitCount = stats.maxMierdas;
+        happinessImpactPerShit = stats.angerPerShit;
+        shittingInterval = stats.timeBetweenShits;
+        maxShitCount = stats.maxShits;
     }
 
     public void CleanAllShit()

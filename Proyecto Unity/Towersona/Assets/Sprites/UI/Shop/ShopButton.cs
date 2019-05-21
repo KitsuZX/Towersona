@@ -20,13 +20,15 @@ public class ShopButton : MonoBehaviour
     private void Start()
     {
         costText = GetComponentInChildren<TextMeshProUGUI>();
-        costText.text = towersonaToBuild.costs[0].ToString() + '$';
+        costText.text = towersonaToBuild.stats.buyCost.ToString() + '$';
 
     }
 
     private void Update()
     {
-        if(PlayerStats.Instance.money < towersonaToBuild.costs[0] && DebuggingOptions.Instance.useMoney)
+        if (!towersonaToBuild) return;
+
+        if(PlayerStats.Instance.money < towersonaToBuild.stats.buyCost && DebuggingOptions.Instance.useMoney)
         {
             button.interactable = false;           
         }

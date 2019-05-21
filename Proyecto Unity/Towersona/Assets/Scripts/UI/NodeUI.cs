@@ -10,9 +10,7 @@ public class NodeUI : MonoBehaviour
     [SerializeField]
     private GameObject UI;
     [SerializeField]
-    public GameObject lvl1UI;
-    [SerializeField]
-    public GameObject lvl2UI;
+    public GameObject[] UIS; 
 
     [HideInInspector]
     public bool UIIsActive = false;
@@ -28,8 +26,10 @@ public class NodeUI : MonoBehaviour
 
         UI.SetActive(true);
 
-        if (lvl1UI.gameObject.activeSelf) lvl1UI.gameObject.SetActive(false);
-        if (lvl2UI.gameObject.activeSelf) lvl2UI.gameObject.SetActive(false);
+        foreach (var UI in UIS)
+        {
+            if (UI.gameObject.activeSelf) UI.gameObject.SetActive(false);
+        }
 
         CheckInteractivity();
         
@@ -43,8 +43,10 @@ public class NodeUI : MonoBehaviour
 
         towersona = null;
 
-        if(lvl1UI.gameObject.activeSelf) lvl1UI.gameObject.SetActive(false);
-        if(lvl2UI.gameObject.activeSelf) lvl2UI.gameObject.SetActive(false);
+        foreach (var UI in UIS)
+        {
+            if (UI.gameObject.activeSelf) UI.gameObject.SetActive(false);
+        }
 
         UIIsActive = false;
     }
@@ -60,26 +62,44 @@ public class NodeUI : MonoBehaviour
         switch (towersona.towersonaLevel)
         {
             case Towersona.TowersonaLevel.LVL1:
-                lvl1UI.gameObject.SetActive(true);
+                UIS[0].gameObject.SetActive(true);
 
-                SetButtonInteractivity(lvl1UI.gameObject, "Upgrade", 1);
+                SetButtonInteractivity(UIS[0].gameObject, "Upgrade", 1);
+                SetButtonInteractivity(UIS[0].gameObject, "Sell Button", 0, false);
 
                 break;
             case Towersona.TowersonaLevel.LVL2:
-                lvl2UI.gameObject.SetActive(true);
+                UIS[1].gameObject.SetActive(true);
 
-                SetButtonInteractivity(lvl2UI.gameObject, "Ev1", 2);
-                SetButtonInteractivity(lvl2UI.gameObject, "Ev2", 3);
+                SetButtonInteractivity(UIS[1].gameObject, "Ev1", 2);
+                SetButtonInteractivity(UIS[1].gameObject, "Ev2", 3);
+                SetButtonInteractivity(UIS[1].gameObject, "Sell Button", 1, false);
+                break;
+            case Towersona.TowersonaLevel.LVL31:
+                UIS[2].gameObject.SetActive(true);
+                SetButtonInteractivity(UIS[2].gameObject, "Sell Button", 2, false);
+                break;
+            case Towersona.TowersonaLevel.LVL32:
+                UIS[2].gameObject.SetActive(true);
+                SetButtonInteractivity(UIS[2].gameObject, "Sell Button", 3, false);
                 break;
         }
     }
 
-    private void SetButtonInteractivity(GameObject nodeUI, string buttonName, int costIndex)
+    private void SetButtonInteractivity(GameObject nodeUI, string buttonName, int costIndex, bool buyingCost = true)
     {
         Button button = nodeUI.transform.GetChild(0).Find(buttonName).GetComponent<Button>();
-        button.GetComponentInChildren<TextMeshProUGUI>().text = buttonName + ' ' + towersona.costs[costIndex] + '$';
+        if (buyingCost)
+        {
+            button.GetComponentInChildren<TextMeshProUGUI>().text = buttonName + ' ' + towersona.statsArray[costIndex].buyCost + '$';
+        }
+        else
+        {
+            button.GetComponentInChildren<TextMeshProUGUI>().text = "Sell \n" + towersona.statsArray[costIndex].sellCost + '$';
+        }
+      
 
-        if (towersona.costs[2] > PlayerStats.Instance.money && DebuggingOptions.Instance.useMoney)
+        if (towersona.statsArray[costIndex].buyCost > PlayerStats.Instance.money && DebuggingOptions.Instance.useMoney)
         {
             //Not enough money
             button.interactable = false;

@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class Towersona : MonoBehaviour
 {
-    [Header("Parameters")]
-    public int[] costs = new int[4];
-
     [Header("References")] 
     public GameObject[] towersonaLODPrefabs;
     public GameObject[] towersonaHODPrefabs; 
@@ -20,15 +17,18 @@ public class Towersona : MonoBehaviour
     public TowersonaNeeds towersonaNeeds;   
 
     [HideInInspector]
-    public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1;
-    [SerializeField]
-    private TowersonaStats[] statsArray;
+    public TowersonaLevel towersonaLevel = TowersonaLevel.LVL1; 
+    public TowersonaStats[] statsArray;
 
     [HideInInspector]
     public TowersonaStats stats;
 
     private Transform parent;
 
+    private void OnValidate()
+    {
+        stats = statsArray[0];
+    }
 
     public void Spawn(BuildingPlace place, Transform parent)
     {
@@ -46,8 +46,7 @@ public class Towersona : MonoBehaviour
         InvokeRepeating("UpdateStats", 0f, 0.1f);        
 
         //Spawn towersona LOD
-        towersonaLOD = SpawnTowersonaLOD(parent);
-      
+        towersonaLOD = SpawnTowersonaLOD(parent);      
     }   
 
     public void LevelUp(int level)
@@ -68,7 +67,7 @@ public class Towersona : MonoBehaviour
         stats.needs = towersonaNeeds;
         InvokeRepeating("UpdateStats", 0f, 0.1f);
 
-        PlayerStats.Instance.SpendMoney(costs[(int)towersonaLevel]);
+        PlayerStats.Instance.SpendMoney(stats.buyCost);
     } 
 
     public void TowersonaLODTouched()
@@ -110,6 +109,12 @@ public class Towersona : MonoBehaviour
         BuildManager.Instance.lastXUsed += 15f;
 
         return towersonaHOD;
+    }
+
+    public void Sell()
+    {
+        PlayerStats.Instance.AddMoney(stats.sellCost);
+        Destroy(gameObject);
     }
 
     private void UpdateStats()

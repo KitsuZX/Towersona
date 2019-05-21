@@ -12,20 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50a39bf25bd9594ca218f341103cfd7, type: 3}
   m_Name: Stats 1
   m_EditorClassIdentifier: 
-  felicidadPorCaricia: 0.1
-  hambrePorSegundo: 0.05
-  perdidaFelicidadPorSegundo: 0.05
-  enfadoPorMierda: 0.1
-  tiempoEntreMierdas: 12
-  maxMierdas: 4
-  currentAttackStrength: 0
-  currentAttackSpeed: 0
-  currentAttackRange: 0
-  currentBulletSpeed: 0
+  buyCost: 45
+  sellCost: 10
+  happinessPerPet: 0.05
+  hungerPerSecond: 0.05
+  hapinessLossPerSecond: 0.1
+  angerPerShit: 0.2
+  timeBetweenShits: 12
+  maxShits: 4
+  currentAttackStrength: 9.582834
+  currentAttackSpeed: 1.9231536
+  currentAttackRange: 4.8243513
+  currentBulletSpeed: 9.648703
   needs: {fileID: 0}
   "da\xF1oBala": {x: 0.5, y: 10}
   velocidadDeAtaque: {x: 0.25, y: 2}
   rango: {x: 1, y: 5}
   velocidadBala: {x: 2, y: 10}
   dineroPorSegundo: {x: 1, y: 20}
-  currentMoneyPerSecond: 0
+  currentMoneyPerSecond: 19.165668

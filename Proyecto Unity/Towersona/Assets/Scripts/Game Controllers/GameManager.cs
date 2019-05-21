@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Other References")]
     [SerializeField][Tooltip("The first detailed scene camera without the detailed model")]
-    private Camera cameraToDestroy;
+    private Camera emptyCamera;
 
     //Private Parameters             
 
@@ -63,16 +63,23 @@ public class GameManager : MonoBehaviour
     /// </summary>
     /// <param name="towersona">Towersona to be shown in the Detailed Scene</param>
     public void ChangeCamera(Camera camera)
-    {
-        activeCamera.enabled = false;
-
-        if (cameraToDestroy != null)
+    {     
+        if (emptyCamera.gameObject.activeSelf)
         {
-            Destroy(cameraToDestroy.gameObject);
+            emptyCamera.gameObject.SetActive(false);
+        }
+        else
+        {
+            activeCamera.enabled = false;
         }
 
         activeCamera = camera;
 
         activeCamera.enabled = true;
+    }
+
+    public void ActivateEmptyCamera()
+    {
+        emptyCamera.gameObject.SetActive(true);
     }
 }
