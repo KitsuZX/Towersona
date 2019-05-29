@@ -5,12 +5,17 @@ using UnityEngine.UI;
 
 public class TowersonaHODAnimation : MonoBehaviour
 {
-    [SerializeField]
+	public LookAwayFromTouch lookAway;
+	[SerializeField]
+	private LookAt lookAt;
+
+	[SerializeField]
     private Animator bodyAnimator;
     [SerializeField]
-    private Animator faceAnimator;
+    private Animator faceAnimator; 
+	
+    private bool isLookingAtFood;
 
-    //TODO: Look At y Look Away, pero no se donde meterlos, así que seguramente acaben aquí
   
     public void Idle()
     {
@@ -30,6 +35,18 @@ public class TowersonaHODAnimation : MonoBehaviour
     public void CaressEnd()
     {
 
+    }
+
+    
+    public void SetIsLookingAtFood(bool _isLookingAtFood)
+    {
+        isLookingAtFood = _isLookingAtFood;
+        if(lookAt) lookAt.enabled = _isLookingAtFood;
+    }
+
+    public void SetLookAtTarget(Transform tr)
+    {
+        if(lookAt) lookAt.food = tr;
     }
 
 

@@ -40,8 +40,10 @@ public class FoodDispenser : MonoBehaviour
 
         Draggable draggable = newFood.GetComponentInChildren<Draggable>();
         draggable.detailCamera = detailCamera;
-        draggable.OnDragStart.AddListener(NotifyFoodDrag);    
+        draggable.OnDragStart.AddListener(NotifyFoodDrag);
 
+        towersonaAnim.SetIsLookingAtFood(false);
+        towersonaAnim.SetLookAtTarget(draggable.transform);
     }
 
     public void DispenseWithDelay()
@@ -50,7 +52,7 @@ public class FoodDispenser : MonoBehaviour
     }
 
     private void NotifyFoodDrag()
-    {
-        //TODO: Mirar a la comida
+    {   
+        towersonaAnim.SetIsLookingAtFood(true);
     }
 }

@@ -47,8 +47,7 @@ public class TowersonaHOD : MonoBehaviour
         towersonaNeeds = needs;
         towersonaAnim = model.GetComponent<TowersonaHODAnimation>();
 
-        //TODO: Look Away. No se puede hacer hasta que no esté el rigging metido
-        //towersonaAnim.lookAway.camera = cam;
+		if(towersonaAnim.lookAway) towersonaAnim.lookAway.camera = cam;
 
         ShitNeed shitNeed = model.GetComponent<ShitNeed>();
         shitNeed.shitSpawnPositions = shitPositions;

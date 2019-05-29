@@ -6,19 +6,20 @@ public class LookAt : MonoBehaviour
 {
     [HideInInspector]
     public Transform food;
-
-    private Animator animator;
+    
     private new Transform transform;
 
     private void LateUpdate()
     {
-        Vector3 diff = food.position - transform.position;
-        transform.rotation =  Quaternion.LookRotation(diff, Vector3.up);
+        if (food == null) return;
+        //Vector3 diff = food.position - transform.position;
+        //transform.rotation =  Quaternion.LookRotation(diff, Vector3.up);
+
+        transform.LookAt(food);
     }
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
         transform = GetComponent<Transform>();
     }
 

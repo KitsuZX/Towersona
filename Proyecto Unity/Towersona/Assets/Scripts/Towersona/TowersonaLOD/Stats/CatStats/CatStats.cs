@@ -5,34 +5,39 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Stats", menuName = "Stats/Cat/Cat")]
 public class CatStats : TowersonaStats
 {
-    [Header("Cat Stats")]
-    public Vector2 dañoBala;
-    public Vector2 velocidadDeAtaque;
-    public Vector2 rango;
-    public Vector2 velocidadBala;
+	[Header("Damage")]
+    public Vector2 bulletDamage;
+    public Vector2 attackSpeed;
+    public Vector2 range;
+    public Vector2 bulletSpeed;
 
-    public Vector2 dineroPorSegundo;
+	[Header("Money")]
+	public Vector2 timeSpanBetweenGivingMoney;
+    public Vector2 moneyGiven;
     
     [HideInInspector]
-    public float currentMoneyPerSecond;
+	public float currentTimeSpan;
+	[HideInInspector]
+	public float currentMoneyGiven;
 
     public override void UpdateStats()
     {       
-        currentAttackStrength = Mathf.Lerp(dañoBala.x, dañoBala.y, needs.HappinessLevel);
-        currentAttackSpeed = Mathf.Lerp(velocidadDeAtaque.x, velocidadDeAtaque.y, needs.HappinessLevel);
-        currentAttackRange = Mathf.Lerp(rango.x, rango.y, needs.HappinessLevel);
-        currentBulletSpeed = Mathf.Lerp(velocidadBala.x, velocidadBala.y, needs.HappinessLevel);
+        currentAttackStrength = Mathf.Lerp(bulletDamage.x, bulletDamage.y, needs.HappinessLevel);
+        currentAttackSpeed = Mathf.Lerp(attackSpeed.x, attackSpeed.y, needs.HappinessLevel);
+        currentAttackRange = Mathf.Lerp(range.x, range.y, needs.HappinessLevel);
+        currentBulletSpeed = Mathf.Lerp(bulletSpeed.x, bulletSpeed.y, needs.HappinessLevel);
 
-        currentMoneyPerSecond = Mathf.Lerp(dineroPorSegundo.x, dineroPorSegundo.y, needs.HappinessLevel);
-    }
+		currentTimeSpan = Mathf.Lerp(timeSpanBetweenGivingMoney.x, timeSpanBetweenGivingMoney.y, needs.HappinessLevel);
+		currentMoneyGiven = Mathf.Lerp(moneyGiven.x, moneyGiven.y, needs.HappinessLevel);
+	}
 
     public override void SetDefaultValues()
     {
-        currentAttackStrength = dañoBala.y;
-        currentAttackSpeed = velocidadDeAtaque.y;
-        currentAttackRange = rango.y;
-        currentBulletSpeed = velocidadBala.y;
+        currentAttackStrength = bulletDamage.y;
+        currentAttackSpeed = attackSpeed.y;
+        currentAttackRange = range.y;
+        currentBulletSpeed = bulletSpeed.y;
 
-        currentMoneyPerSecond = dineroPorSegundo.y;
+        currentMoneyGiven = moneyGiven.y;
     }
 }

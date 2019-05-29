@@ -13,9 +13,8 @@ public class Food : MonoBehaviour
     //TODO: Hacer que solo se coma la comida cuando se le arrastra la cabeza, si no no
 
     public void OnLettingGo()
-    {
-        //TODO: Dejar de mirar a la comida cuando se le da de comer
-        //dispenser.towersonaAnim.SetIsLookingAtFood(false);
+    {  
+        dispenser.towersonaAnim.SetIsLookingAtFood(false);
         GetEaten(dispenser.towersonaNeeds);
         Destroy(gameObject);
     }
