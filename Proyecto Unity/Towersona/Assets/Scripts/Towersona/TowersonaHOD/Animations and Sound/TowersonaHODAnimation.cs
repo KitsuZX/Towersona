@@ -7,19 +7,14 @@ public class TowersonaHODAnimation : MonoBehaviour
 {
 	public LookAwayFromTouch lookAway;
 	[SerializeField]
-	private LookAt lookAt;
-
-	[SerializeField]
-    private Animator bodyAnimator;
-    [SerializeField]
-    private Animator faceAnimator; 
+	private LookAt lookAt; 
 	
     private bool isLookingAtFood;
 
   
     public void Idle()
     {
-
+		
     }
 
     public void Eat()
@@ -29,13 +24,13 @@ public class TowersonaHODAnimation : MonoBehaviour
 
     public void CaressStart()
     {
-
-    }
+		lookAway.isBeingCaressed = true;
+	}
 
     public void CaressEnd()
     {
-
-    }
+		lookAway.isBeingCaressed = false;
+	}
 
     
     public void SetIsLookingAtFood(bool _isLookingAtFood)

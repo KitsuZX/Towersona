@@ -18,7 +18,7 @@ public class CatStats : TowersonaStats
     [HideInInspector]
 	public float currentTimeSpan;
 	[HideInInspector]
-	public float currentMoneyGiven;
+	public int currentMoneyGiven;
 
     public override void UpdateStats()
     {       
@@ -28,7 +28,7 @@ public class CatStats : TowersonaStats
         currentBulletSpeed = Mathf.Lerp(bulletSpeed.x, bulletSpeed.y, needs.HappinessLevel);
 
 		currentTimeSpan = Mathf.Lerp(timeSpanBetweenGivingMoney.x, timeSpanBetweenGivingMoney.y, needs.HappinessLevel);
-		currentMoneyGiven = Mathf.Lerp(moneyGiven.x, moneyGiven.y, needs.HappinessLevel);
+		currentMoneyGiven = (int) Mathf.Lerp(moneyGiven.x, moneyGiven.y, needs.HappinessLevel);
 	}
 
     public override void SetDefaultValues()
@@ -38,6 +38,6 @@ public class CatStats : TowersonaStats
         currentAttackRange = range.y;
         currentBulletSpeed = bulletSpeed.y;
 
-        currentMoneyGiven = moneyGiven.y;
+        currentMoneyGiven = (int) moneyGiven.y;
     }
 }

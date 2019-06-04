@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class CatAttack : AttackPattern
 {
+	CatStats catStats;
+	private void Start()
+	{
+		base.Start();
+		catStats = (CatStats)stats;
+
+		StartCoroutine("GiveMoney");
+	}
+
+	private IEnumerator GiveMoney()
+	{
+		while (true)
+		{
+			PlayerStats.Instance.AddMoney(catStats.currentMoneyGiven);
+			yield return new WaitForSeconds(catStats.currentTimeSpan);
+		}
+	}
+
 	public override void Shoot(Transform target)
 	{
 		GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);

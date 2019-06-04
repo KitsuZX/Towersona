@@ -14,10 +14,12 @@ public class Caressable : MonoBehaviour
     public UnityEvent OnCaressStart;
     public UnityEvent OnCaressEnd;
 
-    private float loveIncreasePerDeltaUnit = 0.1f;
+	[HideInInspector]
+	public bool isBeingCaressed = false;
+
+	private float loveIncreasePerDeltaUnit = 0.1f;
 
     private TowersonaNeeds towersonaNeeds;
-    private bool isBeingCaressed = false;
     private TowersonaStats stats;
 
     private Vector2 TouchDelta

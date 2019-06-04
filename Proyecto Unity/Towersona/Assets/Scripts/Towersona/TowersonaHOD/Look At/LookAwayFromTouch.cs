@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class LookAwayFromTouch : MonoBehaviour
 {
-    [HideInInspector]
+	[HideInInspector]
+	public bool isBeingCaressed = false;
+	[HideInInspector]
     public Camera camera;
     [SerializeField]
     private float lookAtDepth = 3;
@@ -52,12 +54,15 @@ public class LookAwayFromTouch : MonoBehaviour
 
     private void LateUpdate()
     {
-        Vector3 diff = TouchInWorldSpace - transform.position;
-        Quaternion lookAt = Quaternion.LookRotation(diff, Vector3.up);
+		if (isBeingCaressed)
+		{
+			Vector3 diff = TouchInWorldSpace - transform.position;
+			Quaternion lookAt = Quaternion.LookRotation(diff, Vector3.up);
 
-        Quaternion opposite = Quaternion.Inverse(lookAt);
+			Quaternion opposite = Quaternion.Inverse(lookAt);
 
-        transform.rotation = Quaternion.Slerp(lookAt, opposite, interpolation);
+			transform.rotation = Quaternion.Slerp(lookAt, opposite, interpolation);
+		}
     }
 
   

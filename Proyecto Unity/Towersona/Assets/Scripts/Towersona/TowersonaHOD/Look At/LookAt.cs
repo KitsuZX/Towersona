@@ -11,9 +11,7 @@ public class LookAt : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (food == null) return;
-        //Vector3 diff = food.position - transform.position;
-        //transform.rotation =  Quaternion.LookRotation(diff, Vector3.up);
+        if (food == null) return;        
 
         transform.LookAt(food);
     }

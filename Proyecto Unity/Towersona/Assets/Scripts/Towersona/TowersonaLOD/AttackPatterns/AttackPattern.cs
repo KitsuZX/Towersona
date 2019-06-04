@@ -25,7 +25,7 @@ public abstract class AttackPattern : MonoBehaviour
         animations = GetComponent<TowersonaLODAnimation>();        
     }
 
-    private void Start()
+    public void Start()
     {
         stats = towersonaLOD.towersona.stats;
         needs = towersonaLOD.towersona.towersonaNeeds;     

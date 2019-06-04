@@ -40,7 +40,7 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-           
+           //Camera shake
         }
 
         InGameUIController.Instance.UpdateLives();

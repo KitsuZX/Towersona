@@ -34,7 +34,7 @@ public class TowersonaHOD : MonoBehaviour
          * para poder distintos modelos dentro de un DetailedTowersonaView
         */
 
-        GameObject model = Instantiate(towersonaHODPrefab);
+        GameObject model = Instantiate(towersonaHODPrefab, Vector3.zero, Quaternion.Euler(0f, 180f, 0f));
         model.transform.SetParent(transform, false);              
 
         TowersonaNeeds needs = model.GetComponent<TowersonaNeeds>();
