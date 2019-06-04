@@ -32,7 +32,7 @@ public class TigerBullet : Shooting
 		Destroy(gameObject);
 	}
 
-	private void OnDrawGizmosSelected()
+	private void OnDrawGizmos()
 	{
 		Gizmos.color = Color.blue;
 		Gizmos.DrawWireSphere(transform.position, explosionRadius);

@@ -21,15 +21,18 @@ MonoBehaviour:
   timeBetweenShits: 12
   maxShits: 4
   currentAttackStrength: 1266.6666
-  currentAttackSpeed: 0.20666668
-  currentAttackRange: 2.8
-  currentBulletSpeed: 2.0666666
+  currentAttackSpeed: 0.28
+  currentAttackRange: 11.333333
+  currentBulletSpeed: 3.2666667
   needs: {fileID: 0}
-  "da\xF1oBala": {x: 1000, y: 2000}
-  velocidadDeAtaque: {x: 0.1, y: 0.5}
-  rango: {x: 2, y: 5}
-  velocidadBala: {x: 1, y: 5}
-  dineroPorSegundo: {x: 10, y: 20}
-  "tama\xF1oAreaDa\xF1oBala": {x: 0.5, y: 2}
+  bulletDamage: {x: 1000, y: 2000}
+  attackSpeed: {x: 0.2, y: 0.5}
+  range: {x: 10, y: 15}
+  bulletSpeed: {x: 3, y: 4}
+  timeSpanBetweenGivingMoney: {x: 1, y: 5}
+  moneyGiven: {x: 20, y: 40}
+  currentTimeSpan: 2.0666666
+  currentMoneyGiven: 25
+  damageArea: {x: 0.5, y: 1}
   currentMoneyPerSecond: 12.666667
-  currentDamageArea: 0.90000004
+  currentDamageArea: 0.6333333

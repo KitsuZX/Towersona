@@ -1,11 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class CatAttack : AttackPattern
 {
+	[SerializeField]
+	public GameObject moneySum;
+
 	CatStats catStats;
 	private void Start()
+	{
+		Initialize();
+	}
+
+	protected void Initialize()
 	{
 		base.Start();
 		catStats = (CatStats)stats;
@@ -15,9 +24,13 @@ public class CatAttack : AttackPattern
 
 	private IEnumerator GiveMoney()
 	{
+		yield return new WaitForSeconds(catStats.currentTimeSpan);
+
 		while (true)
 		{
+			SpawnMoneySum();
 			PlayerStats.Instance.AddMoney(catStats.currentMoneyGiven);
+
 			yield return new WaitForSeconds(catStats.currentTimeSpan);
 		}
 	}
@@ -58,4 +71,15 @@ public class CatAttack : AttackPattern
 			target = null;
 		}
 	}
+
+	private void SpawnMoneySum()
+	{
+		Vector3 pos = transform.position;
+		pos.y += 2f;
+		pos.z += 1.5f;
+		
+		GameObject moneySumObject = Instantiate(moneySum, pos, moneySum.transform.rotation);
+		moneySumObject.GetComponentInChildren<TextMeshProUGUI>().text = "+ " + catStats.currentMoneyGiven.ToString() + " $";
+	}
 }
+

@@ -9,25 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b43e96bbf24e546b5efc7cf0df4056, type: 3}
+  m_Script: {fileID: 11500000, guid: f50a39bf25bd9594ca218f341103cfd7, type: 3}
   m_Name: Stats 3 - 1
   m_EditorClassIdentifier: 
-  buyCost: 120
-  sellCost: 75
+  buyCost: 85
+  sellCost: 50
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
   hapinessLossPerSecond: 0.1
   angerPerShit: 0.2
   timeBetweenShits: 12
   maxShits: 4
-  currentAttackStrength: 28.121344
-  currentAttackSpeed: 3.7912605
-  currentAttackRange: 14.652101
-  currentBulletSpeed: 19.095463
+  currentAttackStrength: 20
+  currentAttackSpeed: 3
+  currentAttackRange: 10
+  currentBulletSpeed: 15
   needs: {fileID: 0}
-  "da\xF1oBala": {x: 3, y: 30}
-  velocidadDeAtaque: {x: 1, y: 4}
-  rango: {x: 10, y: 15}
-  velocidadBala: {x: 7, y: 20}
-  dineroPorSegundo: {x: 20, y: 50}
-  currentMoneyPerSecond: 47.912605
+  bulletDamage: {x: 5, y: 10}
+  attackSpeed: {x: 10, y: 20}
+  range: {x: 5, y: 10}
+  bulletSpeed: {x: 1, y: 2}
+  timeSpanBetweenGivingMoney: {x: 0.5, y: 3}
+  moneyGiven: {x: 40, y: 80}
+  currentTimeSpan: 0
+  currentMoneyGiven: 0

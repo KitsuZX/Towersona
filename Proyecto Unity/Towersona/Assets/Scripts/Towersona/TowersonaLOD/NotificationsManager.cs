@@ -53,8 +53,10 @@ public class NotificationsManager : MonoBehaviour
 
     private void CreateNotification(TowersonaNeeds.NeedType needType)
     {
+		//TODO: Notificaciones
         isNotifying = true;
 
+		/*
         Notification notification = Instantiate(notificationPrefab).GetComponent<Notification>();
 
         this.notification = notification.gameObject;
@@ -92,7 +94,7 @@ public class NotificationsManager : MonoBehaviour
             case TowersonaNeeds.NeedType.Shit:
                 spriteRenderer.sprite = notification.shitSprite;
                 break;
-        }
+        }*/
     }
 
     private void DestroyNotification()

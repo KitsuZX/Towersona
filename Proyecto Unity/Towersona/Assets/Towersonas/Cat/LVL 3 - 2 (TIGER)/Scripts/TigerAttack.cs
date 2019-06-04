@@ -7,7 +7,7 @@ public class TigerAttack : CatAttack
 	TigerStats tigerStats;
 	private void Start()
 	{
-		base.Start();
+		base.Initialize();
 		tigerStats = (TigerStats)stats;	
 	}
 

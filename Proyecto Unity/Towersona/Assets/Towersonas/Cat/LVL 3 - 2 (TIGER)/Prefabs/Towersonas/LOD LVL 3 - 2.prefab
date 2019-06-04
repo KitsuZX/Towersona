@@ -141,6 +141,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 419478290875452397, guid: 0818a49af92e3224787a2beb954cb8a6,
     type: 3}
   target: {fileID: 0}
+  moneySum: {fileID: 729247933228569982, guid: ac10d9fb7fb3a9d4cba1e3c5d5b2d248, type: 3}
 --- !u!1 &3439077087923980644
 GameObject:
   m_ObjectHideFlags: 0
