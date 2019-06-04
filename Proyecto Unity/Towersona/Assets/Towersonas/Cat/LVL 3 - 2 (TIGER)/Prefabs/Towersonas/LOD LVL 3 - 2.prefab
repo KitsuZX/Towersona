@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6703089924739425893}
   - component: {fileID: 9202062087551758737}
   - component: {fileID: 4655889943347623656}
-  - component: {fileID: 1645229049695142954}
+  - component: {fileID: 1893643828442920690}
   m_Layer: 0
   m_Name: LOD LVL 3 - 2
   m_TagString: Untagged
@@ -126,7 +126,7 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1645229049695142954
+--- !u!114 &1893643828442920690
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,10 +135,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2407868818723468261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c83eb6b96073af4fa99a51de32d7e34, type: 3}
+  m_Script: {fileID: 11500000, guid: 77aa2b43b85542f41affacb6f3a71b2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,
+  bulletPrefab: {fileID: 419478290875452397, guid: 0818a49af92e3224787a2beb954cb8a6,
     type: 3}
   target: {fileID: 0}
 --- !u!1 &3439077087923980644

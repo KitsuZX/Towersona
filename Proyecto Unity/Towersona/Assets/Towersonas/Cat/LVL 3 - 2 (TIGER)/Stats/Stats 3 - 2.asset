@@ -20,16 +20,16 @@ MonoBehaviour:
   angerPerShit: 0.2
   timeBetweenShits: 12
   maxShits: 4
-  currentAttackStrength: 0
-  currentAttackSpeed: 0
-  currentAttackRange: 0
-  currentBulletSpeed: 0
+  currentAttackStrength: 1266.6666
+  currentAttackSpeed: 0.20666668
+  currentAttackRange: 2.8
+  currentBulletSpeed: 2.0666666
   needs: {fileID: 0}
-  "da\xF1oBala": {x: 4, y: 4}
-  velocidadDeAtaque: {x: 2, y: 5}
-  rango: {x: 15, y: 20}
-  velocidadBala: {x: 10, y: 25}
+  "da\xF1oBala": {x: 1000, y: 2000}
+  velocidadDeAtaque: {x: 0.1, y: 0.5}
+  rango: {x: 2, y: 5}
+  velocidadBala: {x: 1, y: 5}
   dineroPorSegundo: {x: 10, y: 20}
-  "tama\xF1oAreaDa\xF1oBala": {x: 1, y: 3}
-  currentMoneyPerSecond: 0
-  currentDamageArea: 0
+  "tama\xF1oAreaDa\xF1oBala": {x: 0.5, y: 2}
+  currentMoneyPerSecond: 12.666667
+  currentDamageArea: 0.90000004

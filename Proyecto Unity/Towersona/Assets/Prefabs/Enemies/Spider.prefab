@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 271552188047320592}
   - component: {fileID: 7429453204315522524}
+  - component: {fileID: 8572231554543880170}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Enemy
@@ -51,6 +52,20 @@ MonoBehaviour:
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
   path: {fileID: 0}
+--- !u!136 &8572231554543880170
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7178499796034649284}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.18
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.55, z: 0}
 --- !u!1001 &5529535422712894408
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61,6 +76,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 2b45aa23abae62e46ad57dfc00edeb60, type: 3}
       propertyPath: m_Name
       value: animacion ara;a
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2b45aa23abae62e46ad57dfc00edeb60, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2b45aa23abae62e46ad57dfc00edeb60, type: 3}
       propertyPath: m_LocalPosition.x
