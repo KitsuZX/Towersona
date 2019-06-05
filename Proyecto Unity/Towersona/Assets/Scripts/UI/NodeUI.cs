@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class NodeUI : MonoBehaviour
-{
-    private Towersona target;
+{   
     [SerializeField]
     private GameObject UI;
     [SerializeField]
@@ -18,8 +17,7 @@ public class NodeUI : MonoBehaviour
     private Towersona towersona;
 
     public void SetTarget(Towersona towersona)
-    {
-        target = towersona;
+    {       
         this.towersona = towersona;
 
         transform.position = towersona.towersonaLOD.transform.position;

@@ -16,14 +16,16 @@ public class BuildManager : MonoBehaviour
 
     [SerializeField]
     private NodeUI nodeUI;
-    [SerializeField]
+	[SerializeField]
+	private BuyMenu buyMenu;
+	[SerializeField]
     private GameObject buildEffect;
 
     private List<Towersona> towersonas;
 
     //Private parameters  
-    private GameObject towersonaToBuild;
     private Towersona towersonaSelected;
+	private BuildingPlace buildingPlaceSelected;
 
     //Private references
 
@@ -56,7 +58,7 @@ public class BuildManager : MonoBehaviour
                 List<RaycastResult> results = new List<RaycastResult>();
                 EventSystem.current.RaycastAll(pointerData, results);
 
-                if (results.Count <= 0)               
+                if (results.Count > 0)               
                 {
                     //Check if another towersona was clicked
                     RaycastHit hit;
@@ -75,39 +77,98 @@ public class BuildManager : MonoBehaviour
                             DeselectTowersona();
                         }                     
                     }
-                }
-            }
+				}
+				else
+				{
+					DeselectTowersona();
+				}
+            }		
         }
-    }
 
-    public void SpawnTowersona(BuildingPlace place)
-    {
-        if (towersonaToBuild)
-        {          
-            GameObject towersonaGameObject = Instantiate(towersonaToBuild);
-            towersonaGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("Towersonas Parent").transform, true);
-            towersonaGameObject.name = towersonaToBuild.name;
+		//Hides buyMenu if not clicked on it
+		if (buyMenu.gameObject.activeSelf)
+		{
+			//https://answers.unity.com/questions/615771/how-to-check-if-click-mouse-on-object.html
+			if (Input.GetMouseButtonDown(0))
+			{
+				PointerEventData pointerData = new PointerEventData(EventSystem.current);
 
-            Towersona towersona = towersonaGameObject.GetComponent<Towersona>();
-            towersona.Spawn(place, towersonaGameObject.transform);
-            PlayerStats.Instance.SpendMoney(towersona.stats.buyCost);
+				pointerData.position = Input.mousePosition;
 
-            SpawnEffect(buildEffect, place.transform.position);
+				List<RaycastResult> results = new List<RaycastResult>();
+				EventSystem.current.RaycastAll(pointerData, results);
 
-            //world.SelectTile(_tile);         
+				if (results.Count > 0)
+				{
+					//Check if another towersona was clicked
+					RaycastHit hit;
+					Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            towersonas.Add(towersona);
+					if (Physics.Raycast(ray, out hit))
+					{
+						BuildingPlace bp = hit.transform.gameObject.GetComponent<BuildingPlace>();
+						if (bp)
+						{
+							//A towersona was hit
+							if (!bp.hasTower){
 
-            towersonaToBuild = null;
-        }
-    }  
- 
-    public void SelectTowersonaToBuild(Towersona _towersona)
-    {
-        towersonaToBuild = _towersona.gameObject;
+								ShowBuyMenu(bp);
+							}
+							else
+							{
+								HideBuyMenu();
+							}
+						}
+						else
+						{
+							HideBuyMenu();
+						}
+					}
+				}
+				else
+				{
+					HideBuyMenu();
+				}
+			}
+		}
+	}
 
-        DeselectTowersona();
-    }
+    public void SpawnTowersona(BuildingPlace place, Towersona _towersona)
+    {                
+        GameObject towersonaGameObject = Instantiate(_towersona.gameObject);
+        towersonaGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("Towersonas Parent").transform, true);
+        towersonaGameObject.name = _towersona.name;
+
+        Towersona towersona = towersonaGameObject.GetComponent<Towersona>();
+        towersona.Spawn(place, towersonaGameObject.transform);          
+
+        SpawnEffect(buildEffect, place.transform.position);
+		PlayerStats.Instance.SpendMoney(towersona.stats.buyCost);
+
+		towersonas.Add(towersona);       
+    }     
+
+	public void ShowBuyMenu(BuildingPlace place)
+	{
+		if (buildingPlaceSelected == place)
+		{
+			return;
+		}
+
+		buildingPlaceSelected = place;
+		buyMenu.SetPlace(place);
+
+		if (nodeUI.UIIsActive)
+		{
+			nodeUI.Hide();
+		}
+	}
+
+	public void HideBuyMenu()
+	{
+		buildingPlaceSelected = null;
+		buyMenu.Hide();
+	}
 
     public void SelectTowersona(Towersona towersona)
     {
@@ -117,14 +178,17 @@ public class BuildManager : MonoBehaviour
         }
 
         towersonaSelected = towersona;
-        towersonaToBuild = null;
          
         nodeUI.SetTarget(towersona);
+
+		if (buyMenu.gameObject.activeSelf)
+		{
+			buyMenu.Hide();
+		}
     }
 
     public void DeselectTowersona()
-    {
-        towersonaSelected = null;
+    {       
         nodeUI.Hide();
     }   
 
@@ -149,8 +213,7 @@ public class BuildManager : MonoBehaviour
         GameObject effect = Instantiate(_effect, position, Quaternion.identity);
         effect.transform.SetParent(GameObject.FindGameObjectWithTag("Effects Parent").transform, true);
         Destroy(effect, 5f);
-    }
-   
+    }   
 
     private void OnGUI()
     {       

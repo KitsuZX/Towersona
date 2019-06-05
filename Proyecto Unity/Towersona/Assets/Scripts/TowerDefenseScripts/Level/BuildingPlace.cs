@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BuildingPlace : MonoBehaviour
 {
-
-    private bool hasTower = false;
+	[HideInInspector]
+    public bool hasTower = false;
 
     private void OnMouseUpAsButton()
     {
-        if (!hasTower)
-        {
-            BuildManager.Instance.SpawnTowersona(this);
-        }
-    }
+		if (!hasTower)
+		{
+			BuildManager.Instance.ShowBuyMenu(this);
+		}
+	}
 }

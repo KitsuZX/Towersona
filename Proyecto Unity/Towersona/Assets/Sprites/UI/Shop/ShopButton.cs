@@ -36,10 +36,5 @@ public class ShopButton : MonoBehaviour
         {
             button.interactable = true;          
         }      
-    }
-
-    public void SelectTowersona()
-    {
-        BuildManager.Instance.SelectTowersonaToBuild(towersonaToBuild);
-    }
+    } 
 }
