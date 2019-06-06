@@ -43,13 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuName: M-14U
   towersonaLODPrefabs:
-  - {fileID: 2407868818723468261, guid: e7dec2f7c942e66479fc0ffe6179525b, type: 3}
+  - {fileID: 2407868818723468261, guid: 8b60c53397e2b334c809055594660476, type: 3}
   - {fileID: 2407868818723468261, guid: 1b1fa32289857a94097b032ed8cd8c46, type: 3}
   - {fileID: 2407868818723468261, guid: 5a877ddbea3c53f4eb498361a57b6177, type: 3}
   - {fileID: 2407868818723468261, guid: b1f85528e573bd644b75b226881a04d8, type: 3}
   towersonaHODPrefabs:
-  - {fileID: 5139840167273293286, guid: c72a49c5981014d4aa20c376907decb4, type: 3}
+  - {fileID: 5139840167273293286, guid: 96cdeca6d9a4a21498224835b433d183, type: 3}
   - {fileID: 5139840167273293286, guid: b1b1d9b73977b7145b5dbcab3fc17184, type: 3}
   - {fileID: 5139840167273293286, guid: a3c1f09ec65735c4f9a9f8ddf3d5ef43, type: 3}
   - {fileID: 5139840167273293286, guid: feb1b47425b928340a61921a4b731c84, type: 3}

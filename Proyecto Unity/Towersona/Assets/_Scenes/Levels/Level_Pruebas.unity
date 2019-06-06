@@ -3582,11 +3582,6 @@ PrefabInstance:
       objectReference: {fileID: 1035200639}
     - target: {fileID: 4326776620507013400, guid: 8173bd2a3f3cf95498a39db667a80930,
         type: 3}
-      propertyPath: cameraToDestroy
-      value: 
-      objectReference: {fileID: 1822830939}
-    - target: {fileID: 4326776620507013400, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
       propertyPath: emptyCamera
       value: 
       objectReference: {fileID: 1822830939}
@@ -3605,11 +3600,6 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1889764497}
-    - target: {fileID: 4326776620507013402, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
-      propertyPath: spawnEnemies
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8173bd2a3f3cf95498a39db667a80930, type: 3}
 --- !u!1001 &8895327832573937021

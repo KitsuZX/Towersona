@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e022ef6f53359c4992b069feba3308a, type: 3}
+  m_Name: Hedgehog Stats 3 - 1
+  m_EditorClassIdentifier: 
+  buyCost: 100
+  sellCost: 45
+  happinessPerPet: 0.05
+  hungerPerSecond: 0.05
+  hapinessLossPerSecond: 0.05
+  angerPerShit: 4
+  timeBetweenShits: 3
+  maxShits: 4
+  currentAttackStrength: 0
+  currentAttackSpeed: 0
+  currentAttackRange: 0
+  currentBulletSpeed: 0
+  needs: {fileID: 0}
+  bulletDamage: {x: 4, y: 8}
+  attackSpeed: {x: 3, y: 5}
+  range: {x: 12, y: 22}
+  bulletSpeed: {x: 7, y: 9}

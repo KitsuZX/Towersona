@@ -43,6 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuName: Hedgehog
   towersonaLODPrefabs:
   - {fileID: 2407868818723468261, guid: a529735a73dcca347b9df774714bb9c7, type: 3}
   - {fileID: 2407868818723468261, guid: e789a38068a596440b22cf36aaa000dc, type: 3}
@@ -58,5 +59,9 @@ MonoBehaviour:
   towersonaLOD: {fileID: 0}
   towersonaNeeds: {fileID: 0}
   towersonaLevel: 0
-  statsArray: []
-  stats: {fileID: 0}
+  statsArray:
+  - {fileID: 11400000, guid: b18b86565cbc6354991454a95064a49c, type: 2}
+  - {fileID: 11400000, guid: ca6fd03ddff6e0d4aad826b0fc4831db, type: 2}
+  - {fileID: 11400000, guid: e1f97a93a1e2b4147b6c30efd3422285, type: 2}
+  - {fileID: 11400000, guid: 3a3b67d9b0d65294585989c5ffaf4d74, type: 2}
+  stats: {fileID: 11400000, guid: b18b86565cbc6354991454a95064a49c, type: 2}

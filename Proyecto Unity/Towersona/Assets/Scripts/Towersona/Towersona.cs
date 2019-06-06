@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Towersona : MonoBehaviour
 {
+	public string menuName;
+
     [Header("References")] 
     public GameObject[] towersonaLODPrefabs;
     public GameObject[] towersonaHODPrefabs; 

@@ -1,13 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class BuyMenu : MonoBehaviour
 {
 
 	private BuildingPlace place;
 
-    public void SetPlace(BuildingPlace _place)
+	[SerializeField]
+	private TextMeshProUGUI[] texts;
+
+	private void Awake()
+	{
+		for (int i = 0; i < texts.Length; i++)
+		{
+			Towersona t = BuildManager.Instance.towersonaPrefabs[i];
+			if(t == null)
+			{
+				Debug.LogError("No se ha encontrado la towersona. ¿Están en el orden correcto en BuildManager y en BuyMenu?");
+			}
+			else
+			{
+				texts[i].text = t.menuName + " " + t.stats.buyCost + "$";
+			}			
+		}
+	}
+
+	public void SetPlace(BuildingPlace _place)
 	{
 		place = _place;
 		Vector3 pos = _place.transform.position;

@@ -8,11 +8,15 @@ public class BuildManager : MonoBehaviour
 {   
     public static BuildManager Instance { get; private set; }
 
+	[Tooltip("El orden tiene que coincidir con el orden del Buy Menu")]
+	public Towersona[] towersonaPrefabs;
+
     [HideInInspector]
     public float lastXUsed = 0f;
 
     [Header("References")] 
     public GameObject detailedTowersonaViewPrefab;
+	
 
     [SerializeField]
     private NodeUI nodeUI;
@@ -134,7 +138,8 @@ public class BuildManager : MonoBehaviour
 	}
 
     public void SpawnTowersona(BuildingPlace place, Towersona _towersona)
-    {                
+    {
+		place.hasTower = true;
         GameObject towersonaGameObject = Instantiate(_towersona.gameObject);
         towersonaGameObject.transform.SetParent(GameObject.FindGameObjectWithTag("Towersonas Parent").transform, true);
         towersonaGameObject.name = _towersona.name;
@@ -174,7 +179,7 @@ public class BuildManager : MonoBehaviour
     {
         if(towersonaSelected == towersona)
         {            
-            return;
+            //return;
         }
 
         towersonaSelected = towersona;
@@ -201,7 +206,8 @@ public class BuildManager : MonoBehaviour
     }
 
     public void SellTowersona()
-    {   
+    {
+		towersonaSelected.place.hasTower = false;
         towersonaSelected.Sell();
         towersonas.Remove(towersonaSelected);
         DeselectTowersona();
