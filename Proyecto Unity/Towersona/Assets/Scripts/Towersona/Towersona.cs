@@ -29,7 +29,7 @@ public class Towersona : MonoBehaviour
 
     private void OnValidate()
     {
-        stats = statsArray[0];
+		if(statsArray.Length > 0) stats = statsArray[0];
     }
 
     public void Spawn(BuildingPlace place, Transform parent)
