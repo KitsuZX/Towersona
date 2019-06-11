@@ -20,16 +20,16 @@ MonoBehaviour:
   angerPerShit: 0.2
   timeBetweenShits: 12
   maxShits: 4
-  currentAttackStrength: 14.92448
-  currentAttackSpeed: 1.9848962
-  currentAttackRange: 7.46224
-  currentBulletSpeed: 3.4773443
+  currentAttackStrength: 37.634075
+  currentAttackSpeed: 1.7634075
+  currentAttackRange: 8.252371
+  currentBulletSpeed: 3.145111
   needs: {fileID: 0}
-  bulletDamage: {x: 10, y: 20}
+  bulletDamage: {x: 30, y: 50}
   attackSpeed: {x: 1, y: 3}
-  range: {x: 5, y: 10}
+  range: {x: 1, y: 15}
   bulletSpeed: {x: 2, y: 5}
   timeSpanBetweenGivingMoney: {x: 2, y: 5}
   moneyGiven: {x: 10, y: 20}
-  currentTimeSpan: 3.4773443
-  currentMoneyGiven: 14
+  currentTimeSpan: 3.145111
+  currentMoneyGiven: 13

@@ -1062,7 +1062,7 @@ MonoBehaviour:
         m_MethodName: BuyTowersona
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 8547910103068521303, guid: 461978efdea6e2d4a978f8ba70759f37,
+          m_ObjectArgument: {fileID: 8547910103068521303, guid: c3aa3b374475d4b429aca1e66c55d08c,
             type: 3}
           m_ObjectArgumentAssemblyTypeName: Towersona, Assembly-CSharp
           m_IntArgument: 0

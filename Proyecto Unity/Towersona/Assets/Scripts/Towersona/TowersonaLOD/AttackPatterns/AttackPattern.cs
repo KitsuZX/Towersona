@@ -19,7 +19,7 @@ public abstract class AttackPattern : MonoBehaviour
 
     private float fireCountdown = 1f;   
 
-    private void Awake()
+    protected void Awake()
     {    
         towersonaLOD = GetComponent<TowersonaLOD>();
         animations = GetComponent<TowersonaLODAnimation>();        
@@ -34,7 +34,7 @@ public abstract class AttackPattern : MonoBehaviour
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
-    private void Update()
+    protected void Update()
     {
         if (needs == null || stats == null) return; 
 

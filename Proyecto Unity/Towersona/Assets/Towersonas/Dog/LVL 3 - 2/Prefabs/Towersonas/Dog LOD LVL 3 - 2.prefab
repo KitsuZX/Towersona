@@ -46,8 +46,8 @@ GameObject:
   - component: {fileID: 3537384586690062562}
   - component: {fileID: 2319966495334972800}
   m_Layer: 0
-  m_Name: Dog LOD LVL 2
-  m_TagString: Untagged
+  m_Name: Dog LOD LVL 3 - 2
+  m_TagString: Towersona LOD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
