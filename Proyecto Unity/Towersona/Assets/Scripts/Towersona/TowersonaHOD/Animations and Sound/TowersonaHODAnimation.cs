@@ -24,12 +24,12 @@ public class TowersonaHODAnimation : MonoBehaviour
 
     public void CaressStart()
     {
-		lookAway.isBeingCaressed = true;
+		if(lookAway) lookAway.isBeingCaressed = true;
 	}
 
     public void CaressEnd()
     {
-		lookAway.isBeingCaressed = false;
+		if (lookAway) lookAway.isBeingCaressed = false;
 	}
 
     

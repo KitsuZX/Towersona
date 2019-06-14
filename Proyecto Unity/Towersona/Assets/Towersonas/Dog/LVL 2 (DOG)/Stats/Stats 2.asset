@@ -9,27 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f50a39bf25bd9594ca218f341103cfd7, type: 3}
+  m_Script: {fileID: 11500000, guid: e5f64df280a384b4d98a34b180f1719a, type: 3}
   m_Name: Stats 2
   m_EditorClassIdentifier: 
   buyCost: 45
-  sellCost: 10
+  sellCost: 25
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
-  hapinessLossPerSecond: 0.1
-  angerPerShit: 0.2
-  timeBetweenShits: 12
+  hapinessLossPerSecond: 0.05
+  angerPerShit: 1
+  timeBetweenShits: 5
   maxShits: 4
-  currentAttackStrength: 14.92448
-  currentAttackSpeed: 1.9848962
-  currentAttackRange: 7.46224
-  currentBulletSpeed: 3.4773443
+  currentAttackStrength: 0
+  currentAttackSpeed: 0
+  currentAttackRange: 7.6155005
+  currentBulletSpeed: 0
   needs: {fileID: 0}
-  bulletDamage: {x: 10, y: 20}
-  attackSpeed: {x: 1, y: 3}
-  range: {x: 5, y: 10}
-  bulletSpeed: {x: 2, y: 5}
-  timeSpanBetweenGivingMoney: {x: 2, y: 5}
-  moneyGiven: {x: 10, y: 20}
-  currentTimeSpan: 3.4773443
-  currentMoneyGiven: 14
+  loveRange: {x: 10, y: 15}
+  loveGiven: {x: 0, y: 0.05}
+  currentLoveGiven: 0.048007958
+  currentLoveRange: 14.800796

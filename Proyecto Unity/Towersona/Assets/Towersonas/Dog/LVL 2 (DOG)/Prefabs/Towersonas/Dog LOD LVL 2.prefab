@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 9202062087551758737}
   - component: {fileID: 4655889943347623656}
   - component: {fileID: 3537384586690062562}
-  - component: {fileID: 2319966495334972800}
+  - component: {fileID: 211502180563779503}
   m_Layer: 0
   m_Name: Dog LOD LVL 2
   m_TagString: Towersona LOD
@@ -146,7 +146,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2319966495334972800
+--- !u!114 &211502180563779503
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,13 +155,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2407868818723468261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9c83eb6b96073af4fa99a51de32d7e34, type: 3}
+  m_Script: {fileID: 11500000, guid: e7f34a7041325664c9b9698cf4918e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,
+  bulletPrefab: {fileID: 8809015162710937323, guid: 9e9cd935b79c1f545ba17bff81af0d1b,
     type: 3}
   target: {fileID: 0}
-  moneySum: {fileID: 729247933228569982, guid: ac10d9fb7fb3a9d4cba1e3c5d5b2d248, type: 3}
 --- !u!1 &3371554850321597589
 GameObject:
   m_ObjectHideFlags: 0

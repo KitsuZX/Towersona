@@ -48,7 +48,7 @@ public abstract class AttackPattern : MonoBehaviour
         stats.UpdateStats();
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         if (Application.isPlaying)
         {

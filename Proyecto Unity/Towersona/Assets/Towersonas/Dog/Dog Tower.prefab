@@ -60,8 +60,8 @@ MonoBehaviour:
   towersonaNeeds: {fileID: 0}
   towersonaLevel: 0
   statsArray:
-  - {fileID: 11400000, guid: 68342ec4488c02b44a813518f5e04261, type: 2}
-  - {fileID: 11400000, guid: b1669bd982ab24d4192e3b27ec03f795, type: 2}
+  - {fileID: 11400000, guid: 9de592ed97a231544a5cb23e836f5fee, type: 2}
+  - {fileID: 11400000, guid: f466d5db5d6959c49bb0ad77cb734aee, type: 2}
   - {fileID: 11400000, guid: 9f5ad7ebb4faa9d4fb46f1e1998fd119, type: 2}
   - {fileID: 11400000, guid: bbc174e1221562548b4c8814ba460032, type: 2}
-  stats: {fileID: 11400000, guid: 68342ec4488c02b44a813518f5e04261, type: 2}
+  stats: {fileID: 11400000, guid: 9de592ed97a231544a5cb23e836f5fee, type: 2}

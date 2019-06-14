@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HedgehogAttack : AttackPattern
+public class WolfAttack : DogAttack
 {
-	public override void Shoot(Transform target)
-	{
-		GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
+	[SerializeField] private GameObject wolfBulletPrefab;	
+
+	public override void Shoot(Transform target) {
+
+		GameObject bulletObject = Instantiate(wolfBulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
 		bullet.damage = stats.currentAttackStrength;
@@ -17,6 +19,8 @@ public class HedgehogAttack : AttackPattern
 
 	public override void UpdateTarget()
 	{
+		base.UpdateTarget();
+
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 		float shortestDistance = Mathf.Infinity;
 		GameObject nearestEnemy = null;
@@ -39,5 +43,5 @@ public class HedgehogAttack : AttackPattern
 		{
 			target = null;
 		}
-	}	
+	}
 }

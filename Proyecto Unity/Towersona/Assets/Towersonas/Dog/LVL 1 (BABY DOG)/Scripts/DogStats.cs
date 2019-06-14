@@ -2,18 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stats", menuName = "Stats/Dog")]
+[CreateAssetMenu(fileName = "Stats", menuName = "Stats/Dog/Dog")]
 public class DogStats : TowersonaStats
 {
-	public Vector2 range;
+	[Header("Dog Stats")]
+	public Vector2 loveRange;
+	public Vector2 loveGiven;
+
+	[HideInInspector]
+	public float currentLoveGiven;
+	[HideInInspector]
+	public float currentLoveRange;
 
 	public override void UpdateStats()
 	{
-		currentAttackRange = Mathf.Lerp(range.x, range.y, needs.HappinessLevel);
+		currentLoveRange = Mathf.Lerp(loveRange.x, loveRange.y, needs.HappinessLevel);
+		currentLoveGiven = Mathf.Lerp(loveGiven.x, loveGiven.y, needs.HappinessLevel);
 	}
 
 	public override void SetDefaultValues()
 	{
-		currentAttackRange = range.y;
+		currentLoveRange = loveRange.y;
+		currentLoveGiven = loveGiven.y;
 	}
 }
