@@ -1,0 +1,174 @@
+fileFormatVersion: 2
+guid: 82aa5e3ad9f895e4a977bc5bfee358ca
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Boca_Abajo
+    100002: Cola
+    100004: Cuello
+    100006: Culo
+    100008: Head
+    100010: L_Ceja
+    100012: L_Ceja2
+    100014: L_DownEye
+    100016: L_DownEye_2
+    100018: L_Moflete
+    100020: L_MueveCejas
+    100022: L_Muslito
+    100024: L_Ojo
+    100026: L_Oreja
+    100028: L_Pie
+    100030: L_Pierna
+    100032: L_PieTrasero
+    100034: L_Rodilla
+    100036: L_RodillaTrasera
+    100038: //RootNode
+    100040: R_Ceja
+    100042: R_Ceja2
+    100044: R_DownEye
+    100046: R_DownEye_2
+    100048: R_Moflete
+    100050: R_MueveCejas
+    100052: R_MueveDownEyes
+    100054: R_MueveDownEyes_1
+    100056: R_Muslito
+    100058: R_Ojo
+    100060: R_Oreja
+    100062: R_Pie
+    100064: R_Pierna
+    100066: R_PieTrasero
+    100068: R_Rodilla
+    100070: R_RodillaTrasera
+    100072: Rabo
+    100074: Root
+    100076: "Simetr\xEDa"
+    400000: Boca_Abajo
+    400002: Cola
+    400004: Cuello
+    400006: Culo
+    400008: Head
+    400010: L_Ceja
+    400012: L_Ceja2
+    400014: L_DownEye
+    400016: L_DownEye_2
+    400018: L_Moflete
+    400020: L_MueveCejas
+    400022: L_Muslito
+    400024: L_Ojo
+    400026: L_Oreja
+    400028: L_Pie
+    400030: L_Pierna
+    400032: L_PieTrasero
+    400034: L_Rodilla
+    400036: L_RodillaTrasera
+    400038: //RootNode
+    400040: R_Ceja
+    400042: R_Ceja2
+    400044: R_DownEye
+    400046: R_DownEye_2
+    400048: R_Moflete
+    400050: R_MueveCejas
+    400052: R_MueveDownEyes
+    400054: R_MueveDownEyes_1
+    400056: R_Muslito
+    400058: R_Ojo
+    400060: R_Oreja
+    400062: R_Pie
+    400064: R_Pierna
+    400066: R_PieTrasero
+    400068: R_Rodilla
+    400070: R_RodillaTrasera
+    400072: Rabo
+    400074: Root
+    400076: "Simetr\xEDa"
+    2100000: defaultMat
+    2100002: No Name
+    4300000: "Simetr\xEDa"
+    9500000: //RootNode
+    13700000: "Simetr\xEDa"
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
