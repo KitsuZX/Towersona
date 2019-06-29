@@ -28,7 +28,15 @@ public class DogAttack : AttackPattern
 
 		for (int i = 0; i < lasers.Count; i++)
 		{
-			lasers[i].UpdateHapiness(dogStats.currentLoveRange, dogStats.currentLoveGiven);
+			AttackBoostLaser attackBoostLaser = lasers[i].GetComponent<AttackBoostLaser>();
+			if (attackBoostLaser)
+			{
+				attackBoostLaser.UpdateHapiness(dogStats.currentLoveRange, dogStats.currentLoveGiven);
+			}
+			else
+			{
+				lasers[i].UpdateHapiness(dogStats.currentLoveRange, dogStats.currentLoveGiven);
+			}		
 		}
 	}
 
@@ -44,7 +52,7 @@ public class DogAttack : AttackPattern
 				{
 					towersonasInRange.Add(towersona);
 					Laser laser = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, Quaternion.identity).GetComponent<Laser>();
-					laser.gameObject.transform.SetParent(transform);
+					laser.gameObject.transform.SetParent(transform);	
 					laser.SetTarget(towersona, this, transform.position);
 					lasers.Add(laser);
 				}				

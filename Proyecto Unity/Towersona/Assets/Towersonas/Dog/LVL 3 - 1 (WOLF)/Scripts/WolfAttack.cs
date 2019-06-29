@@ -11,7 +11,7 @@ public class WolfAttack : DogAttack
 		GameObject bulletObject = Instantiate(wolfBulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
-		bullet.damage = stats.currentAttackStrength;
+		bullet.damage = stats.Strength;
 		bullet.speed = stats.currentBulletSpeed;
 
 		if (bullet != null) bullet.Seek(target);

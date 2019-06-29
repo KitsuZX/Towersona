@@ -39,6 +39,7 @@ public class TowersonaNeeds : MonoBehaviour
 
     private TowersonaStats stats;
 	private float loveDecayReduction = 0.0f;
+	private float strengthBoost;
 
     private void Start()
     {

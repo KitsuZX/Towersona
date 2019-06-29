@@ -17,7 +17,7 @@ public class TigerAttack : CatAttack
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 
 		TigerBullet bullet = bulletObject.GetComponent<TigerBullet>();
-		bullet.damage = tigerStats.currentAttackStrength;
+		bullet.damage = tigerStats.Strength;
 		bullet.speed = tigerStats.currentBulletSpeed;
 		bullet.explosionRadius = tigerStats.currentDamageArea;
 

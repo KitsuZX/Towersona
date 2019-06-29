@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29baab0977a997e46add37610cf54a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8809015162710937323, guid: 9e9cd935b79c1f545ba17bff81af0d1b,
+  bulletPrefab: {fileID: 8809015162710937323, guid: 77bd0f363224eb945a98d044ea49c913,
     type: 3}
   target: {fileID: 0}
   wolfBulletPrefab: {fileID: 4175661441200614230, guid: f9e6b32b6871315468912bdfed084c2e,

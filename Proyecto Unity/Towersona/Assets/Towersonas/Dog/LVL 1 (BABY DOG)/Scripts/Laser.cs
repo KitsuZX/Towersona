@@ -5,17 +5,18 @@ using UnityEngine.Events;
 
 public class Laser : MonoBehaviour
 {
-	[SerializeField] private ParticleSystem impactEffect;
+	[SerializeField] protected ParticleSystem impactEffect;
 	[HideInInspector] public GameObject target;
-	private LineRenderer lineRenderer;
+	protected LineRenderer lineRenderer;
 
-	private DogAttack dogAttack;
-	private TowersonaNeeds needs;
-	private Vector3 centre;
+	protected DogAttack dogAttack;
+	protected TowersonaNeeds needs;
+	protected TowersonaStats targetStats;
+	protected Vector3 centre;
 
-	private void Awake()
+	protected void Awake()
 	{
-		lineRenderer = GetComponent<LineRenderer>();
+		lineRenderer = GetComponent<LineRenderer>();	
 	}
 
 	public void SetTarget(GameObject target, DogAttack dogAttack, Vector3 centre)
@@ -24,6 +25,7 @@ public class Laser : MonoBehaviour
 		this.dogAttack = dogAttack;
 
 		needs = this.target.GetComponent<TowersonaLOD>().towersona.towersonaNeeds;
+		targetStats = this.target.GetComponent<TowersonaLOD>().towersona.stats;
 
 		lineRenderer.SetPosition(0, transform.position);
 		lineRenderer.SetPosition(1, target.transform.position);
@@ -40,7 +42,7 @@ public class Laser : MonoBehaviour
 		if (target == null || Vector3.Distance(target.transform.position, centre) > range)
 		{
 			//Towersona is out of range, so destroy it
-			needs.SetLoveDecayReduction(0);
+			needs.SetLoveDecayReduction(0);		
 			dogAttack.RemoveLaser(this);
 			Destroy(gameObject);
 		}
@@ -49,4 +51,7 @@ public class Laser : MonoBehaviour
 			needs.SetLoveDecayReduction(loveGiven);
 		}
 	}
+
+	
+	
 }

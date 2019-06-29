@@ -19,8 +19,8 @@ public abstract class TowersonaStats : ScriptableObject
     public float timeBetweenShits;
     public int maxShits;
 
-    [HideInInspector]
-    public float currentAttackStrength;
+	[HideInInspector]
+	public float currentAttackStrength;
     [HideInInspector]
     public float currentAttackSpeed;
     [HideInInspector]
@@ -28,9 +28,30 @@ public abstract class TowersonaStats : ScriptableObject
     [HideInInspector]
     public float currentBulletSpeed;
 
-    [HideInInspector]
+	[HideInInspector]
+	private float attackBoost = 0;
+
+	[HideInInspector]
+	public float Strength {
+		get {
+			return currentAttackStrength + attackBoost;
+		}
+	}
+
+	[HideInInspector]
     public TowersonaNeeds needs;  
 
-    public abstract void UpdateStats();
+	protected void Update()
+	{
+		
+	}
+
+
+	public void SetAttackBoost(float attackBoost)
+	{
+		this.attackBoost = attackBoost;
+	}
+
+	public abstract void UpdateStats();
     public abstract void SetDefaultValues();   
 }

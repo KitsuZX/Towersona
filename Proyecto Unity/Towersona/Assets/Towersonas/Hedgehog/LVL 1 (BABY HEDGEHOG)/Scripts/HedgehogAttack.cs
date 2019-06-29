@@ -9,7 +9,7 @@ public class HedgehogAttack : AttackPattern
 		GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
-		bullet.damage = stats.currentAttackStrength;
+		bullet.damage = stats.Strength;
 		bullet.speed = stats.currentBulletSpeed;
 
 		if (bullet != null) bullet.Seek(target);

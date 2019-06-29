@@ -230,7 +230,7 @@ public class BuildManager : MonoBehaviour
             style.fontStyle = FontStyle.Bold;
 
             string message = "";
-            message += "Fuerza: " + towersonaSelected.stats.currentAttackStrength + "\n";
+            message += "Fuerza: " + towersonaSelected.stats.Strength + "\n";
             message += "V. Ataque: " + towersonaSelected.stats.currentAttackSpeed + "\n";
             message += "Rango: " + towersonaSelected.stats.currentAttackRange + "\n";
             message += "V. Bala: " + towersonaSelected.stats.currentBulletSpeed + "\n";
