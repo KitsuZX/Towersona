@@ -60,7 +60,7 @@ public class SpawnPoint : MonoBehaviour
 
         bezierWalker.spline = path;
         bezierWalker.onPathCompleted.AddListener(action);
-        bezierWalker.speed = 3;
+        bezierWalker.speed = enemy.Speed;
 
         LevelManager.Instance.enemiesAlive++;
     }   

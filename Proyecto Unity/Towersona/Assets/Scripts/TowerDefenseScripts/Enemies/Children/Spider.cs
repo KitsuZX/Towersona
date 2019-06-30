@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Spider : Enemy
 {
-    protected override void Update()
+    private void Update()
     {
-          
+		base.Update();
     }
 }

@@ -29,12 +29,12 @@ public abstract class TowersonaStats : ScriptableObject
     public float currentBulletSpeed;
 
 	[HideInInspector]
-	private float attackBoost = 0;
+	private float attackBonus = 0;
 
 	[HideInInspector]
 	public float Strength {
 		get {
-			return currentAttackStrength + attackBoost;
+			return currentAttackStrength + attackBonus;
 		}
 	}
 
@@ -49,7 +49,7 @@ public abstract class TowersonaStats : ScriptableObject
 
 	public void SetAttackBoost(float attackBoost)
 	{
-		this.attackBoost = attackBoost;
+		this.attackBonus = attackBoost;
 	}
 
 	public abstract void UpdateStats();

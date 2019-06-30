@@ -1,12 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using BezierSolution;
 using UnityEngine;
-using BezierSolution;
+using System.Collections.Generic;
 
 public abstract class Enemy : MonoBehaviour
 {
+	public float Speed {
+		get
+		{
+			return baseSpeed - slowDownAmount;
+		}
+	}
+
     [SerializeField]
-    protected float speed = 2f;
+    protected float baseSpeed = 2f;
     [SerializeField]
     protected float life = 30f;
     [SerializeField][Tooltip("Number of lifes the player loses if this enemy reaches the end")]
@@ -18,13 +24,30 @@ public abstract class Enemy : MonoBehaviour
 
     [HideInInspector]
     public BezierSpline path;
+	[HideInInspector]
+	public float slowDownCountDown;
 
 
-    protected Transform target;
-    private int controlPointIndex = 0; 
-  
+	protected Transform target;
+    private int controlPointIndex = 0;
 
-    protected abstract void Update();    
+	private bool isSlowedDown;
+	private float slowDownAmount = 0;
+	private List<SlowDownType> slowDowns;
+
+	private void Awake()
+	{
+		slowDowns = new List<SlowDownType>();
+	}
+
+	protected void Update()
+	{
+		slowDownAmount -= Time.deltaTime;
+		if (slowDownAmount < 0)
+		{
+			RemoveSlowDown();
+		}
+	}    
     
 
     public void EndPath()
@@ -57,5 +80,29 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+	public void AddSlowDown(float amount, float time, SlowDownType type)
+	{
+		if (!slowDowns.Contains(type))
+		{
+			slowDowns.Add(type);
+			if (!isSlowedDown) isSlowedDown = true;
+			slowDownAmount += amount;
+			GetComponent<BezierWalkerWithSpeed>().speed = Speed;
+		}
 
+		if(time > slowDownCountDown)
+		{
+			slowDownCountDown = time;
+		}
+	}
+
+	private void RemoveSlowDown()
+	{
+		slowDowns.Clear();
+		slowDownAmount = 0;
+		GetComponent<BezierWalkerWithSpeed>().speed = Speed;
+		isSlowedDown = false;
+	}
+
+	public enum SlowDownType { Fox, Penguin }
 }

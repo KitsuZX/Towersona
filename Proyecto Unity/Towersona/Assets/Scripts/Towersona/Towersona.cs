@@ -115,6 +115,7 @@ public class Towersona : MonoBehaviour
 
     public void Sell()
     {
+		place.hasTower = false;
         PlayerStats.Instance.AddMoney(stats.sellCost);
         Destroy(gameObject);
     }

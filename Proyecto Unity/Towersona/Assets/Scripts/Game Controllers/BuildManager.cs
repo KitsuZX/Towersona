@@ -155,6 +155,7 @@ public class BuildManager : MonoBehaviour
 
 	public void ShowBuyMenu(BuildingPlace place)
 	{
+		//TODO: Cuando se vende una towersona, ya no se puede construir en ese sitio. El problema está en esta comprobacíón.
 		if (buildingPlaceSelected == place)
 		{
 			return;

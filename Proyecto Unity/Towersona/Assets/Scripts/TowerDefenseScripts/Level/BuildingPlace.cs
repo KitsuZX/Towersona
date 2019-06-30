@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BuildingPlace : MonoBehaviour
-{
-	[HideInInspector]
+{	
     public bool hasTower = false;
 
     private void OnMouseUpAsButton()
