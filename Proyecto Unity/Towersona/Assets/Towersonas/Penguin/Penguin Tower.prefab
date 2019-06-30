@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &824885323347685139
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5171529233366796780}
+  - component: {fileID: 8547910103068521303}
+  m_Layer: 0
+  m_Name: Penguin Tower
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5171529233366796780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824885323347685139}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8547910103068521303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 824885323347685139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  menuName: P3N-GU1N
+  towersonaLODPrefabs:
+  - {fileID: 2407868818723468261, guid: a51ec8dee85bf1a43bc34d407d625707, type: 3}
+  - {fileID: 2407868818723468261, guid: 5dfce229d9b7a5641a637a7b49159628, type: 3}
+  - {fileID: 2407868818723468261, guid: ec336460c8c9eff4fa8ea75b92a2b898, type: 3}
+  - {fileID: 2407868818723468261, guid: 851a120527e49b042b32f494e9b6f985, type: 3}
+  towersonaHODPrefabs:
+  - {fileID: 5139840167273293286, guid: 24e78533c855a5f48a867725873d729e, type: 3}
+  - {fileID: 5139840167273293286, guid: 48cdd120cba3ffd4dace7df089f31226, type: 3}
+  - {fileID: 5139840167273293286, guid: 437f9fd06994fef4594fe08ddcdb68e1, type: 3}
+  - {fileID: 5139840167273293286, guid: 9c82b62ce75fa404d8c3d9bf5a16f17b, type: 3}
+  place: {fileID: 0}
+  towersonaHOD: {fileID: 0}
+  towersonaLOD: {fileID: 0}
+  towersonaNeeds: {fileID: 0}
+  towersonaLevel: 0
+  statsArray:
+  - {fileID: 11400000, guid: 85456b7a28297244bbebac14b4b24399, type: 2}
+  - {fileID: 11400000, guid: 838265739cd40504fbc7cfc6b0c42b60, type: 2}
+  - {fileID: 11400000, guid: 1f6d428b60dde6947a8bc9b11645010e, type: 2}
+  - {fileID: 11400000, guid: c1601fcf3ac00164196687354c521c6b, type: 2}
+  stats: {fileID: 11400000, guid: 85456b7a28297244bbebac14b4b24399, type: 2}

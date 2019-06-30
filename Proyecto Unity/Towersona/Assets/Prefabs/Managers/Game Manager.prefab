@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f79d03ba30691b4a9f0c067dbf762ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEnemies: 0
+  spawnEnemies: 1
   useMoney: 0
 --- !u!114 &4326776620507013398
 MonoBehaviour:
@@ -83,6 +83,7 @@ MonoBehaviour:
   - {fileID: 8547910103068521303, guid: 187217a84e532ee4a83efb6d7d4b9c3c, type: 3}
   - {fileID: 8547910103068521303, guid: 4d63c8e21aba480448270a074f573464, type: 3}
   - {fileID: 8547910103068521303, guid: f731c293913cb744ca96648d6053da16, type: 3}
+  - {fileID: 8547910103068521303, guid: fbcabd5246761e04cb1fc8da6f40cda6, type: 3}
   lastXUsed: 0
   detailedTowersonaViewPrefab: {fileID: 5139840165600574758, guid: e863cb5f8d9b4f8429e64f11614f61f9,
     type: 3}

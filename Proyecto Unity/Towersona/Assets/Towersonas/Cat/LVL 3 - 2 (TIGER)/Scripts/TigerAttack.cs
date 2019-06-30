@@ -16,7 +16,7 @@ public class TigerAttack : CatAttack
 		GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 
-		TigerBullet bullet = bulletObject.GetComponent<TigerBullet>();
+		AreaDamageBullet bullet = bulletObject.GetComponent<AreaDamageBullet>();
 		bullet.damage = tigerStats.Strength;
 		bullet.speed = tigerStats.currentBulletSpeed;
 		bullet.explosionRadius = tigerStats.currentDamageArea;

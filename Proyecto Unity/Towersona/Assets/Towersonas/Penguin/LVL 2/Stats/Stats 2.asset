@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e080f04e9c2de4899d559aaf1b91e2, type: 3}
+  m_Name: Stats 2
+  m_EditorClassIdentifier: 
+  buyCost: 45
+  sellCost: 20
+  happinessPerPet: 0.05
+  hungerPerSecond: 0.05
+  hapinessLossPerSecond: 0.05
+  angerPerShit: 0.2
+  timeBetweenShits: 10
+  maxShits: 4
+  currentAttackStrength: 0
+  currentAttackSpeed: 0
+  currentAttackRange: 0
+  currentBulletSpeed: 0
+  needs: {fileID: 0}
+  bulletDamage: {x: 1, y: 2}
+  attackSpeed: {x: 3, y: 5}
+  range: {x: 10, y: 20}
+  bulletSpeed: {x: 5, y: 0}
+  slowDownPercentage: {x: 0.25, y: 0.75}
+  slowDownTime: {x: 3, y: 5}
+  currentSlowDownPercentage: 0
+  currentSlowDownTime: 0

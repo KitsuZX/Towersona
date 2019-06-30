@@ -17,10 +17,10 @@ public class FoxAttack : AttackPattern
 		GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 
-		FoxBullet bullet = bulletObject.GetComponent<FoxBullet>();
+		SlowDownBullet bullet = bulletObject.GetComponent<SlowDownBullet>();
 		bullet.damage = stats.Strength;
 		bullet.speed = stats.currentBulletSpeed;
-		bullet.slowDownAmount = foxStats.currentSlowDownAmount;
+		bullet.slowDownAmount = foxStats.currentSlowDownPercentage;
 		bullet.slowDownTime = foxStats.currentSlowDownTime;
 
 		if (bullet != null) bullet.Seek(target);

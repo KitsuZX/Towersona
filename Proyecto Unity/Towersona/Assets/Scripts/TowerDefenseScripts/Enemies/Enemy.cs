@@ -7,7 +7,7 @@ public abstract class Enemy : MonoBehaviour
 	public float Speed {
 		get
 		{
-			return baseSpeed - slowDownAmount;
+			return baseSpeed * (1 - slowDownPercentage);
 		}
 	}
 
@@ -32,7 +32,7 @@ public abstract class Enemy : MonoBehaviour
     private int controlPointIndex = 0;
 
 	private bool isSlowedDown;
-	private float slowDownAmount = 0;
+	private float slowDownPercentage = 0;
 	private List<SlowDownType> slowDowns;
 
 	private void Awake()
@@ -42,8 +42,8 @@ public abstract class Enemy : MonoBehaviour
 
 	protected void Update()
 	{
-		slowDownAmount -= Time.deltaTime;
-		if (slowDownAmount < 0)
+		slowDownPercentage -= Time.deltaTime;
+		if (slowDownPercentage < 0)
 		{
 			RemoveSlowDown();
 		}
@@ -86,7 +86,8 @@ public abstract class Enemy : MonoBehaviour
 		{
 			slowDowns.Add(type);
 			if (!isSlowedDown) isSlowedDown = true;
-			slowDownAmount += amount;
+			slowDownPercentage += amount;
+			Mathf.Clamp01(slowDownPercentage);
 			GetComponent<BezierWalkerWithSpeed>().speed = Speed;
 		}
 
@@ -99,7 +100,7 @@ public abstract class Enemy : MonoBehaviour
 	private void RemoveSlowDown()
 	{
 		slowDowns.Clear();
-		slowDownAmount = 0;
+		slowDownPercentage = 0;
 		GetComponent<BezierWalkerWithSpeed>().speed = Speed;
 		isSlowedDown = false;
 	}

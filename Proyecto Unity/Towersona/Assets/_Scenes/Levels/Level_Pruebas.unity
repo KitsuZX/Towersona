@@ -3043,6 +3043,47 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 255735109}
+    - target: {fileID: 162630877991191623, guid: 9a9f3d9347a0a8d469986f52c86deaaa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162630877991191623, guid: 9a9f3d9347a0a8d469986f52c86deaaa,
+        type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 162630877991191623, guid: 9a9f3d9347a0a8d469986f52c86deaaa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 162630877991191623, guid: 9a9f3d9347a0a8d469986f52c86deaaa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 162630877991191623, guid: 9a9f3d9347a0a8d469986f52c86deaaa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3960222496030194300}
+    - target: {fileID: 162630877991191623, guid: 9a9f3d9347a0a8d469986f52c86deaaa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyTowersona
+      objectReference: {fileID: 0}
+    - target: {fileID: 162630877991191623, guid: 9a9f3d9347a0a8d469986f52c86deaaa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: Towersona, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 162630877991191623, guid: 9a9f3d9347a0a8d469986f52c86deaaa,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8547910103068521303, guid: fbcabd5246761e04cb1fc8da6f40cda6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a9f3d9347a0a8d469986f52c86deaaa, type: 3}
 --- !u!114 &3960222496030194300 stripped
@@ -3170,11 +3211,6 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1889764497}
-    - target: {fileID: 4326776620507013402, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
-      propertyPath: spawnEnemies
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8173bd2a3f3cf95498a39db667a80930, type: 3}
 --- !u!1001 &8895327832573937021

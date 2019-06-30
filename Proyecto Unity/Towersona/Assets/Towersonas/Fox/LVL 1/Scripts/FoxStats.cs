@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "Stats", menuName = "Stats/Fox")]
 public class FoxStats : TowersonaStats
@@ -12,11 +10,12 @@ public class FoxStats : TowersonaStats
 	public Vector2 bulletSpeed;
 
 	[Header("Fox Stats")]
-	public Vector2 slowDownAmout;
+	[Tooltip("0 -> No le afecta el slow | 1 -> No le mueve ni Dios")]
+	public Vector2 slowDownPercentage;
 	public Vector2 slowDownTime;
 
 	[HideInInspector]
-	public float currentSlowDownAmount;
+	public float currentSlowDownPercentage;
 	[HideInInspector]
 	public float currentSlowDownTime;
 
@@ -26,7 +25,7 @@ public class FoxStats : TowersonaStats
 		currentAttackSpeed = Mathf.Lerp(attackSpeed.x, attackSpeed.y, needs.HappinessLevel);
 		currentAttackRange = Mathf.Lerp(range.x, range.y, needs.HappinessLevel);
 		currentBulletSpeed = Mathf.Lerp(bulletSpeed.x, bulletSpeed.y, needs.HappinessLevel);
-		currentSlowDownAmount = Mathf.Lerp(slowDownAmout.x, slowDownAmout.y, needs.HappinessLevel);
+		currentSlowDownPercentage = Mathf.Lerp(slowDownPercentage.x, slowDownPercentage.y, needs.HappinessLevel);
 		currentSlowDownTime = Mathf.Lerp(slowDownTime.x, slowDownTime.y, needs.HappinessLevel);
 	}
 
@@ -36,7 +35,7 @@ public class FoxStats : TowersonaStats
 		currentAttackSpeed = attackSpeed.y;
 		currentAttackRange = range.y;
 		currentBulletSpeed = bulletSpeed.y;
-		currentSlowDownAmount = slowDownAmout.y;
+		currentSlowDownPercentage = slowDownPercentage.y;
 		currentSlowDownTime = slowDownTime.y;
 	}
 }

@@ -29,3 +29,7 @@ MonoBehaviour:
   attackSpeed: {x: 5, y: 10}
   range: {x: 10, y: 20}
   bulletSpeed: {x: 7, y: 10}
+  slowDownPercentage: {x: 0, y: 0.25}
+  slowDownTime: {x: 1, y: 5}
+  currentSlowDownPercentage: 0
+  currentSlowDownTime: 0

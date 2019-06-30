@@ -232,7 +232,7 @@ GameObject:
   - component: {fileID: 6554927272520192541}
   - component: {fileID: 4734792086644907729}
   m_Layer: 10
-  m_Name: TextMeshPro Text
+  m_Name: Cat Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 1766780594215193542}
   - component: {fileID: 5107864079258233227}
   m_Layer: 10
-  m_Name: TextMeshPro Text
+  m_Name: Hedgehog Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 3212985243170609238}
   - component: {fileID: 383125009670422318}
   m_Layer: 10
-  m_Name: TextMeshPro Text
+  m_Name: Eagle Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1084,7 +1084,7 @@ GameObject:
   - component: {fileID: 2784536443115568430}
   - component: {fileID: 3488471375226741538}
   m_Layer: 10
-  m_Name: TextMeshPro Text
+  m_Name: Dog Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1246,7 +1246,7 @@ GameObject:
   - component: {fileID: 5442370580185043796}
   - component: {fileID: 1721551944312772743}
   m_Layer: 10
-  m_Name: TextMeshPro Text
+  m_Name: Penguin Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1639,7 +1639,7 @@ GameObject:
   - component: {fileID: 1340735566625618667}
   - component: {fileID: 651968445406485657}
   m_Layer: 10
-  m_Name: TextMeshPro Text
+  m_Name: Bear Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2107,7 +2107,7 @@ GameObject:
   - component: {fileID: 3633075182343089796}
   - component: {fileID: 6621641164214257171}
   m_Layer: 10
-  m_Name: TextMeshPro Text
+  m_Name: Fox Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2398,7 +2398,7 @@ GameObject:
   - component: {fileID: 1661058350407931878}
   - component: {fileID: 1712405820893337598}
   m_Layer: 10
-  m_Name: TextMeshPro Text
+  m_Name: Dragon Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2602,6 +2602,7 @@ MonoBehaviour:
   - {fileID: 5107864079258233227}
   - {fileID: 6621641164214257171}
   - {fileID: 3488471375226741538}
+  - {fileID: 1721551944312772743}
 --- !u!1 &8865150065951433354
 GameObject:
   m_ObjectHideFlags: 0
