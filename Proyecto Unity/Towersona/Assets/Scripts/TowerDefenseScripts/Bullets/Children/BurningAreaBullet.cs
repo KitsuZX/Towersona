@@ -11,85 +11,47 @@ public class BurningAreaBullet : Shooting
 	public override void Seek(Transform _target) {
 
 		dragonStats = (DragonStats)stats;
+		boxCollider = GetComponentInChildren<BoxCollider>();
 
 		base.Seek(_target);
+		
+		float currentZSize = boxCollider.bounds.size.z;
+		float currentXSize = boxCollider.bounds.size.x;
+
+		Vector3 scale = transform.localScale;
+		scale.x = dragonStats.currentDamageAreaWidth * scale.x / currentXSize;
+		scale.z = stats.currentAttackRange * scale.z / currentZSize;
+		transform.localScale = scale;
 
 		Vector3 targetPosition = target.position;
 		targetPosition.y = transform.position.y;
-		transform.LookAt(targetPosition);
+		transform.LookAt(targetPosition);		
 
-		transform.localScale = Vector3.one * dragonStats.currentDamageArea;
-
-		/*GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-		
-
-		foreach (GameObject e in enemies)
-		{
-			if (collider.bounds.Contains(e.transform.position))
-			{
-				Debug.Log("Quemando peña");
-			}
-		}*/
-
-		BoxCollider collider = GetComponentInChildren<BoxCollider>();
-		Collider[] colliders = Physics.OverlapBox(transform.position, collider.size, transform.localRotation);
-
-		foreach (Collider c in colliders)
-		{
-			if (c.transform.tag == "Enemy")
-			{
-				c.gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
-			}
-		}
 
 		Destroy(gameObject, 1f);
 	}
 
 	private void Update()
 	{
-		
+		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+		foreach (GameObject enemy in enemies)
+		{
+			if (boxCollider.bounds.Contains(enemy.transform.position))
+			{
+				Enemy e = enemy.GetComponent<Enemy>();
+
+				if (!e.AlredyBurnedByTowersona(gameObject))
+				{
+					e.SetOnFire(stats.currentAttackStrength, dragonStats.currentBurnTime, gameObject);
+				}
+			}
+		}
 	}
 
 	protected override void HitTarget()
 	{
-		/*Vector3 pos = transform.position;
-		pos.y += 1f;
-
-		Enemy firstTarget = target.GetComponent<Enemy>();
-
-		if (firstTarget != null)
-		{
-			firstTarget.TakeDamage(stats.AttackStrength);
-		}
-
-		Collider[] colliders = Physics.OverlapSphere(pos, dragonStats.currentDamageArea);
-
-		BuildManager.Instance.SpawnEffect(impactEffect, pos);
-
-		foreach (Collider collider in colliders)
-		{
-			if (collider.tag == "Enemy")
-			{
-				Enemy e = collider.GetComponent<Enemy>();
-				if (e != null && e != firstTarget)
-				{
-					e.TakeDamage(stats.AttackStrength * dragonStats.currentAreaDamageReduction);
-				}
-
-			}
-		}
-
-		Destroy(gameObject);*/
+	
 	}
 	
-	private void OnDrawGizmos()
-	{
-		/*Gizmos.color = Color.blue;
-		Gizmos.DrawWireSphere(transform.position, explosionRadius);*/
-
-		BoxCollider collider = GetComponentInChildren<BoxCollider>();
-		Gizmos.color = Color.red;
-		Gizmos.DrawWireCube(transform.position, collider.size);
-	}
 }

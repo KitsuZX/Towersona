@@ -49,6 +49,7 @@ MonoBehaviour:
   life: 30
   damage: 1
   value: 20
+  burnColor: {r: 1, g: 0.4136189, b: 0, a: 0.76862746}
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
 --- !u!136 &8572231554543880170

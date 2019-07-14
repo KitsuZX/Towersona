@@ -42,13 +42,27 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField][Tooltip("Dinero que da al morir")]
     protected int value = 20;
 
+	public Color burnColor;
+
     [SerializeField]
     private GameObject deathEffect;
 
 	private Dictionary<SlowDownType, List<SlowDown>> slowDowns= new Dictionary<SlowDownType, List<SlowDown>>();
 	private BezierWalkerWithSpeed bezierWalkerWithSpeed;
 
-	private List<GameObject> sources = new List<GameObject>();
+	private List<Burn> burns = new List<Burn>();
+
+	private List<GameObject> slowDownSources = new List<GameObject>();
+	private List<GameObject> burnSources = new List<GameObject>();
+
+	private MeshRenderer[] meshRenderers;
+
+	private void Awake()
+	{
+		meshRenderers = GetComponentsInChildren<MeshRenderer>();
+
+		InvokeRepeating("TakeBurnDamage", 0f, 0.5f);
+	}
 
 	protected void Update()
 	{
@@ -68,6 +82,11 @@ public abstract class Enemy : MonoBehaviour
 			{
 				entry.Value[i].Update();
 			}			
+		}
+
+		foreach (Burn burn in burns.ToList())
+		{
+			burn.Update();
 		}
 	}        
 
@@ -101,6 +120,8 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
+
+	#region SlowDowns
 	public SlowDown AddSlowDown(float amount, float time, SlowDownType type, GameObject source)
 	{
 		SlowDown slowDown = new SlowDown(amount, time, type, this);
@@ -116,7 +137,7 @@ public abstract class Enemy : MonoBehaviour
 			slowDowns[type].Add(slowDown);
 		}
 
-		sources.Add(source);
+		slowDownSources.Add(source);
 
 		return slowDown;
 	}
@@ -133,9 +154,105 @@ public abstract class Enemy : MonoBehaviour
 
 	public bool AlredySlownDownByTowersona(GameObject source)
 	{
-		return sources.Contains(source);
+		return slowDownSources.Contains(source);
+	}
+	#endregion
+
+
+	#region Burn
+	public void SetOnFire(float amount, float burnTime, GameObject source)
+	{
+		Burn b = new Burn(amount, burnTime, this);
+
+		burnSources.Add(source);
+
+		burns.Add(b);
+
+		Tint(burnColor);
 	}
 
-	public enum SlowDownType { Fox }
+	private void TakeBurnDamage()
+	{
+		if(burns.Count > 0)
+		{
+			Tint(new Color(0.2f, 0, 0));
+			Invoke("Tint", 0.1f);
+			float[] values = new float[burns.Count];
+
+			for (int i = 0; i < burns.Count; i++)
+			{
+				values[i] = burns[i].amount;
+			}
+
+			float burn = values.Max();
+			float time = 0;
+
+			for (int i = 0; i < burns.Count; i++)
+			{
+				if(burns[i].amount == burn)
+				{
+					time = burns[i].burnTime;
+				}
+			}
+
+			float damage = burn / (time * 0.5f);
+			TakeDamage(damage);
+
+
+			Tint(Color.red);
+		}
+	}
+
+	private void Tint(Color color)
+	{
+		foreach (MeshRenderer meshRenderer in meshRenderers)
+		{
+			foreach(Material m in meshRenderer.materials)
+			{
+				m.SetColor("_Color", color);
+			}			
+		}
+	}
+
+	private void Tint()
+	{
+		foreach (MeshRenderer meshRenderer in meshRenderers)
+		{
+			foreach (Material m in meshRenderer.materials)
+			{
+				m.SetColor("_Color", burnColor);
+			}
+		}
+	}
+
+	private void RemoveTint()
+	{
+		foreach (MeshRenderer meshRenderer in meshRenderers)
+		{
+			foreach (Material m in meshRenderer.materials)
+			{
+				m.SetColor("_Color", Color.clear);
+			}
+		}
+	}
+
+	public bool AlredyBurnedByTowersona(GameObject source)
+	{
+		return burnSources.Contains(source);
+	}
+
+	public void RemoveBurn(Burn burn)
+	{
+		burns.Remove(burn);
+
+		if(burns.Count == 0)
+		{
+			RemoveTint();
+		}
+	}
+
+	#endregion
+
+	public enum SlowDownType { Fox, Area }
 
 }

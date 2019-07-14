@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageAreaBullet : Shooting
+public class SlowDownAreaBullet : Shooting
 {
-	[HideInInspector]
-	public float explosionRadius = 0f;
+	[SerializeField] private GameObject slowDownArea;
 
 	protected override void HitTarget()
 	{
@@ -16,7 +15,7 @@ public class DamageAreaBullet : Shooting
 
 		Enemy firstTarget = target.GetComponent<Enemy>();
 
-		if(firstTarget != null)
+		if (firstTarget != null)
 		{
 			firstTarget.TakeDamage(stats.AttackStrength);
 		}
@@ -27,23 +26,19 @@ public class DamageAreaBullet : Shooting
 
 		foreach (Collider collider in colliders)
 		{
-			if(collider.tag == "Enemy")
+			if (collider.tag == "Enemy")
 			{
 				Enemy e = collider.GetComponent<Enemy>();
 				if (e != null && e != firstTarget)
-				{		
+				{
 					e.TakeDamage(stats.AttackStrength * dragonStats.currentAreaDamageReduction);
+					GameObject area = Instantiate(slowDownArea, transform.position, slowDownArea.transform.rotation);
+					Destroy(area, dragonStats.currentSlowDownAreaLifeTime);
 				}
-				
+
 			}
 		}
 
 		Destroy(gameObject);
-	}
-
-	private void OnDrawGizmos()
-	{
-		Gizmos.color = Color.blue;
-		Gizmos.DrawWireSphere(transform.position, explosionRadius);
 	}
 }

@@ -56,10 +56,10 @@ public class DragonAttack : AttackPattern
 
 	private void OnDrawGizmos()
 	{
-		/*if (Application.isPlaying)
+		if (Application.isPlaying)
 		{
 			Gizmos.color = Color.red;
 			Gizmos.DrawWireSphere(towersonaLOD.transform.position, dragonStats.currentAttackRange);
-		}*/
+		}
 	}
 }
