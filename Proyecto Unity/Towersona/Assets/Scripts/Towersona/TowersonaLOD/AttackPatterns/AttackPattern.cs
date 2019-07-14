@@ -5,9 +5,6 @@ using UnityEngine;
 
 public abstract class AttackPattern : MonoBehaviour
 { 
-    [Header("References")][SerializeField]
-    protected GameObject bulletPrefab;  
-  
     [HideInInspector]
     public Transform target;
 
@@ -46,16 +43,7 @@ public abstract class AttackPattern : MonoBehaviour
     private void UpdateStats()
     {
         stats.UpdateStats();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (Application.isPlaying)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(towersonaLOD.transform.position, stats.currentAttackRange);
-        }
-    }
+    }    
 
     private void CheckAnimations()
     {

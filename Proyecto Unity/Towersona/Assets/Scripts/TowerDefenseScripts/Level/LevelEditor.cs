@@ -8,10 +8,7 @@ public class LevelEditor : MonoBehaviour
     MeshRenderer meshRenderer;
 
     [Header("Fondo")]
-    public Texture2D background;
-    [Header("Oleadas")]
-    public int numCaminos;
-    public int numOleadas;
+	public Texture2D background;
 
     private void OnValidate()
     {      

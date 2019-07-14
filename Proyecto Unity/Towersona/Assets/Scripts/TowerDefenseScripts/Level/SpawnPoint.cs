@@ -32,7 +32,9 @@ public class SpawnPoint : MonoBehaviour
         for (int i = 0; i < wave.enemiesGroups.Count; i++)
         {          
             yield return StartCoroutine(SpawnEnemiesGroup(wave.enemiesGroups[i]));             
-        }  
+        }
+
+		LevelManager.Instance.timeTillNextWave = wave.secondsToNextWave;
     }
 
     IEnumerator SpawnEnemiesGroup(EnemiesGroup group)

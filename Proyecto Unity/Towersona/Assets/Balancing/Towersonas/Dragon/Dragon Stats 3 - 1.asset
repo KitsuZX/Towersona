@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c74c189377fa699428b3f121dac30d43, type: 3}
+  m_Name: Dragon Stats 3 - 1
+  m_EditorClassIdentifier: 
+  buyCost: 75
+  sellCost: 20
+  happinessPerPet: 0.05
+  hungerPerSecond: 0.05
+  hapinessLossPerSecond: 0.065
+  angerPerShit: 0.2
+  timeBetweenShits: 20
+  maxShits: 4
+  currentAttackStrength: 18.697298
+  currentAttackSpeed: 0.5
+  currentAttackRange: 18.697298
+  currentBulletSpeed: 9.478919
+  needs: {fileID: 0}
+  bulletDamage: {x: 10, y: 20}
+  attackSpeed: {x: 0.5, y: 0.5}
+  range: {x: 10, y: 20}
+  bulletSpeed: {x: 6, y: 10}
+  damageArea: {x: 1, y: 2}
+  areaDamageReduction: {x: 0, y: 0}
+  currentDamageArea: 1.8697298
+  currentAreaDamageReduction: 0

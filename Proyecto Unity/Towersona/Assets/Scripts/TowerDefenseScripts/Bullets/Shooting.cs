@@ -7,19 +7,23 @@ public abstract class Shooting : MonoBehaviour
     [SerializeField][Tooltip("Particle System when a bullet hits")]
     protected GameObject impactEffect;
 
-    [HideInInspector]
-    public float speed = 10f;
-    [HideInInspector]
-    public float damage;
+	[HideInInspector]
+	public GameObject source;
 
     protected Transform target;
+	protected TowersonaStats stats;
 
-    public void Seek(Transform _target)
+	public void SetStats(TowersonaStats stats)
+	{
+		this.stats = stats;
+	}
+
+	public virtual void Seek(Transform _target)
     {
         target = _target;
     }
 
-    private void Update()
+    protected void Update()
     {
         if(target == null)
         {
@@ -28,7 +32,7 @@ public abstract class Shooting : MonoBehaviour
         }
 
         Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = speed * Time.deltaTime;
+        float distanceThisFrame = stats.AttackSpeed * Time.deltaTime;
 
         if(dir.magnitude <= distanceThisFrame)
         {

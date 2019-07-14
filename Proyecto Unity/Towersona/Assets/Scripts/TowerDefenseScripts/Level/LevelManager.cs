@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     public static LevelManager Instance { get; private set; }
 
     [Header("Parameters")]
-    public float timeBetweenWaves;
+    public float timeTillNextWave;
 
     [HideInInspector]
     public int enemiesAlive = 0;
@@ -49,7 +49,7 @@ public class LevelManager : MonoBehaviour
         if(countdown <= 0f)
         {
             SpawnWave();
-            countdown = timeBetweenWaves;
+            countdown = timeTillNextWave;
             return;
         }
 
@@ -68,8 +68,7 @@ public class LevelManager : MonoBehaviour
            StartCoroutine(spawnPoint.SpawnWave(waveIndex));
         }
 
-        waveIndex++;
-         
+        waveIndex++;         
     }  
 }
 

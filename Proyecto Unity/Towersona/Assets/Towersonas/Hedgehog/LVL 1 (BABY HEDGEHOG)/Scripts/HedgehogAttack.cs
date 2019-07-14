@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class HedgehogAttack : AttackPattern
 {
+
+	[SerializeField]
+	protected GameObject bulletPrefab;
+
 	public override void Shoot(Transform target)
 	{
 		GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
-		bullet.damage = stats.Strength;
-		bullet.speed = stats.currentBulletSpeed;
+		bullet.SetStats(stats);
 
 		if (bullet != null) bullet.Seek(target);
 	}
@@ -39,5 +42,14 @@ public class HedgehogAttack : AttackPattern
 		{
 			target = null;
 		}
-	}	
+	}
+
+	private void OnDrawGizmos()
+	{
+		if (Application.isPlaying)
+		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, stats.currentAttackRange);
+		}
+	}
 }

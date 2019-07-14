@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b6eefda375493849b32d61fbd6bb71d, type: 3}
+  m_Name: Fox Stats 2
+  m_EditorClassIdentifier: 
+  buyCost: 45
+  sellCost: 20
+  happinessPerPet: 0.05
+  hungerPerSecond: 0.05
+  hapinessLossPerSecond: 0.05
+  angerPerShit: 0.15
+  timeBetweenShits: 10
+  maxShits: 4
+  currentAttackStrength: 18.469585
+  currentAttackSpeed: 9.234793
+  currentAttackRange: 18.469585
+  currentBulletSpeed: 9.540876
+  needs: {fileID: 0}
+  bulletDamage: {x: 10, y: 20}
+  attackSpeed: {x: 5, y: 10}
+  range: {x: 5, y: 10}
+  bulletSpeed: {x: 7, y: 10}
+  slowDownPercentage: {x: 0, y: 0.25}
+  slowDownTime: {x: 2, y: 5}
+  currentSlowDownPercentage: 0.21173966
+  currentSlowDownTime: 4.540876

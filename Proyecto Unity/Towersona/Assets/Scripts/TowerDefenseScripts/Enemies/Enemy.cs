@@ -1,5 +1,6 @@
 ﻿using BezierSolution;
 using UnityEngine;
+using System.Linq;
 using System.Collections.Generic;
 
 public abstract class Enemy : MonoBehaviour
@@ -7,7 +8,28 @@ public abstract class Enemy : MonoBehaviour
 	public float Speed {
 		get
 		{
-			return baseSpeed * (1 - slowDownPercentage);
+			if(slowDowns.Count == 0)
+			{
+				return baseSpeed;
+			}
+
+			float totalAmount = 0;		
+
+			foreach (KeyValuePair<SlowDownType, List<SlowDown>> entry in slowDowns)
+			{
+				float[] slows = new float[entry.Value.Count];
+
+				for (int i = 0; i < entry.Value.Count; i++)
+				{
+					slows[i] = entry.Value[i].amount;
+				}
+
+				float slowDownAmount = slows.Max();
+
+				totalAmount += (1 - totalAmount) * slowDownAmount;
+			}
+
+			return baseSpeed * (1 - totalAmount);
 		}
 	}
 
@@ -17,38 +39,37 @@ public abstract class Enemy : MonoBehaviour
     protected float life = 30f;
     [SerializeField][Tooltip("Number of lifes the player loses if this enemy reaches the end")]
     protected int damage = 1;
-    [SerializeField]
+    [SerializeField][Tooltip("Dinero que da al morir")]
     protected int value = 20;
+
     [SerializeField]
     private GameObject deathEffect;
 
-    [HideInInspector]
-    public BezierSpline path;
-	[HideInInspector]
-	public float slowDownCountDown;
+	private Dictionary<SlowDownType, List<SlowDown>> slowDowns= new Dictionary<SlowDownType, List<SlowDown>>();
+	private BezierWalkerWithSpeed bezierWalkerWithSpeed;
 
-
-	protected Transform target;
-    private int controlPointIndex = 0;
-
-	private bool isSlowedDown;
-	private float slowDownPercentage = 0;
-	private List<SlowDownType> slowDowns;
-
-	private void Awake()
-	{
-		slowDowns = new List<SlowDownType>();
-	}
+	private List<GameObject> sources = new List<GameObject>();
 
 	protected void Update()
 	{
-		slowDownPercentage -= Time.deltaTime;
-		if (slowDownPercentage < 0)
+		if (!bezierWalkerWithSpeed)
 		{
-			RemoveSlowDown();
+			bezierWalkerWithSpeed = GetComponent<BezierWalkerWithSpeed>();
 		}
-	}    
-    
+		else
+		{
+			bezierWalkerWithSpeed.speed = Speed;
+		}
+
+		//Update slowDowns
+		foreach (KeyValuePair<SlowDownType, List<SlowDown>> entry in slowDowns.ToList())
+		{
+			for (int i = 0; i < entry.Value.Count; i++)
+			{
+				entry.Value[i].Update();
+			}			
+		}
+	}        
 
     public void EndPath()
     {
@@ -80,30 +101,41 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-	public void AddSlowDown(float amount, float time, SlowDownType type)
+	public SlowDown AddSlowDown(float amount, float time, SlowDownType type, GameObject source)
 	{
-		if (!slowDowns.Contains(type))
+		SlowDown slowDown = new SlowDown(amount, time, type, this);
+
+		if (!slowDowns.ContainsKey(type))
 		{
-			slowDowns.Add(type);
-			if (!isSlowedDown) isSlowedDown = true;
-			slowDownPercentage += amount;
-			Mathf.Clamp01(slowDownPercentage);
-			GetComponent<BezierWalkerWithSpeed>().speed = Speed;
+			List<SlowDown> sd = new List<SlowDown>();
+			slowDowns.Add(type, sd);
+			sd.Add(slowDown);
+		}
+		else
+		{
+			slowDowns[type].Add(slowDown);
 		}
 
-		if(time > slowDownCountDown)
+		sources.Add(source);
+
+		return slowDown;
+	}
+
+	public void RemoveSlowDown(SlowDown slowDown)
+	{
+		slowDowns[slowDown.type].Remove(slowDown);
+
+		if(slowDowns[slowDown.type].Count == 0)
 		{
-			slowDownCountDown = time;
+			slowDowns.Remove(slowDown.type);
 		}
 	}
 
-	private void RemoveSlowDown()
+	public bool AlredySlownDownByTowersona(GameObject source)
 	{
-		slowDowns.Clear();
-		slowDownPercentage = 0;
-		GetComponent<BezierWalkerWithSpeed>().speed = Speed;
-		isSlowedDown = false;
+		return sources.Contains(source);
 	}
 
-	public enum SlowDownType { Fox, Penguin }
+	public enum SlowDownType { Fox }
+
 }

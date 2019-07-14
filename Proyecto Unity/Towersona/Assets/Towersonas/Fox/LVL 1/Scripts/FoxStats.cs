@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stats", menuName = "Stats/Fox")]
+[CreateAssetMenu(fileName = "Stats", menuName = "Stats/Fox/Regular")]
 public class FoxStats : TowersonaStats
 {
 	[Header("Damage")]

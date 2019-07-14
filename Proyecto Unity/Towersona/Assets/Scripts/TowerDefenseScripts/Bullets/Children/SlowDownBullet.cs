@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SlowDownBullet : Shooting
 {
-	[HideInInspector]
-	public float slowDownAmount = 0f;
-	[HideInInspector]
-	public float slowDownTime = 0f;
+	FoxStats foxStats;
+
+	private void Awake()
+	{
+		foxStats = (FoxStats)stats;
+	}
 
 
 	protected override void HitTarget()
@@ -22,8 +24,12 @@ public class SlowDownBullet : Shooting
 
 		if (e != null)
 		{
-			e.TakeDamage(damage);
-			e.AddSlowDown(slowDownAmount, slowDownTime, Enemy.SlowDownType.Fox);
+			e.TakeDamage(stats.AttackStrength);
+			if (!e.AlredySlownDownByTowersona(source))
+			{
+			
+				e.AddSlowDown(foxStats.currentSlowDownPercentage, foxStats.currentSlowDownTime, Enemy.SlowDownType.Fox, source);
+			}
 		}
 
 		Destroy(gameObject);

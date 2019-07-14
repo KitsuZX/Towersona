@@ -5,21 +5,41 @@ using TMPro;
 
 public class CatAttack : AttackPattern
 {
+
+	[Header("References")]
 	[SerializeField]
-	public GameObject moneySum;
+	protected GameObject boostLaserPrefab;
+
+
+	[SerializeField]
+	private GameObject moneySum;
+
+	private List<GameObject> towersonasInRange;
+	private List<BoostLaser> lasers;
+
+	private LineRenderer lineRenderer;
 
 	CatStats catStats;
-	private void Start()
-	{
-		Initialize();
-	}
 
-	protected void Initialize()
+	private void Start()
 	{
 		base.Start();
 		catStats = (CatStats)stats;
 
 		StartCoroutine("GiveMoney");
+
+		towersonasInRange = new List<GameObject>();
+		lasers = new List<BoostLaser>();
+	}
+	
+	private void Update()
+	{
+		base.Update();
+
+		for (int i = 0; i < lasers.Count; i++)
+		{			
+			lasers[i].UpdateBoosts();			
+		}
 	}
 
 	private IEnumerator GiveMoney()
@@ -37,38 +57,34 @@ public class CatAttack : AttackPattern
 
 	public override void Shoot(Transform target)
 	{
-		GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
+		GameObject bulletObject = Instantiate(boostLaserPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
-		bullet.damage = stats.Strength;
-		bullet.speed = stats.currentBulletSpeed;
+
+		bullet.SetStats(catStats);
 
 		if (bullet != null) bullet.Seek(target);
 	}
 
 	public override void UpdateTarget()
 	{
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-		float shortestDistance = Mathf.Infinity;
-		GameObject nearestEnemy = null;
+		GameObject[] towersonas = GameObject.FindGameObjectsWithTag("Towersona LOD");
 
-		foreach (GameObject enemy in enemies)
+
+		//TODO: Esto se puede optimizar si en vez de buscar towersonas todo el rato las towersonas se guardasen en algun lado y simplemente avisase cuando algo cambia.
+		foreach (GameObject towersona in towersonas)
 		{
-			float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-			if (distanceToEnemy < shortestDistance)
+			if (!towersonasInRange.Contains(towersona) && towersona != gameObject && !towersona.GetComponent<CatAttack>())
 			{
-				shortestDistance = distanceToEnemy;
-				nearestEnemy = enemy;
+				if (Vector3.Distance(towersona.transform.position, transform.position) < catStats.currentBoostRange)
+				{
+					towersonasInRange.Add(towersona);
+					BoostLaser laser = Instantiate(boostLaserPrefab, towersonaLOD.firePoint.position, Quaternion.identity).GetComponent<BoostLaser>();
+					laser.gameObject.transform.SetParent(transform);
+					laser.SetTarget(towersona, this, transform.position);
+					lasers.Add(laser);
+				}
 			}
-		}
-
-		if (nearestEnemy != null && shortestDistance <= stats.currentAttackRange)
-		{
-			target = nearestEnemy.transform;
-		}
-		else
-		{
-			target = null;
 		}
 	}
 
@@ -80,6 +96,24 @@ public class CatAttack : AttackPattern
 		
 		GameObject moneySumObject = Instantiate(moneySum, pos, moneySum.transform.rotation);
 		moneySumObject.GetComponentInChildren<TextMeshProUGUI>().text = "+ " + catStats.currentMoneyGiven.ToString() + " $";
+	}
+
+	public void RemoveLaser(BoostLaser laser)
+	{
+		if (laser)
+		{
+			lasers.Remove(laser);
+			towersonasInRange.Remove(laser.target);
+		}
+	}
+
+	private void OnDrawGizmos()
+	{
+		if (Application.isPlaying)
+		{
+			Gizmos.color = Color.yellow;
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, catStats.currentBoostRange);
+		}
 	}
 }
 

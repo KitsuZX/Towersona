@@ -6,6 +6,9 @@ public class FoxAttack : AttackPattern
 { 
 	FoxStats foxStats;
 
+	[SerializeField]
+	protected GameObject bulletPrefab;
+
 	private void Start()
 	{
 		base.Start();
@@ -18,10 +21,8 @@ public class FoxAttack : AttackPattern
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 
 		SlowDownBullet bullet = bulletObject.GetComponent<SlowDownBullet>();
-		bullet.damage = stats.Strength;
-		bullet.speed = stats.currentBulletSpeed;
-		bullet.slowDownAmount = foxStats.currentSlowDownPercentage;
-		bullet.slowDownTime = foxStats.currentSlowDownTime;
+		bullet.source = gameObject;
+		bullet.SetStats(foxStats);
 
 		if (bullet != null) bullet.Seek(target);
 	}
@@ -49,6 +50,15 @@ public class FoxAttack : AttackPattern
 		else
 		{
 			target = null;
+		}
+	}
+
+	private void OnDrawGizmos()
+	{
+		if (Application.isPlaying)
+		{
+			Gizmos.color = new Color(147, 112, 219);
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, foxStats.currentAttackRange);
 		}
 	}
 }

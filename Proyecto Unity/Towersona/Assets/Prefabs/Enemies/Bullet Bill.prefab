@@ -45,13 +45,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84646e15160ae734ca4359ae8aeaa79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  baseSpeed: 2
   life: 30
   damage: 1
   value: 20
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
-  path: {fileID: 0}
 --- !u!136 &589688630432452550
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -79,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb, type: 3}
       propertyPath: m_LocalPosition.x

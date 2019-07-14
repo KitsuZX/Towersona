@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f50a39bf25bd9594ca218f341103cfd7, type: 3}
+  m_Name: Cat Stats 3 - b
+  m_EditorClassIdentifier: 
+  buyCost: 85
+  sellCost: 50
+  happinessPerPet: 0.05
+  hungerPerSecond: 0.05
+  hapinessLossPerSecond: 0.1
+  angerPerShit: 0.2
+  timeBetweenShits: 12
+  maxShits: 4
+  currentAttackStrength: 0
+  currentAttackSpeed: 0
+  currentAttackRange: 0
+  currentBulletSpeed: 0
+  needs: {fileID: 0}
+  timeSpanBetweenGivingMoney: {x: 0.5, y: 3}
+  moneyGiven: {x: 40, y: 80}
+  boostRange: {x: 5, y: 7}
+  happinessBoost: {x: 0.75, y: 1}
+  attackStrengthBoost: {x: 2, y: 3}
+  attackSpeedBoost: {x: 2, y: 3}
+  currentTimeSpan: 1.6270533
+  currentMoneyGiven: 58
+  currentHappinessBoost: 0.86270535
+  currentBoostRange: 24.508213
+  currentAttackStrengthBoost: 2.4508214
+  currentAttackSpeedBoost: 2.4508214

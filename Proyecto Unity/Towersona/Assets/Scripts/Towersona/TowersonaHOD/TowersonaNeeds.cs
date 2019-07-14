@@ -38,7 +38,6 @@ public class TowersonaNeeds : MonoBehaviour
     private ShitNeed shitNeed;
 
     private TowersonaStats stats;
-	private float loveDecayReduction = 0.0f;
 	private float strengthBoost;
 
     private void Start()
@@ -124,7 +123,8 @@ public class TowersonaNeeds : MonoBehaviour
     /// </summary>
     private void DoNeedDecay()
     {
-		float loveDecay = loveDecayPerSecond - loveDecayReduction;
+		float loveDecay = loveDecayPerSecond * (1 - stats.HappinessBonus);
+
 		loveDecay = Mathf.Max(0, loveDecay);
 
 		hungerLevel -= hungerDecayPerSecond * Time.deltaTime;
@@ -180,12 +180,6 @@ public class TowersonaNeeds : MonoBehaviour
             else if (notifiedNeed == NeedType.Shit) emotion = Emotion.Shit;
         }       
     }
-
-	public void SetLoveDecayReduction(float loveDecayReduction)
-	{
-		this.loveDecayReduction = loveDecayReduction;
-	}
-
     public enum NeedType
     {
         Hunger, 
