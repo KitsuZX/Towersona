@@ -22,24 +22,24 @@ MonoBehaviour:
   maxShits: 4
   currentAttackStrength: 1
   currentAttackSpeed: 0.5
-  currentAttackRange: 7.759264
-  currentBulletSpeed: 1
+  currentAttackRange: 8.412185
+  currentBulletSpeed: 5.047311
   needs: {fileID: 0}
   bulletDamage: {x: 1, y: 1}
   attackSpeed: {x: 0.5, y: 0.5}
   range: {x: 5, y: 10}
-  bulletSpeed: {x: 1, y: 1}
-  damageArea: {x: 0.5, y: 1}
-  areaDamageReduction: {x: 0, y: 0}
+  bulletSpeed: {x: 3, y: 6}
+  damageArea: {x: 2, y: 2}
+  areaDamageReduction: {x: 0.5, y: 0.5}
   damageAreaWidth: {x: 0, y: 0}
   burnTime: {x: 0, y: 0}
   slowDownPercentage: {x: 0.5, y: 0.5}
-  slowDownTime: {x: 0.1, y: 0.1}
+  slowDownTime: {x: 0.01, y: 0.01}
   slowDownAreaLifeTime: {x: 3, y: 3}
-  currentDamageArea: 0.77592635
-  currentAreaDamageReduction: 0
+  currentDamageArea: 2
+  currentAreaDamageReduction: 0.5
   currentDamageAreaWidth: 0
   currentBurnTime: 0
   currentSlowDownPercentage: 0.5
-  currentSlowDownTime: 0.1
+  currentSlowDownTime: 0.01
   currentSlowDownAreaLifeTime: 3

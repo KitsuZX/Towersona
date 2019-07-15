@@ -23,4 +23,15 @@ public class SlowDownArea : MonoBehaviour
 			}
 		}
 	}
+
+	public void SetRadius(float radius)
+	{
+		transform.localScale = Vector3.one * radius;
+	}
+
+	private void OnDrawGizmos()
+	{
+		/*Gizmos.color = Color.red;
+		Gizmos.DrawWireSphere(transform.position, 1f);*/
+	}
 }

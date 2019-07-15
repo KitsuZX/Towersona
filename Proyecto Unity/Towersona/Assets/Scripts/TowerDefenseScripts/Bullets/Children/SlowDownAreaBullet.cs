@@ -18,6 +18,9 @@ public class SlowDownAreaBullet : Shooting
 		if (firstTarget != null)
 		{
 			firstTarget.TakeDamage(stats.AttackStrength);
+			GameObject area = Instantiate(slowDownArea, transform.position, slowDownArea.transform.rotation);
+			area.GetComponent<SlowDownArea>().SetRadius(dragonStats.currentDamageArea);
+			Destroy(area, dragonStats.currentSlowDownAreaLifeTime);
 		}
 
 		Collider[] colliders = Physics.OverlapSphere(pos, dragonStats.currentDamageArea);
@@ -31,14 +34,19 @@ public class SlowDownAreaBullet : Shooting
 				Enemy e = collider.GetComponent<Enemy>();
 				if (e != null && e != firstTarget)
 				{
-					e.TakeDamage(stats.AttackStrength * dragonStats.currentAreaDamageReduction);
-					GameObject area = Instantiate(slowDownArea, transform.position, slowDownArea.transform.rotation);
-					Destroy(area, dragonStats.currentSlowDownAreaLifeTime);
+					e.TakeDamage(stats.AttackStrength * dragonStats.currentAreaDamageReduction);					
 				}
 
 			}
 		}
 
 		Destroy(gameObject);
+	}
+
+	private void OnDrawGizmos()
+	{
+		DragonStats dragonStats = (DragonStats)stats;
+		Gizmos.color = Color.cyan;
+		Gizmos.DrawWireSphere(transform.position, dragonStats.currentDamageArea);
 	}
 }

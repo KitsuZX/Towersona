@@ -32,7 +32,7 @@ public abstract class Shooting : MonoBehaviour
         }
 
         Vector3 dir = target.position - transform.position;
-        float distanceThisFrame = stats.AttackSpeed * Time.deltaTime;
+        float distanceThisFrame = stats.currentBulletSpeed * Time.deltaTime;
 
         if(dir.magnitude <= distanceThisFrame)
         {
