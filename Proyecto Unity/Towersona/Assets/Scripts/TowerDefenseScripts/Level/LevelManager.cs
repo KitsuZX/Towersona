@@ -12,13 +12,15 @@ public class LevelManager : MonoBehaviour
     [HideInInspector]
     public int enemiesAlive = 0;
     [HideInInspector]
-    public int wavesToWin = 10;
+    public int wavesToWin;
+    [HideInInspector]
+    public bool spawningWave = false;
 
     private float countdown = 2f; 
     private Transform spawnPoint;
     private GameManager gameManager;
     private SpawnPoint[] spawnPoints;
-    private int waveIndex = 0; 
+    private int waveIndex = 0;
 
     private void Awake()
     {
@@ -41,12 +43,12 @@ public class LevelManager : MonoBehaviour
     {
         if (!DebuggingOptions.Instance.spawnEnemies) return;
 
-        if(enemiesAlive > 0)
+        if(spawningWave)
         {
             return;
         }
   
-        if(countdown <= 0f)
+        if(countdown <= 0f && !GameManager.Instance.gameOver)
         {
             SpawnWave();
             countdown = timeTillNextWave;
@@ -59,13 +61,12 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnWave()
     {
-        PlayerStats.Instance.AddRound();      
-            
-        int enemiesToSpawn = PlayerStats.Instance.round * 4;
+        spawningWave = true;
+        PlayerStats.Instance.AddRound();
 
-        foreach(SpawnPoint spawnPoint in spawnPoints)
+        foreach (SpawnPoint spawnPoint in spawnPoints)
         {
-           StartCoroutine(spawnPoint.SpawnWave(waveIndex));
+            StartCoroutine(spawnPoint.SpawnWave(waveIndex));
         }
 
         waveIndex++;         

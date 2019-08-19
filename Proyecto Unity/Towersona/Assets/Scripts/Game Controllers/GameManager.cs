@@ -7,7 +7,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set; }
-   
+
+
+    [HideInInspector] public bool gameOver = false;
 
     [Header("Victory and Defeat References")]
     [SerializeField]
@@ -18,7 +20,6 @@ public class GameManager : MonoBehaviour
     [Header("Other References")]
     [SerializeField][Tooltip("The first detailed scene camera without the detailed model")]
     private Camera emptyCamera;
-
     //Private Parameters             
 
     //Private references
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {
         victoryPrompt.SetActive(true);
+        gameOver = true;
     }
 
     /// <summary>
@@ -55,7 +57,8 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        defeatPrompt.SetActive(true);        
+        defeatPrompt.SetActive(true);
+        gameOver = true;
     }
 
     /// <summary>

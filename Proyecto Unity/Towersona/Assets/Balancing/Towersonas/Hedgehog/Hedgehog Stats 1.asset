@@ -14,18 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buyCost: 45
   sellCost: 20
+  attacksFliers: 1
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
   hapinessLossPerSecond: 0.05
   angerPerShit: 4
   timeBetweenShits: 3
   maxShits: 4
-  currentAttackStrength: 4.890665
-  currentAttackSpeed: 1.9635551
-  currentAttackRange: 19.635551
-  currentBulletSpeed: 5.92711
+  currentAttackStrength: 3.09437
+  currentAttackSpeed: 1.36479
+  currentAttackRange: 4.45916
+  currentBulletSpeed: 4.72958
   needs: {fileID: 0}
   bulletDamage: {x: 2, y: 5}
   attackSpeed: {x: 1, y: 2}
-  range: {x: 10, y: 20}
+  range: {x: 3, y: 7}
   bulletSpeed: {x: 4, y: 6}

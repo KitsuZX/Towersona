@@ -9,6 +9,8 @@ public abstract class TowersonaStats : ScriptableObject
     public int buyCost;
     public int sellCost;
     [Header("Towersonsa stats")]
+    [Tooltip("Si esta towersona ataca a los enemigos voladores")]
+    public bool attacksFliers;
     [Tooltip("Cuanta felicidad gana la towersona por caricia")]
     public float happinessPerPet;
     [Tooltip("Hambre que pierde por segundo la towersona")]

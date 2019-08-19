@@ -7,6 +7,7 @@ public abstract class AttackPattern : MonoBehaviour
 { 
     [HideInInspector]
     public Transform target;
+    private Enemy enemyTarget;
 
     protected TowersonaLOD towersonaLOD;
     protected TowersonaLODAnimation animations;
@@ -29,6 +30,7 @@ public abstract class AttackPattern : MonoBehaviour
 
         InvokeRepeating("UpdateStats", 0f, 1f);
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
+
     }
 
     protected void Update()
@@ -57,11 +59,23 @@ public abstract class AttackPattern : MonoBehaviour
     }
 
     private void CheckIfShouldShoot()
-    {
+    { 
         if (fireCountdown <= 0f && target != null)
         {
-            Shoot(target);
-            fireCountdown = 1f / stats.currentAttackSpeed;
+            enemyTarget = target.GetComponent<Enemy>();
+            if (enemyTarget.Flies)
+            {
+                if (stats.attacksFliers)
+                {
+                    Shoot(target);
+                    fireCountdown = 1f / stats.currentAttackSpeed;
+                }
+            }
+            else
+            {
+                Shoot(target);
+                fireCountdown = 1f / stats.currentAttackSpeed;
+            }
         }
 
         fireCountdown -= Time.deltaTime;

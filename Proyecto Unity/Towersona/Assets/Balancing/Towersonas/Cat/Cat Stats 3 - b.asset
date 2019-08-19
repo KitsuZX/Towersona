@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buyCost: 85
   sellCost: 50
+  attacksFliers: 0
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
   hapinessLossPerSecond: 0.1
@@ -27,13 +28,13 @@ MonoBehaviour:
   needs: {fileID: 0}
   timeSpanBetweenGivingMoney: {x: 0.5, y: 3}
   moneyGiven: {x: 40, y: 80}
-  boostRange: {x: 5, y: 7}
+  boostRange: {x: 10, y: 15}
   happinessBoost: {x: 0.75, y: 1}
   attackStrengthBoost: {x: 2, y: 3}
   attackSpeedBoost: {x: 2, y: 3}
-  currentTimeSpan: 1.6270533
-  currentMoneyGiven: 58
-  currentHappinessBoost: 0.86270535
-  currentBoostRange: 24.508213
-  currentAttackStrengthBoost: 2.4508214
-  currentAttackSpeedBoost: 2.4508214
+  currentTimeSpan: 1.9213781
+  currentMoneyGiven: 62
+  currentHappinessBoost: 0.8921378
+  currentBoostRange: 12.842756
+  currentAttackStrengthBoost: 2.5685513
+  currentAttackSpeedBoost: 2.5685513

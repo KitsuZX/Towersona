@@ -17,7 +17,6 @@ public class SpawnPoint : MonoBehaviour
 
     private Transform enemiesParent;
 
-
     private void Awake()
     {
         enemiesParent = GameObject.FindGameObjectWithTag("Enemies Parent").transform;
@@ -33,8 +32,9 @@ public class SpawnPoint : MonoBehaviour
         {          
             yield return StartCoroutine(SpawnEnemiesGroup(wave.enemiesGroups[i]));             
         }
-
+        
 		LevelManager.Instance.timeTillNextWave = wave.secondsToNextWave;
+        LevelManager.Instance.spawningWave = false;
     }
 
     IEnumerator SpawnEnemiesGroup(EnemiesGroup group)
@@ -67,3 +67,5 @@ public class SpawnPoint : MonoBehaviour
         LevelManager.Instance.enemiesAlive++;
     }   
 }
+
+

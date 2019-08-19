@@ -54,7 +54,6 @@ public class Towersona : MonoBehaviour
     public void LevelUp(int level)
     {
         CancelInvoke();
-        print("Evolving to evolution " + (level + 1));
 
         towersonaLevel = (TowersonaLevel)(level + 1);
 

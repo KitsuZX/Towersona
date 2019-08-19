@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buyCost: 75
   sellCost: 30
+  attacksFliers: 1
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
   hapinessLossPerSecond: 0.05
@@ -27,5 +28,5 @@ MonoBehaviour:
   needs: {fileID: 0}
   bulletDamage: {x: 3, y: 6}
   attackSpeed: {x: 2, y: 3}
-  range: {x: 11, y: 21}
+  range: {x: 3, y: 7}
   bulletSpeed: {x: 5, y: 7}

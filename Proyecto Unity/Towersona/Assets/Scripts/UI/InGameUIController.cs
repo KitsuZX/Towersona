@@ -39,6 +39,4 @@ public class InGameUIController : MonoBehaviour
     {
         moneyText.text = "money: " + PlayerStats.Instance.money.ToString() + "$";
     }
-
-
 }

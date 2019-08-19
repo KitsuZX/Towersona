@@ -6,7 +6,7 @@ public class SlowDownBullet : Shooting
 {
 	FoxStats foxStats;
 
-	private void Awake()
+	private void Start()
 	{
 		foxStats = (FoxStats)stats;
 	}

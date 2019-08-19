@@ -10,7 +10,7 @@ public abstract class Enemy : MonoBehaviour
 		{
 			if(slowDowns.Count == 0)
 			{
-				return baseSpeed;
+				return stats.speed;
 			}
 
 			float totalAmount = 0;		
@@ -29,25 +29,24 @@ public abstract class Enemy : MonoBehaviour
 				totalAmount += (1 - totalAmount) * slowDownAmount;
 			}
 
-			return baseSpeed * (1 - totalAmount);
+			return stats.speed * (1 - totalAmount);
 		}
 	}
+    public bool Flies {
+        get
+        {
+            return stats.flies;
+        }
+    }
 
-    [SerializeField]
-    protected float baseSpeed = 2f;
-    [SerializeField]
-    protected float life = 30f;
-    [SerializeField][Tooltip("Number of lifes the player loses if this enemy reaches the end")]
-    protected int damage = 1;
-    [SerializeField][Tooltip("Dinero que da al morir")]
-    protected int value = 20;
+	private Color burnColor = new Color(215, 105, 0, 196);
 
-	public Color burnColor;
+    protected EnemyStats stats;
 
     [SerializeField]
     private GameObject deathEffect;
 
-	private Dictionary<SlowDownType, List<SlowDown>> slowDowns= new Dictionary<SlowDownType, List<SlowDown>>();
+	private Dictionary<SlowDownType, List<SlowDown>> slowDowns = new Dictionary<SlowDownType, List<SlowDown>>();
 	private BezierWalkerWithSpeed bezierWalkerWithSpeed;
 
 	private List<Burn> burns = new List<Burn>();
@@ -57,11 +56,13 @@ public abstract class Enemy : MonoBehaviour
 
 	private MeshRenderer[] meshRenderers;
 
-	private void Awake()
+	private void Start()
 	{
 		meshRenderers = GetComponentsInChildren<MeshRenderer>();
 
 		InvokeRepeating("TakeBurnDamage", 0f, 0.5f);
+
+        stats.Initialize();
 	}
 
 	protected void Update()
@@ -93,7 +94,7 @@ public abstract class Enemy : MonoBehaviour
     public void EndPath()
     {
         KillEnemy(true);
-        PlayerStats.Instance.LoseLive(damage);
+        PlayerStats.Instance.LoseLive(stats.damage);
         
     }
 
@@ -104,7 +105,7 @@ public abstract class Enemy : MonoBehaviour
         if (!endPath)
         {            
             BuildManager.Instance.SpawnEffect(deathEffect, pos);
-            PlayerStats.Instance.AddMoney(value);
+            PlayerStats.Instance.AddMoney(stats.value);
         }
 
         Destroy(gameObject);
@@ -113,8 +114,8 @@ public abstract class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(float amount) {
-        life -= amount;
-        if(life <= 0)
+        stats.lifes -= amount;
+        if(stats.lifes <= 0)
         {
             KillEnemy();
         }
@@ -157,7 +158,6 @@ public abstract class Enemy : MonoBehaviour
 		return slowDownSources.Contains(source);
 	}
 	#endregion
-
 
 	#region Burn
 	public void SetOnFire(float amount, float burnTime, GameObject source)
@@ -251,8 +251,20 @@ public abstract class Enemy : MonoBehaviour
 		}
 	}
 
-	#endregion
+    #endregion
 
-	public enum SlowDownType { Fox, Area }
+    #region Buffs
+    public void Buff(BufferStats bufferStats)
+    {
+        Buff buff = new Buff(bufferStats, this);
+    }
+
+    public void RemoveBuff(BufferStats bufferStats)
+    {
+
+    }
+    #endregion
+
+    public enum SlowDownType { Fox, Area }
 
 }

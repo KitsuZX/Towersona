@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stats", menuName = "Stats/Dragon/RegularBoringDragon")]
+[CreateAssetMenu(fileName = "Stats", menuName = "Stats/Towersonas/Dragon/RegularBoringDragon")]
 public class DragonStats : TowersonaStats
 {
 	[Header("Damage")]
