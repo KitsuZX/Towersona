@@ -21,16 +21,16 @@ MonoBehaviour:
   angerPerShit: 0.15
   timeBetweenShits: 10
   maxShits: 4
-  currentAttackStrength: 1.7333333
+  currentAttackStrength: 0
   currentAttackSpeed: 1.1833333
   currentAttackRange: 5.9166665
   currentBulletSpeed: 7.55
   needs: {fileID: 0}
-  bulletDamage: {x: 1, y: 5}
+  bulletDamage: {x: 0, y: 0}
   attackSpeed: {x: 1, y: 2}
   range: {x: 5, y: 10}
   bulletSpeed: {x: 7, y: 10}
-  slowDownPercentage: {x: 0, y: 0.25}
+  slowDownPercentage: {x: 0.5, y: 0.75}
   slowDownTime: {x: 2, y: 5}
-  currentSlowDownPercentage: 0.04583333
+  currentSlowDownPercentage: 0.54583335
   currentSlowDownTime: 2.55

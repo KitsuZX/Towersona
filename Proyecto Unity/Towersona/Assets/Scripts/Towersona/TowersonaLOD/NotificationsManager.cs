@@ -5,15 +5,12 @@ using UnityEngine;
 public class NotificationsManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField]
-    private GameObject notificationPrefab;
+    [SerializeField] private GameObject notificationPrefab = null;
 
     private TowersonaLOD towersonaLOD;
-
     private bool isNotifying;
     private GameObject notification;
     private TowersonaNeeds.NeedType prevNeedType;
-
     private TowersonaNeeds needs;
 
     private void Start()

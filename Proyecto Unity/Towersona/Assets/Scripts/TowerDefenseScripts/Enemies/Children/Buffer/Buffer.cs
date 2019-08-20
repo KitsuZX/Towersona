@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Buffer : Enemy
-{
-    [SerializeField]
-    private BufferStats bufferStats;
+{    
+    /*private BufferStats bufferStats;
 
     private float countDown = 0f;
 
-    private void Awake()
+    private void Start()
     {
+		bufferStats = (BufferStats)stats;
         countDown = bufferStats.timeBetweenBuffs;
     }
 
@@ -29,7 +29,7 @@ public class Buffer : Enemy
 
     void BuffEnemies()
     {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, bufferStats.range);
+       Collider[] colliders = Physics.OverlapSphere(transform.position, bufferStats.range);
 
         foreach (Collider collider in colliders)
         {
@@ -42,7 +42,10 @@ public class Buffer : Enemy
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, bufferStats.range);
-    }
+		if (Application.isPlaying)
+		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawWireSphere(transform.position, bufferStats.range);
+		}
+    }*/
 }

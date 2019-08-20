@@ -25,10 +25,11 @@ public class SlowDownBullet : Shooting
 		if (e != null)
 		{
 			e.TakeDamage(stats.AttackStrength);
-			if (!e.AlredySlownDownByTowersona(source))
+			if (!e.IsAffactedByEffect(TemporalEffectType.SlowDown))
 			{
-			
-				e.AddSlowDown(foxStats.currentSlowDownPercentage, foxStats.currentSlowDownTime, Enemy.SlowDownType.Fox, source);
+				SlowDown slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
+				slowDown.Initialize(foxStats.currentSlowDownPercentage, foxStats.currentSlowDownTime, SlowDownType.Fox, target.gameObject);
+				slowDown.ApplyEffect();
 			}
 		}
 

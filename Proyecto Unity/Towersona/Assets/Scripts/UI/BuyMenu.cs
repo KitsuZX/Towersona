@@ -5,11 +5,8 @@ using TMPro;
 
 public class BuyMenu : MonoBehaviour
 {
-
 	private BuildingPlace place;
-
-	[SerializeField]
-	private TextMeshProUGUI[] texts;
+	[SerializeField] private TextMeshProUGUI[] texts = null;
 
 	private void Awake()
 	{

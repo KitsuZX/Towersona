@@ -8,12 +8,9 @@ public class InGameUIController : MonoBehaviour
     public static InGameUIController Instance { get; private set; }
 
     [Header("UI Texts References")]
-    [SerializeField]
-    private TextMeshProUGUI livesText;
-    [SerializeField]
-    private TextMeshProUGUI roundText;
-    [SerializeField]
-    private TextMeshProUGUI moneyText;
+    [SerializeField] private TextMeshProUGUI livesText = null;
+    [SerializeField] private TextMeshProUGUI roundText = null;
+    [SerializeField] private TextMeshProUGUI moneyText = null;
 
     private void Start()
     {

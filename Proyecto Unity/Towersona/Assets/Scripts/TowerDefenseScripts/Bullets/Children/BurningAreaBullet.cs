@@ -41,9 +41,11 @@ public class BurningAreaBullet : Shooting
 			{
 				Enemy e = enemy.GetComponent<Enemy>();
 
-				if (!e.AlredyBurnedByTowersona(gameObject))
-				{
-					e.SetOnFire(stats.currentAttackStrength, dragonStats.currentBurnTime, gameObject);
+				if (!e.IsAffactedByEffect(TemporalEffectType.Burn))
+				{					
+					Burn burn = (Burn)TemporalEffect.CreateEffect(TemporalEffectType.Burn);
+					burn.Initialize(stats.currentAttackStrength, dragonStats.currentBurnTime, enemy, e.gameObject);
+					burn.ApplyEffect();
 				}
 			}
 		}

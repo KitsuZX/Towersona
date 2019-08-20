@@ -17,9 +17,11 @@ public class SlowDownArea : MonoBehaviour
 				Enemy e = collider.GetComponent<Enemy>();
 				if (e != null)
 				{
-					e.AddSlowDown(dragonStats.currentSlowDownPercentage, dragonStats.currentSlowDownTime, Enemy.SlowDownType.Area, gameObject);
+					//e.AddSlowDown(dragonStats.currentSlowDownPercentage, dragonStats.currentSlowDownTime, SlowDownType.Area, gameObject);
+					SlowDown slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
+					slowDown.Initialize(dragonStats.currentSlowDownPercentage, dragonStats.currentSlowDownTime, SlowDownType.Area, e.gameObject);
+					slowDown.ApplyEffect();
 				}
-
 			}
 		}
 	}

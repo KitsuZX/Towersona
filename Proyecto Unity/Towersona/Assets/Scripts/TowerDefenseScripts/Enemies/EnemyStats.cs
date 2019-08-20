@@ -12,7 +12,7 @@ public class EnemyStats : ScriptableObject
     [Tooltip("Dinero que da al morir")] [SerializeField] private int initialValue = 20;
 
     [HideInInspector] public float speed;
-    [HideInInspector] public float lifes;
+    public float lifes;
     [HideInInspector] public int damage;
     [HideInInspector] public int value;
 

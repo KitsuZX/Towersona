@@ -6,18 +6,18 @@ using UnityEngine;
 public class CatStats : TowersonaStats
 {
 	[Header("Money")]
-	[SerializeField][Tooltip("Cada cuanto tiempo dan dinero, en segunods")] private Vector2 timeSpanBetweenGivingMoney;
-	[SerializeField][Tooltip("Cúanto dinero dan cada vez que dan dinero")] private Vector2 moneyGiven;
+	[SerializeField][Tooltip("Cada cuanto tiempo dan dinero, en segunods")] private Vector2 timeSpanBetweenGivingMoney = Vector2.zero;
+	[SerializeField][Tooltip("Cúanto dinero dan cada vez que dan dinero")] private Vector2 moneyGiven = Vector2.zero;
 
 	[Header("Boost")]
-	[SerializeField] [Tooltip("Rango al que tienen que estar las torres para recibir los buffos")] private Vector2 boostRange;
+	[SerializeField] [Tooltip("Rango al que tienen que estar las torres para recibir los buffos")] private Vector2 boostRange = Vector2.zero;
 
 	[Header("Love Boost")]
-	[SerializeField][Tooltip("0 -> Le baja a velocidad normal | 1 -> No le baja la felicidad")] private Vector2 happinessBoost;
+	[SerializeField][Tooltip("0 -> Le baja a velocidad normal | 1 -> No le baja la felicidad")] private Vector2 happinessBoost = Vector2.zero;
 
 	[Header("Attack Boost")]
-	[SerializeField][Tooltip("Proporcional: 0 es que no hace nada, 1 es lo normal, 2 el doble, etc.")] private Vector2 attackStrengthBoost;
-	[SerializeField][Tooltip("Proporcional: 0 es que no hace nada, 1 es lo normal, 2 el doble, etc.")] private Vector2 attackSpeedBoost;
+	[SerializeField][Tooltip("Proporcional: 0 es que no hace nada, 1 es lo normal, 2 el doble, etc.")] private Vector2 attackStrengthBoost = Vector2.zero;
+	[SerializeField][Tooltip("Proporcional: 0 es que no hace nada, 1 es lo normal, 2 el doble, etc.")] private Vector2 attackSpeedBoost = Vector2.zero;
 
 	[HideInInspector]
 	public float currentTimeSpan;

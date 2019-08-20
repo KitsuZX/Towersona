@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SlowDownAreaBullet : Shooting
 {
-	[SerializeField] private GameObject slowDownArea;
+	[SerializeField] private GameObject slowDownArea = null;
 
 	protected override void HitTarget()
 	{

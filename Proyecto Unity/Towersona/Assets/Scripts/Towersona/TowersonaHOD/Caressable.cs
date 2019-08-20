@@ -4,18 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(Collider), typeof(TowersonaNeeds))]
 public class Caressable : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField]
-    private GameObject heartsEffect;
+	[Header("References")]
+	[SerializeField] private GameObject heartsEffect = null;
 
-    [Header("Parameters")]
+	[Header("Parameters")]
 
     [Header("Events")]
     public UnityEvent OnCaressStart;
     public UnityEvent OnCaressEnd;
 
-	[HideInInspector]
-	public bool isBeingCaressed = false;
+	[HideInInspector] public bool isBeingCaressed = false;
 
 	private float loveIncreasePerDeltaUnit = 0.1f;
 

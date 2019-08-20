@@ -4,15 +4,12 @@ using System.Collections.Generic;
 
 public class FoxSlowDownAreaAttack : AttackPattern
 {
-	FoxStats foxStats;
-
-	[SerializeField]
-	protected GameObject slowDownLaser;
-
-	[SerializeField]
-	protected GameObject bulletPrefab;
+	private FoxStats foxStats;
 	private List<GameObject> enemiesInRange;
 	private List<SlowDownLaser> lasers;
+
+	[SerializeField] protected GameObject slowDownLaser = null;
+	[SerializeField] protected GameObject bulletPrefab = null;	
 
 	private void Start()
 	{

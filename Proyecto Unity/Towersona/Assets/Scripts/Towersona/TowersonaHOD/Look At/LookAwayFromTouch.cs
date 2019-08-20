@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class LookAwayFromTouch : MonoBehaviour
 {
-	[HideInInspector]
-	public bool isBeingCaressed = false;
-	[HideInInspector]
-    public Camera camera;
-    [SerializeField]
-    private float lookAtDepth = 3;
-    [SerializeField] [Range(0, 1)]
-    private float interpolation;
+	[HideInInspector] public bool isBeingCaressed = false;
+	[HideInInspector] public Camera camera;
+
+    [SerializeField] private float lookAtDepth = 3f;
+    [SerializeField] [Range(0, 1)] private float interpolation = 0f;
 
     private new Transform transform;
-
     private Vector3 TouchInWorldSpace
     {
         get

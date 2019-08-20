@@ -12,7 +12,7 @@ public class CatAttack : AttackPattern
 
 
 	[SerializeField]
-	private GameObject moneySum;
+	private GameObject moneySum = null;
 
 	private List<GameObject> towersonasInRange;
 	private List<BoostLaser> lasers;

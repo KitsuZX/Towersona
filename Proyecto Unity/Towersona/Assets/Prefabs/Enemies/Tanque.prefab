@@ -45,8 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84646e15160ae734ca4359ae8aeaa79a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 4dfdf8e14563e66469ee6666f3478aa8, type: 2}
-  burnColor: {r: 1, g: 0.4136189, b: 0, a: 0.76862746}
+  enemyStats: {fileID: 11400000, guid: 4dfdf8e14563e66469ee6666f3478aa8, type: 2}
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
 --- !u!135 &5271376710283373401

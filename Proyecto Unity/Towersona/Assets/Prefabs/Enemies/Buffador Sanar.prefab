@@ -118,6 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1e05020356de7479d2a2875e839a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyStats: {fileID: 11400000, guid: 1f30452e52819d141b4b9f371e44f8f9, type: 2}
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
-  bufferStats: {fileID: 11400000, guid: 1f30452e52819d141b4b9f371e44f8f9, type: 2}

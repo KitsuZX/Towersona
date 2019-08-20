@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -639,16 +639,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 125994720}
-  waves:
-  - enemiesGroups: []
-    secondsToNextWave: 2
-  - enemiesGroups:
-    - numEnemies: 8
-      timeBetweenEnemies: 1
-      enemyType: {fileID: 7178499796034649284, guid: 7b60fc2cf189f1f44b180bc7bf261b1f,
-        type: 3}
-      secondsToNextGroup: 5
-    secondsToNextWave: 2
+  waves: []
   enemiesPrefab:
   - {fileID: 0}
   - {fileID: 0}
@@ -1462,23 +1453,11 @@ MonoBehaviour:
   path: {fileID: 1891055337}
   waves:
   - enemiesGroups:
-    - numEnemies: 7
-      timeBetweenEnemies: 0.25
+    - numEnemies: 1
+      timeBetweenEnemies: 2
       enemyType: {fileID: 7178499796034649284, guid: c2b0d229300044b46a88f7d39f9dbdc4,
         type: 3}
       secondsToNextGroup: 2
-    - numEnemies: 5
-      timeBetweenEnemies: 0.5
-      enemyType: {fileID: 7178499796034649284, guid: cce48fc342517d74d9a184fb654fc2c3,
-        type: 3}
-      secondsToNextGroup: 5
-    secondsToNextWave: 2
-  - enemiesGroups:
-    - numEnemies: 8
-      timeBetweenEnemies: 1
-      enemyType: {fileID: 7178499796034649284, guid: 7b60fc2cf189f1f44b180bc7bf261b1f,
-        type: 3}
-      secondsToNextGroup: 5
     secondsToNextWave: 2
   enemiesPrefab:
   - {fileID: 0}
@@ -3025,7 +3004,7 @@ PrefabInstance:
     - target: {fileID: 4326776620507013402, guid: 8173bd2a3f3cf95498a39db667a80930,
         type: 3}
       propertyPath: spawnEnemies
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8173bd2a3f3cf95498a39db667a80930, type: 3}

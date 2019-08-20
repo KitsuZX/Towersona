@@ -2,41 +2,41 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlowDown
+public class SlowDown : TemporalEffect
 {
-	public float amount;
-	public float time;
-	public Enemy.SlowDownType type;
+	public float slowDownAmount;
+	public SlowDownType slowDownType;
 
 	private Enemy enemy;
+	private Color freezeColor = new Color(0.7f, 0.8f, 0.98f, 0.5f);
 
-	public SlowDown(float amount, float time, Enemy.SlowDownType type, Enemy enemy)
+	public void Initialize(float amount, float time, SlowDownType slowDownType, GameObject target)
 	{
-		this.amount = amount;
 		this.time = time;
-		this.type = type;
-		this.enemy = enemy;
+		this.target = target;
+
+		this.slowDownAmount = amount;
+		this.slowDownType = slowDownType;
+
+		effectType = TemporalEffectType.SlowDown;
+
+		enemy = target.GetComponent<Enemy>();
 	}
 
-	public void Update()
+	public override void ApplyEffect()
 	{
-		if (time != Mathf.Infinity)
-		{
-			time -= Time.deltaTime;
-			if (time < 0)
-			{
-				RemoveSlowDown();
-			}
-		}
-
-		if (enemy == null)
-		{
-			RemoveSlowDown();
-		}
+		enemy.Tint(freezeColor);
+		enemy.AddTemporalEffect(this);
+		applied = true;
 	}
 
-	private void RemoveSlowDown()
-	{
-		enemy.RemoveSlowDown(this);
+	public override void RemoveEffect()
+	{	
+		enemy.RemoveTemporalEffect(this);
+		enemy.RemoveTint();
+		applied = false;
 	}
+	
 }
+
+public enum SlowDownType { Fox, Area }

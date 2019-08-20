@@ -6,24 +6,23 @@ using UnityEngine;
 public class DragonStats : TowersonaStats
 {
 	[Header("Damage")]
-	[SerializeField] private Vector2 bulletDamage;
-	[SerializeField] private Vector2 attackSpeed;
-	[SerializeField] private Vector2 range;
-	[SerializeField] private Vector2 bulletSpeed;
+	[SerializeField] private Vector2 bulletDamage = Vector2.zero;
+	[SerializeField] private Vector2 attackSpeed = Vector2.zero;
+	[SerializeField] private Vector2 range = Vector2.zero;
+	[SerializeField] private Vector2 bulletSpeed = Vector2.zero;
 
 	[Header("Dragon Stats")]
-	[SerializeField][Tooltip("Area en el que la bala hace daño")] private Vector2 damageArea;
-	[SerializeField] [Tooltip("La proporción de daño que reciben los enemigos que no están en el centro 0 -> No reciben daño | 1 -> Reciben todo el daño")] private Vector2 areaDamageReduction;
+	[SerializeField][Tooltip("Area en el que la bala hace daño")] private Vector2 damageArea = Vector2.zero;
+	[SerializeField] [Tooltip("La proporción de daño que reciben los enemigos que no están en el centro 0 -> No reciben daño | 1 -> Reciben todo el daño")] private Vector2 areaDamageReduction = Vector2.zero;
 
 	[Header("Cone Area Stats")]
-	[SerializeField] [Tooltip("Ancho del cono. Si no ataca en cono, puedes poner lo que quieras")] private Vector2 damageAreaWidth;
-	[SerializeField] [Tooltip("Tiempo que un enemigo está quemado")] private Vector2 burnTime;
+	[SerializeField] [Tooltip("Ancho del cono. Si no ataca en cono, puedes poner lo que quieras")] private Vector2 damageAreaWidth = Vector2.zero;
+	[SerializeField] [Tooltip("Tiempo que un enemigo está quemado")] private Vector2 burnTime = Vector2.zero;
 
-	[Header("Slow don Area")]
-	[Tooltip("0 -> No le afecta el slow | 1 -> No le mueve ni Dios")]
-	public Vector2 slowDownPercentage;
-	public Vector2 slowDownTime;
-	public Vector2 slowDownAreaLifeTime;
+	[Header("Slow down Area")]
+	[Tooltip("0 -> No le afecta el slow | 1 -> No le mueve ni Dios")][SerializeField] Vector2 slowDownPercentage = Vector2.zero;
+	[Tooltip("Tiempo en segundos que dura el slow")][SerializeField] private Vector2 slowDownTime = Vector2.zero;
+	[Tooltip("Tiempo en segundos que dura el área")][SerializeField] private Vector2 slowDownAreaLifeTime = Vector2.zero;
 
 	[HideInInspector]
 	public float currentDamageArea;

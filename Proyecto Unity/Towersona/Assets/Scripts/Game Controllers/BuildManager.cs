@@ -8,30 +8,24 @@ public class BuildManager : MonoBehaviour
 {   
     public static BuildManager Instance { get; private set; }
 
-	[Tooltip("El orden tiene que coincidir con el orden del Buy Menu")]
-	public Towersona[] towersonaPrefabs;
+	[Tooltip("El orden tiene que coincidir con el orden del Buy Menu")]	public Towersona[] towersonaPrefabs;
 
-    [HideInInspector]
-    public float lastXUsed = 0f;
+    [HideInInspector] public float lastXUsed = 0f;
 
     [Header("References")] 
     public GameObject detailedTowersonaViewPrefab;
 	
 
-    [SerializeField]
-    private NodeUI nodeUI;
-	[SerializeField]
-	private BuyMenu buyMenu;
-	[SerializeField]
-    private GameObject buildEffect;
+    [SerializeField] private NodeUI nodeUI = null;
+	[SerializeField] private BuyMenu buyMenu = null;
+	[SerializeField] private GameObject buildEffect = null;
 
-    private List<Towersona> towersonas;
-
-    //Private parameters  
-    private Towersona towersonaSelected;
+	//Private parameters  
+	private List<Towersona> towersonas;
+	private Towersona towersonaSelected;
 	private BuildingPlace buildingPlaceSelected;
 
-    //Private references
+
 
     void Awake()
     {

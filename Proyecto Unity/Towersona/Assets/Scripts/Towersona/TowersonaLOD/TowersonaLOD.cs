@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class TowersonaLOD : MonoBehaviour
 {
-    [HideInInspector]
-    public Towersona towersona;
-    [HideInInspector]
-    public Transform firePoint;
-    [HideInInspector]
-    public AttackPattern pattern;
+    [HideInInspector] public Towersona towersona;
+    [HideInInspector] public Transform firePoint;
+    [HideInInspector] public AttackPattern pattern;
 
     [Header("Transform parameters")]
-    [SerializeField]
-    private float turnSpeed = 1f;
-    [SerializeField]
-    private Transform[] partsToRotate;
+    [SerializeField] private float turnSpeed = 1f;
+    [SerializeField] private Transform[] partsToRotate = null;
 
     private MeshFilter meshFilter;
 

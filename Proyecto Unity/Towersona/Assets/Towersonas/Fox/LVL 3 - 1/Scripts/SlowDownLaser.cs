@@ -49,7 +49,7 @@ public class SlowDownLaser : MonoBehaviour
 
 	public void CheckSlowDown()
 	{
-		if (target == null || Vector3.Distance(target.transform.position, centre) > stats.currentAttackRange)
+		/*if (target == null || Vector3.Distance(target.transform.position, centre) > stats.currentAttackRange)
 		{
 			enemy.RemoveSlowDown(slowDown);
 			foxAttack.RemoveLaser(this);
@@ -59,8 +59,8 @@ public class SlowDownLaser : MonoBehaviour
 		{
 			if (!enemy.AlredySlownDownByTowersona(gameObject))
 			{
-				slowDown = enemy.AddSlowDown(stats.currentSlowDownPercentage, Mathf.Infinity, Enemy.SlowDownType.Fox, gameObject);
+				slowDown = enemy.AddSlowDown(stats.currentSlowDownPercentage, Mathf.Infinity, SlowDownType.Fox, gameObject);
 			}
-		}
+		}*/
 	}
 }
