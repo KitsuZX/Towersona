@@ -12,23 +12,7 @@ public class Enemy : MonoBehaviour
 			if(!temporalEffects.ContainsKey(TemporalEffectType.SlowDown))
 			{
 				return enemyStats.speed;
-			}
-
-			/*float totalAmount = 0;		
-
-			foreach (KeyValuePair<SlowDownType, List<SlowDown>> entry in slowDowns)
-			{
-				float[] slows = new float[entry.Value.Count];
-
-				for (int i = 0; i < entry.Value.Count; i++)
-				{
-					slows[i] = entry.Value[i].slowDownAmount;
-				}
-
-				float slowDownAmount = slows.Max();
-
-				totalAmount += (1 - totalAmount) * slowDownAmount;
-			}*/
+			}						
 
 			SlowDown slowDown = (SlowDown)temporalEffects[TemporalEffectType.SlowDown];
 			float totalSlowDownAmount = slowDown.slowDownAmount;
@@ -67,7 +51,7 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	protected void Update()
+	protected virtual void Update()
 	{
 		if (!bezierWalkerWithSpeed)
 		{
@@ -139,6 +123,16 @@ public class Enemy : MonoBehaviour
 	public bool IsAffactedByEffect(TemporalEffectType effectType)
 	{
 		return temporalEffects.ContainsKey(effectType);
+	}
+
+	public void ResetEffectCountdown(TemporalEffectType effectType)
+	{
+		temporalEffects[effectType].ResetTimer();
+	}
+
+	public TemporalEffect GetEffect(TemporalEffectType effectType)
+	{
+		return temporalEffects[effectType];
 	}
 	#endregion
 	

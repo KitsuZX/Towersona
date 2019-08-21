@@ -4,20 +4,18 @@ using UnityEngine;
 
 public class SlowDown : TemporalEffect
 {
-	public float slowDownAmount;
-	public SlowDownType slowDownType;
+	public float slowDownAmount;	
 
 	private Enemy enemy;
 	private Color freezeColor = new Color(0.7f, 0.8f, 0.98f, 0.5f);
 
-	public void Initialize(float amount, float time, SlowDownType slowDownType, GameObject target)
+	public void Initialize(float amount, float time, GameObject target)
 	{
-		this.time = time;
 		this.target = target;
-
-		this.slowDownAmount = amount;
-		this.slowDownType = slowDownType;
-
+		this.slowDownAmount = amount;	
+		
+		initialTime = time;
+		currentTime = time;
 		effectType = TemporalEffectType.SlowDown;
 
 		enemy = target.GetComponent<Enemy>();
@@ -25,9 +23,29 @@ public class SlowDown : TemporalEffect
 
 	public override void ApplyEffect()
 	{
-		enemy.Tint(freezeColor);
-		enemy.AddTemporalEffect(this);
-		applied = true;
+		if (!enemy.IsAffactedByEffect(effectType))
+		{
+			enemy.Tint(freezeColor);
+			enemy.AddTemporalEffect(this);
+			applied = true;
+		}
+		else
+		{
+			//Check if it's a permanent slowdown (lasers)
+			if (initialTime != Mathf.Infinity)
+			{
+				//If the enemy is alredy affected by this effect, reset the timer
+				enemy.ResetEffectCountdown(effectType);
+
+				//Check if this new effect is stronger than the previous one. If it is, make the alredy existing effect stronger
+				SlowDown enemySlowDown = (SlowDown)enemy.GetEffect(effectType);
+				if (slowDownAmount > enemySlowDown.slowDownAmount)
+				{
+					enemySlowDown.slowDownAmount = slowDownAmount;
+				}
+			}
+
+		}
 	}
 
 	public override void RemoveEffect()
@@ -35,8 +53,5 @@ public class SlowDown : TemporalEffect
 		enemy.RemoveTemporalEffect(this);
 		enemy.RemoveTint();
 		applied = false;
-	}
-	
+	}	
 }
-
-public enum SlowDownType { Fox, Area }

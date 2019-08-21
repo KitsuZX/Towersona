@@ -25,12 +25,11 @@ public class SlowDownBullet : Shooting
 		if (e != null)
 		{
 			e.TakeDamage(stats.AttackStrength);
-			if (!e.IsAffactedByEffect(TemporalEffectType.SlowDown))
-			{
-				SlowDown slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
-				slowDown.Initialize(foxStats.currentSlowDownPercentage, foxStats.currentSlowDownTime, SlowDownType.Fox, target.gameObject);
-				slowDown.ApplyEffect();
-			}
+			
+			SlowDown slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
+			slowDown.Initialize(foxStats.currentSlowDownPercentage, foxStats.currentSlowDownTime, target.gameObject);
+			slowDown.ApplyEffect();
+			
 		}
 
 		Destroy(gameObject);

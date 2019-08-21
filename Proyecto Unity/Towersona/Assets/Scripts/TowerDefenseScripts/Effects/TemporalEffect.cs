@@ -7,17 +7,18 @@ public abstract class TemporalEffect
 	public TemporalEffectType effectType;
 	public GameObject source;
 
-	protected float time;
+	protected float initialTime;
+	protected float currentTime;
 	protected GameObject target;
 
 	protected bool applied = false;
 
 	public void Update()
 	{
-		if(time != Mathf.Infinity && applied)
+		if(currentTime != Mathf.Infinity && applied)
 		{
-			time -= Time.deltaTime;
-			if(time < 0)
+			currentTime -= Time.deltaTime;
+			if(currentTime < 0)
 			{
 				RemoveEffect();
 			}
@@ -47,6 +48,10 @@ public abstract class TemporalEffect
 
 	public abstract void ApplyEffect();
 	public abstract void RemoveEffect();
+	public void ResetTimer()
+	{
+		currentTime = initialTime;
+	}
 }
 
 

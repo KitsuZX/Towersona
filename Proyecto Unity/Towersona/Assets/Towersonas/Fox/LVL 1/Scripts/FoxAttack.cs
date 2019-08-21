@@ -9,7 +9,7 @@ public class FoxAttack : AttackPattern
 	[SerializeField]
 	protected GameObject bulletPrefab;
 
-	private void Start()
+	protected override void Start()
 	{
 		base.Start();
 		foxStats = (FoxStats)stats;
@@ -57,7 +57,7 @@ public class FoxAttack : AttackPattern
 	{
 		if (Application.isPlaying)
 		{
-			Gizmos.color = new Color(147, 112, 219);
+			Gizmos.color = Color.blue;
 			Gizmos.DrawWireSphere(towersonaLOD.transform.position, foxStats.currentAttackRange);
 		}
 	}

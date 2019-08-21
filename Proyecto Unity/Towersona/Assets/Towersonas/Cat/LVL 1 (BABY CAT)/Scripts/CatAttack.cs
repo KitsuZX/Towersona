@@ -21,7 +21,7 @@ public class CatAttack : AttackPattern
 
 	CatStats catStats;
 
-	private void Start()
+	protected override void Start()
 	{
 		base.Start();
 		catStats = (CatStats)stats;
@@ -31,8 +31,8 @@ public class CatAttack : AttackPattern
 		towersonasInRange = new List<GameObject>();
 		lasers = new List<BoostLaser>();
 	}
-	
-	private void Update()
+
+	protected override void Update()
 	{
 		base.Update();
 

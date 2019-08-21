@@ -9,12 +9,9 @@ public class LevelManager : MonoBehaviour
     [Header("Parameters")]
     public float timeTillNextWave;
 
-    [HideInInspector]
-    public int enemiesAlive = 0;
-    [HideInInspector]
-    public int wavesToWin;
-    [HideInInspector]
-    public bool spawningWave = false;
+    [HideInInspector] public int enemiesAlive = 0;
+    [HideInInspector] public int wavesToWin;
+	[HideInInspector] public bool allEnemiesSpawned = true;
 
     private float countdown = 2f; 
     private Transform spawnPoint;
@@ -40,17 +37,19 @@ public class LevelManager : MonoBehaviour
     }
 
     private void Update()
-    {
-        if (!DebuggingOptions.Instance.spawnEnemies) return;
-
-        if(spawningWave)
-        {
-            return;
-        }
+    {    
+		//No empezar el timer si
+		if(!allEnemiesSpawned ||							 //No se ha acabado de spawnear la oleada
+			enemiesAlive > 0 ||								 //Aún hay enemigos vivos
+			!DebuggingOptions.Instance.spawnEnemies)		 //No se quieen spawnear enemigos					
+		{
+			return;
+		}
   
-        if(countdown <= 0f && !GameManager.Instance.gameOver)
+        if(countdown <= 0f)
         {
-            SpawnWave();
+			allEnemiesSpawned = false;
+			StartCoroutine(SpawnWave());
             countdown = timeTillNextWave;
             return;
         }
@@ -59,17 +58,17 @@ public class LevelManager : MonoBehaviour
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
     }
 
-    private void SpawnWave()
-    {
-        spawningWave = true;
+    private IEnumerator SpawnWave()
+    {        
         PlayerStats.Instance.AddRound();
 
         foreach (SpawnPoint spawnPoint in spawnPoints)
         {
-            StartCoroutine(spawnPoint.SpawnWave(waveIndex));
+            yield return StartCoroutine(spawnPoint.SpawnWave(waveIndex));
         }
 
-        waveIndex++;         
+        waveIndex++;
+		allEnemiesSpawned = true;
     }  
 }
 

@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class NotificationsManager : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private GameObject notificationPrefab = null;
-
     private TowersonaLOD towersonaLOD;
     private bool isNotifying;
-    private GameObject notification;
     private TowersonaNeeds.NeedType prevNeedType;
     private TowersonaNeeds needs;
 
-    private void Start()
+	//[SerializeField] private GameObject notificationPrefab = null;
+	//private GameObject notification;
+
+	private void Start()
     {
         needs = GetComponent<TowersonaLOD>().towersona.towersonaNeeds;
     }
@@ -96,7 +95,7 @@ public class NotificationsManager : MonoBehaviour
 
     private void DestroyNotification()
     {
-        isNotifying = false;
-        Destroy(notification);
+        /*isNotifying = false;
+        Destroy(notification);*/
     }
 }

@@ -14,11 +14,12 @@ public class Burn : TemporalEffect
 	public void Initialize(float amount, float time, GameObject target, GameObject source)
 	{
 		this.burnDamage = amount;
-		base.target = target;
 
-		base.time = time;
+		base.target = target;
 		base.source = source;
 
+		initialTime = time;
+		currentTime = time;
 		effectType = TemporalEffectType.Burn;
 
 		enemy = target.GetComponent<Enemy>();
@@ -26,18 +27,35 @@ public class Burn : TemporalEffect
 
 	public override void ApplyEffect()
 	{
-		enemy.AddTemporalEffect(this);
-		burnComponent = target.AddComponent<BurnComponent>();
-		burnComponent.StartBurningEnemy(time, burnDamage, enemy, burnColor1, burnColor2);
+		if (!enemy.IsAffactedByEffect(effectType))
+		{
+			enemy.AddTemporalEffect(this);
+			burnComponent = target.AddComponent<BurnComponent>();
+			burnComponent.StartBurningEnemy(burnDamage, enemy, burnColor1, burnColor2);
 
-		applied = true;
+			applied = true;
+		}
+		else
+		{
+			//If the enemy is alredy affected by this effect, reset the timer
+			enemy.ResetEffectCountdown(effectType);
+
+			//Check if this new effect is stronger than the previous one. If it is, make the alredy existing effect stronger
+			Burn enemyBurn = (Burn)enemy.GetEffect(effectType);
+			if (burnDamage > enemyBurn.burnDamage)
+			{
+				enemyBurn.burnDamage = burnDamage;
+				burnComponent.burnDamage = burnDamage;
+			}
+
+		}
 	}
 
 	public override void RemoveEffect()
 	{
 		enemy.RemoveTemporalEffect(this);
 		burnComponent.StopBurningEnemy();
-		
+
 		applied = false;
-	}	
+	}
 }

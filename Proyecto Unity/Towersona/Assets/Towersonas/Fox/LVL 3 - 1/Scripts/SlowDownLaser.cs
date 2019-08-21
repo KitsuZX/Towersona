@@ -13,7 +13,8 @@ public class SlowDownLaser : MonoBehaviour
 	private FoxSlowDownAreaAttack foxAttack;
 	private FoxStats stats;
 	private Enemy enemy;
-	private SlowDown slowDown;
+
+	private SlowDown slowDown = null;
 
 	protected void Awake()
 	{
@@ -49,18 +50,21 @@ public class SlowDownLaser : MonoBehaviour
 
 	public void CheckSlowDown()
 	{
-		/*if (target == null || Vector3.Distance(target.transform.position, centre) > stats.currentAttackRange)
+		//If the target has died or is out of range
+		if (target == null || Vector3.Distance(target.transform.position, centre) > stats.currentAttackRange)
 		{
-			enemy.RemoveSlowDown(slowDown);
+			slowDown.RemoveEffect();
 			foxAttack.RemoveLaser(this);
+
 			Destroy(gameObject);
+			return;
 		}
-		else
+		
+		if (!enemy.IsAffactedByEffect(TemporalEffectType.SlowDown))
 		{
-			if (!enemy.AlredySlownDownByTowersona(gameObject))
-			{
-				slowDown = enemy.AddSlowDown(stats.currentSlowDownPercentage, Mathf.Infinity, SlowDownType.Fox, gameObject);
-			}
-		}*/
+			slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
+			slowDown.Initialize(stats.currentSlowDownPercentage, Mathf.Infinity, target.gameObject);
+			slowDown.ApplyEffect();
+		}		
 	}
 }

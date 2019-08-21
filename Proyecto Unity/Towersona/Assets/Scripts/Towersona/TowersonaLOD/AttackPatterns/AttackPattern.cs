@@ -17,13 +17,13 @@ public abstract class AttackPattern : MonoBehaviour
 
     private float fireCountdown = 1f;   
 
-    protected void Awake()
+    protected virtual void Awake()
     {    
         towersonaLOD = GetComponent<TowersonaLOD>();
         animations = GetComponent<TowersonaLODAnimation>();        
     }
 
-    public void Start()
+    protected virtual void Start()
     {
         stats = towersonaLOD.towersona.stats;
         needs = towersonaLOD.towersona.towersonaNeeds;     
@@ -33,7 +33,7 @@ public abstract class AttackPattern : MonoBehaviour
 
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if (needs == null || stats == null) return; 
 

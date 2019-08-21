@@ -8,9 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set; }
 
-
-    [HideInInspector] public bool gameOver = false;
-
     [Header("Victory and Defeat References")]
     [SerializeField]
     private GameObject victoryPrompt;     
@@ -29,6 +26,8 @@ public class GameManager : MonoBehaviour
   
     private void Awake()
     {
+		Time.timeScale = 1;
+
         if (!Instance)
         {
             Instance = this;
@@ -49,7 +48,7 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {
         victoryPrompt.SetActive(true);
-        gameOver = true;
+		Time.timeScale = 0;
     }
 
     /// <summary>
@@ -58,8 +57,8 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         defeatPrompt.SetActive(true);
-        gameOver = true;
-    }
+		Time.timeScale = 0;
+	}
 
     /// <summary>
     /// Changes the camera of the Detailed Scene to the Detailed Scene of a specific Towersona.

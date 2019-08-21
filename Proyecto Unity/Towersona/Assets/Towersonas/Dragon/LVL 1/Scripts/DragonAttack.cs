@@ -10,7 +10,7 @@ public class DragonAttack : AttackPattern
 
 	DragonStats dragonStats;
 
-	private void Start()
+	protected override void Start()
 	{
 		base.Start();
 		dragonStats = (DragonStats)stats;

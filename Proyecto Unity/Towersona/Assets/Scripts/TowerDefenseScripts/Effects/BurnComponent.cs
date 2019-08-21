@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class BurnComponent : MonoBehaviour
 {
-	private float time;
-	private float burnDamage;
+	public float burnDamage;
+
+	private float time;	
 	private float interval = 0.5f;
 
 	private Enemy enemy;
 	private Color burnColor1;
 	private Color burnColor2;
 
-	public void StartBurningEnemy(float time, float burnDamage, Enemy enemy, Color burnColor1, Color burnColor2)
-	{
-		this.time = time;
+	public void StartBurningEnemy(float burnDamage, Enemy enemy, Color burnColor1, Color burnColor2)
+	{		
 		this.enemy = enemy;
 		this.burnDamage = burnDamage;
 		this.burnColor1 = burnColor1;

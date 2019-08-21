@@ -23,7 +23,7 @@ public abstract class Shooting : MonoBehaviour
         target = _target;
     }
 
-    protected void Update()
+    protected virtual void Update()
     {
         if(target == null)
         {

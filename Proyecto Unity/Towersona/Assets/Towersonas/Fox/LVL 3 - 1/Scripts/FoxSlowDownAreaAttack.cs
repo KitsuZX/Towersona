@@ -11,7 +11,7 @@ public class FoxSlowDownAreaAttack : AttackPattern
 	[SerializeField] protected GameObject slowDownLaser = null;
 	[SerializeField] protected GameObject bulletPrefab = null;	
 
-	private void Start()
+	protected override void Start()
 	{
 		base.Start();
 		foxStats = (FoxStats)stats;
@@ -76,6 +76,15 @@ public class FoxSlowDownAreaAttack : AttackPattern
 		{
 			lasers.Remove(laser);
 			enemiesInRange.Remove(laser.target);
+		}
+	}
+
+	private void OnDrawGizmos()
+	{
+		if (Application.isPlaying)
+		{
+			Gizmos.color = Color.blue;
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, foxStats.currentAttackRange);
 		}
 	}
 }

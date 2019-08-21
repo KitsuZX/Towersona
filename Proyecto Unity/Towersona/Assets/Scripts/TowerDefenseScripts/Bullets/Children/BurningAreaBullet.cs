@@ -31,7 +31,7 @@ public class BurningAreaBullet : Shooting
 		Destroy(gameObject, 1f);
 	}
 
-	private void Update()
+	protected override void Update()
 	{
 		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -51,9 +51,6 @@ public class BurningAreaBullet : Shooting
 		}
 	}
 
-	protected override void HitTarget()
-	{
-	
-	}
+	protected override void HitTarget(){}
 	
 }

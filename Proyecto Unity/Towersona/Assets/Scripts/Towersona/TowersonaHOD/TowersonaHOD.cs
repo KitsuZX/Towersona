@@ -16,8 +16,7 @@ public class TowersonaHOD : MonoBehaviour
     [HideInInspector]
     public TowersonaNeeds towersonaNeeds;    
 
-    private Camera cam;
-    private MeshFilter meshFilter;
+    private Camera cam; 
 
     private void Awake()
     {
@@ -47,16 +46,11 @@ public class TowersonaHOD : MonoBehaviour
         towersonaNeeds = needs;
         towersonaAnim = model.GetComponent<TowersonaHODAnimation>();
 
-		if(towersonaAnim.lookAway) towersonaAnim.lookAway.camera = cam;
+		if(towersonaAnim.lookAway) towersonaAnim.lookAway.m_Camera = cam;
 
         ShitNeed shitNeed = model.GetComponent<ShitNeed>();
         shitNeed.shitSpawnPositions = shitPositions;
 
         return needs;
-    }
-
-    public void Upgrade(Mesh model)
-    {
-        meshFilter.mesh = model;
     }    
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class LookAwayFromTouch : MonoBehaviour
 {
 	[HideInInspector] public bool isBeingCaressed = false;
-	[HideInInspector] public Camera camera;
+	[HideInInspector] public Camera m_Camera;
 
     [SerializeField] private float lookAtDepth = 3f;
     [SerializeField] [Range(0, 1)] private float interpolation = 0f;
@@ -17,10 +17,10 @@ public class LookAwayFromTouch : MonoBehaviour
         {
             if (Input.touchCount > 0)
             {
-                Transform cameraTrans = camera.GetComponent<Transform>();
+                Transform cameraTrans = m_Camera.GetComponent<Transform>();
                 Vector3 offset = lookAtDepth * (cameraTrans.localToWorldMatrix * new Vector4(0, 0, -1, 0));
 
-                return camera.ScreenToWorldPoint(new Vector3(
+                return m_Camera.ScreenToWorldPoint(new Vector3(
                         Input.GetTouch(0).position.x,
                         Input.GetTouch(0).position.y,
                         transform.position.z - cameraTrans.position.z)) + offset;
@@ -30,10 +30,10 @@ public class LookAwayFromTouch : MonoBehaviour
 #if UNITY_EDITOR
             if (Input.GetMouseButton(0))
             {
-                Transform cameraTrans = camera.GetComponent<Transform>();
+                Transform cameraTrans = m_Camera.GetComponent<Transform>();
                 Vector3 offset = lookAtDepth * (cameraTrans.localToWorldMatrix * new Vector4(0, 0, -1, 0));
 
-                return camera.ScreenToWorldPoint(new Vector3(
+                return m_Camera.ScreenToWorldPoint(new Vector3(
                        Input.mousePosition.x,
                        Input.mousePosition.y,
                        transform.position.z - cameraTrans.position.z)) + offset;

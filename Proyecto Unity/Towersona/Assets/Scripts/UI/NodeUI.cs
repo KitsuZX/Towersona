@@ -6,13 +6,10 @@ using UnityEngine.UI;
 
 public class NodeUI : MonoBehaviour
 {   
-    [SerializeField]
-    private GameObject UI;
-    [SerializeField]
-    public GameObject[] UIS; 
+    [SerializeField] private GameObject UI = null;
+    [SerializeField] private GameObject[] UIS = null; 
 
-    [HideInInspector]
-    public bool UIIsActive = false;
+    [HideInInspector] public bool UIIsActive = false;
 
     private Towersona towersona;
 

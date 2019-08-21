@@ -20,16 +20,6 @@ public class Buff : TemporalEffect
         countdown = time;
     }
 
-    public void Update()
-    {
-        /*if(countdown <= 0f)
-        {
-            enemy.RemoveBuff(stats);
-        }
-
-        countdown -= Time.deltaTime;*/
-    }
-
 	public override void ApplyEffect()
 	{
 		applied = true;

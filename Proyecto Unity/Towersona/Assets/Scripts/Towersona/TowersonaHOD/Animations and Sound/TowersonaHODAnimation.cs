@@ -6,11 +6,10 @@ using UnityEngine.UI;
 public class TowersonaHODAnimation : MonoBehaviour
 {
 	public LookAwayFromTouch lookAway;
-	[SerializeField]
-	private LookAt lookAt; 
+
+	[SerializeField] private LookAt lookAt = null; 
 	
     private bool isLookingAtFood;
-
   
     public void Idle()
     {

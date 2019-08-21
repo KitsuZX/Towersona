@@ -19,7 +19,7 @@ public class SlowDownArea : MonoBehaviour
 				{
 					//e.AddSlowDown(dragonStats.currentSlowDownPercentage, dragonStats.currentSlowDownTime, SlowDownType.Area, gameObject);
 					SlowDown slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
-					slowDown.Initialize(dragonStats.currentSlowDownPercentage, dragonStats.currentSlowDownTime, SlowDownType.Area, e.gameObject);
+					slowDown.Initialize(dragonStats.currentSlowDownPercentage, dragonStats.currentSlowDownTime, e.gameObject);
 					slowDown.ApplyEffect();
 				}
 			}

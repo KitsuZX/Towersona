@@ -66,7 +66,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        if (round - 1 == LevelManager.Instance.wavesToWin && !LevelManager.Instance.spawningWave)
+        if (round == LevelManager.Instance.wavesToWin && LevelManager.Instance.allEnemiesSpawned && LevelManager.Instance.enemiesAlive == 0)
         {
             GameManager.Instance.WinGame();
         }
