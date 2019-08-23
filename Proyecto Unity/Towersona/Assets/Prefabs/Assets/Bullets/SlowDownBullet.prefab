@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4180799685289692694}
   - component: {fileID: 4768220349595932000}
   m_Layer: 0
-  m_Name: Fox Bullet
+  m_Name: SlowDownBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -203,5 +203,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactEffect: {fileID: 7732764539490996170, guid: 7a138596b3accf44fa16de003dd89cb7,
     type: 3}
-  speed: 10
-  damage: 0
+  source: {fileID: 0}
