@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1347,7 +1347,7 @@ MonoBehaviour:
   m_precedingControlPointLocalPosition: {x: -2.537918, y: 0, z: 2.8758132}
   m_precedingControlPointPosition: {x: 8.6520815, y: 1, z: 1.7258132}
   m_followingControlPointLocalPosition: {x: 2.916525, y: 0, z: -2.2862086}
-  m_followingControlPointPosition: {x: 14.106524, y: 1, z: -3.436209}
+  m_followingControlPointPosition: {x: 14.106524, y: 1, z: -3.4362087}
   m_handleMode: 0
 --- !u!1 &635150243
 GameObject:
@@ -2359,7 +2359,7 @@ MonoBehaviour:
   timeTillNextWave: 3
   enemiesAlive: 0
   wavesToWin: 10
-  spawningWave: 0
+  allEnemiesSpawned: 1
 --- !u!23 &1322721167
 MeshRenderer:
   m_ObjectHideFlags: 0

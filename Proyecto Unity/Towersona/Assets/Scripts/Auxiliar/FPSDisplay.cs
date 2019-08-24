@@ -5,12 +5,11 @@ using TMPro;
 [RequireComponent(typeof(FPSCounter))]
 public class FPSDisplay : MonoBehaviour
 {
-	public TextMeshProUGUI highestFPSLabel, averageFPSLabel, lowestFPSLabel;
+	public TextMeshProUGUI averageFPSLabel;
 
 	FPSCounter fpsCounter;
 
-	[SerializeField]
-	private FPSColor[] coloring;
+	[SerializeField] private FPSColor[] coloring = null;
 
 	static string[] stringsFrom00To99 = {
 		"00", "01", "02", "03", "04", "05", "06", "07", "08", "09",
@@ -31,10 +30,8 @@ public class FPSDisplay : MonoBehaviour
 	}
 
 	private void Update()
-	{
-		Display(highestFPSLabel, fpsCounter.HighestFPS);
+	{		
 		Display(averageFPSLabel, fpsCounter.AverageFPS);
-		Display(lowestFPSLabel, fpsCounter.LowestFPS);
 	}
 
 	void Display(TextMeshProUGUI label, int fps)
