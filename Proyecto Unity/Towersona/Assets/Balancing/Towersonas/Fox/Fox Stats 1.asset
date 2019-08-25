@@ -22,15 +22,15 @@ MonoBehaviour:
   timeBetweenShits: 10
   maxShits: 4
   currentAttackStrength: 0
-  currentAttackSpeed: 1.1833333
-  currentAttackRange: 5.9166665
-  currentBulletSpeed: 7.55
+  currentAttackSpeed: 1.1333333
+  currentAttackRange: 13
+  currentBulletSpeed: 7.4
   needs: {fileID: 0}
   bulletDamage: {x: 0, y: 0}
   attackSpeed: {x: 1, y: 2}
-  range: {x: 5, y: 10}
+  range: {x: 13, y: 13}
   bulletSpeed: {x: 7, y: 10}
   slowDownPercentage: {x: 0.5, y: 0.75}
   slowDownTime: {x: 2, y: 5}
-  currentSlowDownPercentage: 0.54583335
-  currentSlowDownTime: 2.55
+  currentSlowDownPercentage: 0.5333333
+  currentSlowDownTime: 2.4

@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class LevelBounds : MonoBehaviour
 {
-	public static LevelBounds Instance { get; private set; }
+	[SerializeField] private Transform bottomLeftBorder;
+	[SerializeField] private Transform topRightBorder;
 
-	public Transform bottomRight;
-	public Transform topRight;
-	public Transform topLeft;
-	public Transform bottomLeft;
+	[SerializeField] private Transform bottomLeftBound;
+	[SerializeField] private Transform topRightBound;
 
-	public Vector3 position;
+	[HideInInspector] public Vector3 BottomLeftBorder { get { return bottomLeftBorder.position; } }
+	[HideInInspector] public Vector3 TopRightBorder { get { return topRightBorder.position; } }
+	[HideInInspector] public Vector3 TopLeftBorder { get { return new Vector3(BottomLeftBorder.x, BottomLeftBorder.y, TopRightBorder.z); } }
+	[HideInInspector] public Vector3 BottomRightBorder { get { return new Vector3(TopRightBorder.x, BottomLeftBorder.y, BottomLeftBorder.z); } }
 
-	private void Awake()
-	{
-		if (!Instance) Instance = this;
-		else Destroy(this);
-
-		position = transform.position;
-	}
+	[HideInInspector] public Vector3 BottomLeftBound { get { return bottomLeftBound.position; } }
+	[HideInInspector] public Vector3 TopRightBound { get { return topRightBound.position; } }
 }
