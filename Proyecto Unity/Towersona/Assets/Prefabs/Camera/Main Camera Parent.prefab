@@ -329,7 +329,7 @@ MonoBehaviour:
   levelBounds: {fileID: 0}
   stickMinZoom: 20
   stickMaxZoom: 0
-  swivelMinZoom: -10
+  swivelMinZoom: -30
   swivelMaxZoom: 0
   zoomSpeed: 0.01
   moveSpeedMinZoom: 50

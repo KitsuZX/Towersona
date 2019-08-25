@@ -100,11 +100,11 @@ public class CameraController : MonoBehaviour
 			transform.position = Vector3.Lerp(closestBorderPoint, originalPosition,	zoom);
 		}
 
-		float distance = Mathf.Lerp(stickMinZoom, stickMaxZoom, zoom);
-		stick.localPosition = new Vector3(0f, 0f, distance);
-
 		float angle = Mathf.Lerp(swivelMinZoom, swivelMaxZoom, zoom);
-		swivel.localRotation = Quaternion.Euler(angle, 0f, 0f);	
+		swivel.localRotation = Quaternion.Euler(angle, 0f, 0f);
+
+		float distance = Mathf.Lerp(stickMinZoom, stickMaxZoom, zoom);
+		stick.localPosition = new Vector3(0f, angle * 0.75f, distance);		
 
 		RecalculateBounds();
 	}
