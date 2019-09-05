@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: dcd6b1558189fa144bca04e14d909bad
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: HP
+    100002: IK_Brazo_Der
+    100004: IK_Brazo_Der 1
+    100006: IK_Brazo_Iz
+    100008: IK_Brazo_Izq
+    100010: IK_COLA
+    100012: IK_Cola
+    100014: //RootNode
+    100016: pasted__Brazo_Der
+    100018: pasted__Brzo_Izq
+    100020: pasted__Cabeza
+    100022: pasted__Cola
+    100024: pasted__Cuerpo
+    100026: pasted__Global
+    100028: pasted__joint10
+    100030: pasted__joint11
+    100032: pasted__joint14
+    100034: pasted__joint15
+    100036: pasted__joint18
+    100038: pasted__joint19
+    100040: pasted__joint22
+    100042: pasted__joint23
+    100044: pasted__joint24
+    100046: pasted__joint25
+    100048: pasted__joint26
+    100050: pasted__joint27
+    100052: pasted__joint28
+    100054: pasted__joint5
+    100056: pasted__joint6
+    100058: pasted__joint7
+    100060: pasted__joint9
+    100062: pasted__Oreja_Der
+    100064: pasted__Oreja_Izq
+    100066: pasted__Pecho
+    400000: HP
+    400002: IK_Brazo_Der
+    400004: IK_Brazo_Der 1
+    400006: IK_Brazo_Iz
+    400008: IK_Brazo_Izq
+    400010: IK_COLA
+    400012: IK_Cola
+    400014: //RootNode
+    400016: pasted__Brazo_Der
+    400018: pasted__Brzo_Izq
+    400020: pasted__Cabeza
+    400022: pasted__Cola
+    400024: pasted__Cuerpo
+    400026: pasted__Global
+    400028: pasted__joint10
+    400030: pasted__joint11
+    400032: pasted__joint14
+    400034: pasted__joint15
+    400036: pasted__joint18
+    400038: pasted__joint19
+    400040: pasted__joint22
+    400042: pasted__joint23
+    400044: pasted__joint24
+    400046: pasted__joint25
+    400048: pasted__joint26
+    400050: pasted__joint27
+    400052: pasted__joint28
+    400054: pasted__joint5
+    400056: pasted__joint6
+    400058: pasted__joint7
+    400060: pasted__joint9
+    400062: pasted__Oreja_Der
+    400064: pasted__Oreja_Izq
+    400066: pasted__Pecho
+    2100000: melena
+    2100002: cuerpo
+    2100004: detalles
+    2100006: cara
+    4300000: HP
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: HP
+    2186277476908879412: ImportLogs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cuerpo
+    second: {fileID: 2100000, guid: 4cc4559741a9545439af626f584f423b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: detalles
+    second: {fileID: 2100000, guid: 23c5211832751434796408358f7b3b86, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: melena
+    second: {fileID: 2100000, guid: 5fc766ff088c78f4d851a8edfe140ae7, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2.75
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 3
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
