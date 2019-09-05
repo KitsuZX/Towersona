@@ -43,7 +43,8 @@ public class Enemy : MonoBehaviour
 	[SerializeField] public EnemyStats enemyStats = null;
     [SerializeField] private GameObject deathEffect = null;
 	[SerializeField] private GameObject healEffect = null;
-	private BezierWalkerWithSpeed bezierWalkerWithSpeed;	
+    [SerializeField] private GameObject strengthenEffect = null;
+    private BezierWalkerWithSpeed bezierWalkerWithSpeed;	
 	private Dictionary<TemporalEffectType, TemporalEffect> temporalEffects = new Dictionary<TemporalEffectType, TemporalEffect>();
 	private MeshRenderer[] meshRenderers;
 	private Dictionary<Material, Color> originalColors = new Dictionary<Material, Color>();
@@ -148,11 +149,21 @@ public class Enemy : MonoBehaviour
 
 	public void Heal(float amount)
 	{
-		GameObject healEffectObject = Instantiate(healEffect, transform.position, Quaternion.identity);
-		enemyStats.lifes += amount;
-		Mathf.Clamp(enemyStats.lifes, 0, enemyStats.initialLifes);
-		Destroy(healEffectObject, 2f);
+        if (enemyStats.lifes < enemyStats.initialLifes)
+        {
+            GameObject healEffectObject = Instantiate(healEffect, transform.position, Quaternion.identity);
+            enemyStats.lifes += amount;
+            Mathf.Clamp(enemyStats.lifes, 0, enemyStats.initialLifes);
+            Destroy(healEffectObject, 2f);
+        }
 	}
+
+    public void Strengthen(int amount)
+    {
+        GameObject strengthenEffectObject = Instantiate(strengthenEffect, transform.position, Quaternion.identity);
+        enemyStats.damage += amount;       
+        Destroy(strengthenEffectObject, 2f);
+    }
 	#endregion
 	
 	#region Tints	

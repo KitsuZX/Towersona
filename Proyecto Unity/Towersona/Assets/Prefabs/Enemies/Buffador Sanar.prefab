@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7290389325241162705}
   - component: {fileID: 3398661720709121406}
   - component: {fileID: 1295667193612538048}
+  - component: {fileID: 372671504097746581}
   m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
@@ -91,6 +92,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
+--- !u!114 &372671504097746581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390462085840854318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd526269e3c84c4ebe9a77673a600f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetRange: 1
 --- !u!1 &8235468290782829847
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,6 +154,8 @@ MonoBehaviour:
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
   healEffect: {fileID: 2366968604266951032, guid: 478ea8116e85e3748bb5018f87d75025,
+    type: 3}
+  strengthenEffect: {fileID: 2366968604266951032, guid: 1842a813dc39dbd4fa6ef80efcbc1fab,
     type: 3}
   bufferClass: 0
 --- !u!65 &4299080251166266572

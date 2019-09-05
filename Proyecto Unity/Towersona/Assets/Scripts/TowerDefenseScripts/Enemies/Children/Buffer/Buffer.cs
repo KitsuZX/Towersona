@@ -60,6 +60,8 @@ public class Buffer : Enemy
 				speedBoost.ApplyEffect();
 				break;
 			case BufferClass.Damager:
+                DamageBufferStats damageBufferStats = (DamageBufferStats)stats;
+                target.Strengthen(damageBufferStats.damageBuff);
 				break;
 		}
 	}

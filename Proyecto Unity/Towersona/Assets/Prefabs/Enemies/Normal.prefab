@@ -63,6 +63,8 @@ MonoBehaviour:
     type: 3}
   healEffect: {fileID: 2366968604266951032, guid: 478ea8116e85e3748bb5018f87d75025,
     type: 3}
+  strengthenEffect: {fileID: 2366968604266951032, guid: 1842a813dc39dbd4fa6ef80efcbc1fab,
+    type: 3}
 --- !u!135 &7078195847227591090
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -83,26 +85,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 271552188047320592}
     m_Modifications:
-    - target: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
-      propertyPath: m_Name
-      value: Goomba
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -158,6 +140,10 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
+      propertyPath: m_Name
+      value: Goomba
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
