@@ -34,7 +34,7 @@ public class PlayerStats : MonoBehaviour
     public void LoseLive(int lives)
     {
         this.lives -= lives;
-        if (lives <= 0)
+        if (this.lives <= 0)
         {
             GameManager.Instance.GameOver();
         }

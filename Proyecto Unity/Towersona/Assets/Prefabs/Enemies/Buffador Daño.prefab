@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 1283513264675711092}
   - component: {fileID: 644347082393718513}
   - component: {fileID: 239448550738160010}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: "Buffador Da\xF1o"
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,6 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b1e05020356de7479d2a2875e839a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStats: {fileID: 11400000, guid: a847f5022e65f80499bec8216c3cf524, type: 2}
+  enemyStats: {fileID: 0}
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
+  bufferClass: 0

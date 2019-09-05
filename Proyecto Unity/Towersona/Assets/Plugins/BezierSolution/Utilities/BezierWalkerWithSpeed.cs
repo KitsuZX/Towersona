@@ -9,6 +9,9 @@ namespace BezierSolution
 
 		private Transform cachedTransform;
 
+		[Range(0f, 1f)]
+		public float offsetRange = 2f;
+
 		public BezierSpline spline;
 		public TravelMode travelMode;
 
@@ -35,9 +38,13 @@ namespace BezierSolution
 		private bool onPathCompletedCalledAt1 = false;
 		private bool onPathCompletedCalledAt0 = false;
 
+		private float offset;
+
 		void Awake()
 		{
 			cachedTransform = transform;
+
+			offset = Random.Range(-offsetRange, offsetRange);
 		}
 
 		void Update()
@@ -55,6 +62,8 @@ namespace BezierSolution
 			//	targetPos = spline.MoveAlongSpline( ref progress, targetSpeed * Time.deltaTime );
 
 			targetPos = spline.MoveAlongSpline( ref progress, targetSpeed * Time.deltaTime );
+
+			//targetPos.x += offset;
 
 			cachedTransform.position = targetPos;
 			//cachedTransform.position = Vector3.Lerp( cachedTransform.position, targetPos, movementLerpModifier * Time.deltaTime );

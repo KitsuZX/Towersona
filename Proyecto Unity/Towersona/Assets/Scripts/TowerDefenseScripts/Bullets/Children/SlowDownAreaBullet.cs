@@ -29,14 +29,13 @@ public class SlowDownAreaBullet : Shooting
 
 		foreach (Collider collider in colliders)
 		{
-			if (collider.tag == "Enemy")
+			if (collider.CompareTag("Enemy"))
 			{
 				Enemy e = collider.GetComponent<Enemy>();
 				if (e != null && e != firstTarget)
 				{
-					e.TakeDamage(stats.AttackStrength * dragonStats.currentAreaDamageReduction);					
+					e.TakeDamage(stats.AttackStrength * dragonStats.currentAreaDamageReduction);
 				}
-
 			}
 		}
 

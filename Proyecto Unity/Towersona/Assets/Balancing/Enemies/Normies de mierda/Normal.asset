@@ -17,7 +17,7 @@ MonoBehaviour:
   initialDamage: 1
   initialValue: 20
   speed: 2
-  lifes: -97.69138
+  lifes: 30
   damage: 1
   value: 20
   flies: 0

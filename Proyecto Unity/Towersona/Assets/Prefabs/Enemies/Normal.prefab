@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &679813733014617661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3979263291177043249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd526269e3c84c4ebe9a77673a600f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetRange: 1
 --- !u!1 &7178499796034649284
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +24,7 @@ GameObject:
   - component: {fileID: 271552188047320592}
   - component: {fileID: 7429453204315522524}
   - component: {fileID: 7078195847227591090}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Normal
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -48,6 +61,8 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 7ce5386a7b7eab442b29798b3cb3da72, type: 2}
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
+  healEffect: {fileID: 2366968604266951032, guid: 478ea8116e85e3748bb5018f87d75025,
+    type: 3}
 --- !u!135 &7078195847227591090
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -75,6 +90,18 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -134,6 +161,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
+--- !u!1 &3979263291177043249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 3979263291177141137}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3979263291177015569 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 04972c5138ab6e24481f5e3e5bc266d9,

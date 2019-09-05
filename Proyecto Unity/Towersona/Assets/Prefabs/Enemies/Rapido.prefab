@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 271552188047320592}
   - component: {fileID: 7429453204315522524}
   - component: {fileID: 589688630432452550}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rapido
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 0ece8126cce8a7240b518a0477b4dacb, type: 2}
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
+    type: 3}
+  healEffect: {fileID: 2366968604266951032, guid: 478ea8116e85e3748bb5018f87d75025,
     type: 3}
 --- !u!136 &589688630432452550
 CapsuleCollider:
