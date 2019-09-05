@@ -10,7 +10,17 @@ ModelImporter:
     2300000: //RootNode
     3300000: //RootNode
     4300000: lp
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cara
+    second: {fileID: 2100000, guid: 3c96d658f46bd7e48943938070a102a1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cuerpo
+    second: {fileID: 2100000, guid: 9a0f0faeb2cafdb46b724b4d9c70bcba, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
