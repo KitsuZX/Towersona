@@ -79,7 +79,7 @@ Material:
     - _Mode: 0
     - _OcclusionStrength: 1
     - _OutlineDot: 0.25
-    - _OutlineExtrusion: 0.15
+    - _OutlineExtrusion: 0.05
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1

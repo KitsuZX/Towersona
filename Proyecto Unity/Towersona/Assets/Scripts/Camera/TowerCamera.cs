@@ -4,23 +4,19 @@ using UnityEngine;
 
 public class TowerCamera : MonoBehaviour
 {	
-	[SerializeField] private LevelBounds levelBounds;
+	[SerializeField] private LevelBounds levelBounds = null;
 	private new Camera camera;
 
 	private void Awake()
 	{
 		camera = GetComponent<Camera>();
-	}
 
-	private void Start()
-	{		
 		Vector3 i = transform.position;
 		i.y = levelBounds.transform.position.y;
 
 		float d = Vector3.Distance(transform.position, i);
 
 		float dist = Vector3.Distance(new Vector3(i.x, 0, 0), new Vector3(levelBounds.TopRightBound.x, 0, 0));
-
 
 		float HFOV = 2 * Mathf.Atan(Mathf.Tan(Mathf.Deg2Rad * (Camera.main.fieldOfView * 0.5f)) * Camera.main.aspect);
 		

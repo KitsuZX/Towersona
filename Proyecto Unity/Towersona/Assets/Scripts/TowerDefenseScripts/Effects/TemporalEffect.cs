@@ -38,8 +38,8 @@ public abstract class TemporalEffect
 				return new SlowDown();			
 			case TemporalEffectType.Burn:
 				return new Burn();
-			case TemporalEffectType.Buff:
-				return new Buff();			
+			case TemporalEffectType.SpeedBoost:
+				return new SpeedBoost();			
 			default:
 				Debug.LogError("Not a a valid effect type");
 				return null;
@@ -57,6 +57,6 @@ public abstract class TemporalEffect
 
 public enum TemporalEffectType
 {
-	SlowDown, Burn, Buff
+	SlowDown, Burn, SpeedBoost
 }
 

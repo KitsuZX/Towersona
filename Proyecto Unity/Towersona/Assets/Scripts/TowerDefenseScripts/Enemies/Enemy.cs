@@ -9,15 +9,28 @@ public class Enemy : MonoBehaviour
 	public float Speed {
 		get
 		{
-			if(!temporalEffects.ContainsKey(TemporalEffectType.SlowDown))
+			if(!temporalEffects.ContainsKey(TemporalEffectType.SlowDown) && !temporalEffects.ContainsKey(TemporalEffectType.SpeedBoost))
 			{
 				return enemyStats.speed;
-			}						
+			}
 
-			SlowDown slowDown = (SlowDown)temporalEffects[TemporalEffectType.SlowDown];
-			float totalSlowDownAmount = slowDown.slowDownAmount;
+			float totalSlowDownAmount = 0;
+			float totalSpeedBoostAmount = 1;
 
-			return enemyStats.speed * (1 - totalSlowDownAmount);
+
+			if (temporalEffects.ContainsKey(TemporalEffectType.SlowDown)){
+				SlowDown slowDown = (SlowDown)temporalEffects[TemporalEffectType.SlowDown];
+				totalSlowDownAmount = slowDown.slowDownAmount;
+			}
+
+			if (temporalEffects.ContainsKey(TemporalEffectType.SpeedBoost))
+			{
+				SpeedBoost speedBoost = (SpeedBoost)temporalEffects[TemporalEffectType.SpeedBoost];
+				totalSpeedBoostAmount = speedBoost.speedBoostAmount;
+			}
+
+
+			return enemyStats.speed * (1 - totalSlowDownAmount) * (totalSpeedBoostAmount);
 		}
 	}
     public bool Flies {
@@ -25,22 +38,21 @@ public class Enemy : MonoBehaviour
         {
             return enemyStats.flies;
         }
-    }
-	
+    }	
 
-	[SerializeField] protected EnemyStats enemyStats = null;
-    [SerializeField] private GameObject deathEffect = null;	
-	private BezierWalkerWithSpeed bezierWalkerWithSpeed;	
+	[SerializeField] public EnemyStats enemyStats = null;
+    [SerializeField] private GameObject deathEffect = null;
+	[SerializeField] private GameObject healEffect = null;
+    [SerializeField] private GameObject strengthenEffect = null;
+    private BezierWalkerWithSpeed bezierWalkerWithSpeed;	
 	private Dictionary<TemporalEffectType, TemporalEffect> temporalEffects = new Dictionary<TemporalEffectType, TemporalEffect>();
 	private MeshRenderer[] meshRenderers;
 	private Dictionary<Material, Color> originalColors = new Dictionary<Material, Color>();
 	#endregion
 
 	private void Awake()
-	{
-		enemyStats.Initialize();
-		meshRenderers = GetComponentsInChildren<MeshRenderer>();
-
+	{	
+		meshRenderers = GetComponentsInChildren<MeshRenderer>();		
 
 		foreach (MeshRenderer meshRenderer in meshRenderers)
 		{
@@ -134,6 +146,24 @@ public class Enemy : MonoBehaviour
 	{
 		return temporalEffects[effectType];
 	}
+
+	public void Heal(float amount)
+	{
+        if (enemyStats.lifes < enemyStats.initialLifes)
+        {
+            GameObject healEffectObject = Instantiate(healEffect, transform.position, Quaternion.identity);
+            enemyStats.lifes += amount;
+            Mathf.Clamp(enemyStats.lifes, 0, enemyStats.initialLifes);
+            Destroy(healEffectObject, 2f);
+        }
+	}
+
+    public void Strengthen(int amount)
+    {
+        GameObject strengthenEffectObject = Instantiate(strengthenEffect, transform.position, Quaternion.identity);
+        enemyStats.damage += amount;       
+        Destroy(strengthenEffectObject, 2f);
+    }
 	#endregion
 	
 	#region Tints	

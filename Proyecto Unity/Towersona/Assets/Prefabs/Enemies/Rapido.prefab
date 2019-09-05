@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2112665674463139138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085796897929403207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dd526269e3c84c4ebe9a77673a600f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetRange: 1
 --- !u!1 &7178499796034649284
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +24,7 @@ GameObject:
   - component: {fileID: 271552188047320592}
   - component: {fileID: 7429453204315522524}
   - component: {fileID: 589688630432452550}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Rapido
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -48,6 +61,10 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 0ece8126cce8a7240b518a0477b4dacb, type: 2}
   deathEffect: {fileID: 7732764539490996170, guid: ace66fee91e4c5545b2ce05f7dfe4397,
     type: 3}
+  healEffect: {fileID: 2366968604266951032, guid: 478ea8116e85e3748bb5018f87d75025,
+    type: 3}
+  strengthenEffect: {fileID: 2366968604266951032, guid: 1842a813dc39dbd4fa6ef80efcbc1fab,
+    type: 3}
 --- !u!136 &589688630432452550
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -69,14 +86,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 271552188047320592}
     m_Modifications:
-    - target: {fileID: 100000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb, type: 3}
-      propertyPath: m_Name
-      value: Bullet_Bill
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -133,8 +142,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.04
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb, type: 3}
+      propertyPath: m_Name
+      value: Bullet_Bill
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb, type: 3}
+--- !u!1 &1085796897929403207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb,
+    type: 3}
+  m_PrefabInstance: {fileID: 1085796897929305575}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1085796897929168743 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 068ec0c0a178c4b45aa6fcae9728dfeb,

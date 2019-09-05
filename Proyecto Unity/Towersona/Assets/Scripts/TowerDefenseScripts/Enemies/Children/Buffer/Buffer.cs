@@ -4,48 +4,79 @@ using UnityEngine;
 
 public class Buffer : Enemy
 {    
-    /*private BufferStats bufferStats;
+	[SerializeField] private BufferClass bufferClass;
 
-    private float countDown = 0f;
+	private BufferStats stats;
+	private float countdown;
 
-    private void Start()
-    {
-		bufferStats = (BufferStats)stats;
-        countDown = bufferStats.timeBetweenBuffs;
-    }
+	private void Awake()
+	{
+		stats = (BufferStats)enemyStats;
+		countdown = stats.timeBetweenBuffs;
+	}
 
-    void Update()
-    {
-        base.Update();
+	protected override void Update()
+	{
+		base.Update();
 
-        if(countDown <= 0)
-        {
-            //Lanzar buff
-            countDown = bufferStats.timeBetweenBuffs;
-        }
+		if(countdown <= 0)
+		{
+			ReleaseBuff();
+			countdown = stats.timeBetweenBuffs;
+		}
 
-        countDown -= Time.deltaTime;
-    }
+		countdown -= Time.deltaTime;
 
-    void BuffEnemies()
-    {
-       Collider[] colliders = Physics.OverlapSphere(transform.position, bufferStats.range);
+	}
 
-        foreach (Collider collider in colliders)
-        {
-            if(collider.tag == "Enemy")
-            {
-                collider.GetComponent<Enemy>().Buff(bufferStats);
-            }
-        }
-    }
+	private void ReleaseBuff()
+	{		
+		Collider[] colliders = Physics.OverlapSphere(transform.position, stats.range);
 
-    private void OnDrawGizmosSelected()
-    {
+		foreach (Collider collider in colliders)
+		{
+			if (collider.CompareTag("Enemy")) { 
+				Enemy e = collider.GetComponent<Enemy>();
+				if (e != null && e != this)
+				{
+					ApplyBuff(e);
+				}
+			}
+		}
+	}
+
+	private void ApplyBuff(Enemy target)
+	{
+		switch (bufferClass)
+		{
+			case BufferClass.Healer:
+				HealingBufferStats healingBufferStats = (HealingBufferStats)stats;
+				target.Heal(healingBufferStats.healingBuff);			
+				break;
+			case BufferClass.Speeder:
+				SpeedBufferStats speedBufferStats = (SpeedBufferStats)stats;
+				SpeedBoost speedBoost = (SpeedBoost)TemporalEffect.CreateEffect(TemporalEffectType.SpeedBoost);
+				speedBoost.Initialize(speedBufferStats.speedBuff, stats.buffDuration, target.gameObject);
+				speedBoost.ApplyEffect();
+				break;
+			case BufferClass.Damager:
+                DamageBufferStats damageBufferStats = (DamageBufferStats)stats;
+                target.Strengthen(damageBufferStats.damageBuff);
+				break;
+		}
+	}
+
+	private void OnDrawGizmos()
+	{
 		if (Application.isPlaying)
 		{
-			Gizmos.color = Color.blue;
-			Gizmos.DrawWireSphere(transform.position, bufferStats.range);
+			Gizmos.color = Color.black;
+			Gizmos.DrawWireSphere(transform.position, stats.range);
 		}
-    }*/
+	}
+
+	enum BufferClass
+	{
+		Healer, Speeder, Damager
+	}
 }

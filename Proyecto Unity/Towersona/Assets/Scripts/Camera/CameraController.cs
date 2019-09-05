@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
 
 	public float zoomSpeed = 0.1f;
 	public float moveSpeedMinZoom, moveSpeedMaxZoom;
+	public float minFOV, maxFOV;
 
 	float zoom = 1f;
 
@@ -39,6 +40,11 @@ public class CameraController : MonoBehaviour
 		transform.position = new Vector3(x, y, z);
 	}
 
+	private void Start()
+	{
+		minFOV = Camera.main.fieldOfView;
+	}
+
 	void Update()
 	{
 		float zoomDelta = 0;
@@ -47,7 +53,7 @@ public class CameraController : MonoBehaviour
 		zoomDelta = Input.GetAxis("Mouse ScrollWheel");
 		if (zoomDelta != 0f)
 		{
-			AdjustZoom(zoomDelta);
+			AdjustZoom(-zoomDelta);
 		}
 
 		float xDelta = Input.GetAxis("Horizontal");
@@ -104,7 +110,10 @@ public class CameraController : MonoBehaviour
 		swivel.localRotation = Quaternion.Euler(angle, 0f, 0f);
 
 		float distance = Mathf.Lerp(stickMinZoom, stickMaxZoom, zoom);
-		stick.localPosition = new Vector3(0f, angle * 0.75f, distance);		
+		stick.localPosition = new Vector3(0f, angle * 0.75f, distance);
+
+		float FOV = Mathf.Lerp(maxFOV, minFOV, zoom);
+		Camera.main.fieldOfView = FOV;
 
 		RecalculateBounds();
 	}

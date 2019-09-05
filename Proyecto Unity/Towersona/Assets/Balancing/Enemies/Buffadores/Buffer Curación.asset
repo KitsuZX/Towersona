@@ -9,15 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf4b8b6e23445ca49a7d20236c91dce8, type: 3}
-  m_Name: Normal
+  m_Script: {fileID: 11500000, guid: 15fd2fade0f3a3b49a0f0695e000b9ef, type: 3}
+  m_Name: "Buffer Curaci\xF3n"
   m_EditorClassIdentifier: 
   initialSpeed: 2
   initialLifes: 30
   initialDamage: 1
   initialValue: 20
   speed: 2
-  lifes: -97.69138
+  lifes: 30
   damage: 1
   value: 20
   flies: 0
+  timeBetweenBuffs: 2
+  buffDuration: 3
+  range: 5
+  healingBuff: 20

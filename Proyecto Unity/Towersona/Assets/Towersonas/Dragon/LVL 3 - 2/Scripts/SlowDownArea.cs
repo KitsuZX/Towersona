@@ -12,7 +12,7 @@ public class SlowDownArea : MonoBehaviour
 
 		foreach (Collider collider in colliders)
 		{
-			if (collider.tag == "Enemy")
+			if (collider.CompareTag("Enemy"))
 			{
 				Enemy e = collider.GetComponent<Enemy>();
 				if (e != null)

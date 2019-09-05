@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class LevelBounds : MonoBehaviour
 {
-	[SerializeField] private Transform bottomLeftBorder;
-	[SerializeField] private Transform topRightBorder;
+	[SerializeField] private Transform bottomLeftBorder = null;
+	[SerializeField] private Transform topRightBorder = null;
 
-	[SerializeField] private Transform bottomLeftBound;
-	[SerializeField] private Transform topRightBound;
+	[SerializeField] private Transform bottomLeftBound = null;
+	[SerializeField] private Transform topRightBound = null;
 
 	[HideInInspector] public Vector3 BottomLeftBorder { get { return bottomLeftBorder.position; } }
 	[HideInInspector] public Vector3 TopRightBorder { get { return topRightBorder.position; } }
