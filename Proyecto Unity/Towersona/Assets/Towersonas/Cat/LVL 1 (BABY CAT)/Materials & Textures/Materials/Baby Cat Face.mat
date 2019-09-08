@@ -47,6 +47,10 @@ Material:
         m_Texture: {fileID: 2800000, guid: cd20ebfb5eb15444098b5268a2db4d82, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _Mask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
         m_Texture: {fileID: 2800000, guid: 289d81fe3384cf64185e0b676a7bc042, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -65,6 +69,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
+    - _CelShadingLevels: 2
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DiffuseThreshold: 0.1

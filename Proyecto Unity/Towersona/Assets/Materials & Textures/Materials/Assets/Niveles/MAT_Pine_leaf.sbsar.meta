@@ -4,10 +4,6 @@ ScriptedImporter:
   fileIDToRecycleName:
     2100000: Pine_leaf
     2800000: Pine_leaf - baseColor
-    2800002: Pine_leaf - normal
-    2800004: Pine_leaf - metallic
-    2800006: Pine_leaf - height
-    2800008: Pine_leaf - ambientOcclusion
     11400000: sbsar
     11400002: graph0
   externalObjects: {}
@@ -23,16 +19,15 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://Pine_leaf\" label=\"\" >\n </sbspreset>\n"
-    shaderName: Standard
-    outputNames: baseColor,normal,metallic,height,ambientOcclusion
+    shaderName: Custom/ToonShader
+    outputNames: baseColor
     materialProperties:
-      shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-      shaderKeywords: _ALPHATEST_ON _MAINTEX _METALLICGLOSSMAP _NORMALMAP _OCCLUSIONMAP
-        _PARALLAXMAP
+      shader: {fileID: 4800000, guid: 9644eb89490d6ec49b87f3e1f2f742fa, type: 3}
+      shaderKeywords: _MAINTEX
       lightmapFlags: 4
       texEnvs:
       - name: _BumpMap
-        texture: {fileID: 2800002, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
+        texture: {instanceID: 0}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _DetailAlbedoMap
@@ -52,26 +47,52 @@ ScriptedImporter:
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _MainTex
-        texture: {fileID: 2800000, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
+        texture: {fileID: 2800000, guid: 5a5fc437e13a4614f8782b69f9fb33bd, type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _Mask
+        texture: {fileID: 2800000, guid: 1207065bed2ccf141bd86ca36e970afb, type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _MetallicGlossMap
-        texture: {fileID: 2800004, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
+        texture: {instanceID: 0}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _OcclusionMap
-        texture: {fileID: 2800008, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _OpacityMask
+        texture: {fileID: 2800000, guid: 1207065bed2ccf141bd86ca36e970afb, type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _ParallaxMap
-        texture: {fileID: 2800006, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _Ramp
+        texture: {fileID: 2800000, guid: 0eda6b141ae0099489bffec77e81ac17, type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _RampTex
+        texture: {fileID: 2800000, guid: 0eda6b141ae0099489bffec77e81ac17, type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _Stencil
+        texture: {fileID: 2800000, guid: 1207065bed2ccf141bd86ca36e970afb, type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _ToonShade
+        texture: {instanceID: 0}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       floats:
       - name: _BumpScale
         float: 1
+      - name: _CelShadingLevels
+        float: 2
       - name: _Cutoff
-        float: 0.255
+        float: 0.549
       - name: _DetailNormalMapScale
         float: 1
       - name: _DstBlend
@@ -90,6 +111,10 @@ ScriptedImporter:
         float: 1
       - name: _Parallax
         float: 0.08
+      - name: _RimAmount
+        float: 0.716
+      - name: _RimThreshold
+        float: 0.1
       - name: _SmoothnessTextureChannel
         float: 0
       - name: _SpecularHighlights
@@ -101,10 +126,16 @@ ScriptedImporter:
       - name: _ZWrite
         float: 1
       colors:
+      - name: _AmbientColor
+        color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
       - name: _Color
-        color: {r: 0.9598196, g: 1, b: 0.47843134, a: 1}
+        color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
       - name: _EmissionColor
         color: {r: 0, g: 0, b: 0, a: 1}
+      - name: _RimColor
+        color: {r: 1, g: 1, b: 1, a: 1}
+      - name: _SpecularColor
+        color: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     texturePackingList:
     - outputName: baseColor
       alphaSource: baseColor
@@ -113,7 +144,7 @@ ScriptedImporter:
     - outputName: roughness
       alphaSource: roughness
     - outputName: metallic
-      alphaSource: smoothness
+      alphaSource: metallic
     - outputName: height
       alphaSource: height
     - outputName: ambientOcclusion
@@ -167,7 +198,3 @@ ScriptedImporter:
     material: {fileID: 2100000, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
     generatedTextures:
     - {fileID: 2800000, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
-    - {fileID: 2800002, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
-    - {fileID: 2800004, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
-    - {fileID: 2800006, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
-    - {fileID: 2800008, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
