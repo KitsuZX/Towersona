@@ -110,7 +110,7 @@ ScriptedImporter:
         float: 1
       colors:
       - name: _Color
-        color: {r: 0.49056602, g: 0.45904973, b: 0.27999285, a: 1}
+        color: {r: 1, g: 0.8930818, b: 0.2783019, a: 1}
       - name: _EmissionColor
         color: {r: 0, g: 0, b: 0, a: 1}
     texturePackingList:
