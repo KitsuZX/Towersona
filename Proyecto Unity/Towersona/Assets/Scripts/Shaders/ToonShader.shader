@@ -41,7 +41,7 @@
 
 	struct Input {
 		float2 uv_MainTex : TEXCOORD0;
-		float2 uv_OpacityMask : TEXCOORD0;
+		float2 uv_OpacityMask : TEXCOORD1;
 	};
 
 	void surf(Input IN, inout SurfaceOutput o) {

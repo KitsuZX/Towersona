@@ -63,15 +63,23 @@ ScriptedImporter:
         texture: {fileID: 2800008, guid: 813baf92d460702468aaaf034572658a, type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
+      - name: _OpacityMask
+        texture: {fileID: 2800000, guid: 70e6336e2f56dc6439648940c2138805, type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
       - name: _ParallaxMap
         texture: {fileID: 2800006, guid: 813baf92d460702468aaaf034572658a, type: 3}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _Ramp
+        texture: {fileID: 2800000, guid: 0eda6b141ae0099489bffec77e81ac17, type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       floats:
       - name: _BumpScale
         float: 1
       - name: _Cutoff
-        float: 0.074
+        float: 0.323
       - name: _DetailNormalMapScale
         float: 1
       - name: _DstBlend
@@ -102,7 +110,7 @@ ScriptedImporter:
         float: 1
       colors:
       - name: _Color
-        color: {r: 0.7830189, g: 0.65285254, b: 0.32133323, a: 1}
+        color: {r: 0.49056602, g: 0.45904973, b: 0.27999285, a: 1}
       - name: _EmissionColor
         color: {r: 0, g: 0, b: 0, a: 1}
     texturePackingList:

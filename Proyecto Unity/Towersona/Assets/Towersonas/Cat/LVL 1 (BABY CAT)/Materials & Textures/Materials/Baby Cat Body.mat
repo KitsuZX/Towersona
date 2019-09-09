@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Baby Cat Body
-  m_Shader: {fileID: 4800000, guid: 9644eb89490d6ec49b87f3e1f2f742fa, type: 3}
+  m_Shader: {fileID: 4800000, guid: a380a8fd4763eff4f9158c0d43dba482, type: 3}
   m_ShaderKeywords: _EMISSION _METALLICGLOSSMAP _NORMALMAP _PARALLAXMAP
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
@@ -59,8 +59,16 @@ Material:
         m_Texture: {fileID: 2800000, guid: fbb3f17aaec9fd244a4fcfa6210663cb, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _OpacityMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 2800000, guid: 8e343513cdb3479418e5954d84e4dde4, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RampTex:
@@ -84,7 +92,7 @@ Material:
     - _OutlineExtrusion: 0.02
     - _OutlineThickness: 0.1
     - _Parallax: 0.08
-    - _RimAmount: 0.792
+    - _RimAmount: 0.842
     - _RimThreshold: 0
     - _Shininess: 1
     - _SmoothnessTextureChannel: 0
@@ -94,7 +102,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _AmbientColor: {r: 0.32156864, g: 0.15686275, b: 0.11372549, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
     - _EmissionColor: {r: 0.25, g: 0.25, b: 0.25, a: 1}
     - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
