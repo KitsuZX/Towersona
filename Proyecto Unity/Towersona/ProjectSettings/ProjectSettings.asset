@@ -622,6 +622,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   scriptingDefineSymbols:
     1: SUBSTANCE_PLUGIN_ENABLED
+    7: SUBSTANCE_PLUGIN_ENABLED
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}

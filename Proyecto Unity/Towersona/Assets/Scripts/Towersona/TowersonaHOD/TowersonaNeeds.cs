@@ -30,7 +30,8 @@ public class TowersonaNeeds : MonoBehaviour
 
     private float hungerDecayPerSecond = 0.05f;
     private float loveDecayPerSecond = 0.05f;
-    private const int AMOUNT_OF_NEEDS = 3;  
+    private const int AMOUNT_OF_NEEDS = 3;
+	private TowersonaHODAnimation towersonaAnimation;
 
     //Need levels
     private float hungerLevel;
@@ -44,7 +45,7 @@ public class TowersonaNeeds : MonoBehaviour
     {
         shitNeed = GetComponent<ShitNeed>();
         stats = GetComponentInParent<TowersonaHOD>().towersona.stats;
-    
+		towersonaAnimation = GetComponent<TowersonaHODAnimation>();
 
         AssignStats();
 
@@ -170,14 +171,25 @@ public class TowersonaNeeds : MonoBehaviour
 
         if (notifiedNeed == NeedType.None) 
         {
-            if (HappinessLevel > 1) emotion = Emotion.Happy;
-            else emotion = Emotion.Fine;
+			if (HappinessLevel > 1)
+			{
+				emotion = Emotion.Happy;
+			}
+			else
+			{
+				emotion = Emotion.Fine;
+				towersonaAnimation.SetLoneliness(false);
+			}
         }
         else
         {
-            if (notifiedNeed == NeedType.Hunger) emotion = Emotion.Hungry;
-            else if (notifiedNeed == NeedType.Love) emotion = Emotion.Missing;
-            else if (notifiedNeed == NeedType.Shit) emotion = Emotion.Shit;
+			if (notifiedNeed == NeedType.Hunger) emotion = Emotion.Hungry;
+			else if (notifiedNeed == NeedType.Love)
+			{
+				emotion = Emotion.Missing;
+				towersonaAnimation.SetLoneliness(true);
+			}
+			else if (notifiedNeed == NeedType.Shit) emotion = Emotion.Shit;
         }       
     }
     public enum NeedType

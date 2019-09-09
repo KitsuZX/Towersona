@@ -7,19 +7,33 @@ public class TowersonaHODAnimation : MonoBehaviour
 {
 	public LookAwayFromTouch lookAway;
 
-	[SerializeField] private LookAt lookAt = null; 
-	
+	[SerializeField] private LookAt lookAt = null;
+	[SerializeField] private Animator bodyAnimator = null;
+	[SerializeField] private TowersonaLOD towersonaLOD = null;
+
     private bool isLookingAtFood;
+	private Animator lodBodyAnimator;
+
+	private void Start()
+	{
+		lodBodyAnimator = towersonaLOD.GetComponent<TowersonaLODAnimation>().bodyAnimator;
+	}
+
+	public void Eat()
+	{
+
+	}
   
-    public void Idle()
-    {
-		
-    }
+    public void SetLoneliness(bool loneliness)
+	{
+		bodyAnimator.SetBool("isLonely", loneliness);
+		lodBodyAnimator.SetBool("isLonely", loneliness);
+	}
 
-    public void Eat()
-    {
-
-    }
+	public void TakeAShit()
+	{
+		bodyAnimator.SetTrigger("takeADump");
+	}
 
     public void CaressStart()
     {
@@ -30,7 +44,6 @@ public class TowersonaHODAnimation : MonoBehaviour
     {
 		if (lookAway) lookAway.isBeingCaressed = false;
 	}
-
     
     public void SetIsLookingAtFood(bool _isLookingAtFood)
     {

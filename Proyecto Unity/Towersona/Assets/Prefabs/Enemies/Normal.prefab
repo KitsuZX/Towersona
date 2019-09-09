@@ -85,6 +85,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 271552188047320592}
     m_Modifications:
+    - target: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
+      propertyPath: m_Name
+      value: Goomba
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -140,10 +144,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}
-      propertyPath: m_Name
-      value: Goomba
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 04972c5138ab6e24481f5e3e5bc266d9, type: 3}

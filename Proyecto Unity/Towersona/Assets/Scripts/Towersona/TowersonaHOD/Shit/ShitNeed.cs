@@ -7,6 +7,9 @@ public class ShitNeed : MonoBehaviour
 {
     public UnityEvent OnTakenAShit;
 
+	[Range(0, 5)]
+	public float timeOffsetToTakeAShit = 1f;
+
     [Header("Shitting")] 
     private float shittingInterval = 20f;
     [SerializeField]
@@ -17,6 +20,7 @@ public class ShitNeed : MonoBehaviour
 
     private int maxShitCount = 4;
     private float happinessImpactPerShit = 0.4f;
+	private TowersonaHODAnimation towersonaAnimation;
 
     public float Level
     {
@@ -33,13 +37,15 @@ public class ShitNeed : MonoBehaviour
 
     private void Awake()
     {
-        shits = new List<Shit>();
+        shits = new List<Shit>();		
     }
 
     private void Start()
     {     
-        stats = GetComponentInParent<TowersonaHOD>().towersona.stats;
+        stats = GetComponentInParent<TowersonaHOD>().towersona.stats;		
         AssignStats();
+
+		towersonaAnimation = GetComponent<TowersonaHODAnimation>();
     }
 
     private void AssignStats()
@@ -70,24 +76,22 @@ public class ShitNeed : MonoBehaviour
     private void Update()
     {
         timeSinceLastShit += Time.deltaTime;
-        if (timeSinceLastShit > shittingInterval) TakeAShit();
+		if (timeSinceLastShit > shittingInterval)
+		{
+			TakeAShit();
+		}
     }
 
     [Button]
     private void TakeAShit()
     {
-        PurgeShitList();
+		towersonaAnimation.TakeAShit();
+		PurgeShitList();
         if (shits.Count >= maxShitCount) return;
 
-        Vector3 position = shitSpawnPositions[shits.Count].position;
+		Invoke("Shit", timeOffsetToTakeAShit);
 
-        Shit newShit = Instantiate(shitPrefab, position, Random.rotationUniform);
-        newShit.origin = this;
-        newShit.transform.SetParent(transform, true);
-        shits.Add(newShit);
         timeSinceLastShit = 0;
-
-        OnTakenAShit.Invoke();
     }
 
     private void PurgeShitList()
@@ -96,6 +100,17 @@ public class ShitNeed : MonoBehaviour
         {
             if (shits[i] == null) shits.RemoveAt(i);
         }
-    }
+    }	
+	
+	private void Shit() {
+		Vector3 position = shitSpawnPositions[shits.Count].position;
+
+		Shit newShit = Instantiate(shitPrefab, position, Random.rotationUniform);
+		newShit.origin = this;
+		newShit.transform.SetParent(transform, true);
+		shits.Add(newShit);
+
+		OnTakenAShit.Invoke();
+	}
 }
 

@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towersona: {fileID: 0}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 6175043574671929610}
   pattern: {fileID: 0}
   turnSpeed: 10
   partsToRotate:
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d04cfbb661008d44b11f251c5affaef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 3537384586690062562}
+  bodyAnimator: {fileID: 0}
 --- !u!114 &9202062087551758737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,8 +110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b539cb89e03baf841ad3ae7d8ec68ccd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notificationPrefab: {fileID: 1478532847836396072, guid: 95e5d2e2800604e4589f70986433a207,
-    type: 3}
 --- !u!136 &4655889943347623656
 CapsuleCollider:
   m_ObjectHideFlags: 0

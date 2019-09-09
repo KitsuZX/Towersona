@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TowersonaLODAnimation : MonoBehaviour
 {
-    [SerializeField]
-    private Animator animator;
+  
+    public Animator bodyAnimator;
 
     public void Shoot()
     {
@@ -16,7 +16,4 @@ public class TowersonaLODAnimation : MonoBehaviour
     {
        
     }
-
-
-
 }

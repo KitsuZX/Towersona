@@ -5,7 +5,7 @@ using UnityEngine;
 public class TowersonaLOD : MonoBehaviour
 {
     [HideInInspector] public Towersona towersona;
-    [HideInInspector] public Transform firePoint;
+    public Transform firePoint;
     [HideInInspector] public AttackPattern pattern;
 
     [Header("Transform parameters")]
@@ -17,9 +17,7 @@ public class TowersonaLOD : MonoBehaviour
     private void Awake()
     {
         pattern = GetComponent<AttackPattern>();
-        meshFilter = GetComponentInChildren<MeshFilter>();
-
-        firePoint = transform.GetChild(0).Find("FirePoint");                  
+        meshFilter = GetComponentInChildren<MeshFilter>();        
     }
 
     /// <summary>
