@@ -1,5 +1,6 @@
 ﻿using BezierSolution;
 using UnityEngine;
+using UnityEngine.Events;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -44,7 +45,9 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject deathEffect = null;
 	[SerializeField] private GameObject healEffect = null;
     [SerializeField] private GameObject strengthenEffect = null;
-    private BezierWalkerWithSpeed bezierWalkerWithSpeed;	
+	[SerializeField] private UnityEvent OnDamageTaken;
+
+	private BezierWalkerWithSpeed bezierWalkerWithSpeed;	
 	private Dictionary<TemporalEffectType, TemporalEffect> temporalEffects = new Dictionary<TemporalEffectType, TemporalEffect>();
 	private MeshRenderer[] meshRenderers;
 	private Dictionary<Material, Color> originalColors = new Dictionary<Material, Color>();
@@ -107,7 +110,8 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount) {
         enemyStats.lifes -= amount;
-        if(enemyStats.lifes <= 0)
+		OnDamageTaken.Invoke();
+		if (enemyStats.lifes <= 0)
         {
             KillEnemy();
         }
