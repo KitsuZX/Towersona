@@ -81,7 +81,7 @@ public class Towersona : MonoBehaviour
 
     private TowersonaLOD SpawnTowersonaLOD(Transform parent)
     {
-        GameObject towersonaObject = Instantiate(towersonaLODPrefabs[(int)towersonaLevel], place.transform.position, Quaternion.Euler(-17f, 180f, 0f));
+        GameObject towersonaObject = Instantiate(towersonaLODPrefabs[(int)towersonaLevel], place.buildingSpot.position, Quaternion.Euler(-17f, 180f, 0f));
         towersonaObject.transform.SetParent(parent);
         towersonaObject.name = gameObject.name + " LOD";
 

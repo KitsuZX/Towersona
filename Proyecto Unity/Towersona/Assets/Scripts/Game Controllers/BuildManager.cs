@@ -149,7 +149,6 @@ public class BuildManager : MonoBehaviour
 
 	public void ShowBuyMenu(BuildingPlace place)
 	{
-		//TODO: Cuando se vende una towersona, ya no se puede construir en ese sitio. El problema está en esta comprobacíón.
 		if (buildingPlaceSelected == place)
 		{
 			return;
@@ -205,7 +204,8 @@ public class BuildManager : MonoBehaviour
 		towersonaSelected.place.hasTower = false;
         towersonaSelected.Sell();
         towersonas.Remove(towersonaSelected);
-        DeselectTowersona();
+		buildingPlaceSelected = null;
+		DeselectTowersona();
         GameManager.Instance.ActivateEmptyCamera();                               
     }
 
