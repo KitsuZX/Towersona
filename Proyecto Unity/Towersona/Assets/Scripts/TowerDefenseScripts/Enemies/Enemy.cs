@@ -39,14 +39,16 @@ public class Enemy : MonoBehaviour
         {
             return enemyStats.flies;
         }
-    }	
+    }
+
+    public Transform modelTransform;
 
 	[SerializeField] public EnemyStats enemyStats = null;
     [SerializeField] private GameObject deathEffect = null;
 	[SerializeField] private GameObject healEffect = null;
     [SerializeField] private GameObject strengthenEffect = null;
 	[SerializeField] private UnityEvent OnDamageTaken = null;
-
+    
 	[HideInInspector] public float speed;
 	[HideInInspector] public float lifes;
 	[HideInInspector] public int damage;
@@ -62,6 +64,7 @@ public class Enemy : MonoBehaviour
 	private void Awake()
 	{	
 		meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        modelTransform = transform.GetChild(0);
 
 		speed = enemyStats.initialSpeed;
 		lifes = enemyStats.initialLifes;

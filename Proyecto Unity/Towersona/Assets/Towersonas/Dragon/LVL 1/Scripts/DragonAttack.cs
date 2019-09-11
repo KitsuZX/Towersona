@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BezierSolution;
+using System.Linq;
 
 public class DragonAttack : AttackPattern
 {
@@ -58,33 +60,87 @@ public class DragonAttack : AttackPattern
 		if (bullet != null) bullet.Seek(target);
 	}
 
-	public override void UpdateTarget()
-	{
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-		float shortestDistance = Mathf.Infinity;
-		GameObject nearestEnemy = null;
+    public override void UpdateTarget()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, currentAttackRange);
+        List<BezierWalkerWithSpeed> enemiesInRange = new List<BezierWalkerWithSpeed>();
+        List<float> progresses = new List<float>();
 
-		foreach (GameObject enemy in enemies)
-		{
-			float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-			if (distanceToEnemy < shortestDistance)
-			{
-				shortestDistance = distanceToEnemy;
-				nearestEnemy = enemy;
-			}
-		}
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.CompareTag("Enemy"))
+            {
+                BezierWalkerWithSpeed walker = collider.GetComponent<BezierWalkerWithSpeed>();
+                enemiesInRange.Add(walker);
+                progresses.Add(walker.progress);
+            }
+        }
 
-		if (nearestEnemy != null && shortestDistance <= currentAttackRange)
-		{
-			target = nearestEnemy.transform;
-		}
-		else
-		{
-			target = null;
-		}
-	}
+        if (enemiesInRange.Count <= 0)
+        {
+            target = null;
+            return;
+        }
 
-	private void OnDrawGizmos()
+        switch (DebuggingOptions.Instance.priorizationOption)
+        {
+            case PriorizationOption.First:
+                float greatestProgress = progresses.Max();
+
+                foreach (BezierWalkerWithSpeed enemy in enemiesInRange)
+                {
+                    if (enemy.progress == greatestProgress)
+                    {
+                        target = enemy.transform;
+                        return;
+                    }
+                }
+
+                break;
+            case PriorizationOption.Closer:
+                float shortestDistance = Mathf.Infinity;
+                BezierWalkerWithSpeed nearestEnemy = null;
+
+                foreach (BezierWalkerWithSpeed enemy in enemiesInRange)
+                {
+                    float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                    if (distanceToEnemy < shortestDistance)
+                    {
+                        shortestDistance = distanceToEnemy;
+                        nearestEnemy = enemy;
+                    }
+                }
+
+                if (nearestEnemy != null && shortestDistance <= currentAttackRange)
+                {
+                    target = nearestEnemy.transform;
+                }
+                else
+                {
+                    target = null;
+                }
+
+                break;
+            case PriorizationOption.Last:
+                float lowestProgress = progresses.Min();
+
+                foreach (BezierWalkerWithSpeed enemy in enemiesInRange)
+                {
+                    if (enemy.progress == lowestProgress)
+                    {
+                        target = enemy.transform;
+                        return;
+                    }
+                }
+                break;
+            case PriorizationOption.Random:
+                int index = Random.Range(0, enemiesInRange.Count);
+                target = enemiesInRange[index].transform;
+                break;
+        }
+    }
+
+    private void OnDrawGizmos()
 	{
 		if (Application.isPlaying)
 		{

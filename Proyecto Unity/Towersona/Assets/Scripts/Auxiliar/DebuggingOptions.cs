@@ -8,6 +8,7 @@ public class DebuggingOptions : MonoBehaviour
 
     public bool spawnEnemies;
     public bool useMoney;
+    public PriorizationOption priorizationOption;
 
     private void Awake()
     {
@@ -15,3 +16,5 @@ public class DebuggingOptions : MonoBehaviour
         else Destroy(this);
     }
 }
+
+public enum PriorizationOption { First, Closer, Last, Random }

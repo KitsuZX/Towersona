@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using BezierSolution;
+using System.Linq;
 
 public class FoxSlowDownAreaAttack : AttackPattern
 {
@@ -34,45 +36,98 @@ public class FoxSlowDownAreaAttack : AttackPattern
 	}
 
 	public override void UpdateTarget()
-	{
-		GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+	{      
+        Collider[] colliders = Physics.OverlapSphere(transform.position, currentAttackRange);
+        List<BezierWalkerWithSpeed> walkers = new List<BezierWalkerWithSpeed>();
+        List<float> progresses = new List<float>();
 
-		float shortestDistance = Mathf.Infinity;
-		GameObject nearestEnemy = null;
+        foreach (Collider collider in colliders)
+        {
+            if (collider.gameObject.CompareTag("Enemy"))
+            {
+                BezierWalkerWithSpeed walker = collider.GetComponent<BezierWalkerWithSpeed>();
+                walkers.Add(walker);
+                progresses.Add(walker.progress);
+            }
+        }
 
-		foreach (GameObject enemy in enemies)
-		{
-			if (!enemiesInRange.Contains(enemy))
-			{
-				if (Vector3.Distance(enemy.transform.position, transform.position) < currentAttackRange)
-				{
-					enemiesInRange.Add(enemy);
-					SlowDownLaser laser = Instantiate(slowDownLaser, towersonaLOD.firePoint.position, Quaternion.identity).GetComponent<SlowDownLaser>();
-					laser.gameObject.transform.SetParent(transform);
-					laser.pattern = this;
-					laser.SetTarget(enemy, this, transform.position);
-					lasers.Add(laser);
-				}
-			}
+        foreach(BezierWalkerWithSpeed walker in walkers)
+        {
+            if (!enemiesInRange.Contains(walker.gameObject))
+            { 
+                enemiesInRange.Add(walker.gameObject);
+                SlowDownLaser laser = Instantiate(slowDownLaser, towersonaLOD.firePoint.position, Quaternion.identity).GetComponent<SlowDownLaser>();
+                laser.gameObject.transform.SetParent(transform);
+                laser.pattern = this;
+                laser.SetTarget(walker.gameObject, this, transform.position);
+                lasers.Add(laser);
+            }
+        }
 
-			float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-			if (distanceToEnemy < shortestDistance)
-			{
-				shortestDistance = distanceToEnemy;
-				nearestEnemy = enemy;
-			}
-		}
-		
+        if (walkers.Count <= 0)
+        {
+            target = null;
+            return;
+        }
 
-		if (nearestEnemy != null && shortestDistance <= currentAttackRange)
-		{
-			target = nearestEnemy.transform;
-		}
-		else
-		{
-			target = null;
-		}
-	}
+        switch (DebuggingOptions.Instance.priorizationOption)
+        {
+            case PriorizationOption.First:
+                float greatestProgress = progresses.Max();
+
+                foreach (BezierWalkerWithSpeed enemy in walkers)
+                {
+                    if (enemy.progress == greatestProgress)
+                    {
+                        target = enemy.transform;
+                        return;
+                    }
+                }
+
+                break;
+            case PriorizationOption.Closer:
+                float shortestDistance = Mathf.Infinity;
+                BezierWalkerWithSpeed nearestEnemy = null;
+
+                foreach (BezierWalkerWithSpeed enemy in walkers)
+                {
+                    float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                    if (distanceToEnemy < shortestDistance)
+                    {
+                        shortestDistance = distanceToEnemy;
+                        nearestEnemy = enemy;
+                    }
+                }
+
+                if (nearestEnemy != null && shortestDistance <= currentAttackRange)
+                {
+                    target = nearestEnemy.transform;
+                }
+                else
+                {
+                    target = null;
+                }
+
+                break;
+            case PriorizationOption.Last:
+                float lowestProgress = progresses.Min();
+
+                foreach (BezierWalkerWithSpeed enemy in walkers)
+                {
+                    if (enemy.progress == lowestProgress)
+                    {
+                        target = enemy.transform;
+                        return;
+                    }
+                }
+                break;
+            case PriorizationOption.Random:
+                int index = Random.Range(0, enemiesInRange.Count);
+                target = enemiesInRange[index].transform;
+                break;
+        }
+
+    }
 
 	public void RemoveLaser(SlowDownLaser laser)
 	{

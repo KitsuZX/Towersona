@@ -16,7 +16,7 @@ namespace BezierSolution
 		public TravelMode travelMode;
 
 		public float speed = 5f;
-		private float progress = 0f;   
+		[HideInInspector] public float progress = 0f;   
 
 		public float NormalizedT
 		{

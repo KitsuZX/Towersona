@@ -23,15 +23,12 @@ public class SlowDownLaser : MonoBehaviour
 	private void Update()
 	{
 		if (target) {
-			lineRenderer.SetPosition(1, target.transform.position);
+			lineRenderer.SetPosition(1, enemy.modelTransform.position);
 			Vector3 dir = transform.position - target.transform.position;
 			impactEffect.transform.position = target.transform.position + dir.normalized;
 			impactEffect.transform.rotation = Quaternion.LookRotation(dir);
 		}
-
-		CheckSlowDown();
-
-	}
+    }
 
 	public void SetTarget(GameObject target, FoxSlowDownAreaAttack catAttack, Vector3 centre)
 	{
@@ -41,7 +38,13 @@ public class SlowDownLaser : MonoBehaviour
 		enemy = target.GetComponent<Enemy>();
 
 		lineRenderer.SetPosition(0, transform.position);
-		lineRenderer.SetPosition(1, target.transform.position);
+		lineRenderer.SetPosition(1, enemy.modelTransform.position);
+      
+        slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
+        slowDown.Initialize(pattern.currentSlowDownPercentage, Mathf.Infinity, target.gameObject);
+        slowDown.ApplyEffect();        
+
+        InvokeRepeating("CheckSlowDown", 0f, 0.5f);
 
 		this.centre = centre;
 	}
@@ -49,20 +52,17 @@ public class SlowDownLaser : MonoBehaviour
 	public void CheckSlowDown()
 	{
 		//If the target has died or is out of range
-		if (target == null || Vector3.Distance(target.transform.position, centre) > pattern.currentAttackRange)
+		if (enemy == null || Vector3.Distance(target.transform.GetChild(0).position, centre) > pattern.currentAttackRange)
 		{
-			slowDown.RemoveEffect();
+            if (enemy != null)
+            {
+                slowDown.RemoveEffect();
+            }
+
 			pattern.RemoveLaser(this);
 
 			Destroy(gameObject);
 			return;
-		}
-		
-		if (!enemy.IsAffactedByEffect(TemporalEffectType.SlowDown))
-		{
-			slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
-			slowDown.Initialize(pattern.currentSlowDownPercentage, Mathf.Infinity, target.gameObject);
-			slowDown.ApplyEffect();
-		}		
+		}			
 	}
 }

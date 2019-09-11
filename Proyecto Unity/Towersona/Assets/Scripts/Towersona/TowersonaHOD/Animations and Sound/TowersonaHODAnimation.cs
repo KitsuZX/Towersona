@@ -26,13 +26,13 @@ public class TowersonaHODAnimation : MonoBehaviour
   
     public void SetLoneliness(bool loneliness)
 	{
-		bodyAnimator.SetBool("isLonely", loneliness);
-		lodBodyAnimator.SetBool("isLonely", loneliness);
+		/*bodyAnimator.SetBool("isLonely", loneliness);
+		lodBodyAnimator.SetBool("isLonely", loneliness);*/
 	}
 
 	public void TakeAShit()
 	{
-		bodyAnimator.SetTrigger("takeADump");
+		//bodyAnimator.SetTrigger("takeADump");
 	}
 
     public void CaressStart()
