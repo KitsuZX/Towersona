@@ -13,7 +13,7 @@ public class HedgehogAttack : AttackPattern
 		GameObject bulletObject = Instantiate(bulletPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
-		bullet.SetStats(stats);
+		bullet.pattern = this;
 
 		if (bullet != null) bullet.Seek(target);
 	}
@@ -34,7 +34,7 @@ public class HedgehogAttack : AttackPattern
 			}
 		}
 
-		if (nearestEnemy != null && shortestDistance <= stats.currentAttackRange)
+		if (nearestEnemy != null && shortestDistance <= currentAttackRange)
 		{
 			target = nearestEnemy.transform;
 		}
@@ -49,7 +49,7 @@ public class HedgehogAttack : AttackPattern
 		if (Application.isPlaying)
 		{
 			Gizmos.color = Color.blue;
-			Gizmos.DrawWireSphere(towersonaLOD.transform.position, stats.currentAttackRange);
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, currentAttackRange);
 		}
 	}
 }

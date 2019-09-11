@@ -8,12 +8,42 @@ public class DragonAttack : AttackPattern
 	[SerializeField]
 	protected GameObject bulletPrefab;
 
+	[HideInInspector] public float currentDamageArea;
+	[HideInInspector] public float currentAreaDamageReduction;
+	[HideInInspector] public float currentDamageAreaWidth;
+	[HideInInspector] public float currentBurnTime;
+	[HideInInspector] public float currentSlowDownPercentage;
+	[HideInInspector] public float currentSlowDownTime;
+	[HideInInspector] public float currentSlowDownAreaLifeTime;
+
+
 	DragonStats dragonStats;
 
 	protected override void Start()
 	{
 		base.Start();
+
 		dragonStats = (DragonStats)stats;
+		currentDamageArea = dragonStats.damageArea.y;
+		currentAreaDamageReduction = dragonStats.areaDamageReduction.y;
+		currentDamageAreaWidth = dragonStats.damageAreaWidth.y;
+		currentBurnTime = dragonStats.burnTime.y;
+		currentSlowDownPercentage = dragonStats.slowDownPercentage.y;
+		currentSlowDownTime = dragonStats.slowDownTime.y;
+		currentSlowDownAreaLifeTime = dragonStats.slowDownAreaLifeTime.y;
+	}
+
+	public override void UpdateStats()
+	{
+		base.UpdateStats();
+
+		currentDamageArea = Mathf.Lerp(dragonStats.damageArea.x, dragonStats.damageArea.y, needs.HappinessLevel);
+		currentAreaDamageReduction = Mathf.Lerp(dragonStats.areaDamageReduction.x, dragonStats.areaDamageReduction.y, needs.HappinessLevel);
+		currentDamageAreaWidth = Mathf.Lerp(dragonStats.damageAreaWidth.x, dragonStats.damageAreaWidth.y, needs.HappinessLevel);
+		currentBurnTime = Mathf.Lerp(dragonStats.burnTime.x, dragonStats.burnTime.y, needs.HappinessLevel);
+		currentSlowDownPercentage = Mathf.Lerp(dragonStats.slowDownPercentage.x, dragonStats.slowDownPercentage.y, needs.HappinessLevel);
+		currentSlowDownTime = Mathf.Lerp(dragonStats.slowDownTime.x, dragonStats.slowDownTime.y, needs.HappinessLevel);
+		currentSlowDownAreaLifeTime = Mathf.Lerp(dragonStats.slowDownAreaLifeTime.x, dragonStats.slowDownAreaLifeTime.y, needs.HappinessLevel);
 	}
 
 	public override void Shoot(Transform target)
@@ -23,7 +53,7 @@ public class DragonAttack : AttackPattern
 
 		Shooting bullet = bulletObject.GetComponent<Shooting>();
 
-		bullet.SetStats(dragonStats);
+		bullet.pattern = this;
 
 		if (bullet != null) bullet.Seek(target);
 	}
@@ -44,7 +74,7 @@ public class DragonAttack : AttackPattern
 			}
 		}
 
-		if (nearestEnemy != null && shortestDistance <= stats.currentAttackRange)
+		if (nearestEnemy != null && shortestDistance <= currentAttackRange)
 		{
 			target = nearestEnemy.transform;
 		}
@@ -59,7 +89,7 @@ public class DragonAttack : AttackPattern
 		if (Application.isPlaying)
 		{
 			Gizmos.color = Color.red;
-			Gizmos.DrawWireSphere(towersonaLOD.transform.position, dragonStats.currentAttackRange);
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, currentAttackRange);
 		}
 	}
 }

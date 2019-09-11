@@ -40,11 +40,14 @@ public class TowersonaNeeds : MonoBehaviour
 
     private TowersonaStats stats;
 	private float strengthBoost;
+	private AttackPattern pattern;
 
     private void Start()
     {
         shitNeed = GetComponent<ShitNeed>();
-        stats = GetComponentInParent<TowersonaHOD>().towersona.stats;
+		Towersona towersona = GetComponentInParent<TowersonaHOD>().towersona;
+		stats = towersona.stats;
+		pattern = towersona.towersonaLOD.pattern;
 		towersonaAnimation = GetComponent<TowersonaHODAnimation>();
 
         AssignStats();
@@ -124,7 +127,7 @@ public class TowersonaNeeds : MonoBehaviour
     /// </summary>
     private void DoNeedDecay()
     {
-		float loveDecay = loveDecayPerSecond * (1 - stats.HappinessBonus);
+		float loveDecay = loveDecayPerSecond * (1 - pattern.HappinessBonus);
 
 		loveDecay = Mathf.Max(0, loveDecay);
 

@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   impactEffect: {fileID: 0}
   source: {fileID: 0}
+  pattern: {fileID: 0}
 --- !u!65 &1114692646015675774
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -138,8 +139,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.02, y: 2, z: 1.62}
-  m_Center: {x: 0, y: -1, z: 0.89}
+  m_Size: {x: 2.02, y: 3.87, z: 1.62}
+  m_Center: {x: 0, y: -1.86, z: 0.89}
 --- !u!54 &1388998326527572492
 Rigidbody:
   m_ObjectHideFlags: 0

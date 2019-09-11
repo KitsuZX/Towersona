@@ -22,12 +22,12 @@ public class HealthBar : MonoBehaviour
 
 	public void TakeDamage()
 	{
-		if (stats.lifes < stats.initialLifes && canvas.enabled == false)
+		if (enemy.lifes < stats.initialLifes && canvas.enabled == false)
 		{
 			canvas.enabled = true;
 		}
 
-		float amount = stats.lifes / stats.initialLifes;
+		float amount = enemy.lifes / stats.initialLifes;
 		healthBarImage.fillAmount = amount;
 	}
 }

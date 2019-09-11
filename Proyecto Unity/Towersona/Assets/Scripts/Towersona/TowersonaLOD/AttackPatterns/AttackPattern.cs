@@ -2,51 +2,108 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using System.Linq;
 
 public abstract class AttackPattern : MonoBehaviour
-{ 
-    [HideInInspector]
-    public Transform target;
-    private Enemy enemyTarget;
+{
+	[HideInInspector]
+	public Transform target;
+	private Enemy enemyTarget;
 
-    protected TowersonaLOD towersonaLOD;
-    protected TowersonaLODAnimation animations;
+	protected TowersonaLOD towersonaLOD;
+	protected TowersonaLODAnimation animations;
 
-    private TowersonaNeeds needs;
-    protected TowersonaStats stats;
+	protected TowersonaNeeds needs;
+	protected TowersonaStats stats;
 
-    private float fireCountdown = 1f;   
+	private float fireCountdown = 1f;
 
-    protected virtual void Awake()
-    {    
-        towersonaLOD = GetComponent<TowersonaLOD>();
-        animations = GetComponent<TowersonaLODAnimation>();        
-    }
+	private Dictionary<BoostLaser, float> attackStrengthBonusses = new Dictionary<BoostLaser, float>();
+	private Dictionary<BoostLaser, float> attackSpeedBonusses = new Dictionary<BoostLaser, float>();
+	private Dictionary<BoostLaser, float> happinessBonusses = new Dictionary<BoostLaser, float>();
 
-    protected virtual void Start()
-    {
-        stats = towersonaLOD.towersona.stats;
-        needs = towersonaLOD.towersona.towersonaNeeds;     
+	[HideInInspector]
+	public float currentAttackStrength;
+	[HideInInspector]
+	public float currentAttackSpeed;
+	[HideInInspector]
+	public float currentAttackRange;
+	[HideInInspector]
+	public float currentBulletSpeed;
 
-        InvokeRepeating("UpdateStats", 0f, 1f);
-        InvokeRepeating("UpdateTarget", 0f, 0.5f);
 
-    }
+	[HideInInspector]
+	public float AttackStrength
+	{
+		get
+		{
+			if (attackStrengthBonusses.Count == 0)
+			{
+				return currentAttackStrength;
+			}
 
-    protected virtual void Update()
-    {
-        if (needs == null || stats == null) return; 
+			return currentAttackStrength * attackStrengthBonusses.Values.Max();
+		}
+	}
+	public float AttackSpeed
+	{
+		get
+		{
+			if (attackSpeedBonusses.Count == 0)
+			{
+				return currentAttackSpeed;
+			}
 
-        CheckAnimations();
-        towersonaLOD.LockOnTarget(target);
-        CheckIfShouldShoot();      
-    }
+			return currentAttackSpeed * attackSpeedBonusses.Values.Max();
+		}
+	}
+	public float HappinessBonus
+	{
+		get
+		{
+			if (happinessBonusses.Count == 0)
+			{
+				return 0;
+			}
 
-    private void UpdateStats()
-    {
-        stats.UpdateStats();
-    }    
+			return happinessBonusses.Values.Max();
+		}
+	}
 
+
+	protected virtual void Start()
+	{
+		towersonaLOD = GetComponent<TowersonaLOD>();
+		animations = GetComponent<TowersonaLODAnimation>();
+		needs = towersonaLOD.towersona.towersonaNeeds;
+		stats = towersonaLOD.towersona.stats;
+
+		currentAttackStrength = stats.bulletDamage.y;
+		currentAttackSpeed = stats.attackSpeed.y;
+		currentAttackRange = stats.range.y;
+		currentBulletSpeed = stats.bulletSpeed.y;
+
+		InvokeRepeating("UpdateStats", 0f, 1f);
+		InvokeRepeating("UpdateTarget", 0f, 0.5f);
+	}
+
+	protected virtual void Update()
+	{
+		if (needs == null || stats == null) return;
+
+		CheckAnimations();
+		towersonaLOD.LockOnTarget(target);
+		CheckIfShouldShoot();
+	}
+
+	public virtual void UpdateStats()
+	{
+		currentAttackStrength = Mathf.Lerp(stats.bulletDamage.x, stats.bulletDamage.y, needs.HappinessLevel);
+		currentAttackSpeed = Mathf.Lerp(stats.attackSpeed.x, stats.attackSpeed.y, needs.HappinessLevel);
+		currentAttackRange = Mathf.Lerp(stats.range.x, stats.range.y, needs.HappinessLevel);
+		currentBulletSpeed = Mathf.Lerp(stats.bulletSpeed.x, stats.bulletSpeed.y, needs.HappinessLevel);
+	}
+   
     private void CheckAnimations()
     {
         if (target == null)
@@ -68,20 +125,70 @@ public abstract class AttackPattern : MonoBehaviour
                 if (stats.attacksFliers)
                 {
                     Shoot(target);
-                    fireCountdown = 1f / stats.currentAttackSpeed;
+                    fireCountdown = 1f / currentAttackSpeed;
                 }
             }
             else
             {
                 Shoot(target);
-                fireCountdown = 1f / stats.currentAttackSpeed;
+                fireCountdown = 1f / currentAttackSpeed;
             }
         }
 
         fireCountdown -= Time.deltaTime;
     }
 
-    public abstract void Shoot(Transform target);
+	#region Boosts
+	public void SetAttackStrengthBoost(BoostLaser laser, float attackBoost)
+	{
+		if (attackStrengthBonusses.ContainsKey(laser))
+		{
+			attackStrengthBonusses[laser] = attackBoost;
+		}
+		else
+		{
+			attackStrengthBonusses.Add(laser, attackBoost);
+		}
+
+	}
+	public void SetAttackSpeedBoost(BoostLaser laser, float speedBoost)
+	{
+		if (attackSpeedBonusses.ContainsKey(laser))
+		{
+			attackSpeedBonusses[laser] = speedBoost;
+		}
+		else
+		{
+			attackSpeedBonusses.Add(laser, speedBoost);
+		}
+	}
+	public void SetHappinessBoost(BoostLaser laser, float happinessBoost)
+	{
+		if (happinessBonusses.ContainsKey(laser))
+		{
+			happinessBonusses[laser] = happinessBoost;
+		}
+		else
+		{
+			happinessBonusses.Add(laser, happinessBoost);
+		}
+	}
+
+	public void RemoveAttackStrengthBoost(BoostLaser laser)
+	{
+		attackStrengthBonusses.Remove(laser);
+	}
+	public void RemoveAttackSpeedBoost(BoostLaser laser)
+	{
+		attackSpeedBonusses.Remove(laser);
+	}
+	public void RemoveHappinessBoost(BoostLaser laser)
+	{
+		happinessBonusses.Remove(laser);
+	}
+	#endregion
+
+	public abstract void Shoot(Transform target);
     public abstract void UpdateTarget();  
 
 }

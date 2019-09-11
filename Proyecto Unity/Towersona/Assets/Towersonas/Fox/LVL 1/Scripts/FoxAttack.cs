@@ -9,10 +9,17 @@ public class FoxAttack : AttackPattern
 	[SerializeField]
 	protected GameObject bulletPrefab;
 
+	[HideInInspector]
+	public float currentSlowDownPercentage;
+	[HideInInspector]
+	public float currentSlowDownTime;
+
 	protected override void Start()
 	{
 		base.Start();
 		foxStats = (FoxStats)stats;
+		currentSlowDownPercentage = foxStats.slowDownPercentage.y;
+		currentSlowDownTime = foxStats.slowDownTime.y;
 	}
 
 	public override void Shoot(Transform target)
@@ -22,7 +29,7 @@ public class FoxAttack : AttackPattern
 
 		SlowDownBullet bullet = bulletObject.GetComponent<SlowDownBullet>();
 		bullet.source = gameObject;
-		bullet.SetStats(foxStats);
+		bullet.pattern = this;
 
 		if (bullet != null) bullet.Seek(target);
 	}
@@ -43,7 +50,7 @@ public class FoxAttack : AttackPattern
 			}
 		}
 
-		if (nearestEnemy != null && shortestDistance <= stats.currentAttackRange)
+		if (nearestEnemy != null && shortestDistance <= currentAttackRange)
 		{
 			target = nearestEnemy.transform;
 		}
@@ -53,12 +60,19 @@ public class FoxAttack : AttackPattern
 		}
 	}
 
+	public override void UpdateStats()
+	{
+		base.UpdateStats();
+		currentSlowDownPercentage = Mathf.Lerp(foxStats.slowDownPercentage.x, foxStats.slowDownPercentage.y, needs.HappinessLevel);
+		currentSlowDownTime = Mathf.Lerp(foxStats.slowDownTime.x, foxStats.slowDownTime.y, needs.HappinessLevel);
+	}
+
 	private void OnDrawGizmos()
 	{
 		if (Application.isPlaying)
 		{
 			Gizmos.color = Color.blue;
-			Gizmos.DrawWireSphere(towersonaLOD.transform.position, foxStats.currentAttackRange);
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, currentAttackRange);
 		}
 	}
 }

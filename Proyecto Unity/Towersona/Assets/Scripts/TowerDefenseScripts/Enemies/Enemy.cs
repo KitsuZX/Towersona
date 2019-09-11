@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
 		{
 			if(!temporalEffects.ContainsKey(TemporalEffectType.SlowDown) && !temporalEffects.ContainsKey(TemporalEffectType.SpeedBoost))
 			{
-				return enemyStats.speed;
+				return speed;
 			}
 
 			float totalSlowDownAmount = 0;
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 			}
 
 
-			return enemyStats.speed * (1 - totalSlowDownAmount) * (totalSpeedBoostAmount);
+			return speed * (1 - totalSlowDownAmount) * (totalSpeedBoostAmount);
 		}
 	}
     public bool Flies {
@@ -45,17 +45,28 @@ public class Enemy : MonoBehaviour
     [SerializeField] private GameObject deathEffect = null;
 	[SerializeField] private GameObject healEffect = null;
     [SerializeField] private GameObject strengthenEffect = null;
-	[SerializeField] private UnityEvent OnDamageTaken;
+	[SerializeField] private UnityEvent OnDamageTaken = null;
+
+	[HideInInspector] public float speed;
+	[HideInInspector] public float lifes;
+	[HideInInspector] public int damage;
+	[HideInInspector] public int value;
 
 	private BezierWalkerWithSpeed bezierWalkerWithSpeed;	
 	private Dictionary<TemporalEffectType, TemporalEffect> temporalEffects = new Dictionary<TemporalEffectType, TemporalEffect>();
 	private MeshRenderer[] meshRenderers;
 	private Dictionary<Material, Color> originalColors = new Dictionary<Material, Color>();
+	
 	#endregion
 
 	private void Awake()
 	{	
-		meshRenderers = GetComponentsInChildren<MeshRenderer>();		
+		meshRenderers = GetComponentsInChildren<MeshRenderer>();
+
+		speed = enemyStats.initialSpeed;
+		lifes = enemyStats.initialLifes;
+		damage = enemyStats.initialDamage;
+		value = enemyStats.initialValue;
 
 		foreach (MeshRenderer meshRenderer in meshRenderers)
 		{
@@ -87,7 +98,7 @@ public class Enemy : MonoBehaviour
 	public void EndPath()
     {
         KillEnemy(true);
-        PlayerStats.Instance.LoseLive(enemyStats.damage);
+        PlayerStats.Instance.LoseLive(damage);
         
     }
 	#endregion
@@ -100,7 +111,7 @@ public class Enemy : MonoBehaviour
         if (!endPath)
         {            
             BuildManager.Instance.SpawnEffect(deathEffect, pos);
-            PlayerStats.Instance.AddMoney(enemyStats.value);
+            PlayerStats.Instance.AddMoney(value);
         }
 
         Destroy(gameObject);
@@ -109,9 +120,9 @@ public class Enemy : MonoBehaviour
     }
 
     public void TakeDamage(float amount) {
-        enemyStats.lifes -= amount;
+        lifes -= amount;
 		OnDamageTaken.Invoke();
-		if (enemyStats.lifes <= 0)
+		if (lifes <= 0)
         {
             KillEnemy();
         }
@@ -153,11 +164,11 @@ public class Enemy : MonoBehaviour
 
 	public void Heal(float amount)
 	{
-        if (enemyStats.lifes < enemyStats.initialLifes)
+        if (lifes < enemyStats.initialLifes)
         {
             GameObject healEffectObject = Instantiate(healEffect, transform.position, Quaternion.identity);
-            enemyStats.lifes += amount;
-            Mathf.Clamp(enemyStats.lifes, 0, enemyStats.initialLifes);
+            lifes += amount;
+            Mathf.Clamp(lifes, 0, enemyStats.initialLifes);
             Destroy(healEffectObject, 2f);
         }
 	}
@@ -165,7 +176,7 @@ public class Enemy : MonoBehaviour
     public void Strengthen(int amount)
     {
         GameObject strengthenEffectObject = Instantiate(strengthenEffect, transform.position, Quaternion.identity);
-        enemyStats.damage += amount;       
+        damage += amount;       
         Destroy(strengthenEffectObject, 2f);
     }
 	#endregion

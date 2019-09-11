@@ -16,7 +16,7 @@ public class Bullet : Shooting
 
         if (e != null)
         {
-            e.TakeDamage(stats.AttackStrength);
+            e.TakeDamage(pattern.AttackStrength);
         }
 
         Destroy(gameObject);

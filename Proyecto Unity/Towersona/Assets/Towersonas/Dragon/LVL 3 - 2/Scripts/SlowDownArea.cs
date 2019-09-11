@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SlowDownArea : MonoBehaviour
 {
-	public DragonStats dragonStats;
+	[HideInInspector] public DragonAttack pattern;
 
 	private void FixedUpdate()
 	{
-		Collider[] colliders = Physics.OverlapSphere(transform.position, dragonStats.currentDamageArea);	
+		Collider[] colliders = Physics.OverlapSphere(transform.position, pattern.currentDamageArea);	
 
 		foreach (Collider collider in colliders)
 		{
@@ -19,7 +19,7 @@ public class SlowDownArea : MonoBehaviour
 				{
 					//e.AddSlowDown(dragonStats.currentSlowDownPercentage, dragonStats.currentSlowDownTime, SlowDownType.Area, gameObject);
 					SlowDown slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
-					slowDown.Initialize(dragonStats.currentSlowDownPercentage, dragonStats.currentSlowDownTime, e.gameObject);
+					slowDown.Initialize(pattern.currentSlowDownPercentage, pattern.currentSlowDownTime, e.gameObject);
 					slowDown.ApplyEffect();
 				}
 			}

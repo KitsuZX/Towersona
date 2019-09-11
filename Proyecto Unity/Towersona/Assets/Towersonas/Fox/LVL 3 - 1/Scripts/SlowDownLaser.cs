@@ -7,11 +7,10 @@ public class SlowDownLaser : MonoBehaviour
 	[SerializeField] protected ParticleSystem impactEffect;
 
 	[HideInInspector] public GameObject target;
+	[HideInInspector] public FoxSlowDownAreaAttack pattern;
 	private LineRenderer lineRenderer;
 
 	private Vector3 centre;
-	private FoxSlowDownAreaAttack foxAttack;
-	private FoxStats stats;
 	private Enemy enemy;
 
 	private SlowDown slowDown = null;
@@ -37,9 +36,8 @@ public class SlowDownLaser : MonoBehaviour
 	public void SetTarget(GameObject target, FoxSlowDownAreaAttack catAttack, Vector3 centre)
 	{
 		this.target = target;
-		this.foxAttack = catAttack;
-
-		stats = (FoxStats)GetComponentInParent<Towersona>().stats;
+		this.pattern = catAttack;
+	
 		enemy = target.GetComponent<Enemy>();
 
 		lineRenderer.SetPosition(0, transform.position);
@@ -51,10 +49,10 @@ public class SlowDownLaser : MonoBehaviour
 	public void CheckSlowDown()
 	{
 		//If the target has died or is out of range
-		if (target == null || Vector3.Distance(target.transform.position, centre) > stats.currentAttackRange)
+		if (target == null || Vector3.Distance(target.transform.position, centre) > pattern.currentAttackRange)
 		{
 			slowDown.RemoveEffect();
-			foxAttack.RemoveLaser(this);
+			pattern.RemoveLaser(this);
 
 			Destroy(gameObject);
 			return;
@@ -63,7 +61,7 @@ public class SlowDownLaser : MonoBehaviour
 		if (!enemy.IsAffactedByEffect(TemporalEffectType.SlowDown))
 		{
 			slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
-			slowDown.Initialize(stats.currentSlowDownPercentage, Mathf.Infinity, target.gameObject);
+			slowDown.Initialize(pattern.currentSlowDownPercentage, Mathf.Infinity, target.gameObject);
 			slowDown.ApplyEffect();
 		}		
 	}

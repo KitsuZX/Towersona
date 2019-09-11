@@ -19,12 +19,26 @@ public class CatAttack : AttackPattern
 
 	private LineRenderer lineRenderer;
 
+	[HideInInspector] public float currentTimeSpan;
+	[HideInInspector] public int currentMoneyGiven;
+	[HideInInspector] public float currentHappinessBoost;
+	[HideInInspector] public float currentBoostRange;
+	[HideInInspector] public float currentAttackStrengthBoost;
+	[HideInInspector] public float currentAttackSpeedBoost;
+
 	CatStats catStats;
 
 	protected override void Start()
 	{
 		base.Start();
 		catStats = (CatStats)stats;
+		currentMoneyGiven = (int)catStats.moneyGiven.y;
+
+		currentBoostRange = catStats.boostRange.y;
+		currentHappinessBoost = catStats.happinessBoost.y;
+
+		currentAttackStrengthBoost = catStats.attackStrengthBoost.y;
+		currentAttackSpeedBoost = catStats.attackSpeedBoost.y;
 
 		StartCoroutine("GiveMoney");
 
@@ -44,14 +58,14 @@ public class CatAttack : AttackPattern
 
 	private IEnumerator GiveMoney()
 	{
-		yield return new WaitForSeconds(catStats.currentTimeSpan);
+		yield return new WaitForSeconds(currentTimeSpan);
 
 		while (true)
 		{
 			SpawnMoneySum();
-			PlayerStats.Instance.AddMoney(catStats.currentMoneyGiven);
+			PlayerStats.Instance.AddMoney(currentMoneyGiven);
 
-			yield return new WaitForSeconds(catStats.currentTimeSpan);
+			yield return new WaitForSeconds(currentTimeSpan);
 		}
 	}
 
@@ -60,8 +74,7 @@ public class CatAttack : AttackPattern
 		GameObject bulletObject = Instantiate(boostLaserPrefab, towersonaLOD.firePoint.position, towersonaLOD.firePoint.rotation);
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
-
-		bullet.SetStats(catStats);
+		bullet.pattern = this;
 
 		if (bullet != null) bullet.Seek(target);
 	}
@@ -76,7 +89,7 @@ public class CatAttack : AttackPattern
 		{
 			if (!towersonasInRange.Contains(towersona) && towersona != gameObject && !towersona.GetComponent<CatAttack>())
 			{
-				if (Vector3.Distance(towersona.transform.position, transform.position) < catStats.currentBoostRange)
+				if (Vector3.Distance(towersona.transform.position, transform.position) < currentBoostRange)
 				{
 					towersonasInRange.Add(towersona);
 					BoostLaser laser = Instantiate(boostLaserPrefab, towersonaLOD.firePoint.position, Quaternion.identity).GetComponent<BoostLaser>();
@@ -95,7 +108,7 @@ public class CatAttack : AttackPattern
 		pos.z += 1.5f;
 		
 		GameObject moneySumObject = Instantiate(moneySum, pos, moneySum.transform.rotation);
-		moneySumObject.GetComponentInChildren<TextMeshProUGUI>().text = "+ " + catStats.currentMoneyGiven.ToString() + " $";
+		moneySumObject.GetComponentInChildren<TextMeshProUGUI>().text = "+ " + currentMoneyGiven.ToString() + " $";
 	}
 
 	public void RemoveLaser(BoostLaser laser)
@@ -107,12 +120,25 @@ public class CatAttack : AttackPattern
 		}
 	}
 
+	public override void UpdateStats()
+	{
+		base.UpdateStats();
+		currentTimeSpan = Mathf.Lerp(catStats.timeSpanBetweenGivingMoney.x, catStats.timeSpanBetweenGivingMoney.y, needs.HappinessLevel);
+		currentMoneyGiven = (int)Mathf.Lerp(catStats.moneyGiven.x, catStats.moneyGiven.y, needs.HappinessLevel);
+
+		currentBoostRange = Mathf.Lerp(catStats.boostRange.x, catStats.boostRange.y, needs.HappinessLevel);
+		currentHappinessBoost = Mathf.Lerp(catStats.happinessBoost.x, catStats.happinessBoost.y, needs.HappinessLevel);
+
+		currentAttackStrengthBoost = Mathf.Lerp(catStats.attackStrengthBoost.x, catStats.attackStrengthBoost.y, needs.HappinessLevel);
+		currentAttackSpeedBoost = Mathf.Lerp(catStats.attackSpeedBoost.x, catStats.attackSpeedBoost.y, needs.HappinessLevel);
+	}
+
 	private void OnDrawGizmos()
 	{
 		if (Application.isPlaying)
 		{
 			Gizmos.color = Color.yellow;
-			Gizmos.DrawWireSphere(towersonaLOD.transform.position, catStats.currentBoostRange);
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, currentBoostRange);
 		}
 	}
 }
