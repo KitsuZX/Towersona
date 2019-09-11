@@ -53,8 +53,7 @@ public class SpawnPoint : MonoBehaviour
         enemyObject.transform.SetParent(enemiesParent);
 
         enemyObject.transform.position += new Vector3(0f, 0f, Random.Range(-1f, 1f));
-        Enemy enemy = enemyObject.GetComponent<Enemy>();
-		enemy.enemyStats.Initialize();
+        Enemy enemy = enemyObject.GetComponent<Enemy>();		
 
         UnityAction action = enemy.EndPath;
 

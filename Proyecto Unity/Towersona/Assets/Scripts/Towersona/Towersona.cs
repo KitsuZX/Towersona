@@ -112,16 +112,16 @@ public class Towersona : MonoBehaviour
         return towersonaHOD;
     }
 
+	public void UpdateStats()
+	{
+		towersonaLOD.pattern.UpdateStats();
+	}
+
     public void Sell()
     {
 		place.hasTower = false;
         PlayerStats.Instance.AddMoney(stats.sellCost);
         Destroy(gameObject);
-    }
-
-    private void UpdateStats()
-    {
-        stats.UpdateStats();
     }
 
     public enum TowersonaLevel

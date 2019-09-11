@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/_Scenes/Screens/Credits.unity
     guid: 6a20f1778c08ff14cb85f9bf5250eb8d
   - enabled: 1
-    path: Assets/_Scenes/Levels/Level_1_PruebaModelo.unity
+    path: Assets/_Scenes/Final Levels/Level_1_PruebaModelo.unity
     guid: 5fb8321dc618ddb4d9ba1ef37ed4b539
   m_configObjects: {}

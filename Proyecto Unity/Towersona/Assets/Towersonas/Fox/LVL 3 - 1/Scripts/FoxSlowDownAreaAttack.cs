@@ -9,12 +9,15 @@ public class FoxSlowDownAreaAttack : AttackPattern
 	private List<SlowDownLaser> lasers;
 
 	[SerializeField] protected GameObject slowDownLaser = null;
-	[SerializeField] protected GameObject bulletPrefab = null;	
+	[SerializeField] protected GameObject bulletPrefab = null;
 
+	[HideInInspector] public float currentSlowDownPercentage;
+	
 	protected override void Start()
 	{
 		base.Start();
 		foxStats = (FoxStats)stats;
+		currentSlowDownPercentage = foxStats.slowDownPercentage.y; ;
 		enemiesInRange = new List<GameObject>();
 		lasers = new List<SlowDownLaser>();
 	}
@@ -25,7 +28,7 @@ public class FoxSlowDownAreaAttack : AttackPattern
 		bulletObject.transform.SetParent(GameObject.FindGameObjectWithTag("Bullets Parent").transform, true);
 
 		Bullet bullet = bulletObject.GetComponent<Bullet>();
-		bullet.SetStats(foxStats);
+		bullet.pattern = this;
 
 		if (bullet != null) bullet.Seek(target);
 	}
@@ -41,11 +44,12 @@ public class FoxSlowDownAreaAttack : AttackPattern
 		{
 			if (!enemiesInRange.Contains(enemy))
 			{
-				if (Vector3.Distance(enemy.transform.position, transform.position) < foxStats.currentAttackRange)
+				if (Vector3.Distance(enemy.transform.position, transform.position) < currentAttackRange)
 				{
 					enemiesInRange.Add(enemy);
 					SlowDownLaser laser = Instantiate(slowDownLaser, towersonaLOD.firePoint.position, Quaternion.identity).GetComponent<SlowDownLaser>();
 					laser.gameObject.transform.SetParent(transform);
+					laser.pattern = this;
 					laser.SetTarget(enemy, this, transform.position);
 					lasers.Add(laser);
 				}
@@ -60,7 +64,7 @@ public class FoxSlowDownAreaAttack : AttackPattern
 		}
 		
 
-		if (nearestEnemy != null && shortestDistance <= stats.currentAttackRange)
+		if (nearestEnemy != null && shortestDistance <= currentAttackRange)
 		{
 			target = nearestEnemy.transform;
 		}
@@ -79,12 +83,18 @@ public class FoxSlowDownAreaAttack : AttackPattern
 		}
 	}
 
+	public override void UpdateStats()
+	{
+		base.UpdateStats();
+		currentSlowDownPercentage = Mathf.Lerp(foxStats.slowDownPercentage.x, foxStats.slowDownPercentage.y, needs.HappinessLevel);
+	}
+
 	private void OnDrawGizmos()
 	{
 		if (Application.isPlaying)
 		{
 			Gizmos.color = Color.blue;
-			Gizmos.DrawWireSphere(towersonaLOD.transform.position, foxStats.currentAttackRange);
+			Gizmos.DrawWireSphere(towersonaLOD.transform.position, currentAttackRange);
 		}
 	}
 }

@@ -6,10 +6,15 @@ public class SlowDownAreaBullet : Shooting
 {
 	[SerializeField] private GameObject slowDownArea = null;
 
+	new DragonAttack pattern;
+
+	private void Start()
+	{
+		this.pattern = (DragonAttack)base.pattern;
+	}
+
 	protected override void HitTarget()
 	{
-		DragonStats dragonStats = (DragonStats)stats;
-
 		Vector3 pos = transform.position;
 		pos.y += 1f;
 
@@ -17,13 +22,15 @@ public class SlowDownAreaBullet : Shooting
 
 		if (firstTarget != null)
 		{
-			firstTarget.TakeDamage(stats.AttackStrength);
+			firstTarget.TakeDamage(pattern.AttackStrength);
 			GameObject area = Instantiate(slowDownArea, transform.position, slowDownArea.transform.rotation);
-			area.GetComponent<SlowDownArea>().SetRadius(dragonStats.currentDamageArea);
-			Destroy(area, dragonStats.currentSlowDownAreaLifeTime);
+			SlowDownArea slArea = area.GetComponent<SlowDownArea>();
+			slArea.SetRadius(pattern.currentDamageArea);
+			slArea.pattern = pattern;
+			Destroy(area, pattern.currentSlowDownAreaLifeTime);
 		}
 
-		Collider[] colliders = Physics.OverlapSphere(pos, dragonStats.currentDamageArea);
+		Collider[] colliders = Physics.OverlapSphere(pos, pattern.currentDamageArea);
 
 		BuildManager.Instance.SpawnEffect(impactEffect, pos);
 
@@ -34,7 +41,7 @@ public class SlowDownAreaBullet : Shooting
 				Enemy e = collider.GetComponent<Enemy>();
 				if (e != null && e != firstTarget)
 				{
-					e.TakeDamage(stats.AttackStrength * dragonStats.currentAreaDamageReduction);
+					e.TakeDamage(pattern.AttackStrength * pattern.currentAreaDamageReduction);
 				}
 			}
 		}
@@ -43,9 +50,8 @@ public class SlowDownAreaBullet : Shooting
 	}
 
 	private void OnDrawGizmos()
-	{
-		DragonStats dragonStats = (DragonStats)stats;
+	{	
 		Gizmos.color = Color.cyan;
-		Gizmos.DrawWireSphere(transform.position, dragonStats.currentDamageArea);
+		Gizmos.DrawWireSphere(transform.position, pattern.currentDamageArea);
 	}
 }

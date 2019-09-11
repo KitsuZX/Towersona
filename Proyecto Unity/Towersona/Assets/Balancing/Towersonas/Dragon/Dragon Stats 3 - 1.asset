@@ -21,15 +21,11 @@ MonoBehaviour:
   angerPerShit: 0.2
   timeBetweenShits: 20
   maxShits: 4
-  currentAttackStrength: 1
-  currentAttackSpeed: 0.25
-  currentAttackRange: 5
-  currentBulletSpeed: 8.175972
-  needs: {fileID: 0}
-  bulletDamage: {x: 1, y: 1}
+  bulletDamage: {x: 5, y: 5}
   attackSpeed: {x: 0.25, y: 0.25}
   range: {x: 5, y: 5}
   bulletSpeed: {x: 6, y: 10}
+  needs: {fileID: 0}
   damageArea: {x: 1, y: 2}
   areaDamageReduction: {x: 0, y: 0}
   damageAreaWidth: {x: 5, y: 5}
@@ -37,10 +33,3 @@ MonoBehaviour:
   slowDownPercentage: {x: 0, y: 0}
   slowDownTime: {x: 0, y: 0}
   slowDownAreaLifeTime: {x: 0, y: 0}
-  currentDamageArea: 1.543993
-  currentAreaDamageReduction: 0
-  currentDamageAreaWidth: 5
-  currentBurnTime: 2
-  currentSlowDownPercentage: 0
-  currentSlowDownTime: 0
-  currentSlowDownAreaLifeTime: 0

@@ -13,7 +13,6 @@ public class BoostLaser : MonoBehaviour
 	private TowersonaStats targetStats;
 	private Vector3 centre;
 	private CatAttack catAttack;
-	private CatStats stats;
 
 	protected void Awake()
 	{
@@ -24,8 +23,7 @@ public class BoostLaser : MonoBehaviour
 	{
 		this.target = target;
 		this.catAttack = catAttack;
-
-		stats = (CatStats)GetComponentInParent<Towersona>().stats;
+		
 		targetStats = this.target.GetComponent<TowersonaLOD>().towersona.stats;
 
 		lineRenderer.SetPosition(0, transform.position);
@@ -40,21 +38,21 @@ public class BoostLaser : MonoBehaviour
 
 	public void UpdateBoosts()
 	{	
-		if (target == null || Vector3.Distance(target.transform.position, centre) > stats.currentBoostRange)
+		if (target == null || Vector3.Distance(target.transform.position, centre) > catAttack.currentBoostRange)
 		{
 			//Towersona is out of range, so destroy it. Resets all boosts
-			targetStats.RemoveAttackStrengthBoost(this);
-			targetStats.RemoveAttackSpeedBoost(this);			
-			targetStats.RemoveHappinessBoost(this);
+			catAttack.RemoveAttackStrengthBoost(this);
+			catAttack.RemoveAttackSpeedBoost(this);
+			catAttack.RemoveHappinessBoost(this);
 
 			catAttack.RemoveLaser(this);
 			Destroy(gameObject);
 		}
 		else
-		{		
-			targetStats.SetHappinessBoost(this, stats.currentHappinessBoost);				//Love
-			targetStats.SetAttackStrengthBoost(this, stats.currentAttackStrengthBoost);   //Attack Strength
-			targetStats.SetAttackSpeedBoost(this, stats.currentAttackSpeedBoost);			//Attack Speed
+		{
+			catAttack.SetHappinessBoost(this, catAttack.currentHappinessBoost);             //Love
+			catAttack.SetAttackStrengthBoost(this, catAttack.currentAttackStrengthBoost);   //Attack Strength
+			catAttack.SetAttackSpeedBoost(this, catAttack.currentAttackSpeedBoost);			//Attack Speed
 		}
 	}
 }

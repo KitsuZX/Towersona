@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
 public abstract class TowersonaStats : ScriptableObject
 {
@@ -22,110 +21,14 @@ public abstract class TowersonaStats : ScriptableObject
     public float timeBetweenShits;
     public int maxShits;
 
-	[HideInInspector]
-	public float currentAttackStrength;
-    [HideInInspector]
-    public float currentAttackSpeed;
-    [HideInInspector]
-    public float currentAttackRange;
-    [HideInInspector]
-	public float currentBulletSpeed;
-
-	private Dictionary<BoostLaser, float> attackStrengthBonusses = new Dictionary<BoostLaser, float>();
-	private Dictionary<BoostLaser, float> attackSpeedBonusses = new Dictionary<BoostLaser, float>();
-	private Dictionary<BoostLaser, float> happinessBonusses = new Dictionary<BoostLaser, float>();
-
-	[HideInInspector]
-	public float AttackStrength {
-		get {
-			if(attackStrengthBonusses.Count == 0)
-			{
-				return currentAttackStrength;
-			}
-
-			return currentAttackStrength * attackStrengthBonusses.Values.Max();
-		}
-	}
-	public float AttackSpeed
-	{
-		get
-		{
-			if (attackSpeedBonusses.Count == 0)
-			{
-				return currentAttackSpeed;
-			}
-
-			return currentAttackSpeed * attackSpeedBonusses.Values.Max();
-		}
-	}
-	public float HappinessBonus
-	{
-		get
-		{
-			if (happinessBonusses.Count == 0)
-			{
-				return 0;
-			}
-
-			return happinessBonusses.Values.Max();
-		}
-	}
+	[Header("Damage")]
+	public Vector2 bulletDamage = Vector2.zero;
+	public Vector2 attackSpeed = Vector2.zero;
+	public Vector2 range = Vector2.zero;
+	public Vector2 bulletSpeed = Vector2.zero;
 
 	[HideInInspector]
     public TowersonaNeeds needs;
 
-	protected void Update(){}
-
-	public void SetAttackStrengthBoost(BoostLaser laser, float attackBoost)
-	{
-		if (attackStrengthBonusses.ContainsKey(laser))
-		{
-			attackStrengthBonusses[laser] = attackBoost;
-		}
-		else
-		{
-			attackStrengthBonusses.Add(laser, attackBoost);
-		}
-		
-	}
-
-	public void SetAttackSpeedBoost(BoostLaser laser, float speedBoost)
-	{
-		if (attackSpeedBonusses.ContainsKey(laser))
-		{
-			attackSpeedBonusses[laser] = speedBoost;
-		}
-		else
-		{
-			attackSpeedBonusses.Add(laser, speedBoost);
-		}
-	}
-
-	public void SetHappinessBoost(BoostLaser laser, float happinessBoost)
-	{
-		if (happinessBonusses.ContainsKey(laser))
-		{
-			happinessBonusses[laser] = happinessBoost;
-		}
-		else
-		{
-			happinessBonusses.Add(laser, happinessBoost);
-		}
-	}
-
-	public void RemoveAttackStrengthBoost(BoostLaser laser)
-	{
-		attackStrengthBonusses.Remove(laser);
-	}
-	public void RemoveAttackSpeedBoost(BoostLaser laser)
-	{
-		attackSpeedBonusses.Remove(laser);
-	}
-	public void RemoveHappinessBoost(BoostLaser laser)
-	{
-		happinessBonusses.Remove(laser);
-	}
-
-	public abstract void UpdateStats();
-    public abstract void SetDefaultValues();   
+	protected void Update(){} 
 }
