@@ -14,7 +14,7 @@ public abstract class Shooting : MonoBehaviour
 
 	public virtual void Seek(Transform _target)
     {
-        target = _target;
+        target = _target.GetChild(0).transform;
     }
 
     protected virtual void Update()

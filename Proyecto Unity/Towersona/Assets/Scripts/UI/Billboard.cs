@@ -4,8 +4,25 @@ using UnityEngine;
 
 public class Billboard : MonoBehaviour
 {
-    void Update()
+
+	private Transform swivel;
+	private CameraController controller;
+
+	public float minScale, maxScale;
+
+	private void Awake()
+	{
+		swivel = Camera.main.transform.parent.parent;
+		controller = Camera.main.GetComponentInParent<CameraController>();
+		CameraHasZoomed();
+	}
+
+	public void CameraHasZoomed()
     {
-		transform.LookAt(transform.position + Camera.main.transform.rotation * Vector3.back, Camera.main.transform.rotation * Vector3.down);
+		float rotation = 90 - (90 - swivel.transform.eulerAngles.x);
+		transform.rotation = Quaternion.Euler(rotation, 0f, 0f);
+
+		float scale = Mathf.Lerp(minScale, maxScale, controller.zoom);
+		transform.localScale = new Vector3(scale, scale, scale);
     }
 }

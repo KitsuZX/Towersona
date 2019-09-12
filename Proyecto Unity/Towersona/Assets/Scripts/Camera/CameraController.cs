@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
 	Transform swivel, stick;
+
+	public UnityEvent onCameraZoomed;
 
 	[SerializeField] private LevelBounds levelBounds = null;
 
@@ -13,7 +16,7 @@ public class CameraController : MonoBehaviour
 	public float moveSpeedMinZoom, moveSpeedMaxZoom;
 	public float minFOV, maxFOV;
 
-	float zoom = 1f;
+	[HideInInspector] public float zoom = 1f;
 
 	private Transform m_camera;		
 
@@ -53,7 +56,7 @@ public class CameraController : MonoBehaviour
 		zoomDelta = Input.GetAxis("Mouse ScrollWheel");
 		if (zoomDelta != 0f)
 		{
-			AdjustZoom(-zoomDelta);
+			AdjustZoom(-zoomDelta);		
 		}
 
 		float xDelta = Input.GetAxis("Horizontal");
@@ -90,8 +93,8 @@ public class CameraController : MonoBehaviour
 
 	void AdjustZoom(float delta)
 	{		
-		zoom = Mathf.Clamp01(zoom + delta);
-		
+		zoom = Mathf.Clamp01(zoom + delta);		
+
 		//Si hacemos zoom out
 		if (delta > 0 && zoom < 1)
 		{
@@ -115,6 +118,7 @@ public class CameraController : MonoBehaviour
 		float FOV = Mathf.Lerp(maxFOV, minFOV, zoom);
 		Camera.main.fieldOfView = FOV;
 
+		onCameraZoomed.Invoke();
 		RecalculateBounds();
 	}
 
