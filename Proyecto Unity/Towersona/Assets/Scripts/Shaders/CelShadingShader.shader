@@ -1,119 +1,70 @@
-﻿Shader "Custom/CelShadingShader"
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Custom/CelShadingShader"
 {
-	Properties
-	{
-		_Color("Color", Color) = (1,1,1,1)
-		_MainTex("Main Texture", 2D) = "white" {}
-	//luz ambiente
-	[HDR]
-	_AmbientColor("Ambient Color", Color) = (0.4,0.4,0.4,1)
-	[HDR]
-	_SpecularColor("Specular Color", Color) = (0.9,0.9,0.9,1)
-		//controles de los brillitos
-		_Glossiness("Glossiness", Float) = 32
-		[HDR]
-		_RimColor("Rim Color", Color) = (1,1,1,1)
-		_RimAmount("Rim Amount", Range(0, 1)) = 0.716
-			//control del arito sagrado
-			_RimThreshold("Rim Threshold", Range(0, 1)) = 0.1
+	Properties{
+		_Color("Main Color", Color) = (0.5,0.5,0.5,1)
+		_MainTex("Base (RGB)", 2D) = "white" {}
+		_NoiseTex("Noise", 2D) = "white" {}
+		_Ramp("Toon Ramp (RGB)", 2D) = "gray" {}
+		_XShift("Shift in the X direction", Float) = 0.1
+		_YShift("Shift in the Y direction", Float) = 0.1
 	}
-		SubShader
-		{
-			Pass
-			{
-			//setupea el forward rendering y que solo se vea afectada por luces direccionales
-			Tags
-			{
-				"LightMode" = "ForwardBase"
-				"PassFlags" = "OnlyDirectional"
-			}
 
-			CGPROGRAM
-			#pragma vertex vert
-			#pragma fragment frag
-			//esto es un backup para que no pete para varias luces
-			#pragma multi_compile_fwdbase
+		SubShader{
+			Tags { "RenderType" = "Opaque" }
+			LOD 200
 
-			#include "UnityCG.cginc"
-			//funciones para luces fancies
-			#include "Lighting.cginc"
-			#include "AutoLight.cginc"
+	CGPROGRAM
+	#pragma surface surf ToonRamp vertex:vert
 
-			struct appdata
-			{
-				float4 vertex : POSITION;
-				float4 uv : TEXCOORD0;
-				float3 normal : NORMAL;
-			};
+	sampler2D _Ramp;
 
-			struct v2f
-			{
-				float4 pos : SV_POSITION;
-				float3 worldNormal : NORMAL;
-				float2 uv : TEXCOORD0;
-				float3 viewDir : TEXCOORD1;
-				//macro para sombras fancies
-				SHADOW_COORDS(2)
-			};
+	// custom lighting function that uses a texture ramp based
+	// on angle between light direction and normal
+	#pragma lighting ToonRamp exclude_path:prepass
+	inline half4 LightingToonRamp(SurfaceOutput s, half3 lightDir, half atten)
+	{
+		#ifndef USING_DIRECTIONAL_LIGHT
+		lightDir = normalize(lightDir);
+		#endif
 
-			sampler2D _MainTex;
-			float4 _MainTex_ST;
+		half d = dot(s.Normal, lightDir)*0.5 + 0.5;
+		half3 ramp = tex2D(_Ramp, float2(d,d)).rgb;
 
-			v2f vert(appdata v)
-			{
-				//vertex shader, inicialización de variables
-				v2f o;
-				o.pos = UnityObjectToClipPos(v.vertex);
-				o.worldNormal = UnityObjectToWorldNormal(v.normal);
-				o.viewDir = WorldSpaceViewDir(v.vertex);
-				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-				TRANSFER_SHADOW(o)
-				return o;
-			}
-			//convierte las propiedades en variables
-			float4 _Color;
-			float4 _AmbientColor;
-			float4 _SpecularColor;
-			float _Glossiness;
-			float4 _RimColor;
-			float _RimAmount;
-			float _RimThreshold;
+		half4 c;
+		c.rgb = s.Albedo * _LightColor0.rgb * ramp * (atten * 2);
+		c.a = 0;
+		return c;
+	}
 
-			float4 frag(v2f i) : SV_Target
-			{
-				float3 normal = normalize(i.worldNormal);
-				float3 viewDir = normalize(i.viewDir);
 
-				//producto escalar entre normales y vector view para que modifique los brillos
-				float NdotL = dot(_WorldSpaceLightPos0, normal);
+	sampler2D _MainTex, _NoiseTex;
+	float4 _Color;
 
-				//mapa de sombras
-				float shadow = SHADOW_ATTENUATION(i);
-				//modifica la intensidad de la luz
-				float lightIntensity = smoothstep(0, 0.01, NdotL * shadow);
-				float4 light = lightIntensity * _LightColor0;
+	half _XShift;
+	half _YShift;
 
-				// Calculate specular reflection.
-				float3 halfVector = normalize(_WorldSpaceLightPos0 + viewDir);
-				float NdotH = dot(normal, halfVector);
-				//modifica la luz en funcion del valor de glossiness, para hacer cosas rugosas
-				float specularIntensity = pow(NdotH * lightIntensity, _Glossiness * _Glossiness);
-				float specularIntensitySmooth = smoothstep(0.005, 0.01, specularIntensity);
-				float4 specular = specularIntensitySmooth * _SpecularColor;
+	struct Input {
+		float2 uv_MainTex : TEXCOORD0;
+		float2 uv_NoiseTex : TEXCOORD1;
+	};
 
-				//el arito de amor y lo blendea
-				float rimDot = 1 - dot(viewDir, normal);
-				float rimIntensity = rimDot * pow(NdotL, _RimThreshold);
-				rimIntensity = smoothstep(_RimAmount - 0.01, _RimAmount + 0.01, rimIntensity);
-				float4 rim = rimIntensity * _RimColor;
+	void vert(inout appdata_full v, out Input o)
+	{
+		o.uv_NoiseTex = o.uv_NoiseTex + float2(_XShift * _Time.x, _YShift* _Time.x);
+		UNITY_INITIALIZE_OUTPUT(Input, o);
+	}
 
-				float4 sample = tex2D(_MainTex, i.uv);
+	void surf(Input IN, inout SurfaceOutput o) {
+		half4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+		half4 n = tex2D(_NoiseTex, IN.uv_NoiseTex) * _Color;
+		o.Albedo = c.rgb * n.rgb;
+		o.Alpha = c.a;
+	}
+	ENDCG
 
-				return (light + _AmbientColor + specular + rim) * _Color * sample;
-			}
-			ENDCG
-		}
-			//shader de apoyo para las sombras
-			UsePass "Legacy Shaders/VertexLit/SHADOWCASTER"
-		}
+	}
+
+		Fallback "Diffuse"
 }
