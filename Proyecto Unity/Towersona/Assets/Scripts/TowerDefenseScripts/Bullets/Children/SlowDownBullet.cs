@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SlowDownBullet : Shooting
 {
-	new FoxAttack pattern;
+	FoxAttack foxAttack;
 
 	private void Start()
 	{
-		this.pattern = (FoxAttack)base.pattern;
+		this.foxAttack = (FoxAttack)base.pattern;
 	}
 
 	protected override void HitTarget()
@@ -23,10 +23,10 @@ public class SlowDownBullet : Shooting
 
 		if (e != null)
 		{
-			e.TakeDamage(pattern.AttackStrength);
+			e.TakeDamage(foxAttack.AttackStrength);
 			
 			SlowDown slowDown = (SlowDown)TemporalEffect.CreateEffect(TemporalEffectType.SlowDown);
-			slowDown.Initialize(pattern.currentSlowDownPercentage, pattern.currentSlowDownTime, target.gameObject);
+			slowDown.Initialize(foxAttack.currentSlowDownPercentage, foxAttack.currentSlowDownTime, target.gameObject);
 			slowDown.ApplyEffect();
 			
 		}

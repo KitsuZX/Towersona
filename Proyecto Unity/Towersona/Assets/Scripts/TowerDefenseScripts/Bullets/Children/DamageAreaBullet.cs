@@ -7,11 +7,11 @@ public class DamageAreaBullet : Shooting
 	[HideInInspector]
 	public float explosionRadius = 0f;
 
-	new DragonAttack pattern;
+	DragonAttack dragonAttack;
 
 	private void Start()
 	{
-		this.pattern = (DragonAttack)base.pattern;
+		dragonAttack = (DragonAttack)base.pattern;
 	}
 
 	protected override void HitTarget()
@@ -24,10 +24,10 @@ public class DamageAreaBullet : Shooting
 
 		if(firstTarget != null)
 		{
-			firstTarget.TakeDamage(pattern.AttackStrength);
+			firstTarget.TakeDamage(dragonAttack.AttackStrength);
 		}
 
-		Collider[] colliders = Physics.OverlapSphere(pos, pattern.currentDamageArea);
+		Collider[] colliders = Physics.OverlapSphere(pos, dragonAttack.currentDamageArea);
 
 		BuildManager.Instance.SpawnEffect(impactEffect, pos);
 
@@ -38,7 +38,7 @@ public class DamageAreaBullet : Shooting
 				Enemy e = collider.GetComponent<Enemy>();
 				if (e != null && e != firstTarget)
 				{
-					e.TakeDamage(pattern.AttackStrength * pattern.currentAreaDamageReduction);
+					e.TakeDamage(dragonAttack.AttackStrength * dragonAttack.currentAreaDamageReduction);
 				}
 			}
 

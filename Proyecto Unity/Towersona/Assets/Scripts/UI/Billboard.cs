@@ -10,15 +10,20 @@ public class Billboard : MonoBehaviour
 
 	public float minScale, maxScale;
 
+	bool awaken;
+
 	private void Awake()
 	{
 		swivel = Camera.main.transform.parent.parent;
 		controller = Camera.main.GetComponentInParent<CameraController>();
 		CameraHasZoomed();
+
+		awaken = false;
 	}
 
 	public void CameraHasZoomed()
     {
+		if (!awaken) return;
 		float rotation = 90 - (90 - swivel.transform.eulerAngles.x);
 		transform.rotation = Quaternion.Euler(rotation, 0f, 0f);
 

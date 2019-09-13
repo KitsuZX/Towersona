@@ -7,11 +7,11 @@ public class BurningAreaBullet : Shooting
 	DragonStats dragonStats;
 	BoxCollider boxCollider;
 
-	new DragonAttack pattern;
+	DragonAttack dragonAttack;
 
 	public override void Seek(Transform _target) {
 
-		this.pattern = (DragonAttack)base.pattern;
+		this.dragonAttack = (DragonAttack)base.pattern;
 		boxCollider = GetComponentInChildren<BoxCollider>();
 
 		base.Seek(_target);
@@ -20,8 +20,8 @@ public class BurningAreaBullet : Shooting
 		float currentXSize = boxCollider.bounds.size.x;
 
 		Vector3 scale = transform.localScale;
-		scale.x = pattern.currentDamageAreaWidth * scale.x / currentXSize;
-		scale.z = pattern.currentAttackRange * scale.z / currentZSize;
+		scale.x = dragonAttack.currentDamageAreaWidth * scale.x / currentXSize;
+		scale.z = dragonAttack.currentAttackRange * scale.z / currentZSize;
 		transform.localScale = scale;
 
 		Vector3 targetPosition = target.position;
@@ -45,7 +45,7 @@ public class BurningAreaBullet : Shooting
 				if (!e.IsAffactedByEffect(TemporalEffectType.Burn))
 				{					
 					Burn burn = (Burn)TemporalEffect.CreateEffect(TemporalEffectType.Burn);
-					burn.Initialize(pattern.currentAttackStrength, pattern.currentBurnTime, enemy, e.gameObject);
+					burn.Initialize(dragonAttack.currentAttackStrength, dragonAttack.currentBurnTime, enemy, e.gameObject);
 					burn.ApplyEffect();
 				}
 			}
