@@ -26,6 +26,7 @@ public class TowersonaHODAnimation : MonoBehaviour
   
     public void SetLoneliness(bool loneliness)
 	{
+		//TODO: evitar que esto se esté llamando todo el rato
 		/*bodyAnimator.SetBool("isLonely", loneliness);
 		lodBodyAnimator.SetBool("isLonely", loneliness);*/
 	}

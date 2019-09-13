@@ -73,8 +73,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5930336773357402270}
-        m_MethodName: SetIsCaressed
-        m_Mode: 6
+        m_MethodName: CaressStart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -89,8 +89,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5930336773357402270}
-        m_MethodName: SetIsCaressed
-        m_Mode: 6
+        m_MethodName: CaressEnd
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -130,6 +130,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  timeOffsetToTakeAShit: 1
   shitPrefab: {fileID: 5324895032349386555, guid: 862cbfa4819532b498932ce9d676d4f7,
     type: 3}
   shitSpawnPositions:
@@ -149,8 +150,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7b4c52beefc004886f2e3480999f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAway: {fileID: 0}
-  lookAt: {fileID: 0}
+  lookAway: {fileID: 7852075331604256672}
+  lookAt: {fileID: 6123728984920799325}
+  bodyAnimator: {fileID: 0}
+  towersonaLOD: {fileID: 0}
 --- !u!114 &1080524074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,6 +281,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6123728984920799325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314488167927682310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c33f48c54416f8438f00dc5dadc7b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 0}
+--- !u!114 &7852075331604256672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6314488167927682310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a9b5bff01c097498d41824fcaf8d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBeingCaressed: 0
+  m_Camera: {fileID: 0}
+  lookAtDepth: 3
+  interpolation: 0.1
 --- !u!1001 &6314488167927714734
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -354,6 +386,12 @@ PrefabInstance:
 --- !u!4 &6314488167927580990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400016, guid: 6db203320d2c1004aa21234da11ffcbc,
+    type: 3}
+  m_PrefabInstance: {fileID: 6314488167927714734}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6314488167927682310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100008, guid: 6db203320d2c1004aa21234da11ffcbc,
     type: 3}
   m_PrefabInstance: {fileID: 6314488167927714734}
   m_PrefabAsset: {fileID: 0}

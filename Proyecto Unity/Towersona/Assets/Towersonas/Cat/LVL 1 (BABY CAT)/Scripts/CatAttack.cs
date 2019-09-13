@@ -40,7 +40,7 @@ public class CatAttack : AttackPattern
 		currentAttackStrengthBoost = catStats.attackStrengthBoost.y;
 		currentAttackSpeedBoost = catStats.attackSpeedBoost.y;
 
-		StartCoroutine("GiveMoney");
+		Invoke("StartGivingMoney", currentTimeSpan);
 
 		towersonasInRange = new List<GameObject>();
 		lasers = new List<BoostLaser>();
@@ -131,6 +131,12 @@ public class CatAttack : AttackPattern
 
 		currentAttackStrengthBoost = Mathf.Lerp(catStats.attackStrengthBoost.x, catStats.attackStrengthBoost.y, needs.HappinessLevel);
 		currentAttackSpeedBoost = Mathf.Lerp(catStats.attackSpeedBoost.x, catStats.attackSpeedBoost.y, needs.HappinessLevel);
+	}
+
+	private void StartGivingMoney()
+	{
+
+		StartCoroutine("GiveMoney");
 	}
 
 	private void OnDrawGizmos()

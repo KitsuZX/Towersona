@@ -14,7 +14,7 @@ public abstract class AttackPattern : MonoBehaviour
 	protected TowersonaLODAnimation animations;
 
 	protected TowersonaNeeds needs;
-	protected TowersonaStats stats;
+	[HideInInspector] public TowersonaStats stats;
 
 	private float fireCountdown = 1f;
 

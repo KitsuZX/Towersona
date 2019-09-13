@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Stats", menuName = "Stats/Towersonas/Cat")]
+[CreateAssetMenu(fileName = "Stats", menuName = "Stats/Towersonas/Cat/Cat")]
 public class CatStats : TowersonaStats
 {
 	[Header("Money")]
@@ -18,6 +18,5 @@ public class CatStats : TowersonaStats
 	[Header("Attack Boost")]
 	[Tooltip("Proporcional: 0 es que no hace nada, 1 es lo normal, 2 el doble, etc.")] public Vector2 attackStrengthBoost = Vector2.zero;
 	[Tooltip("Proporcional: 0 es que no hace nada, 1 es lo normal, 2 el doble, etc.")] public Vector2 attackSpeedBoost = Vector2.zero;
-	
-   
+
 }

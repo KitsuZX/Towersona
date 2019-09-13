@@ -9,6 +9,7 @@ public class DebuggingOptions : MonoBehaviour
     public bool spawnEnemies;
     public bool useMoney;
     public PriorizationOption priorizationOption;
+	public bool showStats;
 
     private void Awake()
     {

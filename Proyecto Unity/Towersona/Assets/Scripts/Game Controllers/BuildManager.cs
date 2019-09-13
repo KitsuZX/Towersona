@@ -214,25 +214,5 @@ public class BuildManager : MonoBehaviour
         GameObject effect = Instantiate(_effect, position, Quaternion.identity);
         effect.transform.SetParent(GameObject.FindGameObjectWithTag("Effects Parent").transform, true);
         Destroy(effect, 5f);
-    }   
-
-    private void OnGUI()
-    {       
-        if (towersonaSelected != null)
-        {
-            GUIStyle style = new GUIStyle();
-            style.fontSize = 32;
-            style.fontStyle = FontStyle.Bold;
-
-			AttackPattern pattern = towersonaSelected.towersonaLOD.pattern;
-
-            string message = "";
-            message += "Fuerza: " + pattern.AttackStrength + "\n";
-            message += "V. Ataque: " + pattern.AttackSpeed + "\n";
-            message += "Rango: " + pattern.currentAttackRange + "\n";
-            message += "V. Bala: " + pattern.currentBulletSpeed + "\n";
-
-            GUI.Label(new Rect(Screen.width * 0.66f + 110, 200, 120, 100), message, style);            
-        }
-    }
+    }      
 }

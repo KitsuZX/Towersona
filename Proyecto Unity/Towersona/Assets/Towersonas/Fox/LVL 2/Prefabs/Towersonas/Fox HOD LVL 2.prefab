@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &1132121487596323575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813217122962666244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a9b5bff01c097498d41824fcaf8d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBeingCaressed: 0
+  m_Camera: {fileID: 0}
+  lookAtDepth: 3
+  interpolation: 0.1
+--- !u!114 &2609279873295185977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813217122962666244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c33f48c54416f8438f00dc5dadc7b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 0}
 --- !u!1 &5139840167273293286
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +160,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  timeOffsetToTakeAShit: 1
   shitPrefab: {fileID: 5324895032349386555, guid: 862cbfa4819532b498932ce9d676d4f7,
     type: 3}
   shitSpawnPositions:
@@ -150,8 +180,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7b4c52beefc004886f2e3480999f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAway: {fileID: 0}
-  lookAt: {fileID: 0}
+  lookAway: {fileID: 1132121487596323575}
+  lookAt: {fileID: 2609279873295185977}
+  bodyAnimator: {fileID: 0}
+  towersonaLOD: {fileID: 0}
 --- !u!114 &1080524074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400078, guid: 79d7f86016ffc964395646292b8dbfd7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400078, guid: 79d7f86016ffc964395646292b8dbfd7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -353,11 +385,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 400078, guid: 79d7f86016ffc964395646292b8dbfd7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 400078, guid: 79d7f86016ffc964395646292b8dbfd7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 400078, guid: 79d7f86016ffc964395646292b8dbfd7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79d7f86016ffc964395646292b8dbfd7, type: 3}
 --- !u!4 &2813217122962632560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400078, guid: 79d7f86016ffc964395646292b8dbfd7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2813217122962765246}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2813217122962666244 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100026, guid: 79d7f86016ffc964395646292b8dbfd7,
     type: 3}
   m_PrefabInstance: {fileID: 2813217122962765246}
   m_PrefabAsset: {fileID: 0}

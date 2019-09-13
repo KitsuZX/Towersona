@@ -21,20 +21,14 @@ MonoBehaviour:
   angerPerShit: 0.2
   timeBetweenShits: 12
   maxShits: 4
-  currentAttackStrength: 20
-  currentAttackSpeed: 3
-  currentAttackRange: 10
-  currentBulletSpeed: 15
+  bulletDamage: {x: 0, y: 0}
+  attackSpeed: {x: 0, y: 0}
+  range: {x: 0, y: 0}
+  bulletSpeed: {x: 0, y: 0}
   needs: {fileID: 0}
-  timeSpanBetweenGivingMoney: {x: 0.5, y: 3}
+  timeSpanBetweenGivingMoney: {x: 7, y: 3}
   moneyGiven: {x: 40, y: 80}
   boostRange: {x: 10, y: 15}
   happinessBoost: {x: 0.75, y: 1}
   attackStrengthBoost: {x: 1, y: 1}
   attackSpeedBoost: {x: 1, y: 1}
-  currentTimeSpan: 1.9532067
-  currentMoneyGiven: 63
-  currentHappinessBoost: 0.89532065
-  currentBoostRange: 6.162565
-  currentAttackStrengthBoost: 1
-  currentAttackSpeedBoost: 1

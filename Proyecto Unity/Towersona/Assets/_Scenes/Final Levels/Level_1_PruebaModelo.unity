@@ -9738,6 +9738,16 @@ PrefabInstance:
       propertyPath: swivelMaxZoom
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2451634528959692590, guid: e515d950f3924ef4caa32af7fe4c4b6a,
+        type: 3}
+      propertyPath: onCameraZoomed.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2451634528959692590, guid: e515d950f3924ef4caa32af7fe4c4b6a,
+        type: 3}
+      propertyPath: onCameraZoomed.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5507268528220072226, guid: e515d950f3924ef4caa32af7fe4c4b6a,
         type: 3}
       propertyPath: levelBounds
@@ -10230,14 +10240,9 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1889764497}
-    - target: {fileID: 4326776620507013398, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
-      propertyPath: startingLives
-      value: 4000
-      objectReference: {fileID: 0}
     - target: {fileID: 4326776620507013402, guid: 8173bd2a3f3cf95498a39db667a80930,
         type: 3}
-      propertyPath: spawnEnemies
+      propertyPath: showStats
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

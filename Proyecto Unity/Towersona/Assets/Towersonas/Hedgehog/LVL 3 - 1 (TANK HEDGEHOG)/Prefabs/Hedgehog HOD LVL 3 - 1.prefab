@@ -1,5 +1,34 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &37619346679599768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452207648672844319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a9b5bff01c097498d41824fcaf8d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBeingCaressed: 0
+  m_Camera: {fileID: 0}
+  lookAtDepth: 3
+  interpolation: 0.1
+--- !u!114 &7137517135863928296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452207648672844319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c33f48c54416f8438f00dc5dadc7b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 0}
 --- !u!1 &5139840167273293286
 GameObject:
   m_ObjectHideFlags: 0
@@ -73,8 +102,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5930336773357402270}
-        m_MethodName: SetIsCaressed
-        m_Mode: 6
+        m_MethodName: CaressStart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -89,8 +118,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5930336773357402270}
-        m_MethodName: SetIsCaressed
-        m_Mode: 6
+        m_MethodName: CaressEnd
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -130,6 +159,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  timeOffsetToTakeAShit: 1
   shitPrefab: {fileID: 5324895032349386555, guid: 862cbfa4819532b498932ce9d676d4f7,
     type: 3}
   shitSpawnPositions:
@@ -149,8 +179,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7b4c52beefc004886f2e3480999f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAway: {fileID: 0}
-  lookAt: {fileID: 0}
+  lookAway: {fileID: 37619346679599768}
+  lookAt: {fileID: 7137517135863928296}
+  bodyAnimator: {fileID: 0}
+  towersonaLOD: {fileID: 0}
 --- !u!114 &1080524074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +370,12 @@ PrefabInstance:
 --- !u!4 &1452207648673338903 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400044, guid: fcd2de64be33c9041abb2f79f06c21ec,
+    type: 3}
+  m_PrefabInstance: {fileID: 1452207648672943291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1452207648672844319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: fcd2de64be33c9041abb2f79f06c21ec,
     type: 3}
   m_PrefabInstance: {fileID: 1452207648672943291}
   m_PrefabAsset: {fileID: 0}

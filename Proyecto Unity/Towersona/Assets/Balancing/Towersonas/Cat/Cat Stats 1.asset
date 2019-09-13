@@ -14,26 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buyCost: 45
   sellCost: 10
+  attacksFliers: 0
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
   hapinessLossPerSecond: 0.1
   angerPerShit: 0.2
   timeBetweenShits: 12
   maxShits: 4
-  currentAttackStrength: 14.92448
-  currentAttackSpeed: 1.9848962
-  currentAttackRange: 7.46224
-  currentBulletSpeed: 3.4773443
+  bulletDamage: {x: 0, y: 0}
+  attackSpeed: {x: 0, y: 0}
+  range: {x: 0, y: 0}
+  bulletSpeed: {x: 0, y: 0}
   needs: {fileID: 0}
-  timeSpanBetweenGivingMoney: {x: 2, y: 5}
+  timeSpanBetweenGivingMoney: {x: 7, y: 3}
   moneyGiven: {x: 10, y: 20}
   boostRange: {x: 0, y: 0}
   happinessBoost: {x: 0, y: 0}
-  attackStrengthBoost: {x: 0, y: 0}
-  attackSpeedBoost: {x: 0, y: 0}
-  currentTimeSpan: 4.8508897
-  currentMoneyGiven: 19
-  currentHappinessBoost: 0
-  currentBoostRange: 0
-  currentAttackStrengthBoost: 0
-  currentAttackSpeedBoost: 0
+  attackStrengthBoost: {x: 1, y: 1}
+  attackSpeedBoost: {x: 1, y: 1}

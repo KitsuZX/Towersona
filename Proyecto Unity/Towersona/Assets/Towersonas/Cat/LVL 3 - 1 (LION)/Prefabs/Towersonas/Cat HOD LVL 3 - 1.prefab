@@ -73,8 +73,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5930336773357402270}
-        m_MethodName: SetIsCaressed
-        m_Mode: 6
+        m_MethodName: CaressStart
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -89,8 +89,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5930336773357402270}
-        m_MethodName: SetIsCaressed
-        m_Mode: 6
+        m_MethodName: CaressEnd
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -150,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7b4c52beefc004886f2e3480999f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAway: {fileID: 0}
-  lookAt: {fileID: 0}
+  lookAway: {fileID: 1115326617514189515}
+  lookAt: {fileID: 6803387625251400688}
   bodyAnimator: {fileID: 0}
   towersonaLOD: {fileID: 0}
 --- !u!114 &1080524074
@@ -281,6 +281,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1115326617514189515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018441903475089404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09a9b5bff01c097498d41824fcaf8d23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isBeingCaressed: 0
+  m_Camera: {fileID: 0}
+  lookAtDepth: 3
+  interpolation: 0.1
+--- !u!114 &6803387625251400688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018441903475089404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c33f48c54416f8438f00dc5dadc7b88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  food: {fileID: 0}
 --- !u!1001 &6018441903475054920
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -348,11 +377,29 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: dcd6b1558189fa144bca04e14d909bad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: dcd6b1558189fa144bca04e14d909bad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400020, guid: dcd6b1558189fa144bca04e14d909bad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcd6b1558189fa144bca04e14d909bad, type: 3}
 --- !u!4 &6018441903474918342 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400014, guid: dcd6b1558189fa144bca04e14d909bad,
+    type: 3}
+  m_PrefabInstance: {fileID: 6018441903475054920}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6018441903475089404 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100020, guid: dcd6b1558189fa144bca04e14d909bad,
     type: 3}
   m_PrefabInstance: {fileID: 6018441903475054920}
   m_PrefabAsset: {fileID: 0}
