@@ -13,7 +13,7 @@ public class SlowDownBullet : Shooting
 
 	protected override void HitTarget()
 	{
-		Enemy e = target.GetComponent<Enemy>();
+		Enemy e = target.parent.GetComponent<Enemy>();
 
 		Vector3 pos = transform.position;
 

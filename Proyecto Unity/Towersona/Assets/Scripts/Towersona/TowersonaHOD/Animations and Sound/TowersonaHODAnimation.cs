@@ -21,7 +21,7 @@ public class TowersonaHODAnimation : MonoBehaviour
 
 	public void Eat()
 	{
-
+		//JIJI
 	}
   
     public void SetLoneliness(bool loneliness)

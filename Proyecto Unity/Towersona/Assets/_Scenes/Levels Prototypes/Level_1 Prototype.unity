@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.43667546, g: 0.48427135, b: 0.5645225, a: 1}
+  m_IndirectSpecularColor: {r: 0.4366757, g: 0.48427194, b: 0.5645252, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -333,7 +333,7 @@ PrefabInstance:
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[0].enemiesGroups.Array.data[0].secondsToNextGroup
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
@@ -354,12 +354,12 @@ PrefabInstance:
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[1].enemiesGroups.Array.data[0].secondsToNextGroup
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[0].secondsToNextWave
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
@@ -380,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[2].enemiesGroups.Array.data[0].secondsToNextGroup
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
@@ -401,12 +401,12 @@ PrefabInstance:
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[2].enemiesGroups.Array.data[1].secondsToNextGroup
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[2].secondsToNextWave
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
@@ -469,12 +469,12 @@ PrefabInstance:
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[3].enemiesGroups.Array.data[2].secondsToNextGroup
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[3].secondsToNextWave
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
@@ -579,12 +579,17 @@ PrefabInstance:
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[4].enemiesGroups.Array.data[4].secondsToNextGroup
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
         type: 3}
       propertyPath: waves.Array.data[4].secondsToNextWave
-      value: 3
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653819544439362071, guid: c3ffc37e48156f84abd50945dd6d36aa,
+        type: 3}
+      propertyPath: waves.Array.data[1].secondsToNextWave
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3ffc37e48156f84abd50945dd6d36aa, type: 3}
@@ -2737,18 +2742,8 @@ PrefabInstance:
       objectReference: {fileID: 1889764497}
     - target: {fileID: 4326776620507013398, guid: 8173bd2a3f3cf95498a39db667a80930,
         type: 3}
-      propertyPath: startingLives
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 4326776620507013402, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
-      propertyPath: spawnEnemies
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4326776620507013402, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
-      propertyPath: priorizationOption
-      value: 0
+      propertyPath: startingMoney
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8173bd2a3f3cf95498a39db667a80930, type: 3}
@@ -2763,6 +2758,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UI Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8895327833434680578, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8895327831670917425, guid: 037403d2d947a2f40965138420f02b46,
         type: 3}

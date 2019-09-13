@@ -12,10 +12,7 @@ public class StatsDebugger : MonoBehaviour
 	protected void Awake()
 	{
 		pattern = GetComponentInParent<AttackPattern>();
-		text = GetComponentInChildren<TextMeshProUGUI>();
-		controller =  Camera.main.transform.parent.parent.parent.GetComponent<CameraController>();
-
-		controller.onCameraZoomed.AddListener(delegate() { GetComponent<Billboard>().CameraHasZoomed();});
+		text = GetComponentInChildren<TextMeshProUGUI>();		
 	}
 
 	protected virtual void Update()

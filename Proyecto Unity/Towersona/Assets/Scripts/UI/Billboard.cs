@@ -18,6 +18,10 @@ public class Billboard : MonoBehaviour
 		controller = Camera.main.GetComponentInParent<CameraController>();		
 
 		awaken = true;
+
+		controller = Camera.main.transform.parent.parent.parent.GetComponent<CameraController>();
+		controller.onCameraZoomed.AddListener(delegate () { CameraHasZoomed(); });
+
 		CameraHasZoomed();
 	}
 

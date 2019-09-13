@@ -18,7 +18,7 @@ public class SlowDownAreaBullet : Shooting
 		Vector3 pos = transform.position;
 		pos.y += 1f;
 
-		Enemy firstTarget = target.GetComponent<Enemy>();
+		Enemy firstTarget = target.parent.GetComponent<Enemy>();
 
 		if (firstTarget != null)
 		{

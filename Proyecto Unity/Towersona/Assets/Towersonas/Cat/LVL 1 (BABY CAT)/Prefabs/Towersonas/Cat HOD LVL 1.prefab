@@ -41,8 +41,8 @@ GameObject:
   - component: {fileID: 5139840167273293284}
   - component: {fileID: 5139840167273293283}
   - component: {fileID: 5139840167273293281}
-  - component: {fileID: 5930336773357402270}
   - component: {fileID: 1080524074}
+  - component: {fileID: 5728504498123519679}
   - component: {fileID: 5139840167273293282}
   - component: {fileID: 4526572796161036566}
   m_Layer: 9
@@ -101,7 +101,7 @@ MonoBehaviour:
   OnCaressStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5930336773357402270}
+      - m_Target: {fileID: 5728504498123519679}
         m_MethodName: CaressStart
         m_Mode: 1
         m_Arguments:
@@ -117,7 +117,7 @@ MonoBehaviour:
   OnCaressEnd:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5930336773357402270}
+      - m_Target: {fileID: 5728504498123519679}
         m_MethodName: CaressEnd
         m_Mode: 1
         m_Arguments:
@@ -167,23 +167,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &5930336773357402270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5139840167273293286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e7b4c52beefc004886f2e3480999f44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lookAway: {fileID: 2058563031153834924}
-  lookAt: {fileID: 2914476406494085575}
-  bodyAnimator: {fileID: 59110152849784477}
-  towersonaLOD: {fileID: 3219872535607788348, guid: 8b60c53397e2b334c809055594660476,
-    type: 3}
 --- !u!114 &1080524074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,6 +184,22 @@ MonoBehaviour:
   shitSfx: {fileID: 8300000, guid: a46a25f1db657524ca5c51b84b8ac355, type: 3}
   lookingAtFoodSfx: {fileID: 8300000, guid: 788782419b813014fbd8d8effe35afac, type: 3}
   happySfx: {fileID: 8300000, guid: 1e34335c84f640f449a52fbfb993971d, type: 3}
+--- !u!114 &5728504498123519679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139840167273293286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7b4c52beefc004886f2e3480999f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAway: {fileID: 2058563031153834924}
+  lookAt: {fileID: 2914476406494085575}
+  bodyAnimator: {fileID: 0}
+  towersonaLOD: {fileID: 0}
 --- !u!136 &5139840167273293282
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -322,6 +321,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Baby - HOD Model
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 97005857c5b03294b8435757fb972fc6, type: 2}
     - target: {fileID: 400000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -378,21 +381,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 97005857c5b03294b8435757fb972fc6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
 --- !u!4 &59110152857194877 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 6eaf661ea779ae54a8dae607e2a2448a,
-    type: 3}
-  m_PrefabInstance: {fileID: 59110152857062397}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &59110152849784477 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a,
     type: 3}
   m_PrefabInstance: {fileID: 59110152857062397}
   m_PrefabAsset: {fileID: 0}

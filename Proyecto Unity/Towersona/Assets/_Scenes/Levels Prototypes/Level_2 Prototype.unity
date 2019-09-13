@@ -3184,26 +3184,31 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 383186421}
-    - target: {fileID: 8895327832433344129, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_TargetDisplay
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895327832433344129, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8895327832433344134, guid: 037403d2d947a2f40965138420f02b46,
-        type: 3}
-      propertyPath: m_UiScaleMode
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 673623623, guid: 037403d2d947a2f40965138420f02b46, type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 673623623, guid: 037403d2d947a2f40965138420f02b46, type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296593262073811403, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296593262073811403, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285910595109870101, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2285910595109870101, guid: 037403d2d947a2f40965138420f02b46,
+        type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}

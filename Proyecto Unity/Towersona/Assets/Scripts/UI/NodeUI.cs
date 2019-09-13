@@ -60,7 +60,7 @@ public class NodeUI : MonoBehaviour
                 UIS[0].gameObject.SetActive(true);
 
                 SetButtonInteractivity(UIS[0].gameObject, "Upgrade", 1);
-                SetButtonInteractivity(UIS[0].gameObject, "Sell Button", 0, false);
+                SetButtonInteractivity(UIS[0].gameObject, "Sell Button", 0, true);
 
                 break;
             case Towersona.TowersonaLevel.LVL2:
@@ -84,24 +84,24 @@ public class NodeUI : MonoBehaviour
     private void SetButtonInteractivity(GameObject nodeUI, string buttonName, int costIndex, bool buyingCost = true)
     {
         Button button = nodeUI.transform.GetChild(0).Find(buttonName).GetComponent<Button>();
+
         if (buyingCost)
         {
             button.GetComponentInChildren<TextMeshProUGUI>().text = buttonName + ' ' + towersona.statsArray[costIndex].buyCost + '$';
-        }
+
+			if (towersona.statsArray[costIndex].buyCost > PlayerStats.Instance.money && DebuggingOptions.Instance.useMoney)
+			{
+				//Not enough money
+				button.interactable = false;
+			}
+			else
+			{
+				button.interactable = true;
+			}
+		}
         else
         {
             button.GetComponentInChildren<TextMeshProUGUI>().text = "Sell \n" + towersona.statsArray[costIndex].sellCost + '$';
-        }
-      
-
-        if (towersona.statsArray[costIndex].buyCost > PlayerStats.Instance.money && DebuggingOptions.Instance.useMoney)
-        {
-            //Not enough money
-            button.interactable = false;
-        }
-        else
-        {
-            button.interactable = true;
-        }
+        }    
     }
 }

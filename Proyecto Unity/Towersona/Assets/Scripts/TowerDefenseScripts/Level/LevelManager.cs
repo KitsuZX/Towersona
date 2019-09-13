@@ -39,20 +39,27 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {    
 		//No empezar el timer si
-		if(!allEnemiesSpawned ||							 //No se ha acabado de spawnear la oleada
-			enemiesAlive > 0 ||								 //Aún hay enemigos vivos
+		if(!allEnemiesSpawned ||							 //No se ha acabado de spawnear la oleada			
 			!DebuggingOptions.Instance.spawnEnemies)		 //No se quieen spawnear enemigos					
 		{
 			return;
 		}
-  
+
+		/*if (allEnemiesSpawned && enemiesAlive <= 0)
+		{
+			if(countdown > 2f)
+			{
+				countdown = 2f;
+			}
+		}*/
+
         if(countdown <= 0f)
         {
 			allEnemiesSpawned = false;
 			StartCoroutine(SpawnWave());
             countdown = timeTillNextWave;
             return;
-        }
+        }			
 
         countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);

@@ -26,14 +26,16 @@ public class SpawnPoint : MonoBehaviour
     {
         Wave wave = waves[waveIndex];
 
-        if (wave.enemiesGroups == null) yield return null;        
+		LevelManager.Instance.timeTillNextWave = wave.secondsToNextWave;
+
+		if (wave.enemiesGroups == null) yield return null;        
 
         for (int i = 0; i < wave.enemiesGroups.Count; i++)
         {          
             yield return StartCoroutine(SpawnEnemiesGroup(wave.enemiesGroups[i]));             
         }
         
-		LevelManager.Instance.timeTillNextWave = wave.secondsToNextWave;       
+	
     }
 
     IEnumerator SpawnEnemiesGroup(EnemiesGroup group)

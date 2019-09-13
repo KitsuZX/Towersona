@@ -132,6 +132,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  timeOffsetToTakeAShit: 1
   shitPrefab: {fileID: 5324895032349386555, guid: 862cbfa4819532b498932ce9d676d4f7,
     type: 3}
   shitSpawnPositions:
@@ -153,6 +154,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookAway: {fileID: 0}
   lookAt: {fileID: 0}
+  bodyAnimator: {fileID: 0}
+  towersonaLOD: {fileID: 0}
 --- !u!114 &1080524074
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -47,9 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f79d03ba30691b4a9f0c067dbf762ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEnemies: 0
-  useMoney: 0
+  spawnEnemies: 1
+  useMoney: 1
   priorizationOption: 0
+  showStats: 1
 --- !u!114 &4326776620507013398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8939e121eb03c844280af241d03f5b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingLives: 4000
+  startingLives: 40
   startingMoney: 100
   lives: 0
   money: 0
