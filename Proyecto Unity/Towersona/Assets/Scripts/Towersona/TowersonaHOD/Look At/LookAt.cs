@@ -8,17 +8,21 @@ public class LookAt : MonoBehaviour
     public Transform food;
     
     private new Transform transform;
+	private Vector3 initialRotation;
 
-    private void LateUpdate()
+	private void Awake()
+	{
+		transform = GetComponent<Transform>();
+		initialRotation = transform.eulerAngles;
+		initialRotation.x -= 180;
+		initialRotation.z -= 180;
+	}
+
+	private void LateUpdate()
     {
         if (food == null) return;        
 
         transform.LookAt(food);
-    }
-
-    private void Awake()
-    {
-        transform = GetComponent<Transform>();
-    }
-
+		transform.eulerAngles += initialRotation;
+    } 
 }

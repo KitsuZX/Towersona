@@ -42,11 +42,15 @@ public class LookAwayFromTouch : MonoBehaviour
             else return Vector3.zero;
         }
     }
+	private Vector3 initialRotation;
 
     private void Awake()
     {  
         transform = GetComponent<Transform>();
-    }
+		initialRotation = transform.eulerAngles;
+		initialRotation.x -= 180;
+		initialRotation.z -= 180;
+	}
 
     private void LateUpdate()
     {
@@ -58,6 +62,8 @@ public class LookAwayFromTouch : MonoBehaviour
 			Quaternion opposite = Quaternion.Inverse(lookAt);
 
 			transform.rotation = Quaternion.Slerp(lookAt, opposite, interpolation);
+			transform.eulerAngles += initialRotation;
+			
 		}
     }
 
