@@ -29,7 +29,7 @@ public class BuyMenu : MonoBehaviour
 				texts[i].text = t.menuName + " " + t.stats.buyCost + "$";
 			}			
 		}
-
+        
         InvokeRepeating("CheckMoney", 0f, 0.5f);
 	}
 
@@ -42,12 +42,7 @@ public class BuyMenu : MonoBehaviour
 
 		transform.position = pos;
 		
-		gameObject.SetActive(true);
-
-        if (DebuggingOptions.Instance.useMoney)
-        {
-            CheckMoney();
-        }
+		gameObject.SetActive(true);        
 	}
 
 	public void Hide()
@@ -77,12 +72,14 @@ public class BuyMenu : MonoBehaviour
         buttonSelected = button;
         button.SetSprite(confirmationSprite);  
         button.button.onClick.AddListener(OnPurchaseConfirmed);
+        BuildManager.Instance.SetTowersonaConfirmation(place, button.towersona);
     }
 
     private void DeselectButton()
     {
         buttonSelected.SetSprite();
         buttonSelected.button.onClick.RemoveListener(OnPurchaseConfirmed);
+        BuildManager.Instance.DestroyTowersonaConfirmation();
         buttonSelected = null;        
     }
 
@@ -93,6 +90,8 @@ public class BuyMenu : MonoBehaviour
 
     private void CheckMoney()
     {
+        if (!DebuggingOptions.Instance.useMoney) return;
+
         for (int i = 0; i < buttons.Length; i++)
         {
             Towersona t = BuildManager.Instance.towersonaPrefabs[i];

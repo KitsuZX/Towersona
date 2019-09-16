@@ -19,13 +19,12 @@ public class BuildManager : MonoBehaviour
     [SerializeField] private NodeUI nodeUI = null;
 	[SerializeField] private BuyMenu buyMenu = null;
 	[SerializeField] private GameObject buildEffect = null;
+    [SerializeField] private TowersonaConfirmation towersonaConfirmation;
 
-	//Private parameters  
-	private List<Towersona> towersonas;
+    //Private parameters  
+    private List<Towersona> towersonas;
 	private Towersona towersonaSelected;
 	private BuildingPlace buildingPlaceSelected;
-
-
 
     void Awake()
     {
@@ -38,7 +37,7 @@ public class BuildManager : MonoBehaviour
             Destroy(this);
         }
 
-        towersonas = new List<Towersona>();
+        towersonas = new List<Towersona>();       
     }
 
     private void Update()
@@ -147,7 +146,18 @@ public class BuildManager : MonoBehaviour
 		towersonas.Add(towersona);       
     }     
 
-	public void ShowBuyMenu(BuildingPlace place)
+    public void SetTowersonaConfirmation(BuildingPlace place, Towersona _towersona)
+    {
+        towersonaConfirmation.ActivateModel(place.buildingSpot.position, _towersona.towersonaLODPrefabs[0]);
+    }
+
+    public void DestroyTowersonaConfirmation()
+    {
+        towersonaConfirmation.DesactivateModel();
+    }
+
+
+    public void ShowBuyMenu(BuildingPlace place)
 	{
 		if (buildingPlaceSelected == place)
 		{
