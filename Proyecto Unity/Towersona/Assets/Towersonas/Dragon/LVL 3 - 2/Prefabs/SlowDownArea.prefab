@@ -123,4 +123,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c89c662d9a89be40a34357bd3709d04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dragonStats: {fileID: 11400000, guid: 92aee89c54f72944f946b990bad0f2ad, type: 2}
+  pattern: {fileID: 0}

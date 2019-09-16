@@ -20,6 +20,7 @@ public class BuildManager : MonoBehaviour
 	[SerializeField] private BuyMenu buyMenu = null;
 	[SerializeField] private GameObject buildEffect = null;
     [SerializeField] private TowersonaConfirmation towersonaConfirmation;
+    [SerializeField] private RangeShower rangeShower;
 
     //Private parameters  
     private List<Towersona> towersonas;
@@ -149,13 +150,14 @@ public class BuildManager : MonoBehaviour
     public void SetTowersonaConfirmation(BuildingPlace place, Towersona _towersona)
     {
         towersonaConfirmation.ActivateModel(place.buildingSpot.position, _towersona.towersonaLODPrefabs[0]);
+        rangeShower.ShowRange(place.buildingSpot.position, _towersona.stats);
     }
 
     public void DestroyTowersonaConfirmation()
     {
         towersonaConfirmation.DesactivateModel();
+        //rangeShower.HideRange();
     }
-
 
     public void ShowBuyMenu(BuildingPlace place)
 	{
@@ -181,11 +183,6 @@ public class BuildManager : MonoBehaviour
 
     public void SelectTowersona(Towersona towersona)
     {
-        if(towersonaSelected == towersona)
-        {            
-            //return;
-        }
-
         towersonaSelected = towersona;
          
         nodeUI.SetTarget(towersona);

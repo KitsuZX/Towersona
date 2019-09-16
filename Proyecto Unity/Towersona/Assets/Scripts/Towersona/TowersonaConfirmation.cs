@@ -34,7 +34,7 @@ public class TowersonaConfirmation : MonoBehaviour
     public void DesactivateModel()
     {
         activeModel.SetActive(false);
-    }
+    }  
 }
 
 [System.Serializable]
