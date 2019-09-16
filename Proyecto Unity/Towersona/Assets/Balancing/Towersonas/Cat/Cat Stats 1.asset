@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50a39bf25bd9594ca218f341103cfd7, type: 3}
   m_Name: Cat Stats 1
   m_EditorClassIdentifier: 
-  buyCost: 45
+  buyCost: 35
   sellCost: 10
   attacksFliers: 0
   happinessPerPet: 0.05
