@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class RangeShower : MonoBehaviour
 {
-    [SerializeField] private GameObject minRange;
-    [SerializeField] private GameObject maxRange;
+    [SerializeField] private GameObject minRange = null;
+    [SerializeField] private GameObject maxRange = null;
 
     public void ShowRange(Vector3 position, TowersonaStats stats)
     {
         minRange.SetActive(true);
         maxRange.SetActive(true);
 
-        minRange.transform.localScale = new Vector3(stats.range.x * 2f, stats.range.x * 2f, stats.range.x * 2f);
-        maxRange.transform.localScale = new Vector3(stats.range.y * 2f, stats.range.y * 2f, stats.range.y * 2f);
+        minRange.transform.localScale = new Vector3(stats.range.x, stats.range.x, stats.range.x);
+        maxRange.transform.localScale = new Vector3(stats.range.y, stats.range.y, stats.range.y);
 
         minRange.transform.position = position;
         maxRange.transform.position = position;
     }
-
+	 
     public void HideRange()
     {
         minRange.SetActive(false);

@@ -37,8 +37,10 @@ public class Towersona : MonoBehaviour
         this.place = place;
         this.parent = parent;
 
-        //Spawn towersona HOD
-        towersonaHOD = SpawnTowersonaHOD(parent);
+		place.towersona = this;
+
+		//Spawn towersona HOD
+		towersonaHOD = SpawnTowersonaHOD(parent);
         towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
 
         //Assign stats   

@@ -11,7 +11,9 @@ public class NodeUI : MonoBehaviour
 
     [HideInInspector] public bool UIIsActive = false;
 
-    private Towersona towersona;
+	private BuyButton buttonSelected;
+
+	private Towersona towersona;
 
     public void SetTarget(Towersona towersona)
     {       
@@ -50,9 +52,9 @@ public class NodeUI : MonoBehaviour
     {
         if (towersona == null) return;
         CheckInteractivity();
-    }
+    }	
 
-    private void CheckInteractivity()
+	private void CheckInteractivity()
     {
         switch (towersona.towersonaLevel)
         {
@@ -60,7 +62,7 @@ public class NodeUI : MonoBehaviour
                 UIS[0].gameObject.SetActive(true);
 
                 SetButtonInteractivity(UIS[0].gameObject, "Upgrade", 1);
-                SetButtonInteractivity(UIS[0].gameObject, "Sell Button", 0, true);
+                SetButtonInteractivity(UIS[0].gameObject, "Sell Button", 0, false);
 
                 break;
             case Towersona.TowersonaLevel.LVL2:

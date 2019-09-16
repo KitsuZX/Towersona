@@ -21,12 +21,8 @@ MonoBehaviour:
   angerPerShit: 4
   timeBetweenShits: 3
   maxShits: 4
-  currentAttackStrength: 0
-  currentAttackSpeed: 0
-  currentAttackRange: 0
-  currentBulletSpeed: 0
-  needs: {fileID: 0}
-  bulletDamage: {x: 4, y: 8}
+  bulletDamage: {x: 6, y: 10}
   attackSpeed: {x: 3, y: 5}
-  range: {x: 3, y: 7}
+  range: {x: 7, y: 10}
   bulletSpeed: {x: 7, y: 9}
+  needs: {fileID: 0}

@@ -6,6 +6,7 @@ public class BuildingPlace : MonoBehaviour
 {	
     public bool hasTower = false;
 	public Transform buildingSpot;
+	public Towersona towersona;
 	
     private void OnMouseUpAsButton()
     {
