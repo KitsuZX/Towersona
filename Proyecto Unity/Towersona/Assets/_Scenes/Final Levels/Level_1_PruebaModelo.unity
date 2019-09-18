@@ -1169,7 +1169,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 202119187}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 10, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 382954584}
@@ -1232,6 +1232,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76ef74ff4326f30438b45cfe65349d1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollSpeed: 0.01
+  rotate: 1
 --- !u!1001 &210412575
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4053,18 +4055,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 756943003653295908}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1613604296 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 756943004187847404, guid: 6b05afe36a90e654692100fa3d85b995,
-    type: 3}
-  m_PrefabInstance: {fileID: 756943003653295908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ace835957acb167408a7189e4d7b8dd3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1629881984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5608,11 +5598,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4326776620507013396, guid: 8173bd2a3f3cf95498a39db667a80930,
         type: 3}
-      propertyPath: nodeUI
-      value: 
-      objectReference: {fileID: 1613604296}
-    - target: {fileID: 4326776620507013396, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
       propertyPath: buyMenu
       value: 
       objectReference: {fileID: 3960222496030194300}
@@ -5706,11 +5691,6 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1889764497}
-    - target: {fileID: 4326776620507013402, guid: 8173bd2a3f3cf95498a39db667a80930,
-        type: 3}
-      propertyPath: showStats
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8173bd2a3f3cf95498a39db667a80930, type: 3}
 --- !u!1001 &8895327832573937021

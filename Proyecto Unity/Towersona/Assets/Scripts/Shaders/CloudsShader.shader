@@ -12,6 +12,11 @@
 			Tags {"Queue" = "Transparent" "RenderType" = "Transparent" }
 			LOD 200
 
+			Cull Off
+			Lighting Off
+			ZWrite Off
+			ZTest Off
+
 			CGPROGRAM
 
 			#pragma surface surf Standard fullforwardshadows alpha:fade

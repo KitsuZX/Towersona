@@ -78,7 +78,7 @@ public class BuildManager : MonoBehaviour
 						}
 						else
 						{
-							HideBuyMenu();
+							HideBuyMenu();							
 						}
 					}
 				}
@@ -116,11 +116,11 @@ public class BuildManager : MonoBehaviour
 	{
 		if (place != null && towersona != null && level == 0)
 		{
-			rangeShower.ShowRange(place.buildingSpot.position, towersona.stats);
+			rangeShower.ShowCurrentMaxMinRange(place.buildingSpot.position, towersona.stats);
 		}
 		else
 		{
-			rangeShower.ShowRange(towersonaSelected.place.buildingSpot.position, towersonaSelected.statsArray[level + 1]);
+			rangeShower.ShowCurrentMaxMinRange(towersonaSelected.place.buildingSpot.position, towersonaSelected.statsArray[level + 1]);
 		}
 	}
 
@@ -128,7 +128,7 @@ public class BuildManager : MonoBehaviour
     {
 		if (towersonaConfirmation == null) return;
         towersonaConfirmation.DesactivateModel();
-        rangeShower.HideRange();
+        rangeShower.HideMinMaxRange();
     }
 
     public void ShowBuyMenu(BuildingPlace place)
@@ -146,13 +146,14 @@ public class BuildManager : MonoBehaviour
 	{
 		buildingPlaceSelected = null;
 		buyMenu.Hide();
-		rangeShower.HideRange();
+		rangeShower.HideMinMaxRange();
 	}
 
     public void SelectTowersona(Towersona towersona)
     {
         towersonaSelected = towersona;
-		buyMenu.SetPlace(towersona.place);	
+		buyMenu.SetPlace(towersona.place);
+		rangeShower.ShowCurrentRange(towersona.towersonaLOD.transform.position, towersona.GetComponentInChildren<AttackPattern>());
     } 
 
 

@@ -119,11 +119,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmSell
-        m_Mode: 1
+        m_MethodName: ConfirmButtonPressed
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8198209513970391823}
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -465,11 +465,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmSell
-        m_Mode: 1
+        m_MethodName: ConfirmButtonPressed
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7683567241447536214}
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -848,11 +848,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmUpgrade
+        m_MethodName: ConfirmButtonPressed
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 2208412693645347603}
-          m_ObjectArgumentAssemblyTypeName: UpgradeButton, Assembly-CSharp
+          m_ObjectArgument: {fileID: 2346742752600712064}
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1216,11 +1216,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmUpgrade
+        m_MethodName: ConfirmButtonPressed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2208412693645347603}
-          m_ObjectArgumentAssemblyTypeName: UpgradeButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2107,11 +2107,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmUpgrade
+        m_MethodName: ConfirmButtonPressed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 2208412693645347603}
-          m_ObjectArgumentAssemblyTypeName: UpgradeButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2253,11 +2253,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmPurchase
+        m_MethodName: ConfirmButtonPressed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 821403862}
-          m_ObjectArgumentAssemblyTypeName: BuyButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2872,11 +2872,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmPurchase
+        m_MethodName: ConfirmButtonPressed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1546987120964505147}
-          m_ObjectArgumentAssemblyTypeName: BuyButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3260,11 +3260,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmSell
-        m_Mode: 1
+        m_MethodName: ConfirmButtonPressed
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1600152346884969776}
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3407,11 +3407,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmPurchase
+        m_MethodName: ConfirmButtonPressed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 8500724045070062672}
-          m_ObjectArgumentAssemblyTypeName: BuyButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3975,11 +3975,11 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1669133348311633550}
-        m_MethodName: ConfirmPurchase
+        m_MethodName: ConfirmButtonPressed
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 3018006676182395692}
-          m_ObjectArgumentAssemblyTypeName: BuyButton, Assembly-CSharp
+          m_ObjectArgumentAssemblyTypeName: MenuButton, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
