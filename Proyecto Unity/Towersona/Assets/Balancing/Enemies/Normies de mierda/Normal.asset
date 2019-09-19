@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Normal
   m_EditorClassIdentifier: 
   initialSpeed: 2
-  initialLifes: 30
+  initialLifes: 80
   initialDamage: 1
   initialValue: 20
-  speed: 2
-  lifes: 30
-  damage: 1
-  value: 20
   flies: 0

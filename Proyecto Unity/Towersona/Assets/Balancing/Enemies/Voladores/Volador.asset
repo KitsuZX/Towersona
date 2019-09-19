@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Volador
   m_EditorClassIdentifier: 
   initialSpeed: 2
-  initialLifes: 30
+  initialLifes: 50
   initialDamage: 1
   initialValue: 20
-  speed: 0
-  lifes: 0
-  damage: 1
-  value: 20
   flies: 1

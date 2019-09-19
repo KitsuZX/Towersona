@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Rapido
   m_EditorClassIdentifier: 
   initialSpeed: 4
-  initialLifes: 15
+  initialLifes: 40
   initialDamage: 1
   initialValue: 10
-  speed: 4
-  lifes: -30.88732
-  damage: 1
-  value: 10
   flies: 0
