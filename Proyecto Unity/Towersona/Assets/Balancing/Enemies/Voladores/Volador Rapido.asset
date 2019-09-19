@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Volador Rapido
   m_EditorClassIdentifier: 
   initialSpeed: 4
-  initialLifes: 15
+  initialLifes: 20
   initialDamage: 1
   initialValue: 15
-  speed: 0
-  lifes: 0
-  damage: 1
-  value: 20
   flies: 1

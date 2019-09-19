@@ -13,11 +13,7 @@ MonoBehaviour:
   m_Name: Volador Lento
   m_EditorClassIdentifier: 
   initialSpeed: 1
-  initialLifes: 50
+  initialLifes: 100
   initialDamage: 1
   initialValue: 30
-  speed: 0
-  lifes: 0
-  damage: 1
-  value: 20
   flies: 1

@@ -12,34 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74c189377fa699428b3f121dac30d43, type: 3}
   m_Name: Dragon Stats 2
   m_EditorClassIdentifier: 
-  buyCost: 75
-  sellCost: 20
+  buyCost: 55
+  sellCost: 40
+  attacksFliers: 0
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
   hapinessLossPerSecond: 0.065
   angerPerShit: 0.2
   timeBetweenShits: 20
   maxShits: 4
-  currentAttackStrength: 19.650738
-  currentAttackSpeed: 4.9301476
-  currentAttackRange: 9.825369
-  currentBulletSpeed: 9.860295
-  needs: {fileID: 0}
-  bulletDamage: {x: 10, y: 20}
-  attackSpeed: {x: 3, y: 5}
-  range: {x: 5, y: 10}
+  bulletDamage: {x: 20, y: 35}
+  attackSpeed: {x: 0.1, y: 0.5}
+  range: {x: 3, y: 5}
   bulletSpeed: {x: 6, y: 10}
-  damageArea: {x: 1, y: 3}
-  areaDamageReduction: {x: 0.75, y: 0.75}
+  needs: {fileID: 0}
+  damageArea: {x: 2.5, y: 4}
+  areaDamageReduction: {x: 0.75, y: 0.85}
   damageAreaWidth: {x: 0, y: 0}
   burnTime: {x: 0, y: 0}
   slowDownPercentage: {x: 0, y: 0}
   slowDownTime: {x: 0, y: 0}
   slowDownAreaLifeTime: {x: 0, y: 0}
-  currentDamageArea: 2.9301476
-  currentAreaDamageReduction: 0.75
-  currentDamageAreaWidth: 0
-  currentBurnTime: 0
-  currentSlowDownPercentage: 0
-  currentSlowDownTime: 0
-  currentSlowDownAreaLifeTime: 0
