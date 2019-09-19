@@ -2,8 +2,10 @@
 using UnityEngine;
 
 public class Towersona : MonoBehaviour
-{
-	public string menuName;
+{	
+	public string[] names;
+	[TextArea]
+	public string[] descriptions;
 
     [Header("References")] 
     public GameObject[] towersonaLODPrefabs;

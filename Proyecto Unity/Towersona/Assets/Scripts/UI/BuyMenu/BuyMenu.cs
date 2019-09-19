@@ -17,10 +17,11 @@ public class BuyMenu : MonoBehaviour
 	[SerializeField] private TextMeshProUGUI[] texts = null;
     [SerializeField] private Sprite confirmationSprite = null;
 
-	[SerializeField] private GameObject lvl0;
-	[SerializeField] private GameObject lvl1;
-	[SerializeField] private GameObject lvl2;
-	[SerializeField] private GameObject lvl3;
+	[SerializeField] private GameObject lvl0 = null;
+	[SerializeField] private GameObject lvl1 = null;
+	[SerializeField] private GameObject lvl2 = null;
+	[SerializeField] private GameObject lvl3 = null;
+	[SerializeField] private PurchaseInfo purchaseInfo = null;
 
 	private BuildingPlace place;
     private Button[] buttons;
@@ -42,7 +43,7 @@ public class BuyMenu : MonoBehaviour
 			}
 			else
 			{
-				texts[i].text = t.menuName + " " + t.stats.buyCost + "$";
+				texts[i].text = t.stats.buyCost + "$";
 			}			
 		}
         
@@ -91,7 +92,8 @@ public class BuyMenu : MonoBehaviour
 
 	public void Hide()
 	{
-        DeselectButton();	
+        DeselectButton();
+		HideInfo();
 		activeUI.SetActive(false);
 		activeUI = null;
 	}
@@ -117,11 +119,13 @@ public class BuyMenu : MonoBehaviour
 				button.button.onClick.AddListener(OnPurchaseConfirmed);
 				BuyButton buyButton = (BuyButton)button;
 				BuildManager.Instance.SetTowersonaConfirmation(place, buyButton.towersona);
+				ShowInfo(buyButton.towersona, -1);
 				break;
 			case MenuButton.MenuButtonType.Upgrade:
 				button.button.onClick.AddListener(OnUpgradeConfirmed);
 				UpgradeButton upgradeButton = (UpgradeButton)button;
-				BuildManager.Instance.ShowRange(upgradeButton.upgradeIndex);
+				BuildManager.Instance.ShowMinMaxRange(upgradeButton.upgradeIndex);
+				ShowInfo(towersona, upgradeButton.upgradeIndex);
 				break;
 
 			case MenuButton.MenuButtonType.Sell:
@@ -130,9 +134,21 @@ public class BuyMenu : MonoBehaviour
 		}     
     }
 
+
+	private void ShowInfo(Towersona towersona, int updgradeIndex)
+	{
+		purchaseInfo.gameObject.SetActive(true);
+		purchaseInfo.SetInfo(towersona, updgradeIndex);
+	}
+
+	private void HideInfo()
+	{
+		purchaseInfo.gameObject.SetActive(false);
+	}
+
     private void DeselectButton()
     {
-		if (buttonSelected == null) return;
+		if (buttonSelected == null) return;	
         buttonSelected.SetSprite();
 		switch (buttonSelected.type)
 		{

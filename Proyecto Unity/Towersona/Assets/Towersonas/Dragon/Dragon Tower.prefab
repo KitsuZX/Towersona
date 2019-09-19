@@ -43,7 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuName: Drag-0n
+  names:
+  - B4BY DR4G-0N
+  - DR4G-0N
+  - DR4G-0N - 1
+  - DR4G-0N - 2
+  descriptions:
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare convallis
+    libero, a aliquam libero imperdiet nec.
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare convallis
+    libero, a aliquam libero imperdiet nec.
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare convallis
+    libero, a aliquam libero imperdiet nec.
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare convallis
+    libero, a aliquam libero imperdiet nec.
   towersonaLODPrefabs:
   - {fileID: 2407868818723468261, guid: f0d7850354e3aa94889d92b3a6fc692b, type: 3}
   - {fileID: 2407868818723468261, guid: 12f080f92dbd6fa41aad0e78459190d3, type: 3}

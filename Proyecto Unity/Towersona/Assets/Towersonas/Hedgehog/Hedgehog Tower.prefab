@@ -43,7 +43,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7797f10436e4bb49b7b121ad6b18c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuName: Hedgehog
+  names:
+  - B4BY H3DG3H0G
+  - H3DG3H0G
+  - H3DG3H0G - 1
+  - H3DG3H0G - 2
+  descriptions:
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare convallis
+    libero, a aliquam libero imperdiet nec.
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare convallis
+    libero, a aliquam libero imperdiet nec.
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare convallis
+    libero, a aliquam libero imperdiet nec.
+  - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ornare convallis
+    libero, a aliquam libero imperdiet nec.
   towersonaLODPrefabs:
   - {fileID: 2407868818723468261, guid: a529735a73dcca347b9df774714bb9c7, type: 3}
   - {fileID: 2407868818723468261, guid: e789a38068a596440b22cf36aaa000dc, type: 3}

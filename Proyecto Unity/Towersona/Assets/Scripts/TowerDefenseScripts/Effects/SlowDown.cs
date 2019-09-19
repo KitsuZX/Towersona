@@ -18,7 +18,7 @@ public class SlowDown : TemporalEffect
 		currentTime = time;
 		effectType = TemporalEffectType.SlowDown;
 
-		enemy = target.transform.parent.GetComponent<Enemy>();
+		enemy = target.GetComponentInParent<Enemy>();
 	}
 
 	public override void ApplyEffect()
