@@ -69,8 +69,13 @@ public class CameraController : MonoBehaviour
 
 		if (Input.touchCount == 1 && Input.GetTouch(0).phase == TouchPhase.Moved)
 		{
-			Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
-			AdjustPosition(-touchDeltaPosition.x, -touchDeltaPosition.y);
+
+			Vector2 touchPos = Input.GetTouch(0).position / Screen.width;
+			if (touchPos.x < 0.66)
+			{
+				Vector2 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+				AdjustPosition(-touchDeltaPosition.x, -touchDeltaPosition.y);
+			}
 		}
 
 		if(Input.touchCount == 2)
@@ -81,12 +86,15 @@ public class CameraController : MonoBehaviour
 			Vector2 firstTouchPrevPos = firstTouch.position - firstTouch.deltaPosition;
 			Vector2 secondTouchPrevPos = secondTouch.position - secondTouch.deltaPosition;
 
-			float prevMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
-			float currentMagnitude = (firstTouch.position - secondTouch.position).magnitude;
+			if (firstTouch.position.x / Screen.width < 0.66 && secondTouch.position.x / Screen.width < 0.66)
+			{
+				float prevMagnitude = (firstTouchPrevPos - secondTouchPrevPos).magnitude;
+				float currentMagnitude = (firstTouch.position - secondTouch.position).magnitude;
 
-			zoomDelta = currentMagnitude - prevMagnitude;
+				zoomDelta = currentMagnitude - prevMagnitude;
 
-			AdjustZoom(-zoomDelta * zoomSpeed);
+				AdjustZoom(-zoomDelta * zoomSpeed);
+			}
 		}
 
 	}
