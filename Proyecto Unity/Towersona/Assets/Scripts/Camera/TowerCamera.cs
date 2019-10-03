@@ -9,7 +9,8 @@ public class TowerCamera : MonoBehaviour
 
 	private void Awake()
 	{
-		camera = GetComponent<Camera>();
+		//Regula automáticamente el FOV dependiendo del tamaño del mapa
+		/*camera = GetComponent<Camera>();
 
 		Vector3 i = transform.position;
 		i.y = levelBounds.transform.position.y;
@@ -26,7 +27,7 @@ public class TowerCamera : MonoBehaviour
 
 		float newFOV = Mathf.Atan(Mathf.Tan(newHFOV * 0.5f) / Camera.main.aspect) * 2;	
 
-		camera.fieldOfView = newFOV * Mathf.Rad2Deg;
+		camera.fieldOfView = newFOV * Mathf.Rad2Deg;*/
 		
 	}
 }
