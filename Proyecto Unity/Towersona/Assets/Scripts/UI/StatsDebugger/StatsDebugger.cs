@@ -12,7 +12,12 @@ public class StatsDebugger : MonoBehaviour
 	protected void Awake()
 	{
 		pattern = GetComponentInParent<AttackPattern>();
-		text = GetComponentInChildren<TextMeshProUGUI>();		
+		text = GetComponentInChildren<TextMeshProUGUI>();
+
+		if (!DebuggingOptions.Instance.showStats)
+		{
+			gameObject.SetActive(false);
+		}
 	}
 
 	protected virtual void Update()

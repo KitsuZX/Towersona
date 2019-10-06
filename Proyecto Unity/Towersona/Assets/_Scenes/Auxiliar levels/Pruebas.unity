@@ -4664,6 +4664,11 @@ PrefabInstance:
       propertyPath: spawnEnemies
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4326776620507013398, guid: 8173bd2a3f3cf95498a39db667a80930,
+        type: 3}
+      propertyPath: startingLives
+      value: 4000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8173bd2a3f3cf95498a39db667a80930, type: 3}
 --- !u!4 &4410837967998660377 stripped

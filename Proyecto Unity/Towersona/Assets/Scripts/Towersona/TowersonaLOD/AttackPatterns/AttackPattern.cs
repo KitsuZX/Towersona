@@ -128,11 +128,12 @@ public abstract class AttackPattern : MonoBehaviour
                     fireCountdown = 1f / currentAttackSpeed;
                 }
             }
-            else
-            {
-                Shoot(target);
-                fireCountdown = 1f / currentAttackSpeed;
-            }
+
+			else
+			{
+				Shoot(target);
+				fireCountdown = 1f / currentAttackSpeed;
+			}
         }
 
         fireCountdown -= Time.deltaTime;
