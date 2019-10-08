@@ -38,7 +38,10 @@ public class DamageAreaBullet : Shooting
 				Enemy e = collider.GetComponent<Enemy>();
 				if (e != null && e != firstTarget)
 				{
-					e.TakeDamage(dragonAttack.AttackStrength * dragonAttack.currentAreaDamageReduction);
+					if ((e.Flies && dragonAttack.stats.attacksFliers) || !e.Flies)
+					{
+						e.TakeDamage(dragonAttack.AttackStrength * dragonAttack.currentAreaDamageReduction);
+					}
 				}
 			}
 

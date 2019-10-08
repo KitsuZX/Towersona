@@ -28,26 +28,15 @@ public class BuyMenu : MonoBehaviour
     private MenuButton buttonSelected;
 	private Towersona towersona;
 
+	private Towersona previousTowersonaBuilt = null;
+	private int inflationStack = 0;
+
 	GameObject activeUI;
 
 	private void Awake()
 	{
-        buttons = GetComponentsInChildren<Button>();
-
-		for (int i = 0; i < texts.Length; i++)
-		{
-			Towersona t = BuildManager.Instance.towersonaPrefabs[i];
-			if(t == null)
-			{
-				Debug.LogError("No se ha encontrado la towersona. ¿Están en el orden correcto en BuildManager y en BuyMenu?");
-			}
-			else
-			{
-				texts[i].text = t.stats.buyCost + "$";
-			}			
-		}
-        
-        InvokeRepeating("CheckMoney", 0f, 0.5f);
+        buttons = GetComponentsInChildren<Button>(true);
+		UpdateMoneyTexts();        
 	}
 
 	public void SetPlace(BuildingPlace _place)
@@ -88,6 +77,9 @@ public class BuyMenu : MonoBehaviour
 					break;
 			}			
 		}
+
+		UpdateMoneyTexts();
+		CheckMoney();
 	}
 
 	public void Hide()
@@ -134,7 +126,6 @@ public class BuyMenu : MonoBehaviour
 		}     
     }
 
-
 	private void ShowInfo(Towersona towersona, int updgradeIndex)
 	{
 		purchaseInfo.gameObject.SetActive(true);
@@ -172,7 +163,22 @@ public class BuyMenu : MonoBehaviour
     {
 		BuyButton buyButton = (BuyButton)buttonSelected;
 		BuildManager.Instance.SpawnTowersona(place, buyButton.towersona);
-		Hide();
+
+		int baseCost = buyButton.towersona.stats.buyCost;
+		int cost = baseCost;
+		if (buyButton.towersona == previousTowersonaBuilt)
+		{
+			cost += Mathf.FloorToInt(baseCost * inflationStack / 3);
+			inflationStack++;
+		}
+		else
+		{
+			previousTowersonaBuilt = buyButton.towersona;
+			inflationStack = 1;
+		}
+
+		PlayerStats.Instance.SpendMoney(cost);
+		Hide();		
 	}
 
 	private void OnUpgradeConfirmed() {
@@ -191,8 +197,21 @@ public class BuyMenu : MonoBehaviour
 
         for (int i = 0; i < buttons.Length; i++)
         {
-            Towersona t = BuildManager.Instance.towersonaPrefabs[i];
-            if(t.stats.buyCost > PlayerStats.Instance.money)
+			BuyButton buyButton = buttons[i].GetComponent<BuyButton>();
+
+			if (buyButton == null) return;
+
+			Towersona t = buyButton.towersona;
+
+			int baseCost = t.stats.buyCost;
+			int cost = baseCost;
+
+			if(t == previousTowersonaBuilt)
+			{
+				cost += baseCost * inflationStack / 3;
+			}
+
+            if(cost > PlayerStats.Instance.money)
             {
                 buttons[i].interactable = false;
             }
@@ -202,4 +221,26 @@ public class BuyMenu : MonoBehaviour
             }
         }
     }
+
+	private void UpdateMoneyTexts()
+	{
+		for (int i = 0; i < texts.Length; i++)
+		{
+			Towersona t = BuildManager.Instance.towersonaPrefabs[i];
+			if (t == null)
+			{
+				Debug.LogError("No se ha encontrado la towersona. ¿Están en el orden correcto en BuildManager y en BuyMenu?");
+			}
+			else
+			{
+				float baseCost = t.stats.buyCost;
+				float cost = baseCost;
+				if (t == previousTowersonaBuilt)
+				{
+					cost += Mathf.Round(baseCost * inflationStack / 3);
+				}
+				texts[i].text = cost + "$";
+			}
+		}
+	}
 }

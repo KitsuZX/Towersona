@@ -100,8 +100,7 @@ public class BuildManager : MonoBehaviour
         Towersona towersona = towersonaGameObject.GetComponent<Towersona>();
         towersona.Spawn(place, towersonaGameObject.transform);		
 		
-        SpawnEffect(buildEffect, place.transform.position);
-		PlayerStats.Instance.SpendMoney(towersona.stats.buyCost);
+        SpawnEffect(buildEffect, place.transform.position);	
 
 		towersonas.Add(towersona);
 

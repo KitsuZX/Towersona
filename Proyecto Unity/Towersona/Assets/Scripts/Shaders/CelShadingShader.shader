@@ -25,7 +25,7 @@ Shader "Custom/CelShadingShader"
 	#pragma lighting ToonRamp exclude_path:prepass
 	inline half4 LightingToonRamp(SurfaceOutput s, half3 lightDir, half atten)
 	{
-		#ifndef USING_DIRECTIONAL_LIGHT
+		#ifndef USING_SPOT_LIGHT
 		lightDir = normalize(lightDir);
 		#endif
 
