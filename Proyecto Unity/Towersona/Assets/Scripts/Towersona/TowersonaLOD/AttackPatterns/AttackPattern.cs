@@ -57,6 +57,7 @@ public abstract class AttackPattern : MonoBehaviour
 			return currentAttackSpeed * attackSpeedBonusses.Values.Max();
 		}
 	}
+
 	public float HappinessBonus
 	{
 		get
@@ -69,7 +70,6 @@ public abstract class AttackPattern : MonoBehaviour
 			return happinessBonusses.Values.Max();
 		}
 	}
-
 
 	protected virtual void Start()
 	{
