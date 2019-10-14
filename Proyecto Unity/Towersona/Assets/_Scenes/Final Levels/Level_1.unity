@@ -1910,7 +1910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1135214215
 Transform:
   m_ObjectHideFlags: 0
@@ -2429,7 +2429,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1631174270}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: fb72e859b1b5f0548aab81b53c45dda3, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1631174273
