@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f50a39bf25bd9594ca218f341103cfd7, type: 3}
   m_Name: Cat Stats 2
   m_EditorClassIdentifier: 
-  buyCost: 50
-  sellCost: 30
+  buyCost: 75
+  sellCost: 50
   attacksFliers: 0
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
@@ -27,8 +27,8 @@ MonoBehaviour:
   bulletSpeed: {x: 0, y: 0}
   needs: {fileID: 0}
   timeSpanBetweenGivingMoney: {x: 15, y: 10}
-  moneyGiven: {x: 7, y: 10}
-  boostRange: {x: 10, y: 15}
-  happinessBoost: {x: 0.25, y: 0.75}
+  moneyGiven: {x: 15, y: 20}
+  boostRange: {x: 12, y: 12}
+  happinessBoost: {x: 0.25, y: 0.5}
   attackStrengthBoost: {x: 1, y: 1}
-  attackSpeedBoost: {x: 1.5, y: 2}
+  attackSpeedBoost: {x: 1, y: 0.6}

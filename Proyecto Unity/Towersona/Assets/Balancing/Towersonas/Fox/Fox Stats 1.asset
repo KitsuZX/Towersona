@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b6eefda375493849b32d61fbd6bb71d, type: 3}
   m_Name: Fox Stats 1
   m_EditorClassIdentifier: 
-  buyCost: 45
-  sellCost: 20
+  buyCost: 40
+  sellCost: 26
   attacksFliers: 1
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
@@ -21,10 +21,10 @@ MonoBehaviour:
   angerPerShit: 0.15
   timeBetweenShits: 10
   maxShits: 4
-  bulletDamage: {x: 5, y: 5}
-  attackSpeed: {x: 1, y: 2}
-  range: {x: 5, y: 10}
-  bulletSpeed: {x: 7, y: 10}
+  bulletDamage: {x: 3, y: 7}
+  attackSpeed: {x: 1.5, y: 2.5}
+  range: {x: 6, y: 6}
+  bulletSpeed: {x: 7, y: 11}
   needs: {fileID: 0}
-  slowDownPercentage: {x: 0.5, y: 0.75}
-  slowDownTime: {x: 2, y: 5}
+  slowDownPercentage: {x: 0.1, y: 0.4}
+  slowDownTime: {x: 2, y: 2}
