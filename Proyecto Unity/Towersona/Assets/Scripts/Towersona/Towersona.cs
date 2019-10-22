@@ -95,6 +95,7 @@ public class Towersona : MonoBehaviour
         return towersonaLOD;
     }
 
+	//Tamagochi setup
     private TowersonaHOD SpawnTowersonaHOD(Transform parent)
     {
         Vector3 buildingPosition = new Vector3(BuildManager.Instance.lastXUsed, 0f, 50f); 

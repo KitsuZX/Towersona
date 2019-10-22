@@ -74,7 +74,6 @@ public class TowersonaNeeds : MonoBehaviour
         }
 
         ChooseEmotion();
-
     }
 
     private void AssignStats()
