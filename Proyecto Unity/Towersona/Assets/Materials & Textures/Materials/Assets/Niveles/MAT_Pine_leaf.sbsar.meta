@@ -26,116 +26,18 @@ ScriptedImporter:
       shaderKeywords: _MAINTEX
       lightmapFlags: 4
       texEnvs:
-      - name: _BumpMap
-        texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _DetailAlbedoMap
-        texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _DetailMask
-        texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _DetailNormalMap
-        texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _EmissionMap
-        texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
       - name: _MainTex
         texture: {fileID: 2800000, guid: 5a5fc437e13a4614f8782b69f9fb33bd, type: 3}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _Mask
-        texture: {fileID: 2800000, guid: 1207065bed2ccf141bd86ca36e970afb, type: 3}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _MetallicGlossMap
-        texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _OcclusionMap
-        texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _OpacityMask
-        texture: {fileID: 2800000, guid: 1207065bed2ccf141bd86ca36e970afb, type: 3}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _ParallaxMap
-        texture: {instanceID: 0}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
       - name: _Ramp
         texture: {fileID: 2800000, guid: 0eda6b141ae0099489bffec77e81ac17, type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
-      - name: _RampTex
-        texture: {fileID: 2800000, guid: 0eda6b141ae0099489bffec77e81ac17, type: 3}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _Stencil
-        texture: {fileID: 2800000, guid: 1207065bed2ccf141bd86ca36e970afb, type: 3}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      - name: _ToonShade
-        texture: {instanceID: 0}
-        scale: {x: 1, y: 1}
-        offset: {x: 0, y: 0}
-      floats:
-      - name: _BumpScale
-        float: 1
-      - name: _CelShadingLevels
-        float: 2
-      - name: _Cutoff
-        float: 0.549
-      - name: _DetailNormalMapScale
-        float: 1
-      - name: _DstBlend
-        float: 0
-      - name: _GlossMapScale
-        float: 1
-      - name: _Glossiness
-        float: 0.5
-      - name: _GlossyReflections
-        float: 1
-      - name: _Metallic
-        float: 0
-      - name: _Mode
-        float: 1
-      - name: _OcclusionStrength
-        float: 1
-      - name: _Parallax
-        float: 0.08
-      - name: _RimAmount
-        float: 0.716
-      - name: _RimThreshold
-        float: 0.1
-      - name: _SmoothnessTextureChannel
-        float: 0
-      - name: _SpecularHighlights
-        float: 1
-      - name: _SrcBlend
-        float: 1
-      - name: _UVSec
-        float: 0
-      - name: _ZWrite
-        float: 1
+      floats: []
       colors:
-      - name: _AmbientColor
-        color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
       - name: _Color
         color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
-      - name: _EmissionColor
-        color: {r: 0, g: 0, b: 0, a: 1}
-      - name: _RimColor
-        color: {r: 1, g: 1, b: 1, a: 1}
-      - name: _SpecularColor
-        color: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     texturePackingList:
     - outputName: baseColor
       alphaSource: baseColor
