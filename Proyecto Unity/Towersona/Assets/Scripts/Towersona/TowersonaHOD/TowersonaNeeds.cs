@@ -5,15 +5,15 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ShitNeed))]
 public class TowersonaNeeds : MonoBehaviour
 {
-    public enum Emotion { Fine = 0, Happy = 1, Hungry = 2, Missing = 3, Shit = 4 }
-    public Emotion emotion = Emotion.Fine;
+    public enum Emotion { Fine = 0, Happy = 1, Hungry = 2, Missing = 3, Asleep = 4 }
+    public Emotion currentEmotion = Emotion.Fine;
 
     public float HappinessLevel
     {
         get
         {
-            float sum = hungerLevel + loveLevel + shitNeed.Level;
-            return sum / AMOUNT_OF_NEEDS;
+            //TODO: this
+            return 1;
         }
     }
 
@@ -28,39 +28,46 @@ public class TowersonaNeeds : MonoBehaviour
     [SerializeField][Range(1, 2)]
     private float happinessCap = 1.3f;
 
-    private float hungerDecayPerSecond = 0.05f;
-    private float loveDecayPerSecond = 0.05f;
-    private const int AMOUNT_OF_NEEDS = 3;
-	private TowersonaHODAnimation towersonaAnimation;
-
-    //Need levels
-    private float hungerLevel;
-    private float loveLevel;
-    private ShitNeed shitNeed;
-
     private TowersonaStats stats;
-	private float strengthBoost;
-	private AttackPattern pattern;
+
+    private LoveNeed loveNeed;
+    private FoodNeed foodNeed;
+
+    private TowersonaHODAnimation towersonaAnimation;
+
+    #region Initialization
+    private void Awake()
+    {
+        //Assign this with a public API instead of doing this? Seems error prone.
+        Towersona towersona = GetComponentInParent<TowersonaHOD>().towersona;
+        stats = towersona.stats;
+
+        loveNeed = GetComponent<LoveNeed>();
+        foodNeed = GetComponent<FoodNeed>();
+
+        //This component will absolutetly be rewritten
+        towersonaAnimation = GetComponent<TowersonaHODAnimation>();
+    }
 
     private void Start()
     {
-        shitNeed = GetComponent<ShitNeed>();
-		Towersona towersona = GetComponentInParent<TowersonaHOD>().towersona;
-		stats = towersona.stats;
-		pattern = towersona.towersonaLOD.pattern;
-		towersonaAnimation = GetComponent<TowersonaHODAnimation>();
-
-        AssignStats();
-
-        SetNeedLevel(NeedType.Hunger, 1);
-        SetNeedLevel(NeedType.Shit, 1);
-        SetNeedLevel(NeedType.Love, 1);
+        InitializeStats();
     }
+
+    private void InitializeStats()
+    {
+        foodNeed.SetStats(stats);
+        foodNeed.Reset();
+        loveNeed.SetStats(stats);
+        loveNeed.Reset();
+    }
+    #endregion
+
 
     private void Update()
     {
         if (stats == null) return;
-        DoNeedDecay();
+
         NeedType needToBeNotified = CheckIfShouldNotifyNeed();
 
         if (HappinessLevel <= 1f)
@@ -77,32 +84,7 @@ public class TowersonaNeeds : MonoBehaviour
 
     }
 
-    private void AssignStats()
-    {
-        hungerDecayPerSecond = stats.hungerPerSecond;
-        loveDecayPerSecond = stats.hapinessLossPerSecond;
-    }
-
-    /// <summary>
-    /// 1 means fulfilled, 0 means unfulfilled
-    /// </summary>
-    public void SetNeedLevel(NeedType needType, float setLevel)
-    {
-        setLevel = Mathf.Clamp(setLevel, 0, happinessCap);
-
-        switch (needType)
-        {
-            case NeedType.Hunger:
-                hungerLevel = setLevel;
-                break;
-            case NeedType.Shit:
-                if (setLevel >= 1) shitNeed.CleanAllShit();
-                break;
-            case NeedType.Love:
-                loveLevel = setLevel;
-                break;
-        }
-    }
+    
 
     /// <summary>
     /// Use this to increment/decrement a need.
@@ -122,21 +104,9 @@ public class TowersonaNeeds : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Lowers need fulfilment levels.
-    /// </summary>
-    private void DoNeedDecay()
-    {
-		float loveDecay = loveDecayPerSecond * (1 - pattern.HappinessBonus);
 
-		loveDecay = Mathf.Max(0, loveDecay);
 
-		hungerLevel -= hungerDecayPerSecond * Time.deltaTime;
-        loveLevel -= loveDecay * Time.deltaTime;
 
-        hungerLevel = Mathf.Max(0, hungerLevel);
-        loveLevel = Mathf.Max(0, loveLevel);
-    }
 
     /// <summary>
     /// Returns the need that should be notified, if any.
@@ -176,29 +146,29 @@ public class TowersonaNeeds : MonoBehaviour
         {
 			if (HappinessLevel > 1)
 			{
-				emotion = Emotion.Happy;
+				currentEmotion = Emotion.Happy;
 			}
 			else
 			{
-				emotion = Emotion.Fine;
+				currentEmotion = Emotion.Fine;
 				towersonaAnimation.SetLoneliness(false);
 			}
         }
         else
         {
-			if (notifiedNeed == NeedType.Hunger) emotion = Emotion.Hungry;
+			if (notifiedNeed == NeedType.Hunger) currentEmotion = Emotion.Hungry;
 			else if (notifiedNeed == NeedType.Love)
 			{
-				emotion = Emotion.Missing;
+				currentEmotion = Emotion.Missing;
 				towersonaAnimation.SetLoneliness(true);
 			}
-			else if (notifiedNeed == NeedType.Shit) emotion = Emotion.Shit;
+			else if (notifiedNeed == NeedType.Shit) currentEmotion = Emotion.Shit;
         }       
     }
+
     public enum NeedType
     {
         Hunger, 
-        Shit,
         Love,
         None
     }

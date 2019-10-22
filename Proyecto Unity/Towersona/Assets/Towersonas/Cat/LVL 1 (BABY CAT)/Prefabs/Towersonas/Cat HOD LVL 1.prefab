@@ -321,10 +321,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Baby - HOD Model
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 97005857c5b03294b8435757fb972fc6, type: 2}
     - target: {fileID: 400000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -381,6 +377,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 97005857c5b03294b8435757fb972fc6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
 --- !u!4 &59110152857194877 stripped
