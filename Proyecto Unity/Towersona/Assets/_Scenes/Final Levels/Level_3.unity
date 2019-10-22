@@ -1701,7 +1701,6 @@ GameObject:
   m_Component:
   - component: {fileID: 573013825}
   - component: {fileID: 573013827}
-  - component: {fileID: 573013826}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Untagged
@@ -1734,6 +1733,7 @@ TerrainCollider:
   m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: f467bcadf93399944adeb0796e8295da, type: 2}
   m_EnableTreeColliders: 1
+
 --- !u!218 &573013827
 Terrain:
   m_ObjectHideFlags: 0

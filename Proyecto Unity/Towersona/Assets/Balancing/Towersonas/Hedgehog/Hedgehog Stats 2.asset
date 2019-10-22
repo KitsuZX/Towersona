@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e022ef6f53359c4992b069feba3308a, type: 3}
   m_Name: Hedgehog Stats 2
   m_EditorClassIdentifier: 
-  buyCost: 75
-  sellCost: 30
+  buyCost: 120
+  sellCost: 80
   attacksFliers: 1
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
@@ -21,8 +21,8 @@ MonoBehaviour:
   angerPerShit: 4
   timeBetweenShits: 3
   maxShits: 4
-  bulletDamage: {x: 4, y: 7}
-  attackSpeed: {x: 2, y: 3}
-  range: {x: 4, y: 6}
-  bulletSpeed: {x: 5, y: 7}
+  bulletDamage: {x: 40, y: 50}
+  attackSpeed: {x: 0.1, y: 0.3}
+  range: {x: 12, y: 12}
+  bulletSpeed: {x: 13, y: 14}
   needs: {fileID: 0}

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74c189377fa699428b3f121dac30d43, type: 3}
   m_Name: Dragon Stats 1
   m_EditorClassIdentifier: 
-  buyCost: 40
-  sellCost: 20
+  buyCost: 55
+  sellCost: 36
   attacksFliers: 0
   happinessPerPet: 0.05
   hungerPerSecond: 0.05
@@ -22,12 +22,12 @@ MonoBehaviour:
   timeBetweenShits: 20
   maxShits: 4
   bulletDamage: {x: 15, y: 30}
-  attackSpeed: {x: 0.1, y: 0.4}
-  range: {x: 3, y: 5}
-  bulletSpeed: {x: 6, y: 10}
+  attackSpeed: {x: 0.1, y: 0.3}
+  range: {x: 5, y: 5}
+  bulletSpeed: {x: 6, y: 9}
   needs: {fileID: 0}
   damageArea: {x: 2, y: 3}
-  areaDamageReduction: {x: 0.5, y: 0.75}
+  areaDamageReduction: {x: 0.25, y: 0.75}
   damageAreaWidth: {x: 0, y: 0}
   burnTime: {x: 0, y: 0}
   slowDownPercentage: {x: 0, y: 0}
