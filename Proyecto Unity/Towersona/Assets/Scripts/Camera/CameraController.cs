@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
 	public float moveSpeedMinZoom, moveSpeedMaxZoom;
 	public float minFOV, maxFOV;
 
-	[HideInInspector] public float zoom = 1f;
+	[HideInInspector] public float zoom = 0f;
 
 	private Transform m_camera;		
 

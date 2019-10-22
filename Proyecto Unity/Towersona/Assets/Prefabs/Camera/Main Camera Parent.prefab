@@ -336,9 +336,9 @@ MonoBehaviour:
   stickMaxZoom: 0
   swivelMinZoom: -40
   swivelMaxZoom: 0
-  zoomSpeed: 0.01
-  moveSpeedMinZoom: 50
-  moveSpeedMaxZoom: 100
-  minFOV: 0
+  zoomSpeed: 0.003
+  moveSpeedMinZoom: 2
+  moveSpeedMaxZoom: 1.5
+  minFOV: 25
   maxFOV: 35
-  zoom: 1
+  zoom: 0

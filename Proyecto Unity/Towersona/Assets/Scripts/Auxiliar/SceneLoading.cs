@@ -23,7 +23,7 @@ public class SceneLoading : MonoBehaviour
 
         while (!asyncLoad.isDone)
         {
-			text.text = "Loading progress: " + (asyncLoad.progress * 100) + '%';
+			text.text = "Loading progress: " + Mathf.FloorToInt(asyncLoad.progress * 100) + '%';
 			loadBar.fillAmount = asyncLoad.progress;
 			yield return new WaitForEndOfFrame();
         }
