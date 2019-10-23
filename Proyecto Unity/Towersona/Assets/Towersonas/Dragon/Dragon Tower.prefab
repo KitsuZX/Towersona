@@ -63,10 +63,10 @@ MonoBehaviour:
   - {fileID: 2407868818723468261, guid: 528e6d4fdd21e4a4eaf0fb7e67fbd551, type: 3}
   - {fileID: 2407868818723468261, guid: 69195c34f28eb994290c64214eaa6209, type: 3}
   towersonaHODPrefabs:
-  - {fileID: 3769979105890129493, guid: 7930cd00666f8e040b92399ae8c84a67, type: 3}
-  - {fileID: 2945816988198092299, guid: cc568d3199abcb24ea5988e44113ca2b, type: 3}
-  - {fileID: 8126810041392212737, guid: 1286b23ee69595845bd398344bee7fa3, type: 3}
-  - {fileID: 1240402623045107545, guid: c5502176551c2964586ad1281cacad51, type: 3}
+  - {fileID: 3769979105890129493, guid: 6834b6b2f8ba005469f0434b6174c8d7, type: 3}
+  - {fileID: 2945816988198092299, guid: f77cf08d944c91142a4d269f49507243, type: 3}
+  - {fileID: 8126810041392212737, guid: b3728e86f0d06db4bb31064e98ad044c, type: 3}
+  - {fileID: 1240402623045107545, guid: 8b9c2a6a53eac3144a071258cc854078, type: 3}
   place: {fileID: 0}
   towersonaHOD: {fileID: 0}
   towersonaLOD: {fileID: 0}
