@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 public class Draggable : MonoBehaviour
@@ -6,20 +7,15 @@ public class Draggable : MonoBehaviour
     public UnityEvent OnDragStart;
     public UnityEvent OnLetGo;
 
-    [SerializeField]
-    private float timeBeforeAutoBack = 1f;
-
-    [HideInInspector]
-    public Camera detailCamera;
+    [NonSerialized]
+    public new Camera camera;
 
     private new Transform transform;
 
-    private Vector3 originalPosition;
     private Vector3 touchOffset;
 
     private bool isHeld = false;
     private bool wasDraggedLastFrame = false;
-    private float timeWithoutDrag = 0;
 
     private Vector3 TouchInWorldSpace
     {
@@ -27,20 +23,20 @@ public class Draggable : MonoBehaviour
         {
             if (Input.touchCount > 0)
             {
-                return detailCamera.ScreenToWorldPoint(new Vector3(
+                return camera.ScreenToWorldPoint(new Vector3(
                         Input.GetTouch(0).position.x,
                         Input.GetTouch(0).position.y,
-                        transform.position.z - detailCamera.GetComponent<Transform>().position.z));
+                        transform.position.z - camera.GetComponent<Transform>().position.z));
             }
 
             //Mouse Controls
 #if UNITY_EDITOR
             if (Input.GetMouseButton(0))
             {
-                return detailCamera.ScreenToWorldPoint(new Vector3(
+                return camera.ScreenToWorldPoint(new Vector3(
                         Input.mousePosition.x,
                         Input.mousePosition.y,
-                        transform.position.z - detailCamera.GetComponent<Transform>().position.z));
+                        transform.position.z - camera.GetComponent<Transform>().position.z));
             }
 
 #endif
@@ -51,27 +47,13 @@ public class Draggable : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (Input.touchCount > 0)
-        {
-            originalPosition = transform.position;
 
-            //This might fail when multiple cameras are present
-            Vector3 touchInWorld = TouchInWorldSpace;
-
-            touchOffset = touchInWorld - transform.position;//transform.position - touchInWorld;
-
-            OnDragStart.Invoke();
-            wasDraggedLastFrame = true;
-            isHeld = true;
-        }
-
-        //Mouse controls
 #if UNITY_EDITOR
-        if (Input.GetMouseButton(0))
+        if (Input.touchCount > 0 || Input.GetMouseButton(0))
+#else
+        if (Input.touchCount > 0)
+#endif
         {
-            originalPosition = transform.position;
-
-            //This might fail when multiple cameras are present
             Vector3 touchInWorld = TouchInWorldSpace;
 
             touchOffset = touchInWorld - transform.position;//transform.position - touchInWorld;
@@ -80,7 +62,6 @@ public class Draggable : MonoBehaviour
             wasDraggedLastFrame = true;
             isHeld = true;
         }
-#endif
     }
 
     private void OnMouseDrag()

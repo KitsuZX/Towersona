@@ -21,9 +21,9 @@ public class TowersonaNeeds : MonoBehaviour
         }
     }
 
-    //Private references
-    public LoveNeed LoveNeed { get; private set; }  //Temporarily public until eating is correctly implemented.
-    public FoodNeed FoodNeed  { get; private set; } //Temporarily public until eating is correctly implemented.
+    public LoveNeed LoveNeed { get; private set; }
+    public FoodNeed FoodNeed  { get; private set; }
+
     
     private TowersonaHODAnimation towersonaAnimation;   //This will probably die.
 

@@ -10,11 +10,6 @@ public class FoodNeed : MonoBehaviour
     public float MaxLevel { get; private set; }
 
 
-    public void Feed(float hungerFulfilment)
-    {
-        CurrentLevel = Mathf.Min(MaxLevel, CurrentLevel + hungerFulfilment);
-    }
-
     public void SetStats(TowersonaStats stats)
     {
         MaxLevel = stats.maxFood;
@@ -26,7 +21,6 @@ public class FoodNeed : MonoBehaviour
         CurrentLevel = MaxLevel;
     }
 
-    
 
     /// <summary>
     /// Does the need decay. Doesn't take towersona count into account.
@@ -37,6 +31,22 @@ public class FoodNeed : MonoBehaviour
         CurrentLevel = Mathf.Max(0, CurrentLevel - decayThisStep);
     }
 
-    
+    private void Eat(Food food)
+    {
+        CurrentLevel = Mathf.Min(MaxLevel, CurrentLevel + food.HungerFulmilmentPerRation);
+    }
 
+    /// <summary>
+    /// Subscribe to Feedable's OnFed event.
+    /// </summary>
+    private void Start()
+    {
+        Feedable[] feedables = GetComponentsInChildren<Feedable>();
+        for (int i = 0; i < feedables.Length; i++)
+        {
+            feedables[i].OnFed += Eat;
+        }
+
+        if (feedables.Length == 0) Debug.LogWarning("No se ha encontrado ningún componente Feedable en el HOD. A no ser que se haya diseñado una Towersona que no coma, esto es un error.", this);
+    }
 }

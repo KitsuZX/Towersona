@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ReturnToPointAfterCountdown), typeof(Draggable))]
 public class Food : MonoBehaviour
 {
-    [SerializeField]
-    float hungerFulmilmentPerRation = 1; 
+    public float HungerFulmilmentPerRation { get => hungerFulmilmentPerRation; }
+    [SerializeField] float hungerFulmilmentPerRation = 1;
 
-    [HideInInspector]
-    public FoodDispenser dispenser = null;
+    private new Transform transform;
     
     //TODO: Hacer que solo se coma la comida cuando se le arrastra la cabeza, si no no. 
     public void OnLettingGo()
@@ -26,5 +26,18 @@ public class Food : MonoBehaviour
         //No estaría de más reciclar este objeto en vez de destruirlo y crear otro nuevo. Así evitamos generar basura.
         Destroy(gameObject);
         */
+    }
+
+    private void Awake()
+    {
+        transform = GetComponent<Transform>();
+    }
+
+    private void Start()
+    {
+        //Configure things so that we return to the starting position.
+        ReturnToPointAfterCountdown returnToPoint = GetComponent<ReturnToPointAfterCountdown>();
+        returnToPoint.returnPoint = transform.localPosition;
+        returnToPoint.inWorldSpace = false;
     }
 }

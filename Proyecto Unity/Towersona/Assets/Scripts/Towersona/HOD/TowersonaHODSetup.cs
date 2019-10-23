@@ -8,8 +8,7 @@ using NaughtyAttributes;
 public class TowersonaHODSetup : MonoBehaviour
 {
     [SerializeField] private Transform towersonaHODParent;
-    [SerializeField] private LoveNeedUI loveNeedUI;
-    [SerializeField] private FoodNeedUI foodNeedUI;
+    [SerializeField] private new Camera camera;
 
     /// <summary>
     /// Spawns the model in the Towersona Detailed Scene. The Detailed scene must have been alredy created.
@@ -25,8 +24,16 @@ public class TowersonaHODSetup : MonoBehaviour
         needs.ResetNeeds();
 
         //Hook up the UI
-        loveNeedUI.SetWatchedLoveNeed(needs.LoveNeed);
-        foodNeedUI.SetWatchedLoveNeed(needs.FoodNeed);
+        GetComponentInChildren<LoveNeedUI>().SetWatchedLoveNeed(needs.LoveNeed);
+        GetComponentInChildren<FoodNeedUI>().SetWatchedFoodNeed(needs.FoodNeed);
+
+        //Give the camera to any Draggables (ie food)
+        Draggable[] draggables = GetComponentsInChildren<Draggable>();
+        for (int i = 0; i < draggables.Length; i++)
+        {
+            draggables[i].camera = camera;
+        }
+
 
         return needs;
     }    

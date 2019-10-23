@@ -7,7 +7,7 @@ public class FoodNeedUI : MonoBehaviour
     private Slider slider;
     private FoodNeed foodNeed;
 
-    public void SetWatchedLoveNeed(FoodNeed foodNeed)
+    public void SetWatchedFoodNeed(FoodNeed foodNeed)
     {
         this.foodNeed = foodNeed;
         slider.maxValue = foodNeed.MaxLevel;

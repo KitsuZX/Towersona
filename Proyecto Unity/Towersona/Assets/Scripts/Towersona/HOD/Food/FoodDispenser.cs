@@ -35,11 +35,11 @@ public class FoodDispenser : MonoBehaviour
     public void DispenseImmidiately()
     {
         Food newFood = Instantiate(foodPrefab, transform.position, Quaternion.identity);
-        newFood.dispenser = this;
+        //newFood.dispenser = this;
         newFood.transform.SetParent(transform);
 
         Draggable draggable = newFood.GetComponentInChildren<Draggable>();
-        draggable.detailCamera = detailCamera;
+        draggable.camera = detailCamera;
         draggable.OnDragStart.AddListener(NotifyFoodDrag);
 
         //towersonaAnim.SetIsLookingAtFood(false);

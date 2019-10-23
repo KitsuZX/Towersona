@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2937486178298076319
+--- !u!1 &2937486179109956437
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,62 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2937486178298076316}
-  - component: {fileID: 2937486178298076315}
-  - component: {fileID: 2937486178298076314}
-  - component: {fileID: 5746684595312502374}
-  - component: {fileID: 3429667104334826407}
-  m_Layer: 0
-  m_Name: Sphere
+  - component: {fileID: 2937486179109956434}
+  - component: {fileID: 2937486179109956432}
+  - component: {fileID: 3298341631808848471}
+  - component: {fileID: 5382911595403793413}
+  - component: {fileID: 3876572962029769908}
+  - component: {fileID: 2095019691686423683}
+  - component: {fileID: 4652230012560191855}
+  m_Layer: 12
+  m_Name: Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2937486178298076316
+--- !u!4 &2937486179109956434
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937486178298076319}
+  m_GameObject: {fileID: 2937486179109956437}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
-  m_Father: {fileID: 2937486179109956434}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &2937486178298076315
+--- !u!114 &2937486179109956432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937486179109956437}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bdd8cff1c8105d4ab848f5791b07a5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerFulmilmentPerRation: 1
+--- !u!33 &3298341631808848471
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937486178298076319}
+  m_GameObject: {fileID: 2937486179109956437}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &2937486178298076314
+--- !u!23 &5382911595403793413
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937486178298076319}
+  m_GameObject: {fileID: 2937486179109956437}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -79,13 +94,26 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5746684595312502374
+--- !u!65 &3876572962029769908
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937486179109956437}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.806785, z: 6.1232336e-17}
+  m_Center: {x: 0, y: -0.007714927, z: 0}
+--- !u!114 &2095019691686423683
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937486178298076319}
+  m_GameObject: {fileID: 2937486179109956437}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 557bac963dd213d49b51a8207ffed535, type: 3}
@@ -94,12 +122,12 @@ MonoBehaviour:
   OnDragStart:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2937486179109956437}
-        m_MethodName: 
+      - m_Target: {fileID: 4652230012560191855}
+        m_MethodName: CancelCountdown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -110,8 +138,8 @@ MonoBehaviour:
   OnLetGo:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2937486179109956432}
-        m_MethodName: OnLettingGo
+      - m_Target: {fileID: 4652230012560191855}
+        m_MethodName: StartCountdown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -124,53 +152,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   timeBeforeAutoBack: 1
-  detailCamera: {fileID: 0}
---- !u!65 &3429667104334826407
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937486178298076319}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.806785, z: 6.1232336e-17}
-  m_Center: {x: 0, y: -0.007714927, z: 0}
---- !u!1 &2937486179109956437
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2937486179109956434}
-  - component: {fileID: 2937486179109956432}
-  m_Layer: 0
-  m_Name: Food
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2937486179109956434
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2937486179109956437}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.752, y: 1.75, z: 1.75}
-  m_Children:
-  - {fileID: 2937486178298076316}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2937486179109956432
+  camera: {fileID: 0}
+--- !u!114 &4652230012560191855
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,9 +162,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2937486179109956437}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bdd8cff1c8105d4ab848f5791b07a5f, type: 3}
+  m_Script: {fileID: 11500000, guid: a054d7884341867459b2509f86e95185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerFulmilmentPerRation: 1
-  boxCastHalfSize: {x: 20, y: 20, z: 50}
-  dispenser: {fileID: 0}
+  countdownLength: 1
+  returnPoint: {fileID: 0}
+  OnReturnedToPoint:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
