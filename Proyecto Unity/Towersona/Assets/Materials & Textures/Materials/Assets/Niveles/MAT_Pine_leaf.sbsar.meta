@@ -19,25 +19,88 @@ ScriptedImporter:
     generateAllOutputs: 0
     generateMipMaps: 1
     preset: " <sbspreset pkgurl=\"pkg://Pine_leaf\" label=\"\" >\n </sbspreset>\n"
-    shaderName: Custom/ToonShader
+    shaderName: Standard
     outputNames: baseColor
     materialProperties:
-      shader: {fileID: 4800000, guid: 9644eb89490d6ec49b87f3e1f2f742fa, type: 3}
-      shaderKeywords: _MAINTEX
+      shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+      shaderKeywords: _ALPHATEST_ON _MAINTEX _METALLICGLOSSMAP _NORMALMAP _OCCLUSIONMAP
+        _PARALLAXMAP
       lightmapFlags: 4
       texEnvs:
+      - name: _BumpMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _DetailAlbedoMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _DetailMask
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _DetailNormalMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _EmissionMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
       - name: _MainTex
-        texture: {fileID: 2800000, guid: 5a5fc437e13a4614f8782b69f9fb33bd, type: 3}
+        texture: {fileID: 2800000, guid: 798b38358680a1748be3d128c3aa5a19, type: 3}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
-      - name: _Ramp
-        texture: {fileID: 2800000, guid: 0eda6b141ae0099489bffec77e81ac17, type: 3}
+      - name: _MetallicGlossMap
+        texture: {instanceID: 0}
         scale: {x: 1, y: 1}
         offset: {x: 0, y: 0}
-      floats: []
+      - name: _OcclusionMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      - name: _ParallaxMap
+        texture: {instanceID: 0}
+        scale: {x: 1, y: 1}
+        offset: {x: 0, y: 0}
+      floats:
+      - name: _BumpScale
+        float: 1
+      - name: _Cutoff
+        float: 0.255
+      - name: _DetailNormalMapScale
+        float: 1
+      - name: _DstBlend
+        float: 0
+      - name: _GlossMapScale
+        float: 1
+      - name: _Glossiness
+        float: 0.5
+      - name: _GlossyReflections
+        float: 1
+      - name: _Metallic
+        float: 0
+      - name: _Mode
+        float: 1
+      - name: _OcclusionStrength
+        float: 1
+      - name: _Parallax
+        float: 0.08
+      - name: _SmoothnessTextureChannel
+        float: 0
+      - name: _SpecularHighlights
+        float: 1
+      - name: _SrcBlend
+        float: 1
+      - name: _UVSec
+        float: 0
+      - name: _ZWrite
+        float: 1
       colors:
       - name: _Color
-        color: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+        color: {r: 0.9598196, g: 1, b: 0.47843134, a: 1}
+      - name: _EmissionColor
+        color: {r: 0, g: 0, b: 0, a: 1}
     texturePackingList:
     - outputName: baseColor
       alphaSource: baseColor

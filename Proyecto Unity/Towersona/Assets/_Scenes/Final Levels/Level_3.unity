@@ -1722,6 +1722,18 @@ Transform:
   m_Father: {fileID: 554095845}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!154 &573013826
+TerrainCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573013824}
+  m_Material: {fileID: 0}
+  m_Enabled: 0
+  m_TerrainData: {fileID: 15600000, guid: f467bcadf93399944adeb0796e8295da, type: 2}
+  m_EnableTreeColliders: 1
+
 --- !u!218 &573013827
 Terrain:
   m_ObjectHideFlags: 0
