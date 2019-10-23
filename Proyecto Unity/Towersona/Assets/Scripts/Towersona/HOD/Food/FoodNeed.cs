@@ -7,23 +7,23 @@ public class FoodNeed : MonoBehaviour
     public float CurrentLevel { get; protected set; }
 
     private float decayPerSecond = 0.05f;
-    private float maxLevel = 1;
+    public float MaxLevel { get; private set; }
 
 
     public void Feed(float hungerFulfilment)
     {
-        CurrentLevel = Mathf.Min(maxLevel, CurrentLevel + hungerFulfilment);
+        CurrentLevel = Mathf.Min(MaxLevel, CurrentLevel + hungerFulfilment);
     }
 
     public void SetStats(TowersonaStats stats)
     {
-        maxLevel = stats.maxFood;
+        MaxLevel = stats.maxFood;
         decayPerSecond = stats.foodDecayPerSecond;
     }
 
     public void ResetNeed()
     {
-        CurrentLevel = maxLevel;
+        CurrentLevel = MaxLevel;
     }
 
     

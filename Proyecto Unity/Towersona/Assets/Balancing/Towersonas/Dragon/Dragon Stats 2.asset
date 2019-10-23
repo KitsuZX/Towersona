@@ -15,12 +15,10 @@ MonoBehaviour:
   buyCost: 110
   sellCost: 73
   attacksFliers: 0
+  maxFood: 1
+  foodDecayPerSecond: 0.05
+  loveDecayPerSecond: 0.05
   happinessPerPet: 0.05
-  hungerPerSecond: 0.05
-  hapinessLossPerSecond: 0.065
-  angerPerShit: 0.2
-  timeBetweenShits: 20
-  maxShits: 4
   bulletDamage: {x: 23, y: 33}
   attackSpeed: {x: 0.1, y: 0.5}
   range: {x: 5, y: 5}

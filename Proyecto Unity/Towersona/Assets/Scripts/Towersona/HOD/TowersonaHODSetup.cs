@@ -7,8 +7,9 @@ using NaughtyAttributes;
 #pragma warning disable 649
 public class TowersonaHODSetup : MonoBehaviour
 {
-    [SerializeField, Required] private Transform towersonaHODParent;
-    [SerializeField, Required] private LoveNeedUI loveNeedUI;
+    [SerializeField] private Transform towersonaHODParent;
+    [SerializeField] private LoveNeedUI loveNeedUI;
+    [SerializeField] private FoodNeedUI foodNeedUI;
 
     /// <summary>
     /// Spawns the model in the Towersona Detailed Scene. The Detailed scene must have been alredy created.
@@ -25,6 +26,7 @@ public class TowersonaHODSetup : MonoBehaviour
 
         //Hook up the UI
         loveNeedUI.SetWatchedLoveNeed(needs.LoveNeed);
+        foodNeedUI.SetWatchedLoveNeed(needs.FoodNeed);
 
         return needs;
     }    

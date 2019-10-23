@@ -16,9 +16,8 @@ public class LoveNeedUI : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Assert(loveNeed, "LoveNeedUI has no LoveNeed asigned to it.", this);
-
-        //slider.value = loveNeed.CurrentLevel;
+        Debug.Assert(loveNeed, "LoveNeedUI has no LoveNeed asigned to it.", this);
+        slider.value = loveNeed.CurrentLevel;
     }
 
     private void Awake()
