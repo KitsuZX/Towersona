@@ -780,8 +780,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towersonaHODParent: {fileID: 6283961833803950108}
   camera: {fileID: 5139840165951307370}
-  loveNeedUI: {fileID: 7268363397770528449}
-  foodNeedUI: {fileID: 5711291326967842398}
 --- !u!1 &5139840165951307372
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,12 +1243,12 @@ PrefabInstance:
     - target: {fileID: 2937486179109956434, guid: 9a47c2180dd6ec644a227138d4b18df3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.277
       objectReference: {fileID: 0}
     - target: {fileID: 2937486179109956434, guid: 9a47c2180dd6ec644a227138d4b18df3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.762
       objectReference: {fileID: 0}
     - target: {fileID: 2937486179109956434, guid: 9a47c2180dd6ec644a227138d4b18df3,
         type: 3}
@@ -1291,6 +1289,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2937486179109956434, guid: 9a47c2180dd6ec644a227138d4b18df3,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2937486179109956434, guid: 9a47c2180dd6ec644a227138d4b18df3,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2937486179109956434, guid: 9a47c2180dd6ec644a227138d4b18df3,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4652230012560191855, guid: 9a47c2180dd6ec644a227138d4b18df3,
         type: 3}
