@@ -59,7 +59,7 @@ public class Caressable : MonoBehaviour
 
     private void Start()
     {
-        stats = GetComponentInParent<TowersonaHOD>().towersona.stats;
+        //stats = GetComponentInParent<TowersonaHODSetup>().towersona.stats;
         AssignStats();
         towersonaNeeds = GetComponent<TowersonaNeeds>();
     }

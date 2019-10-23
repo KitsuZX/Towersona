@@ -14,7 +14,7 @@ public class Towersona : MonoBehaviour
     [HideInInspector]
     public BuildingPlace place;   
     [HideInInspector]
-    public TowersonaHOD towersonaHOD;
+    public TowersonaHODSetup towersonaHOD;
     [HideInInspector]
     public TowersonaLOD towersonaLOD;
     [HideInInspector]
@@ -95,7 +95,7 @@ public class Towersona : MonoBehaviour
         return towersonaLOD;
     }
 
-    private TowersonaHOD SpawnTowersonaHOD(Transform parent)
+    private TowersonaHODSetup SpawnTowersonaHOD(Transform parent)
     {
         Vector3 buildingPosition = new Vector3(BuildManager.Instance.lastXUsed, 0f, 50f); 
 
@@ -103,7 +103,7 @@ public class Towersona : MonoBehaviour
         towersonaHODObject.name = gameObject.name + " HOD";
         towersonaHODObject.transform.SetParent(parent);
 
-        TowersonaHOD towersonaHOD = towersonaHODObject.GetComponent<TowersonaHOD>();       
+        TowersonaHODSetup towersonaHOD = towersonaHODObject.GetComponent<TowersonaHODSetup>();       
 
         Camera camera = towersonaHOD.transform.GetComponentInChildren<Camera>();
         GameManager.Instance.ChangeCamera(camera);

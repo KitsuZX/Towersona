@@ -7,6 +7,7 @@ public class LoveNeed : MonoBehaviour
     public float CurrentLevel { get; private set; }
 
     //Maybe do this another way. They think of it as a happiness bonus, even though it's more of a decay rate multiplier. Talk about it.
+    //Where should the buff be applied from? I don't know the callstack here.
     public float decayMultiplier = 1;
 
     private float decayPerSecond = 0.05f;
