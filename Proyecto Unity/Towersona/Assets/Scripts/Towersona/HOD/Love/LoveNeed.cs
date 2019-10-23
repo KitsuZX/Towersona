@@ -26,7 +26,7 @@ public class LoveNeed : MonoBehaviour
         decayPerSecond = stats.loveDecayPerSecond;
     }
 
-    public void Reset()
+    public void ResetNeed()
     {
         CurrentLevel = MAX_LEVEL;
     }

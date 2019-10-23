@@ -21,7 +21,7 @@ public class FoodNeed : MonoBehaviour
         decayPerSecond = stats.foodDecayPerSecond;
     }
 
-    public void Reset()
+    public void ResetNeed()
     {
         CurrentLevel = maxLevel;
     }

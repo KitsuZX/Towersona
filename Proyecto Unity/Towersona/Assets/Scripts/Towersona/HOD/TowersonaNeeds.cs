@@ -35,10 +35,10 @@ public class TowersonaNeeds : MonoBehaviour
         FoodNeed.SetStats(stats);
     }
 
-    public void Reset()
+    public void ResetNeeds()
     {
-        LoveNeed.Reset();
-        FoodNeed.Reset();
+        LoveNeed.ResetNeed();
+        FoodNeed.ResetNeed();
     }
 
 

@@ -18,7 +18,7 @@ public class TowersonaHODSetup : MonoBehaviour
         TowersonaNeeds needs = towersonaHodGO.GetComponent<TowersonaNeeds>();
 
         needs.SetStats(towersona.stats);
-        needs.Reset();
+        needs.ResetNeeds();
 
         return needs;
     }    
