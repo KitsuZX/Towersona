@@ -2,22 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoveNeed : ATowersonaNeed
+public class LoveNeed : MonoBehaviour
 {
-    public override void SetStats(TowersonaStats stats)
+    public float CurrentLevel { get; private set; }
+
+    //Maybe do this another way. They think of it as a happiness bonus, even though it's more of a decay rate multiplier. Talk about it.
+    public float decayMultiplier = 1;
+
+    private float decayPerSecond = 0.05f;
+    private float maxLevel = 1;
+
+
+    public void ReceiveLove(float loveAmount)
+    {
+        CurrentLevel = Mathf.Min(maxLevel, CurrentLevel + loveAmount);
+    }
+
+    public void SetStats(TowersonaStats stats)
     {
         decayPerSecond = stats.loveDecayPerSecond;
     }
 
-    public override void Reset()
+    public void Reset()
     {
         CurrentLevel = maxLevel;
     }
 
-    //TODO: Implement some way to do love bonus?
 
-    private void Awake()
+    private void Update()
     {
-        maxLevel = 1;
+        float decayThisStep = decayPerSecond * Time.deltaTime * decayMultiplier * NeedDecayRateManager.needDecayRateMultiplier;
+        CurrentLevel = Mathf.Max(0, CurrentLevel - decayThisStep);
     }
 }

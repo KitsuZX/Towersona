@@ -118,8 +118,6 @@ public class HedgehogAttack : AttackPattern
 						return;
 					}
 				}
-
-				break;
 		}
 	}
 

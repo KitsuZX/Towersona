@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using TMPro;
 
+#pragma warning disable 649
 [RequireComponent(typeof(FPSCounter))]
 public class FPSDisplay : MonoBehaviour
 {

@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class NotificationsManager : MonoBehaviour
 {
+
     private TowersonaLOD towersonaLOD;
     private bool isNotifying;
-    private TowersonaNeeds.NeedType prevNeedType;
+    private TowersonaNeeds.Emotion currentNotifiedEmotion;
     private TowersonaNeeds needs;
 
 	//[SerializeField] private GameObject notificationPrefab = null;
@@ -23,34 +25,31 @@ public class NotificationsManager : MonoBehaviour
 
         if (needs == null) return;
 
-        //Check for needs
-        TowersonaNeeds.NeedType needType = needs.CheckIfShouldNotifyNeed();
+        TowersonaNeeds.Emotion currentEmotion = needs.CurrentEmotion;
 
-        if (needType != TowersonaNeeds.NeedType.None && !isNotifying)
-        {
-            CreateNotification(needType);
-        }
+        bool isNotifiableEmotion = currentEmotion != TowersonaNeeds.Emotion.Fine;
 
-        if (isNotifying)
+        if (isNotifiableEmotion)
         {
-            if (prevNeedType != needType)
+            if (isNotifying && currentNotifiedEmotion != currentEmotion)
             {
                 DestroyNotification();
-
-                if (needType != TowersonaNeeds.NeedType.None)
-                {
-                    CreateNotification(needType);
-                }
             }
-        }
 
-        prevNeedType = needType;
+            CreateNotification(currentEmotion);
+        }
     }
 
-    private void CreateNotification(TowersonaNeeds.NeedType needType)
+    //Recomiendo muy fuertemente no destruir y crear la notificación cada vez, esto generará mucha basura. 
+    //Sería mejor tener un objeto NeedNotification permanente al que cambiar el sprite que enseña/desactivar el SpriteRenderer.
+    private void CreateNotification(TowersonaNeeds.Emotion emotion)
     {
-		//TODO: Notificaciones
+        Assert.AreNotEqual(emotion, TowersonaNeeds.Emotion.Fine, "Fine emotion shouldn't be notified.");
+
+        //TODO: Notificaciones
         isNotifying = true;
+        currentNotifiedEmotion = emotion;
+        
 
 		/*
         Notification notification = Instantiate(notificationPrefab).GetComponent<Notification>();
@@ -95,6 +94,8 @@ public class NotificationsManager : MonoBehaviour
 
     private void DestroyNotification()
     {
+        isNotifying = false;
+
         /*isNotifying = false;
         Destroy(notification);*/
     }

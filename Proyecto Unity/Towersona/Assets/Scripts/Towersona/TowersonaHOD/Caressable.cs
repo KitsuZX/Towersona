@@ -78,7 +78,7 @@ public class Caressable : MonoBehaviour
             pos.y += 1f;
             pos.z += 3f;
             GameObject effect = Instantiate(heartsEffect, pos, Quaternion.Euler(-90f, 0f, 0f));
-            Destroy(effect, 5f);
+            Destroy(effect, 5f);    //We could just sto the effect instead of destroying it, couldn't we? Garbage and all that.
 
             isBeingCaressed = true;         
     
@@ -86,8 +86,7 @@ public class Caressable : MonoBehaviour
         }
 
         float caressDistance = TouchDelta.magnitude;
-
-        towersonaNeeds.ChangeNeedLevel(TowersonaNeeds.NeedType.Love, caressDistance * loveIncreasePerDeltaUnit);
+        towersonaNeeds.LoveNeed.ReceiveLove(caressDistance * loveIncreasePerDeltaUnit);
     }
 
     private void OnMouseUp()

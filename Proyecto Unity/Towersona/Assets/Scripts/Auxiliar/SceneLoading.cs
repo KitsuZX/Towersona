@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
+#pragma warning disable 649
 public class SceneLoading : MonoBehaviour
 {
     [SerializeField] private Image loadBar;

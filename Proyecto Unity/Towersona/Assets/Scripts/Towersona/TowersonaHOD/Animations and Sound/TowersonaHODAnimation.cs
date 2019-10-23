@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+#pragma warning disable 649
 public class TowersonaHODAnimation : MonoBehaviour
 {
 	public LookAwayFromTouch lookAway;
 
-	[SerializeField] private LookAt lookAt = null;
-	[SerializeField] private Animator bodyAnimator = null;
-	[SerializeField] private TowersonaLOD towersonaLOD = null;
+	[SerializeField] private LookAt lookAt;
+	[SerializeField] private Animator bodyAnimator;
+	[SerializeField] private TowersonaLOD towersonaLOD;
 
     private bool isLookingAtFood;
 	private Animator lodBodyAnimator;

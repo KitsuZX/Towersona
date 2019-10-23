@@ -133,8 +133,6 @@ public class FoxSlowDownAreaAttack : AttackPattern
 						return;
 					}
 				}
-
-				break;
 		}
 	}
 	public void RemoveLaser(SlowDownLaser laser)

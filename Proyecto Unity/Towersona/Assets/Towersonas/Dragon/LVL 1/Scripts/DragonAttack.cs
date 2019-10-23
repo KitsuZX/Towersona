@@ -157,8 +157,6 @@ public class DragonAttack : AttackPattern
 						return;
 					}
 				}
-
-				break;
 		}
 	}
 	private void OnDrawGizmos()

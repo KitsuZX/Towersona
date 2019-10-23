@@ -40,16 +40,11 @@ public class TowersonaHOD : MonoBehaviour
 
         this.towersona = towersona;
 
-        needs.happinessSlider = slider;
-        needs.overHappiness = overHappiness;
-
         towersonaNeeds = needs;
         towersonaAnim = model.GetComponent<TowersonaHODAnimation>();
 
 		if(towersonaAnim.lookAway) towersonaAnim.lookAway.m_Camera = cam;
-
-        ShitNeed shitNeed = model.GetComponent<ShitNeed>();
-        shitNeed.shitSpawnPositions = shitPositions;
+    
 
         return needs;
     }    

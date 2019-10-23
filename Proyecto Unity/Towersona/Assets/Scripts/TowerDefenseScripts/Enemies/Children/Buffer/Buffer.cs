@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 649
 public class Buffer : Enemy
 {    
 	[SerializeField] private BufferClass bufferClass;
