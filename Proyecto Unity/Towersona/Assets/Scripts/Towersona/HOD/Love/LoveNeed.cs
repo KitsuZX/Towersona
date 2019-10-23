@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LoveNeed : MonoBehaviour
 {
+    public const float MAX_LEVEL = 1;
+
     public float CurrentLevel { get; private set; }
 
     //Maybe do this another way. They think of it as a happiness bonus, even though it's more of a decay rate multiplier. Talk about it.
@@ -11,13 +13,13 @@ public class LoveNeed : MonoBehaviour
     public float decayMultiplier = 1;
 
     private float decayPerSecond = 0.05f;
-    private float maxLevel = 1;
 
 
     public void ReceiveLove(float loveAmount)
     {
-        CurrentLevel = Mathf.Min(maxLevel, CurrentLevel + loveAmount);
+        CurrentLevel = Mathf.Min(MAX_LEVEL, CurrentLevel + loveAmount);
     }
+
 
     public void SetStats(TowersonaStats stats)
     {
@@ -26,7 +28,7 @@ public class LoveNeed : MonoBehaviour
 
     public void Reset()
     {
-        CurrentLevel = maxLevel;
+        CurrentLevel = MAX_LEVEL;
     }
 
 
@@ -35,4 +37,5 @@ public class LoveNeed : MonoBehaviour
         float decayThisStep = decayPerSecond * Time.deltaTime * decayMultiplier * NeedDecayRateManager.needDecayRateMultiplier;
         CurrentLevel = Mathf.Max(0, CurrentLevel - decayThisStep);
     }
+
 }

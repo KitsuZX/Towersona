@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 public class NotificationsManager : MonoBehaviour
 {
@@ -44,7 +43,7 @@ public class NotificationsManager : MonoBehaviour
     //Sería mejor tener un objeto NeedNotification permanente al que cambiar el sprite que enseña/desactivar el SpriteRenderer.
     private void CreateNotification(TowersonaNeeds.Emotion emotion)
     {
-        Assert.AreNotEqual(emotion, TowersonaNeeds.Emotion.Fine, "Fine emotion shouldn't be notified.");
+        Debug.Assert(emotion != TowersonaNeeds.Emotion.Fine, "Fine emotion shouldn't be notified.", this);
 
         //TODO: Notificaciones
         isNotifying = true;
