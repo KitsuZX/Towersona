@@ -47,6 +47,10 @@ public class FoodNeed : MonoBehaviour
             feedables[i].OnFed += Eat;
         }
 
-        if (feedables.Length == 0) Debug.LogWarning("No se ha encontrado ningún componente Feedable en el HOD. A no ser que se haya diseñado una Towersona que no coma, esto es un error.", this);
+        if (feedables.Length == 0)
+        {
+            Debug.LogWarning("No se ha encontrado ningún componente Feedable en el HOD. " +
+                "A no ser que se haya diseñado una Towersona que no coma, esto es un error.", this);
+        }
     }
 }

@@ -31,7 +31,7 @@ public class TowersonaHODSetup : MonoBehaviour
         Draggable[] draggables = GetComponentsInChildren<Draggable>();
         for (int i = 0; i < draggables.Length; i++)
         {
-            draggables[i].camera = camera;
+            draggables[i].CasterCamera = camera;
         }
 
 

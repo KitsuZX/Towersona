@@ -4,13 +4,27 @@ using UnityEngine.Events;
 
 public class Draggable : MonoBehaviour
 {
-    public UnityEvent OnDragStart;
-    public UnityEvent OnLetGo;
+    public DraggableEvent OnDragStart;
+    public DraggableEvent OnLetGo;
 
-    [NonSerialized]
-    public new Camera camera;
 
+    /// <summary>
+    /// The Camera from which the pointer's world position should be calculated.
+    /// </summary>
+    public Camera CasterCamera {
+        get => _casterCamera;
+        set
+        {
+            _casterCamera = value;
+            cameraTransform = _casterCamera.GetComponent<Transform>();
+        }
+    }
+    private Camera _casterCamera;
+
+
+    private Transform cameraTransform;
     private new Transform transform;
+
 
     private Vector3 touchOffset;
     private bool isHeld = false;
@@ -22,10 +36,10 @@ public class Draggable : MonoBehaviour
         {
             if (PointerInput.ReadPosition(out Vector2 touchPosition))
             {
-                return camera.ScreenToWorldPoint(new Vector3(
+                return CasterCamera.ScreenToWorldPoint(new Vector3(
                         touchPosition.x,
                         touchPosition.y,
-                        transform.position.z - camera.GetComponent<Transform>().position.z));
+                        transform.position.z - cameraTransform.position.z));
             }
             else return Vector3.zero;
         }
@@ -38,7 +52,7 @@ public class Draggable : MonoBehaviour
 
         isHeld = true;
 
-        OnDragStart.Invoke();
+        OnDragStart.Invoke(new DraggableEventArgs { cameraPosition = cameraTransform.position });
     }
 
     private void Update()
@@ -53,13 +67,25 @@ public class Draggable : MonoBehaviour
             else
             {
                 isHeld = false;
-                OnLetGo.Invoke();
+                OnLetGo.Invoke(new DraggableEventArgs { cameraPosition = cameraTransform.position });
             }
         }
     }
 
+
     private void Awake()
     {
         transform = GetComponent<Transform>();
+    }
+
+    [Serializable]
+    public class DraggableEvent : UnityEvent<DraggableEventArgs>
+    {
+
+    }
+
+    public struct DraggableEventArgs
+    {
+        public Vector3 cameraPosition;
     }
 }

@@ -2,42 +2,82 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ReturnToPointAfterCountdown), typeof(Draggable))]
+[RequireComponent(typeof(Draggable), typeof(ReturnToPointAfterCountdown))]
 public class Food : MonoBehaviour
 {
-    public float HungerFulmilmentPerRation { get => hungerFulmilmentPerRation; }
-    [SerializeField] float hungerFulmilmentPerRation = 1;
+    //Raycast constants
+    private const int RAYCAST_HIT_ARRAY_SIZE = 1;
+    private const float MAX_RAYCAST_DISTANCE = 50;
 
+    //Inspector
+    public float HungerFulmilmentPerRation => _hungerFulmilmentPerRation;
+    [SerializeField] float _hungerFulmilmentPerRation = 1;
+
+    //References
     private new Transform transform;
+    private Renderer[] renderers;
+    private ReturnToPointAfterCountdown returnToPoint;
+
+    //Cached raycast stuff
+    private RaycastHit[] hits;
+    LayerMask raycastLayerMask;
     
-    //TODO: Hacer que solo se coma la comida cuando se le arrastra la cabeza, si no no. 
-    public void OnLettingGo()
-    {  
-        /*
-        //TODO: Search for a collider in Feeding layer. If hit a collider, look for a FoodNeed component.
-        dispenser.towersonaAnim.SetIsLookingAtFood(false);
-        dispenser.towersonaNeeds.FoodNeed.Feed(hungerFulmilmentPerRation);
-        dispenser.DispenseWithDelay();
 
-        //This should REALLY not be done here. Use an event in FoodNeed instead.
-        TowersonaHODAnimation anim = dispenser.towersonaNeeds.GetComponent<TowersonaHODAnimation>();
-        anim.Eat();
+    public void OnLetGo(Draggable.DraggableEventArgs evt)
+    {
+        //If we're over a Feedable, feed them and do out Eaten stuff.
+        Ray ray = new Ray(evt.cameraPosition, transform.position - evt.cameraPosition);
+        int hitCount = Physics.RaycastNonAlloc(ray, hits, MAX_RAYCAST_DISTANCE, raycastLayerMask, QueryTriggerInteraction.Collide);
 
-        //No estaría de más reciclar este objeto en vez de destruirlo y crear otro nuevo. Así evitamos generar basura.
-        Destroy(gameObject);
-        */
+        Feedable feedable;
+        for (int i = 0; i < hitCount; i++)
+        {
+            feedable = hits[i].collider.GetComponent<Feedable>();
+            if (feedable)
+            {
+                feedable.Feed(this);
+                OnEaten();
+                break;
+            }
+        }
     }
+
+
+    private void OnEaten()
+    {
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].enabled = false;
+        }
+
+        returnToPoint.OnReturnedToPoint.AddListener(OnRespawned);
+    }
+
+    private void OnRespawned()
+    {
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].enabled = true;
+        }
+
+        returnToPoint.OnReturnedToPoint.RemoveListener(OnRespawned);
+    }
+
 
     private void Awake()
     {
+        //Gather references
         transform = GetComponent<Transform>();
-    }
+        renderers = GetComponentsInChildren<Renderer>();
+        returnToPoint = GetComponent<ReturnToPointAfterCountdown>();
 
-    private void Start()
-    {
-        //Configure things so that we return to the starting position.
-        ReturnToPointAfterCountdown returnToPoint = GetComponent<ReturnToPointAfterCountdown>();
-        returnToPoint.returnPoint = transform.localPosition;
-        returnToPoint.inWorldSpace = false;
+        //Ensure correct layer setup
+        int feedableLayer = LayerMask.NameToLayer(Feedable.FEEDABLE_LAYER_NAME);
+        Debug.Assert(gameObject.layer != feedableLayer, 
+            $"Food components must not be in {Feedable.FEEDABLE_LAYER_NAME}.If they are, they will hit themselves with their raycasts.", this);
+
+        //Create necessary stuff
+        hits = new RaycastHit[RAYCAST_HIT_ARRAY_SIZE];
+        raycastLayerMask = LayerMask.GetMask(Feedable.FEEDABLE_LAYER_NAME);
     }
 }

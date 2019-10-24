@@ -2,19 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using NaughtyAttributes;
 
 public class ReturnToPointAfterCountdown : MonoBehaviour
 {
+    #region Inspector
     public float countdownLength = 1;
-    public Vector3 returnPoint;
     public bool inWorldSpace;
+    [HideIf("autoSetStartingPosition")] public Vector3 returnPoint;
+
+    [SerializeField] private bool autoSetStartingPosition;
 
     public UnityEvent OnReturnedToPoint;
+    #endregion
 
     private new Transform transform;
     private WaitForSeconds wait;
 
-
+    #region Countdown Activation
     public void StartCountdown()
     {
         StartCoroutine(CountdownCoroutine());
@@ -24,7 +29,7 @@ public class ReturnToPointAfterCountdown : MonoBehaviour
     {
         StopAllCoroutines();
     }
-
+    #endregion
 
     private IEnumerator CountdownCoroutine()
     {
@@ -46,5 +51,10 @@ public class ReturnToPointAfterCountdown : MonoBehaviour
     {
         transform = GetComponent<Transform>();
         wait = new WaitForSeconds(countdownLength);
+    }
+
+    private void Start()
+    {
+        if (autoSetStartingPosition) returnPoint = (inWorldSpace) ? transform.position : transform.localPosition;
     }
 }

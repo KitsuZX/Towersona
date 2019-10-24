@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3876572962029769908}
   - component: {fileID: 2095019691686423683}
   - component: {fileID: 4652230012560191855}
-  m_Layer: 12
+  m_Layer: 9
   m_Name: Food
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bdd8cff1c8105d4ab848f5791b07a5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hungerFulmilmentPerRation: 1
+  _hungerFulmilmentPerRation: 1
 --- !u!33 &3298341631808848471
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -133,8 +133,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+    m_TypeName: Draggable+DraggableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
   OnLetGo:
     m_PersistentCalls:
       m_Calls:
@@ -149,10 +149,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  timeBeforeAutoBack: 1
-  camera: {fileID: 0}
+      - m_Target: {fileID: 2937486179109956432}
+        m_MethodName: OnLetGo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: Draggable+DraggableEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!114 &4652230012560191855
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -165,8 +174,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a054d7884341867459b2509f86e95185, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownLength: 1
-  returnPoint: {fileID: 0}
+  countdownLength: 0.5
+  inWorldSpace: 0
+  returnPoint: {x: 0, y: 0, z: 0}
+  autoSetStartingPosition: 1
   OnReturnedToPoint:
     m_PersistentCalls:
       m_Calls: []
