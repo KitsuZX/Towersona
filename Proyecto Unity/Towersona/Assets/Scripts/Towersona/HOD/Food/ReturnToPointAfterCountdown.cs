@@ -11,7 +11,7 @@ public class ReturnToPointAfterCountdown : MonoBehaviour
     public bool inWorldSpace;
     [HideIf("autoSetStartingPosition")] public Vector3 returnPoint;
 
-    [SerializeField] private bool autoSetStartingPosition;
+    [SerializeField] private bool autoSetStartingPosition = true;
 
     public UnityEvent OnReturnedToPoint;
     #endregion

@@ -100,7 +100,7 @@ public class Towersona : MonoBehaviour
         Vector3 buildingPosition = new Vector3(BuildManager.Instance.lastXUsed, 0f, 50f); 
 
         GameObject towersonaHODObject = Instantiate(BuildManager.Instance.detailedTowersonaViewPrefab, buildingPosition, Quaternion.identity);
-        towersonaHODObject.name = gameObject.name + " HOD";
+        towersonaHODObject.name = gameObject.name + " HOD Setup";
         towersonaHODObject.transform.SetParent(parent);
 
         TowersonaHODSetup towersonaHOD = towersonaHODObject.GetComponent<TowersonaHODSetup>();       
@@ -109,7 +109,7 @@ public class Towersona : MonoBehaviour
         GameManager.Instance.ChangeCamera(camera);
 
         TowersonaNeeds tsn = towersonaHOD.SpawnTowersonaHOD(this, towersonaHODPrefabs[(int)towersonaLevel]);
-        tsn.name = gameObject.name + " needs";
+        tsn.name = gameObject.name + " HOD";
 
         BuildManager.Instance.lastXUsed += 15f;
 
