@@ -17,6 +17,8 @@ public class FoodNeedUI : MonoBehaviour
     {
         Debug.Assert(foodNeed, "FoodNeedUI has no FoodNeed asigned to it.", this);
         slider.value = foodNeed.CurrentLevel;
+
+        //TODO: Estaría bien tener una indicación de cómo quedaría la barra si soltaras la comida en este momento. Una segunda barra semitransparente o algo.
     }
 
     private void Awake()

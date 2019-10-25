@@ -13,14 +13,14 @@ public class TowersonaHODSetup : MonoBehaviour
     /// <summary>
     /// Spawns the model in the Towersona Detailed Scene. The Detailed scene must have been alredy created.
     /// </summary>   
-    public TowersonaNeeds SpawnTowersonaHOD(Towersona towersona, GameObject towersonaHODPrefab)
+    public TowersonaNeeds SpawnTowersonaHOD(TowersonaStats stats, GameObject towersonaHODPrefab)
     {
         //Instantiate the towersona HOD
         GameObject towersonaHodGO = Instantiate(towersonaHODPrefab, towersonaHODParent, false);
         TowersonaNeeds needs = towersonaHodGO.GetComponent<TowersonaNeeds>();
         
         //Set the stats
-        needs.SetStats(towersona.stats);
+        needs.SetStats(stats);
         needs.ResetNeeds();
 
         //Hook up the UI
@@ -31,10 +31,16 @@ public class TowersonaHODSetup : MonoBehaviour
         Draggable[] draggables = GetComponentsInChildren<Draggable>();
         for (int i = 0; i < draggables.Length; i++)
         {
-            draggables[i].CasterCamera = camera;
+            draggables[i].RaycastCamera = camera;
         }
 
-
         return needs;
-    }    
+    }
+
+    /* Hay un bug en PhysicsRaycaster, un componente de Unity.
+     * Si se le pone un número de máximo de hits (gracias a lo cual no genera basura) da NullReferenceExceptions.
+     * La solución está aquí https://forum.unity.com/threads/physicsraycaster-system-nullreferenceexception-bug.537885/.
+     * El problema es que creo que no tenemos forma de tocar PhysicsRaycaster.cs
+     * Mientras eso sea así, habrá que joderse, poner el máximo a 0 y dejar que genere basura cada fotograma.
+     * */
 }

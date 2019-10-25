@@ -472,7 +472,6 @@ GameObject:
   - component: {fileID: 3300676776421307272}
   - component: {fileID: 4061713380573001387}
   - component: {fileID: 7201259366606178744}
-  - component: {fileID: 4198750468237015235}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -544,23 +543,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
---- !u!114 &4198750468237015235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3488624768630624284}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 3
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!1 &4474418983449552093
 GameObject:
   m_ObjectHideFlags: 0
@@ -759,6 +741,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5139840165951307369}
   - component: {fileID: 5139840165951307370}
+  - component: {fileID: 1165410104382069713}
   m_Layer: 9
   m_Name: Camera
   m_TagString: Untagged
@@ -822,6 +805,22 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1165410104382069713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5139840165951307372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -768656878, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 8704
+  m_MaxRayIntersections: 5
 --- !u!1 &5885870130210410733
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,6 +1198,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5139840165600574757}
     m_Modifications:
+    - target: {fileID: 2937486179109956437, guid: 9a47c2180dd6ec644a227138d4b18df3,
+        type: 3}
+      propertyPath: m_Name
+      value: Food
+      objectReference: {fileID: 0}
     - target: {fileID: 2937486179109956434, guid: 9a47c2180dd6ec644a227138d4b18df3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1253,11 +1257,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2937486179109956437, guid: 9a47c2180dd6ec644a227138d4b18df3,
-        type: 3}
-      propertyPath: m_Name
-      value: Food
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a47c2180dd6ec644a227138d4b18df3, type: 3}

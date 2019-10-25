@@ -108,7 +108,7 @@ public class Towersona : MonoBehaviour
         Camera camera = towersonaHOD.transform.GetComponentInChildren<Camera>();
         GameManager.Instance.ChangeCamera(camera);
 
-        TowersonaNeeds tsn = towersonaHOD.SpawnTowersonaHOD(this, towersonaHODPrefabs[(int)towersonaLevel]);
+        TowersonaNeeds tsn = towersonaHOD.SpawnTowersonaHOD(stats, towersonaHODPrefabs[(int)towersonaLevel]);
         tsn.name = gameObject.name + " HOD";
 
         BuildManager.Instance.lastXUsed += 15f;

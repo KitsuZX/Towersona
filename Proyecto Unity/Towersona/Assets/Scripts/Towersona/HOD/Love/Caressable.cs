@@ -1,24 +1,20 @@
-﻿using UnityEngine.Events;
+﻿using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider), typeof(TowersonaNeeds))]
+
+[RequireComponent(typeof(Collider))]
 public class Caressable : MonoBehaviour
-{
-	[Header("References")]
-	[SerializeField] private GameObject heartsEffect = null;
+{ 
+    public const string CARESSABLE_LAYER = "CaressableLayer";
 
-	[Header("Parameters")]
+    //Events
+    public event Action OnCaressStart;
+    public event Action OnCaressEnd;
 
-    [Header("Events")]
-    public UnityEvent OnCaressStart;
-    public UnityEvent OnCaressEnd;
+    public Camera RaycastCamera { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
-	[HideInInspector] public bool isBeingCaressed = false;
+    public bool IsBeingCaressed { get; private set; }
 
-	private float loveIncreasePerDeltaUnit = 0.1f;
-
-    private TowersonaNeeds towersonaNeeds;
-    private TowersonaStats stats;
 
     private Vector2 TouchDelta
     {
@@ -40,7 +36,7 @@ public class Caressable : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 //Touch position in screen coordinates
-                Vector2 touchDelta = Input.mousePosition;
+                Vector2 touchDelta = (Vector2) Input.mousePosition - lastMousePosition;
 
                 //Convert to viewport coordinates
                 touchDelta.x = touchDelta.x / Screen.width;
@@ -49,7 +45,6 @@ public class Caressable : MonoBehaviour
                 return touchDelta;
             }
 #endif
-
             else
             {
                 return Vector2.zero;
@@ -57,41 +52,45 @@ public class Caressable : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        //stats = GetComponentInParent<TowersonaHODSetup>().towersona.stats;
-        AssignStats();
-        towersonaNeeds = GetComponent<TowersonaNeeds>();
-    }
-
-    private void AssignStats()
-    {
-        loveIncreasePerDeltaUnit = stats.happinessPerPet;
-    }
-
+    /*
     private void OnMouseDrag()
     {
-        if (!isBeingCaressed)
-        {
-            //Hearts particle effecct
-            Vector3 pos = transform.position;
-            pos.y += 1f;
-            pos.z += 3f;
-            GameObject effect = Instantiate(heartsEffect, pos, Quaternion.Euler(-90f, 0f, 0f));
-            Destroy(effect, 5f);    //We could just sto the effect instead of destroying it, couldn't we? Garbage and all that.
+        print("Drraaaag");
 
-            isBeingCaressed = true;         
-    
-            OnCaressStart.Invoke();
+        if (!IsBeingCaressed)
+        {
+            OnCaressStart?.Invoke();
+            IsBeingCaressed = true;
         }
 
         float caressDistance = TouchDelta.magnitude;
-        towersonaNeeds.LoveNeed.ReceiveLove(caressDistance * loveIncreasePerDeltaUnit);
+        //towersonaNeeds.LoveNeed.ReceiveLove(caressDistance * loveIncreasePerDeltaUnit);
     }
-
+    */
+    /*
     private void OnMouseUp()
     {
-        isBeingCaressed = false;
-        OnCaressEnd.Invoke();
+        if (IsBeingCaressed) OnCaressEnd.Invoke();
+        IsBeingCaressed = false;
+    }*/
+
+#if UNITY_EDITOR
+    //Save the lastMousePosition so that we can simulate delta touch with the mouse
+    private Vector2 lastMousePosition;
+
+    private void Update()
+    {
+        lastMousePosition = Input.mousePosition;
+    }
+#endif
+
+    private void Awake()
+    {
+        int caressableLayer = LayerMask.NameToLayer(CARESSABLE_LAYER);
+        if (gameObject.layer != caressableLayer)
+        {
+            Debug.LogWarning($"Caressable components must be in layer {CARESSABLE_LAYER}.", this);
+            gameObject.layer = caressableLayer;
+        }
     }
 }
