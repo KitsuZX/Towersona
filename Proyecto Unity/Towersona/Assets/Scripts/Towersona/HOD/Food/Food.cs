@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Draggable), typeof(ReturnToPointAfterCountdown))]
 public class Food : MonoBehaviour
@@ -23,10 +24,12 @@ public class Food : MonoBehaviour
     LayerMask raycastLayerMask;
     
 
-    public void OnLetGo(Draggable.DraggableEventArgs evt)
+    public void OnLetGo(PointerEventData pointerEventData)
     {
         //If we're over a Feedable, feed them and do out Eaten stuff.
-        Ray ray = new Ray(evt.cameraPosition, transform.position - evt.cameraPosition);
+        Camera camera = pointerEventData.pressEventCamera;
+        Ray ray = camera.ScreenPointToRay(pointerEventData.position);
+
         int hitCount = Physics.RaycastNonAlloc(ray, hits, MAX_RAYCAST_DISTANCE, raycastLayerMask, QueryTriggerInteraction.Collide);
 
         Feedable feedable;
