@@ -3,104 +3,62 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
-public class Draggable : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class Draggable : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     //Inspector
     public DraggableEvent OnDragStart;
     public DraggableEvent OnLetGo;
 
+    public bool IsBeingDragged { get; private set; }
 
-    public Camera RaycastCamera {
-        get => _raycastCamera;
-        set
-        {
-            _raycastCamera = value;
-            cameraTransform = _raycastCamera.GetComponent<Transform>();
-        }
-    }
-    private Camera _raycastCamera;
-
-
-    private Transform cameraTransform;
-    private new Transform transform;
-
+    //Drag data
+    private Camera raycastCamera;
     private Vector3 touchOffset;
-    private bool isHeld = false;
+    private float raycastDepth;
+    
+    private new Transform transform;    
 
     #region Pointer Events
-    public void OnPointerDown(PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        Vector3 touchInWorld = eventData.pointerPressRaycast.worldPosition;
-        //Vector3 touchInWorld = TouchInWorldSpace;
-        touchOffset = transform.position - touchInWorld;
+        Vector3 currentPosition = transform.position;
+        Vector3 touchInWorld = eventData.pointerCurrentRaycast.worldPosition;
 
-        isHeld = true;
+        touchOffset = currentPosition - touchInWorld;
 
-        OnDragStart.Invoke(new DraggableEventArgs { cameraPosition = cameraTransform.position });
+        IsBeingDragged = true;
+        raycastCamera = eventData.pressEventCamera;
+        raycastDepth = transform.position.z - raycastCamera.transform.position.z;
+
+        OnDragStart.Invoke(eventData);
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public void OnDrag(PointerEventData eventData)
     {
-        isHeld = false;
-        
-        OnLetGo.Invoke(new DraggableEventArgs { cameraPosition = cameraTransform.position });
+        Vector3 newPosition = GetCameraAlignedTouchPosition(eventData.position);
+        transform.position = newPosition;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        IsBeingDragged = false;
+        OnLetGo.Invoke(eventData);
     }
     #endregion
 
-
-
-
-
-    private Vector3 TouchInWorldSpace
+    private Vector3 GetCameraAlignedTouchPosition(Vector2 screenPosition)
     {
-        get
-        {
-            if (PointerInput.ReadPosition(out Vector2 touchPosition))
-            {
-                return RaycastCamera.ScreenToWorldPoint(new Vector3(
-                        touchPosition.x,
-                        touchPosition.y,
-                        transform.position.z - cameraTransform.position.z));
-            }
-            else return Vector3.zero;
-        }
+        return raycastCamera.ScreenToWorldPoint(new Vector3(
+                screenPosition.x,
+                screenPosition.y,
+                raycastDepth));
     }
-
-    private void Update()
-    {
-        
-
-
-        if (isHeld)
-        {
-            if (PointerInput.IsTouching)
-            {
-                Vector3 tmp = TouchInWorldSpace + touchOffset;
-                transform.position = tmp;
-            }
-            else
-            {
-                
-            }
-        }
-    }
-
 
     private void Awake()
     {
         transform = GetComponent<Transform>();
     }
 
-    
-
     [Serializable]
-    public class DraggableEvent : UnityEvent<DraggableEventArgs>
-    {
-
-    }
-
-    public struct DraggableEventArgs
-    {
-        public Vector3 cameraPosition;
-    }
+    public class DraggableEvent : UnityEvent<PointerEventData> { }
 }

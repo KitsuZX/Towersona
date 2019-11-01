@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider))]
 public class Feedable : MonoBehaviour
@@ -16,8 +16,7 @@ public class Feedable : MonoBehaviour
     {
         OnFed?.Invoke(food);
     }
-
-
+    
     private void Awake()
     {
         int feedableLayer = LayerMask.NameToLayer(FEEDABLE_LAYER_NAME);
