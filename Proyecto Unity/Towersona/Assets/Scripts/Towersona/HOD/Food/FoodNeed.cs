@@ -22,6 +22,11 @@ public class FoodNeed : MonoBehaviour
     }
 
 
+    private void Eat(Food food)
+    {
+        CurrentLevel = Mathf.Min(MaxLevel, CurrentLevel + food.HungerFulmilmentPerRation);
+    }
+
     /// <summary>
     /// Does the need decay. Doesn't take towersona count into account.
     /// </summary>
@@ -31,10 +36,7 @@ public class FoodNeed : MonoBehaviour
         CurrentLevel = Mathf.Max(0, CurrentLevel - decayThisStep);
     }
 
-    private void Eat(Food food)
-    {
-        CurrentLevel = Mathf.Min(MaxLevel, CurrentLevel + food.HungerFulmilmentPerRation);
-    }
+    
 
     /// <summary>
     /// Subscribe to Feedable's OnFed event.

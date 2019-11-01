@@ -18,7 +18,7 @@ public abstract class TowersonaStats : ScriptableObject
     public float foodDecayPerSecond;
     [Tooltip("Amor que pierde por segundo la towersona")]
     public float loveDecayPerSecond;
-    [Tooltip("Cuanta felicidad gana la towersona por caricia")]
+    [Tooltip("Cuanta felicidad gana la towersona al ser acariciada. El cálculo exacto es raro, lo importante es que más distancia acariciada -> más amor.")]
     public float happinessPerPet;
 
 

@@ -11,16 +11,13 @@ public class CaressEffects : MonoBehaviour
 
     private new ParticleSystem particleSystem;
 
-    
     private void StartPlaying()
     {
-        print("yes");
         particleSystem.Play();
     }
 
     private void StopPlaying()
     {
-        print("No");
         particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmitting);
     }
 

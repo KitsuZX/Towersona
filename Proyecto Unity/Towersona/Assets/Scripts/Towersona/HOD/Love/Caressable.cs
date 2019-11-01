@@ -1,88 +1,87 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 [RequireComponent(typeof(Collider))]
-public class Caressable : MonoBehaviour
+public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 { 
     public const string CARESSABLE_LAYER = "CaressableLayer";
 
     //Events
     public event Action OnCaressStart;
     public event Action OnCaressEnd;
-
-    public Camera RaycastCamera { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public event Action<float> OnCaressed;
 
     public bool IsBeingCaressed { get; private set; }
 
+    private Vector2 pointerPosLastFrame;
+    /// <summary>
+    /// Mouse events are called before Update. We reset this flag each update. 
+    /// If it's false at the start of Update, it means that there was no OnDrag call, or that it was not a caress.
+    /// </summary>
+    private bool wasCaressedThisFrame;
 
-    private Vector2 TouchDelta
+
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        get
-        {
-            if (Input.touchCount > 0)
-            {
-                //Touch position in screen coordinates
-                Vector2 touchDelta = Input.GetTouch(0).deltaPosition;
+        StartCaress();
 
-                //Convert to viewport coordinates
-                touchDelta.x = touchDelta.x / Screen.width;
-                touchDelta.y = touchDelta.y / Screen.height;
-
-                return touchDelta;
-            }
-
-#if UNITY_EDITOR
-            if (Input.GetMouseButton(0))
-            {
-                //Touch position in screen coordinates
-                Vector2 touchDelta = (Vector2) Input.mousePosition - lastMousePosition;
-
-                //Convert to viewport coordinates
-                touchDelta.x = touchDelta.x / Screen.width;
-                touchDelta.y = touchDelta.y / Screen.height;
-
-                return touchDelta;
-            }
-#endif
-            else
-            {
-                return Vector2.zero;
-            }
-        }
+        pointerPosLastFrame = eventData.pressEventCamera.ScreenToViewportPoint(eventData.position);
+        eventData.Use();
     }
 
-    /*
-    private void OnMouseDrag()
+    public void OnDrag(PointerEventData eventData)
     {
-        print("Drraaaag");
+        //Use the event no matter what
+        eventData.Use();
 
-        if (!IsBeingCaressed)
-        {
-            OnCaressStart?.Invoke();
-            IsBeingCaressed = true;
-        }
+        //Is the pointer is over the object?
+        List<GameObject> hovered = eventData.hovered;
+        bool pointerIsOverObject = hovered.Count > 0 && hovered[0] == gameObject;
+        
+        //If this is not a caress, return
+        wasCaressedThisFrame = pointerIsOverObject;
+        if (!wasCaressedThisFrame) return;
 
-        float caressDistance = TouchDelta.magnitude;
-        //towersonaNeeds.LoveNeed.ReceiveLove(caressDistance * loveIncreasePerDeltaUnit);
+        //Figure out how much the pointer moved this frame.
+        Camera raycastSourceCamera = eventData.pressEventCamera;
+        Vector2 pointerPosThisFrame = raycastSourceCamera.ScreenToViewportPoint(eventData.position);
+        float caressDistance = (pointerPosThisFrame - pointerPosLastFrame).magnitude;
+        pointerPosLastFrame = pointerPosThisFrame;
+        
+        OnCaressed?.Invoke(caressDistance);
     }
-    */
-    /*
-    private void OnMouseUp()
-    {
-        if (IsBeingCaressed) OnCaressEnd.Invoke();
-        IsBeingCaressed = false;
-    }*/
 
-#if UNITY_EDITOR
-    //Save the lastMousePosition so that we can simulate delta touch with the mouse
-    private Vector2 lastMousePosition;
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        EndCaress();
+    }
+
 
     private void Update()
     {
-        lastMousePosition = Input.mousePosition;
+        //Catch times where caressed state changes while the pointer is down.
+        if (!wasCaressedThisFrame && IsBeingCaressed) EndCaress();
+        else if (wasCaressedThisFrame && !IsBeingCaressed) StartCaress();
+
+        wasCaressedThisFrame = false;
     }
-#endif
+
+    private void StartCaress()
+    {
+        IsBeingCaressed = true;
+        OnCaressStart?.Invoke();
+        print("Start");
+    }
+
+    private void EndCaress()
+    {
+        IsBeingCaressed = false;
+        OnCaressEnd?.Invoke();
+        print("End");
+    }
 
     private void Awake()
     {
