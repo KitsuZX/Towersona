@@ -31,7 +31,8 @@ public class LoveNeed : MonoBehaviour
 
     private void Update()
     {
-        float decayThisStep = decayPerSecond * Time.deltaTime * decayMultiplier * NeedDecayRateManager.needDecayRateMultiplier;
+        float globalDecayMultiplier = NeedDecayRateManager.Instance ? NeedDecayRateManager.Instance.NeedDecayRateMultiplier : 1;
+        float decayThisStep = decayPerSecond * Time.deltaTime * decayMultiplier * globalDecayMultiplier;
         CurrentLevel = Mathf.Max(0, CurrentLevel - decayThisStep);
     }
 

@@ -6,7 +6,7 @@ public class PanicButton : MonoBehaviour
 {
     public void Press()
     {
-        foreach (TowersonaNeeds needs in TowersonaNeeds.allExisting)
+        foreach (TowersonaNeeds needs in GlobalTowersonaNeedProvider.GetAll())
         {
             needs.ResetNeeds();
         }
