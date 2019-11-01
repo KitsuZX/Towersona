@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class TowersonaStats : ScriptableObject
 {
@@ -13,23 +11,17 @@ public abstract class TowersonaStats : ScriptableObject
 
     [Header("Tamagochi stats")]
     [Tooltip("El tamaño del estómago de la towersona")]
-    public float maxFood;
+    public float maxFood = 1;
     [Tooltip("Hambre que pierde por segundo la towersona")]
-    public float foodDecayPerSecond;
+    public float foodDecayPerSecond = 0.0f;
     [Tooltip("Amor que pierde por segundo la towersona")]
-    public float loveDecayPerSecond;
-    [Tooltip("Cuanta felicidad gana la towersona al ser acariciada. El cálculo exacto es raro, lo importante es que más distancia acariciada -> más amor.")]
-    public float happinessPerPet;
-
+    public float loveDecayPerSecond = 0.05f;
+    [Tooltip("Amor que gana la towersona al ser acariciada durante un segundo.")]
+    public float loveGainPerSecondCaressed = 0.25f;
 
     [Header("Damage")]
 	public Vector2 bulletDamage = Vector2.zero;
 	public Vector2 attackSpeed = Vector2.zero;
 	public Vector2 range = Vector2.zero;
 	public Vector2 bulletSpeed = Vector2.zero;
-
-	[HideInInspector]
-    public TowersonaNeeds needs;
-
-	protected void Update(){} 
 }

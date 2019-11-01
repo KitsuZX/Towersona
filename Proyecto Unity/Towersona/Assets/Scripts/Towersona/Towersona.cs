@@ -47,7 +47,6 @@ public class Towersona : MonoBehaviour
 
         //Assign stats   
         stats = statsArray[0];
-        stats.needs = towersonaNeeds;
 
         InvokeRepeating("UpdateStats", 0f, 0.1f);        
 
@@ -69,7 +68,6 @@ public class Towersona : MonoBehaviour
         towersonaNeeds = towersonaHOD.GetComponentInChildren<TowersonaNeeds>();
 
         stats = statsArray[level + 1];
-        stats.needs = towersonaNeeds;
         InvokeRepeating("UpdateStats", 0f, 0.1f);
 
         PlayerStats.Instance.SpendMoney(stats.buyCost);

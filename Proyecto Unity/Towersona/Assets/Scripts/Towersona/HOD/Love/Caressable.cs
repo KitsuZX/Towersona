@@ -15,25 +15,24 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     //Events
     public event Action OnCaressStart;
     public event Action OnCaressEnd;
+    /// <summary>
+    /// The seconds spent being caressed since last OnCaressed call is passed as an argument.
+    /// </summary>
     public event Action<float> OnCaressed;
 
     public bool IsBeingCaressed { get; private set; }
 
-    private Vector2 pointerPosLastFrame;
     private float timeWithoutCaress;
 
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        StartCaress();
-
-        pointerPosLastFrame = eventData.pressEventCamera.ScreenToViewportPoint(eventData.position);
         eventData.Use();
+        StartCaress();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        print("OnDrag");
         //Use the event no matter what
         eventData.Use();
 
@@ -42,14 +41,8 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         bool pointerIsOverObject = hovered.Count > 0 && hovered[0] == gameObject;
         if (!pointerIsOverObject) return;
 
-        //Figure out how much the pointer moved this frame.
-        Camera raycastSourceCamera = eventData.pressEventCamera;
-        Vector2 pointerPosThisFrame = raycastSourceCamera.ScreenToViewportPoint(eventData.position);
-        float caressDistance = (pointerPosThisFrame - pointerPosLastFrame).magnitude;
-        pointerPosLastFrame = pointerPosThisFrame;
-
         StartCaress();
-        OnCaressed?.Invoke(caressDistance);
+        OnCaressed?.Invoke(Time.deltaTime);
     }
 
     public void OnEndDrag(PointerEventData eventData)

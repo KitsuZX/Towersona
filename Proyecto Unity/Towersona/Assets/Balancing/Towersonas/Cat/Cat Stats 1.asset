@@ -18,12 +18,11 @@ MonoBehaviour:
   maxFood: 1
   foodDecayPerSecond: 0.05
   loveDecayPerSecond: 0.05
-  happinessPerPet: 1
+  loveGainPerSecondCaressed: 0.25
   bulletDamage: {x: 0, y: 0}
   attackSpeed: {x: 0, y: 0}
   range: {x: 0, y: 0}
   bulletSpeed: {x: 0, y: 0}
-  needs: {fileID: 0}
   timeSpanBetweenGivingMoney: {x: 20, y: 10}
   moneyGiven: {x: 10, y: 15}
   boostRange: {x: 0, y: 0}

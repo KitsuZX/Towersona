@@ -10,11 +10,11 @@ public class LoveNeed : MonoBehaviour
     public float decayMultiplier = 1;
 
     private float decayPerSecond = 0.05f;
-    private float gainedLovePerCaressUnit = 0.05f;
+    private float loveGainPerSecondCaressed = 0.05f;
 
     public void SetStats(TowersonaStats stats)
     {
-        gainedLovePerCaressUnit = stats.happinessPerPet;
+        loveGainPerSecondCaressed = stats.loveGainPerSecondCaressed;
         decayPerSecond = stats.loveDecayPerSecond;
     }
 
@@ -24,10 +24,9 @@ public class LoveNeed : MonoBehaviour
     }
 
 
-    private void ReceiveLove(float caressDistance)
+    private void ReceiveLove(float timeCaressed)
     {
-        CurrentLevel = Mathf.Min(MAX_LEVEL, CurrentLevel + caressDistance * gainedLovePerCaressUnit);
-        //print(caressDistance * gainedLovePerCaressUnit);
+        CurrentLevel = Mathf.Min(MAX_LEVEL, CurrentLevel + timeCaressed * loveGainPerSecondCaressed);
     }
 
     private void Update()
@@ -50,5 +49,4 @@ public class LoveNeed : MonoBehaviour
                 "A no ser que se haya diseñado una Towersona que necesite amor pero no pueda ser acariciada, esto es un error.", this);
         }
     }
-
 }
