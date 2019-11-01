@@ -9,6 +9,9 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 { 
     public const string CARESSABLE_LAYER = "CaressableLayer";
 
+    [SerializeField]
+    private float timeBeforeCaressEnds = 0.5f;
+
     //Events
     public event Action OnCaressStart;
     public event Action OnCaressEnd;
@@ -17,11 +20,7 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public bool IsBeingCaressed { get; private set; }
 
     private Vector2 pointerPosLastFrame;
-    /// <summary>
-    /// Mouse events are called before Update. We reset this flag each update. 
-    /// If it's false at the start of Update, it means that there was no OnDrag call, or that it was not a caress.
-    /// </summary>
-    private bool wasCaressedThisFrame;
+    private float timeWithoutCaress;
 
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -34,53 +33,61 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
+        print("OnDrag");
         //Use the event no matter what
         eventData.Use();
 
         //Is the pointer is over the object?
         List<GameObject> hovered = eventData.hovered;
         bool pointerIsOverObject = hovered.Count > 0 && hovered[0] == gameObject;
-        
-        //If this is not a caress, return
-        wasCaressedThisFrame = pointerIsOverObject;
-        if (!wasCaressedThisFrame) return;
+        if (!pointerIsOverObject) return;
 
         //Figure out how much the pointer moved this frame.
         Camera raycastSourceCamera = eventData.pressEventCamera;
         Vector2 pointerPosThisFrame = raycastSourceCamera.ScreenToViewportPoint(eventData.position);
         float caressDistance = (pointerPosThisFrame - pointerPosLastFrame).magnitude;
         pointerPosLastFrame = pointerPosThisFrame;
-        
+
+        StartCaress();
         OnCaressed?.Invoke(caressDistance);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        eventData.Use();
         EndCaress();
     }
 
 
     private void Update()
     {
-        //Catch times where caressed state changes while the pointer is down.
-        if (!wasCaressedThisFrame && IsBeingCaressed) EndCaress();
-        else if (wasCaressedThisFrame && !IsBeingCaressed) StartCaress();
-
-        wasCaressedThisFrame = false;
+        if (IsBeingCaressed)
+        {
+            timeWithoutCaress += Time.deltaTime;
+            if (timeWithoutCaress > timeBeforeCaressEnds)
+            {
+                EndCaress();
+            }
+        }
     }
 
     private void StartCaress()
     {
-        IsBeingCaressed = true;
-        OnCaressStart?.Invoke();
-        print("Start");
+        if (!IsBeingCaressed)
+        {
+            IsBeingCaressed = true;
+            OnCaressStart?.Invoke();
+            timeWithoutCaress = 0;
+        }
     }
 
     private void EndCaress()
     {
-        IsBeingCaressed = false;
-        OnCaressEnd?.Invoke();
-        print("End");
+        if (IsBeingCaressed)
+        {
+            IsBeingCaressed = false;
+            OnCaressEnd?.Invoke();
+        }
     }
 
     private void Awake()
