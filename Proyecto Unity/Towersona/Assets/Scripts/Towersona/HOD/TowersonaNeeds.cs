@@ -1,10 +1,13 @@
-﻿using UnityEngine.Events;
+﻿
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 [RequireComponent(typeof(LoveNeed), typeof(FoodNeed))]
 public class TowersonaNeeds : MonoBehaviour
 {
+    //Sé que esto parece horrible... Pero hay varias mecánicas que afectan a todas las towersonas. Prometo no abusar de esta lista. -Aitor
+    public static List<TowersonaNeeds> allExisting = new List<TowersonaNeeds>();
+
     //Inspector
     [Header("Notification")]
     [SerializeField, Range(0, 1)]
@@ -71,6 +74,8 @@ public class TowersonaNeeds : MonoBehaviour
     //Intialization
     private void Awake()
     {
+        allExisting.Add(this);
+
         LoveNeed = GetComponent<LoveNeed>();
         FoodNeed = GetComponent<FoodNeed>();
 
@@ -78,7 +83,10 @@ public class TowersonaNeeds : MonoBehaviour
         towersonaAnimation = GetComponent<TowersonaHODAnimation>();
     }
 
-
+    private void OnDestroy()
+    {
+        allExisting.Remove(this);
+    }
 
     public enum Emotion {
         Fine = 0,
