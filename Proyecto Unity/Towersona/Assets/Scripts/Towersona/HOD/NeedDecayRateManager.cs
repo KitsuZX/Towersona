@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 649
 public class NeedDecayRateManager : MonoBehaviour
 {
     public static NeedDecayRateManager Instance { get; private set; }

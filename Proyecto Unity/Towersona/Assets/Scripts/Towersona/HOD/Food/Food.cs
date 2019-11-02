@@ -36,7 +36,7 @@ public class Food : MonoBehaviour
         for (int i = 0; i < hitCount; i++)
         {
             feedable = hits[i].collider.GetComponent<Feedable>();
-            if (feedable)
+            if (feedable && feedable.enabled)
             {
                 feedable.Feed(this);
                 OnEaten();

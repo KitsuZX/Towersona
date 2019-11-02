@@ -5,10 +5,9 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider))]
-public class Feedable : MonoBehaviour
+public class Feedable : MonoBehaviour, ISleepSusceptible
 {
     public const string FEEDABLE_LAYER_NAME = "FeedableLayer";
-
 
     public event Action<Food> OnFed;
 
@@ -16,7 +15,8 @@ public class Feedable : MonoBehaviour
     {
         OnFed?.Invoke(food);
     }
-    
+
+
     private void Awake()
     {
         int feedableLayer = LayerMask.NameToLayer(FEEDABLE_LAYER_NAME);

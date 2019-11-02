@@ -21,6 +21,7 @@ public class TowersonaNeeds : MonoBehaviour
         }
     }
 
+    public Sleeper Sleep { get; private set; }
     public LoveNeed LoveNeed { get; private set; }
     public FoodNeed FoodNeed  { get; private set; }
 
@@ -75,6 +76,7 @@ public class TowersonaNeeds : MonoBehaviour
 
         LoveNeed = GetComponent<LoveNeed>();
         FoodNeed = GetComponent<FoodNeed>();
+        Sleep = GetComponent<Sleeper>();
 
         //This component will absolutetly be rewritten
         towersonaAnimation = GetComponent<TowersonaHODAnimation>();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 649
 [CreateAssetMenu(menuName ="Need Decay Rate Lookup Table", fileName ="New NeedDecayRateLookupTable")]
 public class NeedDecayRateLookupTable : ScriptableObject
 {
