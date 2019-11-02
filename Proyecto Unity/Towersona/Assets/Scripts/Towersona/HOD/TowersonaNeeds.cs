@@ -1,8 +1,8 @@
 ﻿
-using System.Collections.Generic;
+
 using UnityEngine;
 
-[RequireComponent(typeof(LoveNeed), typeof(FoodNeed))]
+[RequireComponent(typeof(LoveNeed), typeof(FoodNeed), typeof(Sleeper))]
 public class TowersonaNeeds : MonoBehaviour
 {
     //Inspector
@@ -21,7 +21,7 @@ public class TowersonaNeeds : MonoBehaviour
         }
     }
 
-    public Sleeper Sleep { get; private set; }
+    public Sleeper Sleeper { get; private set; }
     public LoveNeed LoveNeed { get; private set; }
     public FoodNeed FoodNeed  { get; private set; }
 
@@ -40,6 +40,7 @@ public class TowersonaNeeds : MonoBehaviour
     {
         LoveNeed.ResetNeed();
         FoodNeed.ResetNeed();
+        Sleeper.WakeUp();
     }
 
 
@@ -50,8 +51,11 @@ public class TowersonaNeeds : MonoBehaviour
 
     private void UpdateEmotion()
     {
-        //TODO: Check for asleep.
-        if (LoveNeed.CurrentLevel < FoodNeed.CurrentLevel)
+        if (Sleeper.IsAsleep)
+        {
+            CurrentEmotion = Emotion.Asleep;
+        }
+        else if (LoveNeed.CurrentLevel < FoodNeed.CurrentLevel)
         {
             if (LoveNeed.CurrentLevel < notificationThreshold)
             {
@@ -76,7 +80,7 @@ public class TowersonaNeeds : MonoBehaviour
 
         LoveNeed = GetComponent<LoveNeed>();
         FoodNeed = GetComponent<FoodNeed>();
-        Sleep = GetComponent<Sleeper>();
+        Sleeper = GetComponent<Sleeper>();
 
         //This component will absolutetly be rewritten
         towersonaAnimation = GetComponent<TowersonaHODAnimation>();

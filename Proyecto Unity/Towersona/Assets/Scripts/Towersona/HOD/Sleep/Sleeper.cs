@@ -53,15 +53,7 @@ public class Sleeper : MonoBehaviour
     {
         if (SleepDirector.Instance) SleepDirector.Instance.Register(this);
 
-        //Find ISleepSusceptibles
         sleepSusceptibles = GetComponentsInChildren<ISleepSusceptible>();
-        for (int i = 0; i < sleepSusceptibles.Length; i++)
-        {
-            /*
-            OnWentToSleep += sleepSusceptibles[i].OnWentToSleep;
-            OnWokeUp += sleepSusceptibles[i].OnWokeUp;
-            */
-        }
     }
 
     private void OnDestroy()
