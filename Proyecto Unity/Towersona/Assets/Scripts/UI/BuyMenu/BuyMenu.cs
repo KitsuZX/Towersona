@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class BuyMenu : MonoBehaviour
 {
@@ -33,20 +34,25 @@ public class BuyMenu : MonoBehaviour
 
 	GameObject activeUI;
 
+	private Coroutine showInfoCoroutine;
+
+	private float secondsToShowInfo = 0.5f;
+	private float timeLeft = 1f;
+
 	private void Awake()
 	{
         buttons = GetComponentsInChildren<Button>(true);
-		UpdateMoneyTexts();        
+		UpdateMoneyTexts();    		
 	}
 
 	public void SetPlace(BuildingPlace _place)
 	{
 		place = _place;		
-		Vector3 pos = _place.transform.position;
+		/*Vector3 pos = _place.transform.position;
 		pos.y += 1f;
 		pos.z += 1f;
 
-		transform.position = pos;
+		transform.position = pos;*/
 
 		if (!_place.hasTower)
 		{
@@ -110,14 +116,12 @@ public class BuyMenu : MonoBehaviour
 			case MenuButton.MenuButtonType.Buy:
 				button.button.onClick.AddListener(OnPurchaseConfirmed);
 				BuyButton buyButton = (BuyButton)button;
-				BuildManager.Instance.SetTowersonaConfirmation(place, buyButton.towersona);
-				ShowInfo(buyButton.towersona, -1);
+				BuildManager.Instance.SetTowersonaConfirmation(place, buyButton.towersona);				
 				break;
 			case MenuButton.MenuButtonType.Upgrade:
 				button.button.onClick.AddListener(OnUpgradeConfirmed);
 				UpgradeButton upgradeButton = (UpgradeButton)button;
-				BuildManager.Instance.ShowMinMaxRange(upgradeButton.upgradeIndex);
-				ShowInfo(towersona, upgradeButton.upgradeIndex);
+				BuildManager.Instance.ShowMinMaxRange(upgradeButton.upgradeIndex);		
 				break;
 
 			case MenuButton.MenuButtonType.Sell:
@@ -125,6 +129,30 @@ public class BuyMenu : MonoBehaviour
 				break;
 		}     
     }
+
+	private void ShowInfo(MenuButton button)
+	{
+		if (buttonSelected != null)
+		{
+			DeselectButton();
+		}
+
+		buttonSelected = button;	
+
+		switch (button.type)
+		{
+			case MenuButton.MenuButtonType.Buy:				
+				BuyButton buyButton = (BuyButton)button;		
+				ShowInfo(buyButton.towersona, -1);
+				break;
+			case MenuButton.MenuButtonType.Upgrade:			
+				UpgradeButton upgradeButton = (UpgradeButton)button;
+				ShowInfo(towersona, upgradeButton.upgradeIndex);
+				break;
+			case MenuButton.MenuButtonType.Sell:			
+				break;
+		}
+	}
 
 	private void ShowInfo(Towersona towersona, int updgradeIndex)
 	{
@@ -243,4 +271,31 @@ public class BuyMenu : MonoBehaviour
 			}
 		}
 	}
+
+	public void StartCountdown(MenuButton button)
+	{
+		timeLeft = secondsToShowInfo;
+		showInfoCoroutine = StartCoroutine(Countdown(button));
+	}
+
+	public void StopCountdown()
+	{
+		StopCoroutine(showInfoCoroutine);
+		HideInfo();
+	}
+
+	private IEnumerator Countdown(MenuButton button)
+	{
+		while (true)
+		{
+			timeLeft -= Time.deltaTime;
+			if (timeLeft < 0)
+			{
+				ShowInfo(button);
+			}
+
+			yield return new WaitForEndOfFrame();
+		}
+	}
+
 }

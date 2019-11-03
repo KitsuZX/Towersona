@@ -17,23 +17,23 @@ public class InGameUIController : MonoBehaviour
         if (!Instance) Instance = this;
         else Destroy(this);
 
-        livesText.text = "lives: " + PlayerStats.Instance.lives.ToString();
-        roundText.text = "round: " + PlayerStats.Instance.round.ToString() + "/" + LevelManager.Instance.wavesToWin;
-        moneyText.text = "money: " + PlayerStats.Instance.money.ToString() + "$";
+        livesText.text = PlayerStats.Instance.lives.ToString();
+        roundText.text = "Round: \n" + PlayerStats.Instance.round.ToString() + "/" + LevelManager.Instance.wavesToWin;
+        moneyText.text = PlayerStats.Instance.money.ToString();
     }
 
     public void UpdateLives()
     {
-        livesText.text = "lives: " + PlayerStats.Instance.lives.ToString();
+        livesText.text = PlayerStats.Instance.lives.ToString();
     }
 
     public void UpdateRound()
     {
-        roundText.text = "round: " + PlayerStats.Instance.round.ToString() + "/" + LevelManager.Instance.wavesToWin;
+        roundText.text = "Round: \n" + PlayerStats.Instance.round.ToString() + "/" + LevelManager.Instance.wavesToWin;
     }
 
     public void UpdateMoney()
     {
-        moneyText.text = "money: " + PlayerStats.Instance.money.ToString() + "$";
+        moneyText.text = PlayerStats.Instance.money.ToString();
     }
 }
