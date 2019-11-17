@@ -1,14 +1,14 @@
 fileFormatVersion: 2
-guid: 87c88ff9cbd20904c904e3818c3afff3
+guid: aa809c7ec42214943801fb13254b2245
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: No Name
+    2100000: Stylized_Plants_Free.001
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Plane.001
+    4300000: arbusto
   externalObjects: {}
   materials:
     importMaterials: 1
