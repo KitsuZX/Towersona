@@ -153,10 +153,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5734299562082043909}
     m_Modifications:
-    - target: {fileID: 100000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
-      propertyPath: m_Name
-      value: Baby - HOD Model
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -201,13 +197,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 100002, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
-      propertyPath: m_Layer
-      value: 0
+    - target: {fileID: 100000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Name
+      value: Baby - HOD Model
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
       propertyPath: m_Bones.Array.data[0]
@@ -301,6 +293,15 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 706419006638041623}
+    - target: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: fe6335b46fa33174baa643a74b527937,
+        type: 2}
+    - target: {fileID: 100002, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
 --- !u!4 &706419006638041661 stripped

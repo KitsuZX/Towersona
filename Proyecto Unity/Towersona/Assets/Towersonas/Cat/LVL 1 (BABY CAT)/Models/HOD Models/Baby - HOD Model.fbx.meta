@@ -67,12 +67,12 @@ ModelImporter:
     2100002: cara
     4300000: HP
     7400000: T pose
-    7400002: Idle
-    7400004: Greeting
-    7400006: Lonely
-    7400008: Shitting
-    7400010: Lonely - Loop
-    7400012: Hungry
+    7400002: Neutral Idle
+    7400004: Celebrate
+    7400006: Lonely Intro (Unused)
+    7400008: Sleeping
+    7400010: Lonely Idle
+    7400012: Hungry Idle
     9500000: //RootNode
     13700000: HP
   externalObjects:
@@ -142,7 +142,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
+      name: Neutral Idle
       takeName: Take 001
       firstFrame: 2
       lastFrame: 30
@@ -170,7 +170,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Greeting
+      name: Celebrate
       takeName: Take 001
       firstFrame: 33
       lastFrame: 67
@@ -198,7 +198,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Lonely
+      name: Lonely Intro (Unused)
       takeName: Take 001
       firstFrame: 110
       lastFrame: 161
@@ -226,7 +226,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Shitting
+      name: Sleeping
       takeName: Take 001
       firstFrame: 162
       lastFrame: 205
@@ -236,8 +236,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -254,7 +254,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Lonely - Loop
+      name: Lonely Idle
       takeName: Take 001
       firstFrame: 130
       lastFrame: 160
@@ -282,7 +282,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hungry
+      name: Hungry Idle
       takeName: Take 001
       firstFrame: 68
       lastFrame: 110
@@ -292,8 +292,8 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -333,7 +333,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 5
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
