@@ -38,6 +38,8 @@ public class VictoryPrompt : MonoBehaviour
             starsSequence.Append(stars[i].transform.DOScale(1.1f, .7f));
             starsSequence.Join(stars[i].DOColor(original, .4f));
 
+            starsSequence.AppendCallback(() => stars[i].transform.GetChild(0).gameObject.SetActive(true));
+
         }
 
 
