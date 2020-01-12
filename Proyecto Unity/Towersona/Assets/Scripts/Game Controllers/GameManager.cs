@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Victory and Defeat References")]
     [SerializeField]
-    private GameObject victoryPrompt;     
+    private VictoryPrompt victoryPrompt;     
     [SerializeField]
     private GameObject defeatPrompt;      
 
@@ -39,7 +39,9 @@ public class GameManager : MonoBehaviour
 
         activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();     
 
-        wavesController = GetComponent<LevelManager>();             
+        wavesController = GetComponent<LevelManager>();
+
+        //victoryPrompt.ShowVictoryPrompt(3);
     }   
     
     /// <summary>
@@ -47,7 +49,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void WinGame()
     {
-        victoryPrompt.SetActive(true);
+        victoryPrompt.ShowVictoryPrompt(3);
 		Time.timeScale = 0;
     }
 
