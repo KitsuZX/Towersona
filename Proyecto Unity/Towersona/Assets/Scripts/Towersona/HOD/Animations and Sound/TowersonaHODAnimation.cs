@@ -2,61 +2,70 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
 
 #pragma warning disable 649
+[RequireComponent(typeof(TowersonaNeeds))]
 public class TowersonaHODAnimation : MonoBehaviour
 {
-	public LookAwayFromTouch lookAway;
+    [SerializeField, Required] Animator bodyAnimator;
+    [SerializeField, Required] Animator faceAnimator;
 
-	[SerializeField] private LookAt lookAt;
-	[SerializeField] private Animator bodyAnimator;
-	[SerializeField] private TowersonaLOD towersonaLOD;
+    private TowersonaNeeds needs;
 
-    private bool isLookingAtFood;
-	private Animator lodBodyAnimator;
+    #region Cached hashes
+    static int IS_ASLEEP_HASH = Animator.StringToHash("IsAsleep");
+    static int IS_HUNGRY_HASH = Animator.StringToHash("IsHungry");
+    static int IS_LONELY_HASH = Animator.StringToHash("IsLonely");
+    static int CELEBRATE_HASH = Animator.StringToHash("Celebrate");
+    static int EAT_HASH = Animator.StringToHash("Eat");
+    #endregion
 
-	private void Start()
-	{
-		lodBodyAnimator = towersonaLOD.GetComponent<TowersonaLODAnimation>().bodyAnimator;
-	}
 
-	public void Eat()
-	{
-		//JIJI
-	}
-  
-    public void SetLoneliness(bool loneliness)
-	{
-		//TODO: evitar que esto se esté llamando todo el rato
-		/*bodyAnimator.SetBool("isLonely", loneliness);
-		lodBodyAnimator.SetBool("isLonely", loneliness);*/
-	}
-
-	public void TakeAShit()
-	{
-		//bodyAnimator.SetTrigger("takeADump");
-	}
-
-    public void CaressStart()
+    private void Update()
     {
-		if(lookAway) lookAway.isBeingCaressed = true;
-	}
+        //Update need parameters
+        TowersonaNeeds.Emotion notifiedEmotion = needs.CurrentEmotion;
 
-    public void CaressEnd()
-    {
-		if (lookAway) lookAway.isBeingCaressed = false;
-	}
+        bodyAnimator.SetBool(IS_ASLEEP_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Asleep);
+        faceAnimator.SetBool(IS_ASLEEP_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Asleep);
+
+        bodyAnimator.SetBool(IS_HUNGRY_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Hungry);
+        faceAnimator.SetBool(IS_HUNGRY_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Hungry);
+
+        bodyAnimator.SetBool(IS_LONELY_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Lonely);
+        faceAnimator.SetBool(IS_LONELY_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Lonely);
+
     
-    public void SetIsLookingAtFood(bool _isLookingAtFood)
-    {
-        isLookingAtFood = _isLookingAtFood;
-        if(lookAt) lookAt.enabled = _isLookingAtFood;
     }
 
-    public void SetLookAtTarget(Transform tr)
+    private void Celebrate()
     {
-        if(lookAt) lookAt.food = tr;
+        bodyAnimator.SetTrigger(CELEBRATE_HASH);
     }
 
+    private void Eat()
+    {
+        faceAnimator.SetTrigger(EAT_HASH);
+    }
 
+    private void Awake()
+    {
+        needs = GetComponent<TowersonaNeeds>();
+    }
+
+    private void Start()
+    {
+        if (GameManager.Instance)
+        {
+            //Se suscribe así para evitar estar suscrito dos veces.
+            GameManager.Instance.OnWonGame -= Celebrate;
+            GameManager.Instance.OnWonGame += Celebrate;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance) GameManager.Instance.OnWonGame -= Celebrate;
+    }
 }

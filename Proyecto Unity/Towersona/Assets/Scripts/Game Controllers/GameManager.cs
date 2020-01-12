@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
     private GameObject defeatPrompt;      
 
     [Header("Other References")]
-    [SerializeField][Tooltip("The first detailed scene camera without the detailed model")]
+    [SerializeField, Tooltip("The first detailed scene camera without the detailed model")]
     private Camera emptyCamera;
-    //Private Parameters             
+
+
+    public event System.Action OnWonGame;
 
     //Private references
     private LevelManager wavesController;
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour
     {
         victoryPrompt.ShowVictoryPrompt(3);
 		Time.timeScale = 0;
+
+        OnWonGame?.Invoke();    //Lo invoco así porque si no hay listeners el evento es null.
     }
 
     /// <summary>

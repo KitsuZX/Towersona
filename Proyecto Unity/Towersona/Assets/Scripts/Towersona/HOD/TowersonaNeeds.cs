@@ -1,6 +1,4 @@
-﻿
-
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(LoveNeed), typeof(FoodNeed), typeof(Sleeper))]
 public class TowersonaNeeds : MonoBehaviour
@@ -24,10 +22,6 @@ public class TowersonaNeeds : MonoBehaviour
     public Sleeper Sleeper { get; private set; }
     public LoveNeed LoveNeed { get; private set; }
     public FoodNeed FoodNeed  { get; private set; }
-
-    
-    private TowersonaHODAnimation towersonaAnimation;   //This will probably die.
-
 
     //Stat API
     public void SetStats(TowersonaStats stats)
@@ -59,7 +53,7 @@ public class TowersonaNeeds : MonoBehaviour
         {
             if (LoveNeed.CurrentLevel < notificationThreshold)
             {
-                CurrentEmotion = Emotion.Missing;
+                CurrentEmotion = Emotion.Lonely;
             }
         }
         else if (FoodNeed.CurrentLevel < notificationThreshold)
@@ -81,9 +75,6 @@ public class TowersonaNeeds : MonoBehaviour
         LoveNeed = GetComponent<LoveNeed>();
         FoodNeed = GetComponent<FoodNeed>();
         Sleeper = GetComponent<Sleeper>();
-
-        //This component will absolutetly be rewritten
-        towersonaAnimation = GetComponent<TowersonaHODAnimation>();
     }
 
     private void OnDestroy()
@@ -92,9 +83,11 @@ public class TowersonaNeeds : MonoBehaviour
     }
 
 
-    public enum Emotion {
+    public enum Emotion
+    {
         Fine = 0,
         Hungry = 1,
-        Missing = 2,
-        Asleep = 3 }
+        Lonely = 2,
+        Asleep = 3
+    }
 }

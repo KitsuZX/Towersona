@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2044315891199184544}
   - component: {fileID: 5454336444838763405}
   - component: {fileID: 231882916564330613}
+  - component: {fileID: 2282179330834698745}
   m_Layer: 9
   m_Name: _TowersonaHODBase
   m_TagString: Untagged
@@ -114,3 +115,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &2282179330834698745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6124665230103018138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e7b4c52beefc004886f2e3480999f44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyAnimator: {fileID: 0}
+  faceAnimator: {fileID: 0}
