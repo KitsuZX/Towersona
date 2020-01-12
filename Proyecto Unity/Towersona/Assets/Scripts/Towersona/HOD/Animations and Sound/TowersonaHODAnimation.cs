@@ -8,8 +8,8 @@ using NaughtyAttributes;
 [RequireComponent(typeof(TowersonaNeeds))]
 public class TowersonaHODAnimation : MonoBehaviour
 {
-    [SerializeField, Required] Animator bodyAnimator;
-    [SerializeField, Required] Animator faceAnimator;
+    [SerializeField] Animator bodyAnimator;
+    [SerializeField] Animator faceAnimator;
 
     private TowersonaNeeds needs;
 
@@ -61,6 +61,11 @@ public class TowersonaHODAnimation : MonoBehaviour
             //Se suscribe así para evitar estar suscrito dos veces.
             GameManager.Instance.OnWonGame -= Celebrate;
             GameManager.Instance.OnWonGame += Celebrate;
+        }
+
+        foreach (Feedable feedable in GetComponentsInChildren<Feedable>())
+        {
+            feedable.OnFed += (Food food) => Eat();
         }
     }
 
