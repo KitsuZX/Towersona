@@ -1,12 +1,31 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3598236671141158850
+--- !u!95 &3632710098923048314
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 706419006637684277}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: b2b948fa83e6e1e4ab967698c11923fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3567459160273428841
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 706419006637684287}
+  m_GameObject: {fileID: 706419006637684277}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 475e612ea358eb040964ba7b5fed5899, type: 3}
@@ -153,6 +172,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5734299562082043909}
     m_Modifications:
+    - target: {fileID: 100000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Name
+      value: Baby - HOD Model
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -197,9 +220,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
-      propertyPath: m_Name
-      value: Baby - HOD Model
+    - target: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: fe6335b46fa33174baa643a74b527937,
+        type: 2}
+    - target: {fileID: 100002, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 13700000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
       propertyPath: m_Bones.Array.data[0]
@@ -293,35 +321,12 @@ PrefabInstance:
       propertyPath: m_RootBone
       value: 
       objectReference: {fileID: 706419006638041623}
-    - target: {fileID: 9500000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: fe6335b46fa33174baa643a74b527937,
-        type: 2}
-    - target: {fileID: 100002, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
-      propertyPath: m_Layer
-      value: 0
+    - target: {fileID: 13700000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6eaf661ea779ae54a8dae607e2a2448a, type: 3}
---- !u!4 &706419006638041661 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400034, guid: 6eaf661ea779ae54a8dae607e2a2448a,
-    type: 3}
-  m_PrefabInstance: {fileID: 706419006637650079}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &706419006638041659 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400036, guid: 6eaf661ea779ae54a8dae607e2a2448a,
-    type: 3}
-  m_PrefabInstance: {fileID: 706419006637650079}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &706419006638041657 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 400038, guid: 6eaf661ea779ae54a8dae607e2a2448a,
-    type: 3}
-  m_PrefabInstance: {fileID: 706419006637650079}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &706419006638041647 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400048, guid: 6eaf661ea779ae54a8dae607e2a2448a,
@@ -394,12 +399,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 706419006637650079}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &706419006637684287 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 6eaf661ea779ae54a8dae607e2a2448a,
-    type: 3}
-  m_PrefabInstance: {fileID: 706419006637650079}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &706419006638041623 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400008, guid: 6eaf661ea779ae54a8dae607e2a2448a,
@@ -442,6 +441,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 706419006637650079}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &706419006638041661 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400034, guid: 6eaf661ea779ae54a8dae607e2a2448a,
+    type: 3}
+  m_PrefabInstance: {fileID: 706419006637650079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &706419006637684277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100010, guid: 6eaf661ea779ae54a8dae607e2a2448a,
+    type: 3}
+  m_PrefabInstance: {fileID: 706419006637650079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &706419006638041659 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400036, guid: 6eaf661ea779ae54a8dae607e2a2448a,
+    type: 3}
+  m_PrefabInstance: {fileID: 706419006637650079}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &706419006638041657 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 400038, guid: 6eaf661ea779ae54a8dae607e2a2448a,
+    type: 3}
+  m_PrefabInstance: {fileID: 706419006637650079}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1088217171556527272
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -454,6 +477,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cat HOD LVL 1
       objectReference: {fileID: 0}
+    - target: {fileID: 231882916564330613, guid: ce4e259125fedad4ba7b22f57e9ba70f,
+        type: 3}
+      propertyPath: OnMultiTap.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 4948239764543223589}
     - target: {fileID: 4651739928010384557, guid: ce4e259125fedad4ba7b22f57e9ba70f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -524,11 +552,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 231882916564330613, guid: ce4e259125fedad4ba7b22f57e9ba70f,
-        type: 3}
-      propertyPath: OnMultiTap.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 4948239764543223589}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce4e259125fedad4ba7b22f57e9ba70f, type: 3}
 --- !u!114 &4948239764543223589 stripped

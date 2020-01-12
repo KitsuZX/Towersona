@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#pragma warning disable 649
 /// <summary>
 /// Permite cambiar la cara de una towersona desde animaciones. 
 /// En un AnimationClip, hay que ir cambiando la propiedad "currentFace". 
@@ -26,7 +27,7 @@ public class FaceAnimator : MonoBehaviour
     //https://forum.unity.com/threads/why-is-monobehaviour-ondidapplyanimationproperties-undocumented.481600/
     private void OnDidApplyAnimationProperties()
     {
-        if (faceMaterial) faceMaterial.SetTexture(faceTexturePropertyName, currentFace.texture);
+        if (faceMaterial && currentFace) faceMaterial.SetTexture(faceTexturePropertyName, currentFace.texture);
     }
 
     private void OnEnable()
@@ -46,7 +47,6 @@ public class FaceAnimator : MonoBehaviour
                 //En principio eso no debería ser un problema, pero está bien ser consciente de ello.
                 faceMaterial = renderer.sharedMaterials[faceMaterialIndex];
             }
-            
         }
     }
 }
