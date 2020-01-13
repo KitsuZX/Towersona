@@ -22,10 +22,12 @@ public class ProceduralSleepAnimation : MonoBehaviour
     [SerializeField] AnimationCurve wakeUpCurve;
     [SerializeField] float wakeUpAnimationLength = 0.5f;
 
+    private int IDLE_SPEED_HASH = Animator.StringToHash("IdleSpeed");
 
     private SleepAnimationState currentState;
     private float timeAtLastStateChange;
-    private int IDLE_SPEED_HASH = Animator.StringToHash("IdleSpeed");
+    private Tweener currentTween;
+
 
     private void LateUpdate()
     {
@@ -76,11 +78,13 @@ public class ProceduralSleepAnimation : MonoBehaviour
         {
             case SleepAnimationState.Awake:
             case SleepAnimationState.WakingUp:
-                DOTween.To(() => bodyAnimator.GetFloat(IDLE_SPEED_HASH), v => bodyAnimator.SetFloat(IDLE_SPEED_HASH, v), 1, IDLE_SPEED_TWEEN_LENGTH);
+                currentTween?.Kill();
+                currentTween = DOTween.To(() => bodyAnimator.GetFloat(IDLE_SPEED_HASH), v => bodyAnimator.SetFloat(IDLE_SPEED_HASH, v), 1, IDLE_SPEED_TWEEN_LENGTH);
                 break;
             case SleepAnimationState.GoingToSleep:
             case SleepAnimationState.Sleeping:
-                DOTween.To(() => bodyAnimator.GetFloat(IDLE_SPEED_HASH), v => bodyAnimator.SetFloat(IDLE_SPEED_HASH, v), asleepIdleSpeed, IDLE_SPEED_TWEEN_LENGTH);
+                currentTween?.Kill();
+                currentTween = DOTween.To(() => bodyAnimator.GetFloat(IDLE_SPEED_HASH), v => bodyAnimator.SetFloat(IDLE_SPEED_HASH, v), asleepIdleSpeed, IDLE_SPEED_TWEEN_LENGTH);
                 break;
         }
     }

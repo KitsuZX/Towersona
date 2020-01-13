@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using DG.Tweening;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using NaughtyAttributes;
@@ -8,6 +8,7 @@ public class ReturnToPointAfterCountdown : MonoBehaviour
 {
     #region Inspector
     public float countdownLength = 1;
+    public float returnTweenLength = 0.5f;
     public bool inWorldSpace;
     [HideIf("autoSetStartingPosition")] public Vector3 returnPoint;
 
@@ -40,8 +41,17 @@ public class ReturnToPointAfterCountdown : MonoBehaviour
 
     private void ReturnToPoint()
     {
-        if (inWorldSpace) transform.position = returnPoint;
-        else transform.localPosition = returnPoint;
+        if (returnTweenLength > 0)
+        {
+            DOTween.Kill(transform);
+            if (inWorldSpace) transform.DOMove(returnPoint, returnTweenLength);
+            else transform.DOLocalMove(returnPoint, returnTweenLength);
+        }
+        else
+        {
+            if (inWorldSpace) transform.position = returnPoint;
+            else transform.localPosition = returnPoint;
+        }
 
         OnReturnedToPoint.Invoke();
     }
