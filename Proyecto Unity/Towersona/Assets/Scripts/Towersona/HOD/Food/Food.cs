@@ -17,6 +17,7 @@ public class Food : MonoBehaviour
     //References
     private new Transform transform;
     private Renderer[] renderers;
+    private Collider[] colliders;
     private ReturnToPointAfterCountdown returnToPoint;
 
     //Cached raycast stuff
@@ -53,6 +54,12 @@ public class Food : MonoBehaviour
             renderers[i].enabled = false;
         }
 
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = false;
+        }
+
+        returnToPoint.tweenToPosition = false;
         returnToPoint.OnReturnedToPoint.AddListener(OnRespawned);
     }
 
@@ -63,6 +70,12 @@ public class Food : MonoBehaviour
             renderers[i].enabled = true;
         }
 
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = true;
+        }
+
+        returnToPoint.tweenToPosition = true;
         returnToPoint.OnReturnedToPoint.RemoveListener(OnRespawned);
     }
 
@@ -72,6 +85,7 @@ public class Food : MonoBehaviour
         //Gather references
         transform = GetComponent<Transform>();
         renderers = GetComponentsInChildren<Renderer>();
+        colliders = GetComponentsInChildren<Collider>();
         returnToPoint = GetComponent<ReturnToPointAfterCountdown>();
 
         //Ensure correct layer setup

@@ -27,6 +27,9 @@ public class TowersonaHODSetup : MonoBehaviour
         GetComponentInChildren<LoveNeedUI>().SetWatchedLoveNeed(needs.LoveNeed);
         GetComponentInChildren<FoodNeedUI>().SetWatchedFoodNeed(needs.FoodNeed);
 
+        //Set the dependencies
+        GetComponentInChildren<LookAtFood>().Food = GetComponentInChildren<Food>();
+
         return needs;
     }
 

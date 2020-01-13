@@ -8,13 +8,15 @@ public class ReturnToPointAfterCountdown : MonoBehaviour
 {
     #region Inspector
     public float countdownLength = 1;
-    public float returnTweenLength = 0.5f;
     public bool inWorldSpace;
     [HideIf("autoSetStartingPosition")] public Vector3 returnPoint;
 
     [SerializeField] private bool autoSetStartingPosition = true;
 
     public UnityEvent OnReturnedToPoint;
+
+    public bool tweenToPosition = true;
+    public float returnTweenLength = 0.5f;
     #endregion
 
     private new Transform transform;
@@ -41,7 +43,7 @@ public class ReturnToPointAfterCountdown : MonoBehaviour
 
     private void ReturnToPoint()
     {
-        if (returnTweenLength > 0)
+        if (tweenToPosition)
         {
             DOTween.Kill(transform);
             if (inWorldSpace) transform.DOMove(returnPoint, returnTweenLength);
