@@ -143,7 +143,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   head: {fileID: 0}
+  bodyAnimator: {fileID: 0}
   headLowerAngleWhenAsleep: 30
+  asleepIdleSpeed: 0.7
   goToSleepCurve:
     serializedVersion: 2
     m_Curve:
