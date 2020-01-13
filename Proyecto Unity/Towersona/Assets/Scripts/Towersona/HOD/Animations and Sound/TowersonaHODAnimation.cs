@@ -24,17 +24,24 @@ public class TowersonaHODAnimation : MonoBehaviour
     private void Update()
     {
         //Update need parameters
-        TowersonaNeeds.Emotion notifiedEmotion = needs.CurrentEmotion;
-
         bool isHungry = needs.IsHungry;
+        bool isLonely = needs.IsLonely;
+        bool isAsleep = needs.Sleeper.IsAsleep;
+
+        //El AnimatorController no lidia bien con estar hambriento y triste al mismo tiempo
+        if (isHungry && isLonely)
+        {
+            TowersonaNeeds.Emotion notifiedEmotion = needs.CurrentEmotion;
+            if (notifiedEmotion == TowersonaNeeds.Emotion.Hungry) isLonely = false;
+            else if (notifiedEmotion == TowersonaNeeds.Emotion.Lonely) isHungry = false;
+        }
+
         bodyAnimator.SetBool(IS_HUNGRY_HASH, isHungry);
         faceAnimator.SetBool(IS_HUNGRY_HASH, isHungry);
-
-        bool isLonely = needs.IsLonely;
+        
         bodyAnimator.SetBool(IS_LONELY_HASH, isLonely);
         faceAnimator.SetBool(IS_LONELY_HASH, isLonely);
-
-        bool isAsleep = needs.Sleeper.IsAsleep;
+        
         bodyAnimator.SetBool(IS_ASLEEP_HASH, isAsleep);
         faceAnimator.SetBool(IS_ASLEEP_HASH, isAsleep);
     }

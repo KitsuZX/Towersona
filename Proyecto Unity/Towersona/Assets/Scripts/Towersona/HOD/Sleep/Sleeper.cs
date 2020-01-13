@@ -29,8 +29,6 @@ public class Sleeper : MonoBehaviour
         {
             if (sleepSusceptibles[i] != null) sleepSusceptibles[i].enabled = false;
         }
-
-        Debug.Log("Sleeping", this);
     }
 
     public void WakeUp()
@@ -44,8 +42,6 @@ public class Sleeper : MonoBehaviour
         {
             if (sleepSusceptibles[i] != null) sleepSusceptibles[i].enabled = true;
         }
-
-        Debug.Log("Waking up", this);
     }
 
 
