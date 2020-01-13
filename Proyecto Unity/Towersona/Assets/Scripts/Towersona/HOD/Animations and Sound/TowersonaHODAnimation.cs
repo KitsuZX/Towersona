@@ -21,22 +21,22 @@ public class TowersonaHODAnimation : MonoBehaviour
     static int EAT_HASH = Animator.StringToHash("Eat");
     #endregion
 
-
     private void Update()
     {
         //Update need parameters
         TowersonaNeeds.Emotion notifiedEmotion = needs.CurrentEmotion;
 
-        bodyAnimator.SetBool(IS_ASLEEP_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Asleep);
-        faceAnimator.SetBool(IS_ASLEEP_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Asleep);
+        bool isHungry = needs.IsHungry;
+        bodyAnimator.SetBool(IS_HUNGRY_HASH, isHungry);
+        faceAnimator.SetBool(IS_HUNGRY_HASH, isHungry);
 
-        bodyAnimator.SetBool(IS_HUNGRY_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Hungry);
-        faceAnimator.SetBool(IS_HUNGRY_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Hungry);
+        bool isLonely = needs.IsLonely;
+        bodyAnimator.SetBool(IS_LONELY_HASH, isLonely);
+        faceAnimator.SetBool(IS_LONELY_HASH, isLonely);
 
-        bodyAnimator.SetBool(IS_LONELY_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Lonely);
-        faceAnimator.SetBool(IS_LONELY_HASH, notifiedEmotion == TowersonaNeeds.Emotion.Lonely);
-
-    
+        bool isAsleep = needs.Sleeper.IsAsleep;
+        bodyAnimator.SetBool(IS_ASLEEP_HASH, isAsleep);
+        faceAnimator.SetBool(IS_ASLEEP_HASH, isAsleep);
     }
 
     private void Celebrate()
@@ -48,6 +48,7 @@ public class TowersonaHODAnimation : MonoBehaviour
     {
         faceAnimator.SetTrigger(EAT_HASH);
     }
+
 
     private void Awake()
     {

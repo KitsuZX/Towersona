@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5454336444838763405}
   - component: {fileID: 231882916564330613}
   - component: {fileID: 2282179330834698745}
+  - component: {fileID: 5138894254776966123}
   m_Layer: 9
   m_Name: _TowersonaHODBase
   m_TagString: Untagged
@@ -129,3 +130,94 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyAnimator: {fileID: 0}
   faceAnimator: {fileID: 0}
+--- !u!114 &5138894254776966123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6124665230103018138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0210d5e4b2d0afe4f89bd4881583bf6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 0}
+  headLowerAngleWhenAsleep: 30
+  goToSleepCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5945298
+      value: 1.0221624
+      inSlope: 1.386137
+      outSlope: 1.386137
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  goToSleepAnimationLength: 1
+  wakeUpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -3.310879
+      outSlope: -3.310879
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.30300772
+      value: -0.003221916
+      inSlope: -0.8744732
+      outSlope: -0.8744732
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.096754156
+      outWeight: 0.2934775
+    - serializedVersion: 3
+      time: 0.6484323
+      value: 0.05394229
+      inSlope: 0.2243888
+      outSlope: 0.2243888
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.15343358
+      outSlope: -0.15343358
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  wakeUpAnimationLength: 0.5

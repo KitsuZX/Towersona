@@ -23,6 +23,9 @@ public class TowersonaNeeds : MonoBehaviour
     public LoveNeed LoveNeed { get; private set; }
     public FoodNeed FoodNeed  { get; private set; }
 
+    public bool IsHungry => FoodNeed.CurrentLevel < notificationThreshold;
+    public bool IsLonely => LoveNeed.CurrentLevel < notificationThreshold;
+
     //Stat API
     public void SetStats(TowersonaStats stats)
     {
