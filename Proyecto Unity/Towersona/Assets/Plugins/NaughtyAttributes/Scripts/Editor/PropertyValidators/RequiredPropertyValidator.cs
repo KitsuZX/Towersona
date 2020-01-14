@@ -19,7 +19,9 @@ namespace NaughtyAttributes.Editor
                         errorMessage = requiredAttribute.Message;
                     }
 
-                    EditorDrawUtility.DrawHelpBox(errorMessage, MessageType.Error, logToConsole: true, context: PropertyUtility.GetTargetObject(property));
+                    bool shouldLogToConsole = requiredAttribute.LogToConsole;
+
+                    EditorDrawUtility.DrawHelpBox(errorMessage, MessageType.Error, logToConsole: shouldLogToConsole, context: PropertyUtility.GetTargetObject(property));
                 }
             }
             else

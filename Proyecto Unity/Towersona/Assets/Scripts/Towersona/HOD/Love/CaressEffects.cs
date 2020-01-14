@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using NaughtyAttributes;
 using UnityEngine;
 
 #pragma warning disable 649
 [RequireComponent(typeof(Caressable))]
 public class CaressEffects : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particleSystemPrefab;
-    [SerializeField] private Vector3 particleSystemOffset;
+    [SerializeField, Required] private ParticleSystem particleSystemPrefab;
+    [SerializeField] private Vector3 particleSystemOffset = new Vector3(0, 0, -1);
 
     private new ParticleSystem particleSystem;
 

@@ -1,15 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 using NaughtyAttributes;
 
 #pragma warning disable 649
 [RequireComponent(typeof(TowersonaNeeds))]
 public class HODAnimatorParameters : MonoBehaviour
 {
-    [SerializeField] Animator bodyAnimator;
-    [SerializeField] Animator faceAnimator;
+    [SerializeField, Required] Animator bodyAnimator;
+    [SerializeField, Required] Animator faceAnimator;
 
     private TowersonaNeeds needs;
 

@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 
 #pragma warning disable 649
@@ -7,8 +8,11 @@ public class ProceduralSleepAnimation : BaseAnimationPostProcesser
 {
     private const float IDLE_SPEED_TWEEN_LENGTH = 1;
 
-    [SerializeField] Transform head;
-    [SerializeField] Animator bodyAnimator;
+    [Header("References")]
+    [SerializeField, Required] Transform head;
+    [SerializeField, Required] Animator bodyAnimator;
+
+    [Header("Parameters")]
     [SerializeField, Range(0, 90)] float headLowerAngleWhenAsleep;
     [SerializeField, Range(0, 1)] float asleepIdleSpeed = 0.5f;
 

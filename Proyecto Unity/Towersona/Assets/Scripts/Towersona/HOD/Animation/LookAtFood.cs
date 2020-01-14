@@ -1,10 +1,11 @@
 ﻿using DG.Tweening;
+using NaughtyAttributes;
 using UnityEngine;
 
 #pragma warning disable 649
 public class LookAtFood : BaseAnimationPostProcesser
 {
-    [SerializeField] private Transform head;
+    [SerializeField, Required] private Transform head;
     [SerializeField] private float weightTweenLength = 0.5f;
 
     private Sleeper sleeper;

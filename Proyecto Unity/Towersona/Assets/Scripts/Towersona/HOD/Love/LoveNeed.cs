@@ -12,6 +12,7 @@ public class LoveNeed : MonoBehaviour
     private float decayPerSecond = 0.05f;
     private float loveGainPerSecondCaressed = 0.05f;
 
+
     public void SetStats(TowersonaStats stats)
     {
         loveGainPerSecondCaressed = stats.loveGainPerSecondCaressed;
