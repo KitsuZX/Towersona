@@ -42,7 +42,7 @@ public class LoveNeed : MonoBehaviour
         Caressable[] caressables = GetComponentsInChildren<Caressable>();
         for (int i = 0; i < caressables.Length; i++)
         {
-            caressables[i].OnCaressed += ReceiveLove;
+            caressables[i].OnCaressed += e => ReceiveLove(e.caressTime);
         }
 
         if (caressables.Length == 0)

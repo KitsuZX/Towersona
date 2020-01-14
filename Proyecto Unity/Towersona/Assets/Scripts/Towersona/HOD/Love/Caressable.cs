@@ -16,7 +16,7 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     /// <summary>
     /// The seconds spent being caressed since last OnCaressed call is passed as an argument.
     /// </summary>
-    public event Action<float> OnCaressed;
+    public event Action<CaressEventData> OnCaressed;
 
     public bool IsBeingCaressed { get; private set; }
 
@@ -38,7 +38,14 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         if (!pointerIsOverObject) return;
 
         StartCaress();
-        OnCaressed?.Invoke(Time.deltaTime);
+
+        CaressEventData caressEventData = new CaressEventData
+        {
+            caressTime = Time.deltaTime,
+            caressPoint = eventData.pointerCurrentRaycast.worldPosition,
+            caressable = this
+        };
+        OnCaressed?.Invoke(caressEventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -73,5 +80,13 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             Debug.LogWarning($"Caressable components must be in layer {CARESSABLE_LAYER}.", this);
             gameObject.layer = caressableLayer;
         }
+    }
+
+
+    public struct CaressEventData
+    {
+        public float caressTime;
+        public Vector3 caressPoint;
+        public Caressable caressable;
     }
 }

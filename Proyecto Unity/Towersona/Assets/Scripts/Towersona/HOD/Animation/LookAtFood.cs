@@ -1,21 +1,18 @@
-﻿using DG.Tweening;
-using NaughtyAttributes;
+﻿using NaughtyAttributes;
 using UnityEngine;
 
 #pragma warning disable 649
 public class LookAtFood : BaseAnimationPostProcesser
 {
-    [SerializeField, Required] private Transform head;
-    [SerializeField] private float weightTweenLength = 0.5f;
-
+    [SerializeField, Required] Transform head;
+    [SerializeField] float maxDegreesPerSecond;
+    
     public bool IsLookingAtFood { get; private set; }
 
     private Sleeper sleeper;
     private Transform food;
-    private float weight;
-    private Tweener currentWeightTween;
-
-
+    private Quaternion lastTargetRotation;
+    
     /// <summary>
     /// Must be set when creating the HOD.
     /// </summary>
@@ -43,8 +40,11 @@ public class LookAtFood : BaseAnimationPostProcesser
     {
         if (!enabled) return;
 
-        Quaternion targetRotation = Quaternion.LookRotation(food.position - head.position, head.up);
-        head.rotation = Quaternion.Slerp(head.rotation, targetRotation, weight);
+        Quaternion unlimitedTargetRotation = Quaternion.LookRotation(food.position - head.position, head.up);
+        Quaternion limitedTargetRotation = Quaternion.RotateTowards(lastTargetRotation, unlimitedTargetRotation, maxDegreesPerSecond * Time.deltaTime);
+
+        head.rotation = Quaternion.Slerp(head.rotation, limitedTargetRotation, weight);
+        lastTargetRotation = limitedTargetRotation;
     }
 
 
@@ -58,12 +58,6 @@ public class LookAtFood : BaseAnimationPostProcesser
     {
         IsLookingAtFood = false;
         TweenToWeight(0);
-    }
-
-    private void TweenToWeight(float targetWeight)
-    {
-        currentWeightTween.Kill();
-        currentWeightTween = DOTween.To(() => weight, w => weight = w, targetWeight, weightTweenLength);
     }
 
 
