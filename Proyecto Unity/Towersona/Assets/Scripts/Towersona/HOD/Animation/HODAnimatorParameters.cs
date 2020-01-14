@@ -6,7 +6,7 @@ using NaughtyAttributes;
 
 #pragma warning disable 649
 [RequireComponent(typeof(TowersonaNeeds))]
-public class TowersonaHODAnimation : MonoBehaviour
+public class HODAnimatorParameters : MonoBehaviour
 {
     [SerializeField] Animator bodyAnimator;
     [SerializeField] Animator faceAnimator;

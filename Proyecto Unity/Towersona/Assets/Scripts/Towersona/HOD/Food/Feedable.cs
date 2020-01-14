@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Collider))]
-public class Feedable : MonoBehaviour, ISleepSusceptible
+public class Feedable : MonoBehaviour
 {
     public const string FEEDABLE_LAYER_NAME = "FeedableLayer";
 
@@ -25,5 +22,12 @@ public class Feedable : MonoBehaviour, ISleepSusceptible
             Debug.LogWarning($"Feedable components must be in layer {FEEDABLE_LAYER_NAME}.", this);
             gameObject.layer = feedableLayer;
         }
+    }
+
+    private void Start()
+    {
+        Sleeper sleeper = GetComponentInParent<Sleeper>();
+        sleeper.OnWentToSleep += () => enabled = false;
+        sleeper.OnWokeUp += () => enabled = true;
     }
 }

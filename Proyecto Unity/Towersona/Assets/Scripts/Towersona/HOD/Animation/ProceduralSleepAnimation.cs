@@ -1,11 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using DG.Tweening;
+﻿using DG.Tweening;
 using UnityEngine;
 
 #pragma warning disable 649
 [RequireComponent(typeof(Sleeper))]
-public class ProceduralSleepAnimation : MonoBehaviour
+public class ProceduralSleepAnimation : BaseAnimationPostProcesser
 {
     private const float IDLE_SPEED_TWEEN_LENGTH = 1;
 
@@ -29,7 +27,7 @@ public class ProceduralSleepAnimation : MonoBehaviour
     private Tweener currentTween;
 
 
-    private void LateUpdate()
+    public override void Execute()
     {
         float t = Time.time - timeAtLastStateChange;
         switch (currentState)
@@ -63,6 +61,7 @@ public class ProceduralSleepAnimation : MonoBehaviour
                 break;
         }
     }
+
 
     private void SetHeadRotation(float rotation)
     {
