@@ -9,8 +9,6 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 { 
     public const string CARESSABLE_LAYER = "CaressableLayer";
 
-    [SerializeField]
-    private float timeBeforeCaressEnds = 0.5f;
 
     //Events
     public event Action OnCaressStart;
@@ -21,8 +19,6 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     public event Action<float> OnCaressed;
 
     public bool IsBeingCaressed { get; private set; }
-
-    private float timeWithoutCaress;
 
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -51,26 +47,12 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         EndCaress();
     }
 
-
-    private void Update()
-    {
-        if (IsBeingCaressed)
-        {
-            timeWithoutCaress += Time.deltaTime;
-            if (timeWithoutCaress > timeBeforeCaressEnds)
-            {
-                EndCaress();
-            }
-        }
-    }
-
     private void StartCaress()
     {
         if (!IsBeingCaressed)
         {
             IsBeingCaressed = true;
             OnCaressStart?.Invoke();
-            timeWithoutCaress = 0;
         }
     }
 

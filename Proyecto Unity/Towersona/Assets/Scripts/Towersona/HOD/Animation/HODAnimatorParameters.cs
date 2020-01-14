@@ -2,18 +2,22 @@
 using NaughtyAttributes;
 
 #pragma warning disable 649
-[RequireComponent(typeof(TowersonaNeeds))]
+[RequireComponent(typeof(TowersonaNeeds), typeof(LookAtFood))]
 public class HODAnimatorParameters : MonoBehaviour
 {
     [SerializeField, Required] Animator bodyAnimator;
     [SerializeField, Required] Animator faceAnimator;
 
     private TowersonaNeeds needs;
+    private Caressable[] caressables;
+    private LookAtFood lookAtFood;
 
     #region Cached hashes
     static int IS_ASLEEP_HASH = Animator.StringToHash("IsAsleep");
     static int IS_HUNGRY_HASH = Animator.StringToHash("IsHungry");
     static int IS_LONELY_HASH = Animator.StringToHash("IsLonely");
+    static int IS_BEING_CARESSED_HASH = Animator.StringToHash("IsBeingCaressed");
+    static int IS_LOOKING_AT_FOOD_HASH = Animator.StringToHash("IsLookingAtFood");
     static int CELEBRATE_HASH = Animator.StringToHash("Celebrate");
     static int EAT_HASH = Animator.StringToHash("Eat");
     #endregion
@@ -41,6 +45,17 @@ public class HODAnimatorParameters : MonoBehaviour
         
         bodyAnimator.SetBool(IS_ASLEEP_HASH, isAsleep);
         faceAnimator.SetBool(IS_ASLEEP_HASH, isAsleep);
+
+        //Caress parameter
+        bool isBeingCaressed = false;
+        for (int i = 0; i < caressables.Length && !isBeingCaressed; i++)
+        {
+            if (caressables[i].IsBeingCaressed) isBeingCaressed = true;
+        }
+        faceAnimator.SetBool(IS_BEING_CARESSED_HASH, isBeingCaressed);
+
+        //Look at food parameter
+        faceAnimator.SetBool(IS_LOOKING_AT_FOOD_HASH, lookAtFood.IsLookingAtFood);
     }
 
     private void Celebrate()
@@ -57,6 +72,8 @@ public class HODAnimatorParameters : MonoBehaviour
     private void Awake()
     {
         needs = GetComponent<TowersonaNeeds>();
+        lookAtFood = GetComponent<LookAtFood>();
+        caressables = GetComponentsInChildren<Caressable>();
     }
 
     private void Start()

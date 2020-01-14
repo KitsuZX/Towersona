@@ -8,6 +8,8 @@ public class LookAtFood : BaseAnimationPostProcesser
     [SerializeField, Required] private Transform head;
     [SerializeField] private float weightTweenLength = 0.5f;
 
+    public bool IsLookingAtFood { get; private set; }
+
     private Sleeper sleeper;
     private Transform food;
     private float weight;
@@ -24,13 +26,13 @@ public class LookAtFood : BaseAnimationPostProcesser
             Draggable draggable = value.GetComponent<Draggable>();
             draggable.OnDragStart.AddListener(p => 
             {
-                if (!sleeper.IsAsleep) TweenToWeight(1);
+                if (!sleeper.IsAsleep) StartLookingAtFood();
             });
 
             ReturnToPointAfterCountdown returnToPoint = value.GetComponent<ReturnToPointAfterCountdown>();
             returnToPoint.OnReturnedToPoint.AddListener(() =>
             {
-                if (!sleeper.IsAsleep) TweenToWeight(0);
+                if (!sleeper.IsAsleep) StopLookingAtFood();
             });
 
             food = value.transform;
@@ -46,11 +48,24 @@ public class LookAtFood : BaseAnimationPostProcesser
     }
 
 
+    private void StartLookingAtFood()
+    {
+        IsLookingAtFood = true;
+        TweenToWeight(1);
+    }
+
+    private void StopLookingAtFood()
+    {
+        IsLookingAtFood = false;
+        TweenToWeight(0);
+    }
+
     private void TweenToWeight(float targetWeight)
     {
         currentWeightTween.Kill();
         currentWeightTween = DOTween.To(() => weight, w => weight = w, targetWeight, weightTweenLength);
     }
+
 
     private void Awake()
     {
@@ -63,9 +78,9 @@ public class LookAtFood : BaseAnimationPostProcesser
         Feedable[] feedables = GetComponentsInChildren<Feedable>();
         foreach (Feedable feedable in feedables)
         {
-            feedable.OnFed += (food) => TweenToWeight(0);
+            feedable.OnFed += (food) => StopLookingAtFood();
         }
 
-        sleeper.OnWentToSleep += () => TweenToWeight(0);
+        sleeper.OnWentToSleep += StopLookingAtFood;
     }
 }
