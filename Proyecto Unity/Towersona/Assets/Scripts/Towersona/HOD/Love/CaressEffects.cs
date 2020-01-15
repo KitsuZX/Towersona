@@ -12,6 +12,8 @@ public class CaressEffects : MonoBehaviour
 
     private void StartPlaying()
     {
+        if (!particleSystem.IsAlive()) particleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+
         particleSystem.Play();
     }
 

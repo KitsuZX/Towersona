@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 55839ad8b47a5f14ebeb8076ac8478fc
+guid: 85c1b961a717b434381df7beb71716c8
 TextureImporter:
   fileIDToRecycleName: {}
   externalObjects: {}
@@ -60,7 +60,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -71,7 +71,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -82,7 +82,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -97,12 +97,12 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ab06f78a50400064c9f781424905b19b
+    spriteID: e0aff6509195bf045819311fa23fb679
     vertices: []
     indices: 
     edges: []
     weights: []
-  spritePackingTag: 
+  spritePackingTag: HeartParticles
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 

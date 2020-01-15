@@ -1366,9 +1366,9 @@ ParticleSystem:
     fps: 30
     frameOverTime:
       serializedVersion: 2
-      minMaxState: 1
-      scalar: 0.9999
-      minScalar: 0.9999
+      minMaxState: 3
+      scalar: 0.6666667
+      minScalar: 0
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1419,8 +1419,8 @@ ParticleSystem:
         m_RotationOrder: 4
     startFrame:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 0
+      minMaxState: 3
+      scalar: 0.6666667
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -1480,6 +1480,8 @@ ParticleSystem:
     randomRow: 1
     sprites:
     - sprite: {fileID: 21300000, guid: ea8c388c9a387144a90a856c051e76be, type: 3}
+    - sprite: {fileID: 21300000, guid: 85c1b961a717b434381df7beb71716c8, type: 3}
+    - sprite: {fileID: 21300000, guid: 55839ad8b47a5f14ebeb8076ac8478fc, type: 3}
     flipU: 0
     flipV: 0
   VelocityModule:
@@ -4654,7 +4656,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10308, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 3a0c963c4e75a30468fd199c374463bd, type: 2}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
