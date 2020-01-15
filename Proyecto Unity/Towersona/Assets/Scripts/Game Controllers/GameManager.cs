@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(LevelManager), typeof(PlayerStats))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set; }
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     //Private references
     private LevelManager wavesController;
+    private PlayerStats playerStats;
     private BuildManager towerDefenseManager;
     private Camera activeCamera;                    //Camera of the detailed scene of the Towersona selected
   
@@ -42,14 +44,15 @@ public class GameManager : MonoBehaviour
         activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();     
 
         wavesController = GetComponent<LevelManager>();        
+        playerStats = GetComponent<PlayerStats>();        
     }   
     
     /// <summary>
     /// Changes to victory state
     /// </summary>
     public void WinGame()
-    {
-        victoryPrompt.ShowVictoryPrompt(3);
+    {      
+        victoryPrompt.ShowVictoryPrompt(playerStats.Score);
 		Time.timeScale = 0;
 
         OnWonGame?.Invoke();    //Lo invoco así porque si no hay listeners el evento es null.

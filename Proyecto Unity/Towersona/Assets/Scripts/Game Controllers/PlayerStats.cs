@@ -19,6 +19,23 @@ public class PlayerStats : MonoBehaviour
     public int money;
     public int round;
 
+    public int Score {
+        get
+        {            
+            if(lives == startingLives)
+            {
+                return 3;
+            }
+
+            if(lives < startingLives && lives > Mathf.RoundToInt(startingLives * 0.5f))
+            {
+                return 2;
+            }
+
+            return 1;
+        }      
+    }
+
     private void Awake()
     {
         if (!Instance) Instance = this;
