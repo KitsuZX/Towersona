@@ -41,9 +41,7 @@ public class GameManager : MonoBehaviour
 
         activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();     
 
-        wavesController = GetComponent<LevelManager>();
-
-        //victoryPrompt.ShowVictoryPrompt(3);
+        wavesController = GetComponent<LevelManager>();        
     }   
     
     /// <summary>

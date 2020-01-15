@@ -8,6 +8,11 @@ public class VictoryPrompt : MonoBehaviour
     [SerializeField]
     private Image[] stars;
 
+    private void Awake()
+    {
+        gameObject.transform.localScale *= 0;
+    }
+
     public void ShowVictoryPrompt(int score)    
     {
         if(score < 1 || score > 3)
@@ -20,6 +25,8 @@ public class VictoryPrompt : MonoBehaviour
 
         //Starts animation
         Sequence starsSequence = DOTween.Sequence();
+        starsSequence.Append(gameObject.transform.DOScale(Vector3.one * 1.2f, 0.5f));       
+        starsSequence.Append(gameObject.transform.DOScale(Vector3.one, 0.1f));       
         starsSequence.AppendInterval(1f);
 
         for (int i = 0; i < score; i++)
@@ -31,13 +38,10 @@ public class VictoryPrompt : MonoBehaviour
             starsSequence.Join(stars[i].transform.DOScale(2, .2f));
             starsSequence.Join(stars[i].DOColor(Color.white, .2f));
 
-            starsSequence.AppendInterval(.1f);
-            
+            starsSequence.AppendInterval(.1f);            
             
             starsSequence.Append(stars[i].transform.DOScale(1.1f, .7f));
-            starsSequence.Join(stars[i].DOColor(original, .4f));
-
-            starsSequence.AppendCallback(() => stars[i].transform.GetChild(0).gameObject.SetActive(true));
+            starsSequence.Join(stars[i].DOColor(original, .7f));           
 
         }
 
