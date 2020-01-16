@@ -61,6 +61,8 @@ public class Caressable : MonoBehaviour, IDragHandler
             Debug.LogWarning($"Caressable components must be in layer {CARESSABLE_LAYER}.", this);
             gameObject.layer = caressableLayer;
         }
+
+        GetComponent<Collider>().isTrigger = true;
     }
 
 

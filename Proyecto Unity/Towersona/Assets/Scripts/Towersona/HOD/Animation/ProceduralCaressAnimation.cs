@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using NaughtyAttributes;
 
 #pragma warning disable 649
 public class ProceduralCaressAnimation : BaseAnimationPostProcesser
 {
     [SerializeField, Range(0, 1)] float slerpAmount = 0.5f;
     [SerializeField] float maxDegreesPerSecond = 30;
-    [SerializeField] Transform head;
+    [SerializeField, Required] Transform head;
 
     private Caressable.CaressEventData latestCaressEvent;
     private bool isPlaying = false;

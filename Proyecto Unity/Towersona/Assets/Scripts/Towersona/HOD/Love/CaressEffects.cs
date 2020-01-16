@@ -8,8 +8,6 @@ public class CaressEffects : MonoBehaviour
     [SerializeField, Required] private ParticleSystem particleSystemPrefab;
     [SerializeField] private Vector3 particleSystemOffset = new Vector3(0, 0, -1);
 
-    [ShowNativeProperty] public bool ParticleIsPlaying => GetComponentInChildren<ParticleSystem>().isPlaying;
-
     private Caressable caressable;
     private ParticleSystem.EmissionModule particleEmission;
 

@@ -2,7 +2,8 @@
 
 Shader "Custom/CelShadingShader"
 {
-	Properties{
+	Properties
+	{
 		_Color("Main Color", Color) = (0.5,0.5,0.5,1)
 		_MainTex("Base (RGB)", 2D) = "white" {}
 		_NoiseTex("Noise", 2D) = "white" {}
@@ -11,60 +12,62 @@ Shader "Custom/CelShadingShader"
 		_YShift("Shift in the Y direction", Float) = 0.1
 	}
 
-		SubShader{
-			Tags { "RenderType" = "Opaque" }
-			LOD 200
-
-	CGPROGRAM
-	#pragma surface surf ToonRamp vertex:vert
-
-	sampler2D _Ramp;
-
-	// custom lighting function that uses a texture ramp based
-	// on angle between light direction and normal
-	#pragma lighting ToonRamp exclude_path:prepass
-	inline half4 LightingToonRamp(SurfaceOutput s, half3 lightDir, half atten)
+	SubShader
 	{
-		#ifndef USING_SPOT_LIGHT
-		lightDir = normalize(lightDir);
-		#endif
+		Tags { "RenderType" = "Opaque" }
+		LOD 200
 
-		half d = dot(s.Normal, lightDir)*0.5 + 0.5;
-		half3 ramp = tex2D(_Ramp, float2(d,d)).rgb;
+		CGPROGRAM
+		#pragma surface surf ToonRamp vertex:vert
 
-		half4 c;
-		c.rgb = s.Albedo * _LightColor0.rgb * ramp * (atten * 2);
-		c.a = 0;
-		return c;
-	}
+		sampler2D _Ramp;
+
+		// custom lighting function that uses a texture ramp based
+		// on angle between light direction and normal
+		inline half4 LightingToonRamp(SurfaceOutput s, half3 lightDir, half atten)
+		{
+			#ifndef USING_SPOT_LIGHT
+			lightDir = normalize(lightDir);
+			#endif
+
+			half d = dot(s.Normal, lightDir)*0.5 + 0.5;
+			half3 ramp = tex2D(_Ramp, float2(d,d)).rgb;
+
+			half4 c;
+			c.rgb = s.Albedo * _LightColor0.rgb * ramp * (atten * 2);
+			c.a = 0;
+
+			return c;
+		}
 
 
-	sampler2D _MainTex, _NoiseTex;
-	float4 _Color;
+		sampler2D _MainTex, _NoiseTex;
+		float4 _Color;
 
-	half _XShift;
-	half _YShift;
+		half _XShift;
+		half _YShift;
 
-	struct Input {
-		float2 uv_MainTex : TEXCOORD0;
-		float2 uv_NoiseTex : TEXCOORD1;
-	};
+		struct Input {
+			float2 uv_MainTex : TEXCOORD0;
+			float2 uv_NoiseTex : TEXCOORD1;
+		};
 
-	void vert(inout appdata_full v, out Input o)
-	{
-		o.uv_NoiseTex = o.uv_NoiseTex + float2(_XShift * _Time.x, _YShift* _Time.x);
-		UNITY_INITIALIZE_OUTPUT(Input, o);
-	}
+		void vert(inout appdata_full v, out Input o)
+		{
+			o.uv_NoiseTex = o.uv_NoiseTex + float2(_XShift * _Time.x, _YShift* _Time.x);
+			UNITY_INITIALIZE_OUTPUT(Input, o);
+		}
 
-	void surf(Input IN, inout SurfaceOutput o) {
-		half4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
-		half4 n = tex2D(_NoiseTex, IN.uv_NoiseTex) * _Color;
-		o.Albedo = c.rgb * n.rgb;
-		o.Alpha = c.a;
-	}
-	ENDCG
+		void surf(Input IN, inout SurfaceOutput o) {
+			half4 c = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+			half4 n = tex2D(_NoiseTex, IN.uv_NoiseTex) * _Color;
+			o.Albedo = c.rgb * n.rgb;
+			o.Albedo = c.rgb;
+			o.Alpha = c.a;
+		}
+		ENDCG
 
-	}
+		}
 
-		Fallback "Diffuse"
+	Fallback "Diffuse"
 }

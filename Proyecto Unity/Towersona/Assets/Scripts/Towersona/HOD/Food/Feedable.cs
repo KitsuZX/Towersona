@@ -22,6 +22,8 @@ public class Feedable : MonoBehaviour
             Debug.LogWarning($"Feedable components must be in layer {FEEDABLE_LAYER_NAME}.", this);
             gameObject.layer = feedableLayer;
         }
+
+        GetComponent<Collider>().isTrigger = true;
     }
 
     private void Start()
