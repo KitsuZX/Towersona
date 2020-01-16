@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e4e62e5fec65741a1f192577fdadc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weightTweenLength: 0.5
+  weightTweenLength: 1
   slerpAmount: 0.5
   maxDegreesPerSecond: 50
   head: {fileID: 0}

@@ -13,6 +13,6 @@ public abstract class BaseAnimationPostProcesser : MonoBehaviour
     protected void TweenToWeight(float targetWeight)
     {
         currentWeightTween.Kill();
-        currentWeightTween = DOTween.To(() => weight, w => weight = w, targetWeight, weightTweenLength);
+        currentWeightTween = DOTween.To(() => weight, w => weight = w, targetWeight, weightTweenLength).SetEase(Ease.InOutCubic);
     }
 }

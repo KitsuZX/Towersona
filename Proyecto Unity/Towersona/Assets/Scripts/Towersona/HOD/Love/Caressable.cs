@@ -2,74 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using NaughtyAttributes;
 
 
 [RequireComponent(typeof(Collider))]
-public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class Caressable : MonoBehaviour, IDragHandler
 { 
     public const string CARESSABLE_LAYER = "CaressableLayer";
 
+    [Tooltip("Las caricias ocurren al mover el dedo. ¿Cuánto tiempo pasa desde que no mueves el dedo hasta que se considera que no estás acariciando?")]
+    public float timeBeforeNoCaress = 0.5f;
 
     //Events
-    public event Action OnCaressStart;
-    public event Action OnCaressEnd;
     /// <summary>
     /// The seconds spent being caressed since last OnCaressed call is passed as an argument.
     /// </summary>
     public event Action<CaressEventData> OnCaressed;
 
-    public bool IsBeingCaressed { get; private set; }
+    [ShowNativeProperty]
+    public bool IsBeingCaressed => latestCaressTime > Time.time - timeBeforeNoCaress; 
 
+    private float latestCaressTime = float.NegativeInfinity;
 
-    public void OnBeginDrag(PointerEventData eventData)
-    {
-        eventData.Use();
-        StartCaress();
-    }
 
     public void OnDrag(PointerEventData eventData)
     {
+        if (eventData.used) return;
+
         //Use the event no matter what
         eventData.Use();
 
         //Is the pointer is over the object?
         List<GameObject> hovered = eventData.hovered;
-        bool pointerIsOverObject = hovered.Count > 0 && hovered[0] == gameObject;
+        bool pointerIsOverObject = false;
+        for (int i = 0; i < hovered.Count && !pointerIsOverObject; i++)
+        {
+            pointerIsOverObject = hovered[i] == gameObject;
+        }
         if (!pointerIsOverObject) return;
+        
 
-        StartCaress();
+        latestCaressTime = Time.time;
 
         CaressEventData caressEventData = new CaressEventData
         {
-            caressTime = Time.deltaTime,
+            caressLength = Time.deltaTime,
             caressPoint = eventData.pointerCurrentRaycast.worldPosition,
             caressable = this
         };
         OnCaressed?.Invoke(caressEventData);
-    }
-
-    public void OnEndDrag(PointerEventData eventData)
-    {
-        eventData.Use();
-        EndCaress();
-    }
-
-    private void StartCaress()
-    {
-        if (!IsBeingCaressed)
-        {
-            IsBeingCaressed = true;
-            OnCaressStart?.Invoke();
-        }
-    }
-
-    private void EndCaress()
-    {
-        if (IsBeingCaressed)
-        {
-            IsBeingCaressed = false;
-            OnCaressEnd?.Invoke();
-        }
     }
 
     private void Awake()
@@ -85,7 +66,7 @@ public class Caressable : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public struct CaressEventData
     {
-        public float caressTime;
+        public float caressLength;
         public Vector3 caressPoint;
         public Caressable caressable;
     }

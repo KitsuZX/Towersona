@@ -19,6 +19,7 @@ public class Food : MonoBehaviour
     private Renderer[] renderers;
     private Collider[] colliders;
     private ReturnToPointAfterCountdown returnToPoint;
+    private Draggable draggable;
 
     //Cached raycast stuff
     private RaycastHit[] hits;
@@ -59,6 +60,8 @@ public class Food : MonoBehaviour
             colliders[i].enabled = false;
         }
 
+        draggable.enabled = false;
+
         returnToPoint.tweenToPosition = false;
         returnToPoint.OnReturnedToPoint.AddListener(OnRespawned);
     }
@@ -75,6 +78,8 @@ public class Food : MonoBehaviour
             colliders[i].enabled = true;
         }
 
+        draggable.enabled = true;
+
         returnToPoint.tweenToPosition = true;
         returnToPoint.OnReturnedToPoint.RemoveListener(OnRespawned);
     }
@@ -87,6 +92,7 @@ public class Food : MonoBehaviour
         renderers = GetComponentsInChildren<Renderer>();
         colliders = GetComponentsInChildren<Collider>();
         returnToPoint = GetComponent<ReturnToPointAfterCountdown>();
+        draggable = GetComponent<Draggable>();
 
         //Ensure correct layer setup
         int feedableLayer = LayerMask.NameToLayer(Feedable.FEEDABLE_LAYER_NAME);

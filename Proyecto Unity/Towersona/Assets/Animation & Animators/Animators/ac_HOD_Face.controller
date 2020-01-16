@@ -59,18 +59,6 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Food Layer
-    m_StateMachine: {fileID: 1107396916816040514}
-    m_Mask: {fileID: 0}
-    m_Motions: []
-    m_Behaviours: []
-    m_BlendingMode: 0
-    m_SyncedLayerIndex: -1
-    m_DefaultWeight: 1
-    m_IKPass: 0
-    m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 9100000}
-  - serializedVersion: 5
     m_Name: Asleep Layer
     m_StateMachine: {fileID: 1107826177969703986}
     m_Mask: {fileID: 0}
@@ -85,6 +73,18 @@ AnimatorController:
   - serializedVersion: 5
     m_Name: Caressed Layer
     m_StateMachine: {fileID: 1107899822795311838}
+    m_Mask: {fileID: 0}
+    m_Motions: []
+    m_Behaviours: []
+    m_BlendingMode: 0
+    m_SyncedLayerIndex: -1
+    m_DefaultWeight: 1
+    m_IKPass: 0
+    m_SyncedLayerAffectsTiming: 0
+    m_Controller: {fileID: 9100000}
+  - serializedVersion: 5
+    m_Name: Food Layer
+    m_StateMachine: {fileID: 1107396916816040514}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
