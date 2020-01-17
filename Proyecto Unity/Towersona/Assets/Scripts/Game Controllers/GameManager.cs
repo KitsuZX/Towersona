@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();     
 
         wavesController = GetComponent<LevelManager>();        
-        playerStats = GetComponent<PlayerStats>();        
+        playerStats = GetComponent<PlayerStats>();		
     }   
     
     /// <summary>
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         victoryPrompt.ShowVictoryPrompt(playerStats.Score);
 		SaveSystem.SaveLevel(RelevantUserInfo.currentLevel, playerStats.Score);
 
-		Time.timeScale = 0;
+		//Time.timeScale = 0;
 
         OnWonGame?.Invoke();    //Lo invoco así porque si no hay listeners el evento es null.
     }
