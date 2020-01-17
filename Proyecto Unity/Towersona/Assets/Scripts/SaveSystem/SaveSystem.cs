@@ -19,9 +19,15 @@ public static class SaveSystem
 
 	public static void SaveLevel(int levelIndex, int score)
 	{
+		if (levelIndex == -1) return;
 		BinaryFormatter formatter = new BinaryFormatter();
 
 		FileStream stream = new FileStream(levelsFilePath, FileMode.Create);
+
+		if (!LevelsFileCreated)
+		{
+			Debug.LogError("File not found in " + levelsFilePath + ". Try starting from Main Menu to create one automatically");
+		}
 
 		//Check if first completed
 		if (levelsData[levelIndex].Completed == false)

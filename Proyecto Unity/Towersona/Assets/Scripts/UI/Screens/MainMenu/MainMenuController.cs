@@ -12,6 +12,8 @@ public class MainMenuController : MonoBehaviour
 
 	private void Awake()
 	{
+		RelevantUserInfo.savingAllowed = true;
+
 		if (!SaveSystem.LevelsFileCreated)
 		{
 			SaveSystem.CreateLevelsFile();

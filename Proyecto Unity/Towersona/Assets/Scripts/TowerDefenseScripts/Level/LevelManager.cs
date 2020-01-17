@@ -15,9 +15,13 @@ public class LevelManager : MonoBehaviour
 
     private float countdown = 2f; 
     private Transform spawnPoint;
-    private GameManager gameManager;
     private SpawnPoint[] spawnPoints;
-    private int waveIndex = 0;
+    private int currentWave = 0;
+	private bool WavesFinished { get
+		{
+			return currentWave == wavesToWin;
+		}
+	}
 
     private void Awake()
     {
@@ -37,31 +41,24 @@ public class LevelManager : MonoBehaviour
     }
 
     private void Update()
-    {    
+    {
 		//No empezar el timer si
 		if(!allEnemiesSpawned ||							 //No se ha acabado de spawnear la oleada			
-			!DebuggingOptions.Instance.spawnEnemies)		 //No se quieen spawnear enemigos					
+		   !DebuggingOptions.Instance.spawnEnemies ||        //No se quieren spawnear enemigos		
+		   WavesFinished)										 
 		{
 			return;
-		}
-
-		/*if (allEnemiesSpawned && enemiesAlive <= 0)
-		{
-			if(countdown > 2f)
-			{
-				countdown = 2f;
-			}
-		}*/
+		}				
 
         if(countdown <= 0f)
         {
 			allEnemiesSpawned = false;
 			StartCoroutine(SpawnWave());
-            countdown = timeTillNextWave;
+            countdown = timeTillNextWave;			
             return;
-        }			
+        }		
 
-        countdown -= Time.deltaTime;
+		countdown -= Time.deltaTime;
         countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
     }
 
@@ -71,12 +68,23 @@ public class LevelManager : MonoBehaviour
 
         foreach (SpawnPoint spawnPoint in spawnPoints)
         {
-            yield return StartCoroutine(spawnPoint.SpawnWave(waveIndex));
+            yield return StartCoroutine(spawnPoint.SpawnWave(currentWave));
         }
 
-        waveIndex++;
+        currentWave++;
 		allEnemiesSpawned = true;
     }  
+
+	public void EnemyDied()
+	{
+		enemiesAlive--;
+
+		if(WavesFinished && enemiesAlive == 0 && allEnemiesSpawned)
+		{
+			StartCoroutine(GameManager.Instance.WinGame());
+		}
+
+	}
 }
 
 [System.Serializable]

@@ -58,7 +58,6 @@ public class Enemy : MonoBehaviour
 	private Dictionary<TemporalEffectType, TemporalEffect> temporalEffects = new Dictionary<TemporalEffectType, TemporalEffect>();
 	private MeshRenderer[] meshRenderers;
 	private Dictionary<Material, Color> originalColors = new Dictionary<Material, Color>();
-	
 	#endregion
 
 	private void Awake()
@@ -119,8 +118,8 @@ public class Enemy : MonoBehaviour
 
         Destroy(gameObject);
 
-        LevelManager.Instance.enemiesAlive--;
-    }
+		LevelManager.Instance.EnemyDied();
+	}
 
     public void TakeDamage(float amount) {
         lifes -= amount;

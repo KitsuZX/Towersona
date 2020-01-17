@@ -81,11 +81,11 @@ public class PlayerStats : MonoBehaviour
         InGameUIController.Instance.UpdateRound();
     }
 
-    private void Update()
+    /*private void Update()
     {
-        if (round == LevelManager.Instance.wavesToWin && LevelManager.Instance.allEnemiesSpawned && LevelManager.Instance.enemiesAlive == 0)
+        if (round >= LevelManager.Instance.wavesToWin && LevelManager.Instance.allEnemiesSpawned && LevelManager.Instance.enemiesAlive <= 0)
         {
             GameManager.Instance.WinGame();
         }
-    }
+    }*/
 }

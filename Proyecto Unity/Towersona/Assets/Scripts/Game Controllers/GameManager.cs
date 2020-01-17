@@ -49,8 +49,9 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Changes to victory state
     /// </summary>
-    public void WinGame()
-    {      
+    public IEnumerator WinGame()
+    {
+		yield return new WaitForSeconds(2f);
         victoryPrompt.ShowVictoryPrompt(playerStats.Score);
 		SaveSystem.SaveLevel(RelevantUserInfo.currentLevel, playerStats.Score);
 
