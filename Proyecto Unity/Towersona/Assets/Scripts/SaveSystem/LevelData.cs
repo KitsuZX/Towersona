@@ -1,18 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class LevelData : MonoBehaviour
+﻿[System.Serializable]
+public class LevelData
 {
-    public int Index => index;
-    public int Score => score;
-    public bool Available => available;
+	public int index;
+	public int score;
+	public bool avaible;
 
-    private int index;
-    private int score;
-    private bool available;  
-
-    public bool Completed
+	public bool Completed
     {
         get
         {
@@ -24,12 +17,6 @@ public class LevelData : MonoBehaviour
     {
         this.index = index;
         this.score = score;
-        this.available = available;
-    }
-
-    public void SetScore(int score)
-    {
-        this.score = score;
-        SavedData.SaveLevel(this);
-    }
+        this.avaible = available;
+    }   
 }

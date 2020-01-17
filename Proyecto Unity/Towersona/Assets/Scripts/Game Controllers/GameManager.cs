@@ -19,7 +19,6 @@ public class GameManager : MonoBehaviour
     [SerializeField, Tooltip("The first detailed scene camera without the detailed model")]
     private Camera emptyCamera;
 
-
     public event System.Action OnWonGame;
 
     //Private references
@@ -53,6 +52,8 @@ public class GameManager : MonoBehaviour
     public void WinGame()
     {      
         victoryPrompt.ShowVictoryPrompt(playerStats.Score);
+		SaveSystem.SaveLevel(RelevantUserInfo.currentLevel, playerStats.Score);
+
 		Time.timeScale = 0;
 
         OnWonGame?.Invoke();    //Lo invoco así porque si no hay listeners el evento es null.

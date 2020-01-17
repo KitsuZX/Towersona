@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public static class SceneController
 {	
 	public static int currentScene = 0;
-	public static int sceneToLoad;
-
-	public static void LoadScene(int sceneId)
+	public static string sceneToLoad;
+	
+	public static void LoadScene(string sceneName)
 	{
-		sceneToLoad = sceneId;
+		sceneToLoad = sceneName;		
 		SceneManager.LoadScene("Loading Screen");
-	}		
+	}
 }

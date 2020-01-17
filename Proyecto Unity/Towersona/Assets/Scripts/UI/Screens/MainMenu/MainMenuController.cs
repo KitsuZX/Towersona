@@ -10,7 +10,19 @@ public class MainMenuController : MonoBehaviour
         SceneManager.LoadScene(sceneIndex);
     }
 
-    public void Exit()
+	private void Awake()
+	{
+		if (!SaveSystem.LevelsFileCreated)
+		{
+			SaveSystem.CreateLevelsFile();
+		}
+		else
+		{
+			SaveSystem.LoadLevelsData();
+		}
+	}
+
+	public void Exit()
     {
         #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
