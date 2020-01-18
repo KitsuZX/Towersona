@@ -6,8 +6,16 @@ public class LevelManager : MonoBehaviour
 {
     public static LevelManager Instance { get; private set; }
 
-    [Header("Parameters")]
+	[Header("Level Number")]
+	[SerializeField]
+	private int levelNumber;
+
+	[Header("Parameters")]
     public float timeTillNextWave;
+
+	public int LevelNumber => levelNumber;
+	public int LevelIndex => levelNumber - 1;
+
 
     [HideInInspector] public int enemiesAlive = 0;
     [HideInInspector] public int wavesToWin;
@@ -81,7 +89,7 @@ public class LevelManager : MonoBehaviour
 
 		if(WavesFinished && enemiesAlive == 0 && allEnemiesSpawned)
 		{
-			StartCoroutine(GameManager.Instance.WinGame());
+			GameManager.Instance.WinGame();
 		}
 
 	}

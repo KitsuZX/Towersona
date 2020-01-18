@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.IO;
+using NaughtyAttributes;
 
 public class DebuggingOptions : MonoBehaviour
 {
@@ -16,6 +16,16 @@ public class DebuggingOptions : MonoBehaviour
         if (!Instance) Instance = this;
         else Destroy(this);
     }
+		
+	[Button]
+	public void RemoveSavedData()
+	{
+		string path = SaveSystem.levelsFilePath;
+		File.Delete(path);
+
+		Debug.Log("File deleted in " + path);
+		
+	}
 }
 
 public enum PriorizationOption { First, Closer, Last, Random }

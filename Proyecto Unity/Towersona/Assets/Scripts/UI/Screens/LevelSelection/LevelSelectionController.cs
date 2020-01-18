@@ -21,7 +21,7 @@ public class LevelSelectionController : MonoBehaviour
 
 	public void loadLevel(int levelId)
 	{
-		RelevantUserInfo.currentLevel = levelId - 1;
+		//RelevantUserInfo.currentLevel = levelId - 1;
 		SceneController.LoadScene("Level_" + levelId);
 	}
 }

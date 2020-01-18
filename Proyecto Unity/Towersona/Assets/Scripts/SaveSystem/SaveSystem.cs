@@ -5,7 +5,7 @@ using UnityEngine;
 public static class SaveSystem
 {
 	private static int numOfLevels = 3;
-	private static string levelsFilePath = Path.Combine(Application.persistentDataPath, "levels.tow");
+	public static string levelsFilePath = Path.Combine(Application.persistentDataPath, "levels.tow");
 
 	public static LevelData[] levelsData = new LevelData[numOfLevels];
 
@@ -18,22 +18,21 @@ public static class SaveSystem
 	}
 
 	public static void SaveLevel(int levelIndex, int score)
-	{
-		if (levelIndex == -1) return;
+	{		
 		BinaryFormatter formatter = new BinaryFormatter();
 
 		FileStream stream = new FileStream(levelsFilePath, FileMode.Create);
 
-		if (!LevelsFileCreated)
+		if (!LevelsFileCreated || levelsData[0] == null)
 		{
-			Debug.LogError("File not found in " + levelsFilePath + ". Try starting from Main Menu to create one automatically");
-		}
+			CreateLevelsFile();
+		}	
 
 		//Check if first completed
 		if (levelsData[levelIndex].Completed == false)
 		{
 			//Set next level avaible
-			if(levelIndex < levelsData.Length)
+			if(levelIndex < levelsData.Length - 1)
 			{
 				levelsData[levelIndex + 1].avaible = true;
 			}

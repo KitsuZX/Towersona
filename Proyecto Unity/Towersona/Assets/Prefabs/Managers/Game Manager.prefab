@@ -73,7 +73,6 @@ GameObject:
   - component: {fileID: 4326776620507013398}
   - component: {fileID: 4326776620507013396}
   - component: {fileID: 4326776620507013400}
-  - component: {fileID: 4326776620507013403}
   - component: {fileID: 4096571643705689203}
   - component: {fileID: 1025892589985156978}
   m_Layer: 0
@@ -112,9 +111,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnEnemies: 1
-  useMoney: 0
-  priorizationOption: 0
-  showStats: 1
+  useMoney: 1
+  priorizationOption: 3
+  showStats: 0
 --- !u!114 &4326776620507013398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,8 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8939e121eb03c844280af241d03f5b54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingLives: 40
-  startingMoney: 40
+  startingLives: 4000
+  startingMoney: 4000
   lives: 0
   money: 0
   round: 0
@@ -172,21 +171,6 @@ MonoBehaviour:
   victoryPrompt: {fileID: 0}
   defeatPrompt: {fileID: 0}
   emptyCamera: {fileID: 0}
---- !u!114 &4326776620507013403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4326776620507013397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 300da856b5e851140a1e5a8b1c36b651, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  livesText: {fileID: 0}
-  roundText: {fileID: 0}
-  moneyText: {fileID: 0}
 --- !u!114 &4096571643705689203
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,14 @@ public class InGameUIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI roundText = null;
     [SerializeField] private TextMeshProUGUI moneyText = null;
 
-    private void Start()
+
+	[Header("Victory and Defeat References")]
+	[SerializeField]
+	private VictoryPrompt victoryPrompt;
+	[SerializeField]
+	private GameObject defeatPrompt;
+
+	private void Start()
     {
         if (!Instance) Instance = this;
         else Destroy(this);
@@ -36,4 +43,22 @@ public class InGameUIController : MonoBehaviour
     {
         moneyText.text = PlayerStats.Instance.money.ToString();
     }
+
+	public IEnumerator ShowVictoryPrompt(int score)
+	{
+		yield return new WaitForSeconds(2f);
+		victoryPrompt.ShowVictoryPrompt(score);
+		SaveSystem.SaveLevel(LevelManager.Instance.LevelIndex, score);
+
+		//Time.timeScale = 0;
+	}
+
+	public IEnumerator ShowDefeatPrompt()
+	{
+		yield return new WaitForSeconds(2f);
+		//victoryPrompt.ShowVictoryPrompt(playerStats.Score);
+		//SaveSystem.SaveLevel(LevelManager.Instance.LevelIndex, playerStats.Score);
+
+		//Time.timeScale = 0;
+	}
 }

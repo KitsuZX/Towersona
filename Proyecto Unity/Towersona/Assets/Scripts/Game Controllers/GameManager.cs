@@ -8,12 +8,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance {get; private set; }
-
-    [Header("Victory and Defeat References")]
-    [SerializeField]
-    private VictoryPrompt victoryPrompt;     
-    [SerializeField]
-    private GameObject defeatPrompt;      
+    
 
     [Header("Other References")]
     [SerializeField, Tooltip("The first detailed scene camera without the detailed model")]
@@ -43,19 +38,25 @@ public class GameManager : MonoBehaviour
         activeCamera = GameObject.FindGameObjectWithTag("Default Camera").GetComponent<Camera>();     
 
         wavesController = GetComponent<LevelManager>();        
-        playerStats = GetComponent<PlayerStats>();		
-    }   
-    
-    /// <summary>
-    /// Changes to victory state
-    /// </summary>
-    public IEnumerator WinGame()
-    {
-		yield return new WaitForSeconds(2f);
-        victoryPrompt.ShowVictoryPrompt(playerStats.Score);
-		SaveSystem.SaveLevel(RelevantUserInfo.currentLevel, playerStats.Score);
+        playerStats = GetComponent<PlayerStats>();
 
-		//Time.timeScale = 0;
+		if(SaveSystem.levelsData[0] == null)
+		{
+			SaveSystem.LoadLevelsData();
+		}
+	}
+
+	private void Start()
+	{
+		WinGame();
+	}
+
+	/// <summary>
+	/// Changes to victory state
+	/// </summary>
+	public void WinGame()
+    {
+		StartCoroutine(InGameUIController.Instance.ShowVictoryPrompt(playerStats.Score));
 
         OnWonGame?.Invoke();    //Lo invoco así porque si no hay listeners el evento es null.
     }
@@ -65,8 +66,7 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        defeatPrompt.SetActive(true);
-		Time.timeScale = 0;
+		InGameUIController.Instance.ShowDefeatPrompt();
 	}
 
     /// <summary>
