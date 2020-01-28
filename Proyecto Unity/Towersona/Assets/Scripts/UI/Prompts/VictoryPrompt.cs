@@ -7,6 +7,11 @@ public class VictoryPrompt : MonoBehaviour
 {
     [SerializeField]
     private Image[] stars;
+	[SerializeField]
+	private GameObject[] startsParticles;
+	[SerializeField]
+	private GameObject starsBurst;
+
 
 	[SerializeField]
 	private Button nextLevelButton;
@@ -56,7 +61,7 @@ public class VictoryPrompt : MonoBehaviour
 
 		//Animaciones
         for (int i = prevScore; i < score; i++)
-        {
+        {			
             Color original = stars[i].color;
             original.a = 1f;
 
@@ -67,9 +72,24 @@ public class VictoryPrompt : MonoBehaviour
             starsSequence.AppendInterval(.1f);            
             
             starsSequence.Append(stars[i].transform.DOScale(1.1f, .7f));
-            starsSequence.Join(stars[i].DOColor(original, .7f));           
+            starsSequence.Join(stars[i].DOColor(original, .7f));
 
-        }
+			starsBurst.gameObject.SetActive(true);
+
+			//Lo pongo así porque por algún motivo  starsSequence.AppendCallback(() => particleSystems[i].gameObject.SetActive(true)) no funciona.
+			if (i == 0)
+			{
+				starsSequence.AppendCallback(() => startsParticles[0].gameObject.SetActive(true));
+			}
+			else if(i == 1)
+			{
+				starsSequence.AppendCallback(() => startsParticles[1].gameObject.SetActive(true));
+			}
+			else if(i == 2)
+			{
+				starsSequence.AppendCallback(() => startsParticles[2].gameObject.SetActive(true));
+			}	
+		}
     }
 
 	public void NextLevel() {
