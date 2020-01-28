@@ -31,6 +31,7 @@ public class TowersonaNeeds : MonoBehaviour
     {
         LoveNeed.SetStats(stats);
         FoodNeed.SetStats(stats);
+        Sleeper.SetStats(stats);
     }
 
     public void ResetNeeds()

@@ -18,10 +18,17 @@ public abstract class TowersonaStats : ScriptableObject
     public float loveDecayPerSecond = 0.05f;
     [Tooltip("Amor que gana la towersona al ser acariciada durante un segundo.")]
     public float loveGainPerSecondCaressed = 0.25f;
+    [Tooltip("Si imaginas escoger quién duerme como una lotería, este es el número de boletos de la towersona.")]
+    public float sleepChance = 1;
 
     [Header("Damage")]
 	public Vector2 bulletDamage = Vector2.zero;
 	public Vector2 attackSpeed = Vector2.zero;
 	public Vector2 range = Vector2.zero;
 	public Vector2 bulletSpeed = Vector2.zero;
+
+    private void OnValidate()
+    {
+        sleepChance = Mathf.Max(sleepChance, 0);
+    }
 }

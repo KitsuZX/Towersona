@@ -10,6 +10,7 @@ public class Sleeper : MonoBehaviour
     public event Action OnWokeUp;
 
     public bool IsAsleep { get; private set; }
+    public float SleepChance { get; private set; }
 
 
     public void GoToSleep()
@@ -26,6 +27,11 @@ public class Sleeper : MonoBehaviour
 
         IsAsleep = false;
         OnWokeUp?.Invoke();
+    }
+
+    public void SetStats(TowersonaStats stats)
+    {
+        SleepChance = stats.sleepChance;
     }
 
 

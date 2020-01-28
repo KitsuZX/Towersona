@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+#pragma warning disable 649
 public class InGameUIController : MonoBehaviour
 {
     public static InGameUIController Instance { get; private set; }

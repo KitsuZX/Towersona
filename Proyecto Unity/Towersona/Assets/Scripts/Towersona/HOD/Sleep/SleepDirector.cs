@@ -6,8 +6,11 @@ using UnityEngine;
 public class SleepDirector : MonoBehaviour
 {
     public static SleepDirector Instance { get; private set; }
+    [SerializeField, Required] SleepDirectorSettings settings;
+
 
     private List<Sleeper> sleepers = new List<Sleeper>();
+
 
     public void Register(Sleeper sleeper)
     {
@@ -19,13 +22,44 @@ public class SleepDirector : MonoBehaviour
         sleepers.Remove(sleeper);
     }
 
-    [Button]
-    public void SleepOneAtRandom()
-    {
-        if (sleepers.Count == 0) return;
 
-        int index = Random.Range(0, sleepers.Count);
-        sleepers[index].GoToSleep();
+    [Button]
+    private void SleepOneAtRandom()
+    {
+        float totalChance = 0;
+
+        foreach (Sleeper sleeper in sleepers)
+        {
+            if (!sleeper.IsAsleep) totalChance += sleeper.SleepChance;
+        }
+        if (totalChance == 0) return;
+
+        float result = Random.Range(0, totalChance);
+
+        float counter = 0;
+        foreach (Sleeper sleeper in sleepers)
+        {
+            if (sleeper.IsAsleep) continue;
+
+            counter += sleeper.SleepChance;
+            if (counter >= result)
+            {
+                Sleep(sleeper);
+                return;
+            }
+        }
+    }
+
+    private void Sleep(Sleeper sleeper)
+    {
+        sleeper.GoToSleep();
+    }
+
+    private void ScheduleNextSleep()
+    {
+        float interval = settings.Interval;
+        Invoke("SleepOneAtRandom", interval);
+        Invoke("ScheduleNextSleep", interval);
     }
 
 
@@ -33,5 +67,10 @@ public class SleepDirector : MonoBehaviour
     {
         if (!Instance) Instance = this;
         else Destroy(this);
+    }
+
+    private void Start()
+    {
+        ScheduleNextSleep();
     }
 }
