@@ -84,6 +84,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: cara
+    second: {fileID: 2100000, guid: 053cad371c6659b4e950ba79cbd023f4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: cuerpo
     second: {fileID: 2100000, guid: 4cc4559741a9545439af626f584f423b, type: 2}
   - first:
@@ -147,7 +152,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 3
+    previousCalculatedGlobalScale: 2.75
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

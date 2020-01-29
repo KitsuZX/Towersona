@@ -5,12 +5,17 @@ ModelImporter:
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: cuerpo
-    2100002: cara
+    2100000: cara
+    2100002: cuerpo
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Sphere.002
+    4300000: LP
   externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cara
+    second: {fileID: 2100000, guid: 053cad371c6659b4e950ba79cbd023f4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

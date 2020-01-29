@@ -87,15 +87,15 @@ ModelImporter:
     2100002: cabeza
     2100004: cara
     4300000: hp
-    7400000: T-Pose
-    7400002: Idle
-    7400004: Ganar
-    7400006: Ganar_bucle
-    7400008: Hambre
-    7400010: Hambre_Bucle
-    7400012: Necesita_Amor
-    7400014: Necesita_Amor_Bucle
-    7400016: Caca
+    7400000: CAT_LVL3.2_T-Pose
+    7400002: CAT_LVL3.2_Idle
+    7400004: CAT_LVL3.2_Ganar
+    7400006: CAT_LVL3.2_Ganar_bucle
+    7400008: CAT_LVL3.2_Hambre
+    7400010: CAT_LVL3.2_Hambre_Bucle
+    7400012: CAT_LVL3.2_Necesita_Amor
+    7400014: CAT_LVL3.2_Necesita_Amor_Bucle
+    7400016: CAT_LVL3.2_Caca
     9500000: //RootNode
     13700000: hp
     2186277476908879412: ImportLogs
@@ -143,7 +143,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: T-Pose
+      name: CAT_LVL3.2_T-Pose
       takeName: Take 001
       firstFrame: 1
       lastFrame: 1
@@ -171,7 +171,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
+      name: CAT_LVL3.2_Idle
       takeName: Take 001
       firstFrame: 3
       lastFrame: 32
@@ -199,7 +199,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ganar
+      name: CAT_LVL3.2_Ganar
       takeName: Take 001
       firstFrame: 34
       lastFrame: 74
@@ -227,7 +227,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ganar_bucle
+      name: CAT_LVL3.2_Ganar_bucle
       takeName: Take 001
       firstFrame: 44
       lastFrame: 74
@@ -255,7 +255,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hambre
+      name: CAT_LVL3.2_Hambre
       takeName: Take 001
       firstFrame: 75
       lastFrame: 115
@@ -283,7 +283,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hambre_Bucle
+      name: CAT_LVL3.2_Hambre_Bucle
       takeName: Take 001
       firstFrame: 85
       lastFrame: 115
@@ -311,7 +311,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Necesita_Amor
+      name: CAT_LVL3.2_Necesita_Amor
       takeName: Take 001
       firstFrame: 116
       lastFrame: 156
@@ -339,7 +339,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Necesita_Amor_Bucle
+      name: CAT_LVL3.2_Necesita_Amor_Bucle
       takeName: Take 001
       firstFrame: 126
       lastFrame: 156
@@ -367,7 +367,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Caca
+      name: CAT_LVL3.2_Caca
       takeName: Take 001
       firstFrame: 157
       lastFrame: 193
@@ -418,7 +418,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 3
+    previousCalculatedGlobalScale: 4
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

@@ -89,13 +89,13 @@ ModelImporter:
     2100002: cara1
     2100004: cuerpo1
     4300000: HP
-    7400000: T-Pose
-    7400002: Idle
-    7400004: Ganar
-    7400006: Hambre
-    7400008: Hambre_bucle
-    7400010: Necesito_amor
-    7400012: Caca
+    7400000: CAT_LVL2_T-Pose
+    7400002: CAT_LVL2_Idle
+    7400004: CAT_LVL2_Ganar
+    7400006: CAT_LVL2_Hambre
+    7400008: CAT_LVL2_Hambre_bucle
+    7400010: CAT_LVL2_Necesito_amor
+    7400012: CAT_LVL2_Caca
     9500000: //RootNode
     13700000: HP
     2186277476908879412: ImportLogs
@@ -143,7 +143,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: T-Pose
+      name: CAT_LVL2_T-Pose
       takeName: Take 001
       firstFrame: 1
       lastFrame: 1
@@ -171,7 +171,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: Idle
+      name: CAT_LVL2_Idle
       takeName: Take 001
       firstFrame: 3
       lastFrame: 40
@@ -199,7 +199,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: Ganar
+      name: CAT_LVL2_Ganar
       takeName: Take 001
       firstFrame: 42
       lastFrame: 67
@@ -227,7 +227,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: Hambre
+      name: CAT_LVL2_Hambre
       takeName: Take 001
       firstFrame: 69
       lastFrame: 93
@@ -255,7 +255,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: Hambre_bucle
+      name: CAT_LVL2_Hambre_bucle
       takeName: Take 001
       firstFrame: 78
       lastFrame: 92
@@ -283,7 +283,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: Necesito_amor
+      name: CAT_LVL2_Necesito_amor
       takeName: Take 001
       firstFrame: 95
       lastFrame: 120
@@ -311,7 +311,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 1
     - serializedVersion: 16
-      name: Caca
+      name: CAT_LVL2_Caca
       takeName: Take 001
       firstFrame: 122
       lastFrame: 150
