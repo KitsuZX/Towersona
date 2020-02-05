@@ -55,11 +55,11 @@ ModelImporter:
     2100006: melena
     4300000: HP
     7400000: T_Pose
-    7400002: Idle
-    7400004: Ganar
-    7400006: Ganar_bucle
+    7400002: HG_LVL3.1_IDLE
+    7400004: HG_LVL3.1_WIN
+    7400006: HG_LVL3.1_HUNGRY
     7400008: Necesita_amor
-    7400010: Necesita_amor_bucle
+    7400010: HG_LVL3.1_NECESIDAD_AMOR
     7400012: Caca
     9500000: //RootNode
     13700000: HP
@@ -135,7 +135,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
+      name: HG_LVL3.1_IDLE
       takeName: Take 001
       firstFrame: 1
       lastFrame: 60
@@ -163,7 +163,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ganar
+      name: HG_LVL3.1_WIN
       takeName: Take 001
       firstFrame: 61
       lastFrame: 121
@@ -191,7 +191,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ganar_bucle
+      name: HG_LVL3.1_HUNGRY
       takeName: Take 001
       firstFrame: 81
       lastFrame: 120
@@ -247,7 +247,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Necesita_amor_bucle
+      name: HG_LVL3.1_NECESIDAD_AMOR
       takeName: Take 001
       firstFrame: 203
       lastFrame: 243

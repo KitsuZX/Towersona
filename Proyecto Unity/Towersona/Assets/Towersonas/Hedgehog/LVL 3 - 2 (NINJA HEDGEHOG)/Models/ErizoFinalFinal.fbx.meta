@@ -71,13 +71,13 @@ ModelImporter:
     2100006: cuerpo
     4300000: Malla
     7400000: T-Pose
-    7400002: Idle
+    7400002: HG_LVL3.2_IDLE
     7400004: Ganar
-    7400006: Ganar_bucle
+    7400006: HG_LVL3.2_WIN
     7400008: Hambre
-    7400010: Hambre_bucle
+    7400010: HG_LVL3.2_HUNGRY
     7400012: Necesita_amor
-    7400014: Necesita_amor_bucle
+    7400014: HG_LVL3.2_NECESITADO_AMOR
     7400016: caca
     9500000: //RootNode
     13700000: Malla
@@ -153,7 +153,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
+      name: HG_LVL3.2_IDLE
       takeName: Take 001
       firstFrame: 1
       lastFrame: 31
@@ -209,7 +209,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ganar_bucle
+      name: HG_LVL3.2_WIN
       takeName: Take 001
       firstFrame: 42
       lastFrame: 72
@@ -265,7 +265,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hambre_bucle
+      name: HG_LVL3.2_HUNGRY
       takeName: Take 001
       firstFrame: 83
       lastFrame: 113
@@ -321,7 +321,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Necesita_amor_bucle
+      name: HG_LVL3.2_NECESITADO_AMOR
       takeName: Take 001
       firstFrame: 124
       lastFrame: 152
@@ -400,7 +400,7 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
+    previousCalculatedGlobalScale: 8
     hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60

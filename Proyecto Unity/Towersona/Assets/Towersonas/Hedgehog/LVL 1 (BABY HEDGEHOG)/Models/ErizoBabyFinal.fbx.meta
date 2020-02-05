@@ -48,11 +48,11 @@ ModelImporter:
     2100004: cara
     4300000: Malla1
     7400000: T-Pose
-    7400002: Idle
-    7400004: Ganar
-    7400006: Hambre
+    7400002: HG_LVL1_IDLE
+    7400004: HG_LVL1_WIN
+    7400006: HG_LVL1_HUNGRY
     7400008: Hambre_Bucle
-    7400010: Necesita_Amor
+    7400010: HG_LVL1_NECESIDAD_AMOR
     7400012: Necesita_Amor_Bucle
     7400014: Caca
     9500000: //RootNode
@@ -124,7 +124,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Idle
+      name: HG_LVL1_IDLE
       takeName: Take 001
       firstFrame: 0
       lastFrame: 30
@@ -152,7 +152,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Ganar
+      name: HG_LVL1_WIN
       takeName: Take 001
       firstFrame: 31
       lastFrame: 61
@@ -180,7 +180,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Hambre
+      name: HG_LVL1_HUNGRY
       takeName: Take 001
       firstFrame: 62
       lastFrame: 102
@@ -236,7 +236,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Necesita_Amor
+      name: HG_LVL1_NECESIDAD_AMOR
       takeName: Take 001
       firstFrame: 102
       lastFrame: 143
